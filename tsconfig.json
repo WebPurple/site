@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./public/"
+            "outDir": "./build/"
 	},
 	"files": [
 	    "./components/post.ts"
