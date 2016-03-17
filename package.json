@@ -1,0 +1,15 @@
+{
+  "name": "web-purple",
+  "version": "1.0.0",
+  "description": "Web Purple Community Web Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.epam.com/ilya_kuznetsov/web-purple.git"
+  },
+  "author": "Nikita_Kirsanov@epam.com, Ilya_Kuznetsov@epam.com",
+  "license": "ISC"
+}
