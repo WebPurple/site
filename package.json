@@ -11,5 +11,8 @@
     "url": "https://git.epam.com/ilya_kuznetsov/web-purple.git"
   },
   "author": "Nikita_Kirsanov@epam.com, Ilya_Kuznetsov@epam.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.7"
+  }
 }
