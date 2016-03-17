@@ -5,5 +5,5 @@ NPM Globally Installed Packages
 ------------
 
 The following npm packages should be installed globally:
-* tsc ```npm install tsc --global```
+* typescript ```npm install typescript --global```
 * typings ```npm install typings --global```

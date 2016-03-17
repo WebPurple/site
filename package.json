@@ -4,6 +4,7 @@
   "description": "Web Purple Community Web Site",
   "main": "index.js",
   "scripts": {
+    "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
