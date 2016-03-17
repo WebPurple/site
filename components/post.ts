@@ -1,0 +1,3 @@
+module post {
+	'use strict';
+}

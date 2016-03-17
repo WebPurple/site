@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "typings install",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

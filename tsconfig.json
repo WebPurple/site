@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"outDir": "./public/"
+	},
+	"files": [
+	    "./components/post.ts"
+	]
+}
