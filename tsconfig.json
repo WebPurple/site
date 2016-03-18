@@ -1,8 +1,18 @@
 {
 	"compilerOptions": {
-            "outDir": "./build/"
+    "noImplicitAny": true,
+    "jsx": "react",
+		"module": "commonjs",
+    "target": "es5"
 	},
-	"files": [
-	    "./components/post.ts"
+  "files": [
+    "./typings/main.d.ts",
+    "./components/app.tsx",
+    "./components/feed.tsx",
+    "./components/post.tsx"
+  ],
+	"exclude": [
+		"node_modules",
+		"typings"
 	]
 }
