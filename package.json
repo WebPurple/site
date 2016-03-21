@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "build": "tsc -p ./",
+    "build": "webpack",
     "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,8 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-tap-event-plugin": "^0.2.2",
-    "ts-loader": "^0.8.1"
+    "devDependencies": {
+      "ts-loader": "^0.8.1"
+    }
   }
 }

@@ -6,20 +6,20 @@ module.exports = {
         main: "./components/app.tsx"
     },
     output: {
-        path: "./build",
+        path: path.join(__dirname, 'public', 'build'),
         filename: "app.js"
     },
     module: {
-		loaders: [
-			{ test: /\.ts(x?)$/, loader: "ts-loader" }
-		]
+        loaders: [
+            {test: /\.ts(x?)$/, loader: "ts-loader"}
+        ]
     },
     resolve: {
         extensions: ['', '.ts', '.tsx', '.js'],
         alias: {
             'react': path.join(nodeModulesPath, 'react', 'dist', 'react.js'),
-            'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js'),
-            'post': path.join(__dirname, 'components', 'post.tsx')
-		}
-    }
+            'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js')
+        }
+    },
+    devtool: 'source-map'
 };

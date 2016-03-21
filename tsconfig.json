@@ -1,18 +1,14 @@
 {
-	"compilerOptions": {
+  "compilerOptions": {
     "noImplicitAny": true,
     "jsx": "react",
-		"module": "commonjs",
+    "module": "commonjs",
     "target": "es5"
-	},
+  },
   "files": [
     "./typings/main.d.ts",
     "./components/app.tsx",
     "./components/feed.tsx",
     "./components/post.tsx"
-  ],
-	"exclude": [
-		"node_modules",
-		"typings"
-	]
+  ]
 }

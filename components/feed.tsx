@@ -1,11 +1,10 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {PostItem} from 'post';
+import * as React from "react";
+import {PostItem} from "./post";
 
 interface IPost {
     title: string;
     content: string;
-    key: number;
+    _id: number;
 }
 
 export interface IFeedState {
@@ -16,31 +15,18 @@ export interface IFeedProps {
 }
 
 export class Feed extends React.Component<IFeedProps, IFeedState> {
-    state: IFeedState = {
-        postList: [{ title: "First Post", content: "Bla Bla Bla", key: 0}]
-    }
 
     constructor(props: any) {
         super(props);
-        //setTimeout(() => this.addPost("First Post", "Bla Bla Bla"), 0);
+        this.state = {
+            postList: [{title: "First Post", content: "Bla Bla Bla", _id: 0}]
+        }
     }
 
     render() {
         var list = this.state.postList.map(post => {
-            return <PostItem title={post.title} content={post.content} key={post.key}></PostItem>;
+            return <PostItem key={post._id} title={post.title} content={post.content}/>;
         });
         return <div>{ list }</div>;
     }
-
-    addPost(title: string, content: string) {
-        var list = this.state;
-        list.postList.push({
-            title: title,
-            content: content,
-            key: 0
-        });
-        this.setState(list);
-    }
 }
-
-//document.addEventListener('DOMContentLoaded', () => ReactDOM.render(<Feed />, document.getElementById('main')));
