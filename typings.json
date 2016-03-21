@@ -2,7 +2,17 @@
   "ambientDependencies": {
     "material-ui": "registry:dt/material-ui#0.14.4+20160316155526",
     "react": "registry:dt/react#0.14.0+20160314090524",
+    "react-addons-create-fragment": "registry:dt/react-addons-create-fragment#0.14.0+20160316155526",
+    "react-addons-css-transition-group": "registry:dt/react-addons-css-transition-group#0.14.0+20160316155526",
+    "react-addons-linked-state-mixin": "registry:dt/react-addons-linked-state-mixin#0.14.0+20160316155526",
+    "react-addons-perf": "registry:dt/react-addons-perf#0.14.0+20160316155526",
+    "react-addons-pure-render-mixin": "registry:dt/react-addons-pure-render-mixin#0.14.0+20160316155526",
+    "react-addons-shallow-compare": "registry:dt/react-addons-shallow-compare#0.14.0+20160316155526",
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160316155526",
+    "react-addons-transition-group": "registry:dt/react-addons-transition-group#0.14.0+20160316155526",
+    "react-addons-update": "registry:dt/react-addons-update#0.14.0+20160316155526",
     "react-dom": "registry:dt/react-dom#0.14.0+20160314090524",
+    "react-global": "registry:dt/react-global#0.14.0+20160316155526",
     "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160226083632"
   }
 }

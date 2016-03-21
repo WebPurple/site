@@ -17,7 +17,7 @@ module.exports = {
     resolve: {
         extensions: ['', '.ts', '.tsx', '.js'],
         alias: {
-            'react': path.join(nodeModulesPath, 'react', 'dist', 'react.js'),
+            'react-with-addons': path.join(nodeModulesPath, 'react', 'dist', 'react-with-addons.js'),
             'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js')
         }
     },
