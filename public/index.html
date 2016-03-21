@@ -7,6 +7,12 @@
     <script src="../build/app.js"></script>
 </head>
 <body>
-    <div id="main"></div>
+<div id="main"></div>
+<form action="api/posts" method="post">
+    <label>Text<input type="text" name="text"></label>
+    <label>Author<input type="text" name="author"></label>
+    <button type="submit">Отправить</button>
+</form>
+<a href="/api/posts">Posts</a>
 </body>
 </html>
