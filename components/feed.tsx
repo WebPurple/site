@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PostItem} from "./post";
+import PostItem from "./post";
 
 interface IPost {
     title: string;
@@ -14,7 +14,7 @@ export interface IFeedState {
 export interface IFeedProps {
 }
 
-export class Feed extends React.Component<IFeedProps, IFeedState> {
+export default class Feed extends React.Component<IFeedProps, IFeedState> {
 
     constructor(props: any) {
         super(props);

@@ -15,11 +15,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.ts', '.tsx', '.js'],
-        alias: {
-            'react-with-addons': path.join(nodeModulesPath, 'react', 'dist', 'react-with-addons.js'),
-            'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js')
-        }
+        extensions: ['', '.ts', '.tsx', '.js']
     },
     devtool: 'source-map'
 };
