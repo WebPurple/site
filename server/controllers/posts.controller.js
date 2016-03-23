@@ -20,13 +20,17 @@ module.exports = () => {
                 .catch(err => response.send(err));
         })
         // get all posts
-        .get((request, response) => Post.find().exec()
+        .get((request, response) => Post.find()
+            .populate('author')
+            .exec()
             .then(post => response.send(post))
             .catch(err => response.send(err)));
 
     router.route('/posts/:post_id')
         // get post by id
-        .get((request, response) => Post.findById(request.params.post_id).exec()
+        .get((request, response) => Post.findById(request.params.post_id)
+            .populate('author')
+            .exec()
             .then(post => response.send(post))
             .catch(err => response.send(err)))
         // update post

@@ -1,10 +1,20 @@
 import * as React from 'react';
 import PostItem from './post';
 
+interface IUser {
+    gender: string;
+    vkDisplayName: string;
+    vkPhotoUrl: string;
+    vkProfileUrl: string;
+    vkUserId: number;
+    vkUserName: string;
+    _id: number;
+}
+
 interface IPost {
     title: string;
     text: string;
-    author: string;
+    author: IUser;
     date: string;
     _id: number;
 }
