@@ -13,10 +13,10 @@
     "react-addons-transition-group": "registry:dt/react-addons-transition-group#0.14.0+20160316155526",
     "react-addons-update": "registry:dt/react-addons-update#0.14.0+20160316155526",
     "react-dom": "registry:dt/react-dom#0.14.0+20160314090524",
-    "react-global": "registry:dt/react-global#0.14.0+20160316155526"
+    "react-global": "registry:dt/react-global#0.14.0+20160316155526",
+    "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160226083632"
   },
   "dependencies": {
-    "es6-promise": "registry:npm/es6-promise#3.0.0+20160211003958",
-    "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160226083632"
+    "es6-promise": "registry:npm/es6-promise#3.0.0+20160211003958"
   }
 }
