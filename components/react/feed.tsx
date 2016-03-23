@@ -1,5 +1,5 @@
-import * as React from "react";
-import PostItem from "./post";
+import * as React from 'react';
+import PostItem from './post';
 
 interface IPost {
     title: string;

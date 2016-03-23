@@ -26,6 +26,7 @@ app.use(express.static('public'));
 authApi(app);
 
 app.use('/api', postsApi());
+app.get('/api/user', (request, response) => response.send(request.user));
 
 mongoose.connect(`mongodb://${dbConf.user}:${dbConf.password}@${dbConf.host}:${dbConf.port}/${dbConf.dbName}`);
 mongoose.connection

@@ -13,7 +13,7 @@ module.exports = () => {
             return new Post({
                 text: request.body.text,
                 date: new Date(),
-                author: request.body.author
+                author: request.user._id
             }).save()
                 .then(post => response.send(post))
                 .catch(err => response.send(err));

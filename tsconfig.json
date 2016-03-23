@@ -8,7 +8,8 @@
   "files": [
     "./typings/main.d.ts",
     "./components/app.tsx",
-    "./components/feed.tsx",
-    "./components/post.tsx"
+    "./components/react/feed.tsx",
+    "./components/react/post.tsx",
+    "./components/utils/ajax.ts"
   ]
 }
