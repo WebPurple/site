@@ -1,19 +1,31 @@
 import * as React from 'react';
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardHeader from 'material-ui/lib/card/card-header';
+import CardMedia from 'material-ui/lib/card/card-media';
+import CardTitle from 'material-ui/lib/card/card-title';
 import FlatButton from 'material-ui/lib/flat-button';
+import CardText from 'material-ui/lib/card/card-text';
 
 export interface IPostProps {
     title: string;
-    content: string;
+    text: string;
+    author: string;
+    date: Date;
 }
 
-export default class PostItem extends React.Component<IPostProps, {}> {
-    render() {
-        return (
-            <div>
-                <FlatButton />
-                <span>{this.props.title}</span>
-                <span>{this.props.content}</span>
-            </div>
-        );
-    }
-}
+const PostItem = ({title, text, date, author}: IPostProps) => (
+    <Card>
+        <CardHeader
+            title={ author }
+            subtitle= { date.toLocaleDateString() }
+            avatar="http://lorempixel.com/100/100/nature/"
+        />
+        <CardTitle title={title} />
+        <CardText>
+            {text}
+        </CardText>
+    </Card>
+    );     
+
+export default PostItem;

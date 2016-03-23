@@ -42,5 +42,5 @@ module.exports = (app) => {
         failureRedirect: '/login.html'
     }));
 
-    app.all('/*', (request, response, next) => request.isAuthenticated() ? next() : response.redirect('/login.html'))
+    app.all('/*', (request, response, next) => request.isAuthenticated() || request.method == 'GET' ? next() : response.redirect('/login.html'))
 };

@@ -13,7 +13,8 @@ module.exports = () => {
             return new Post({
                 text: request.body.text,
                 date: new Date(),
-                author: request.user._id
+                author: request.user._id,
+                title: request.body.title
             }).save()
                 .then(post => response.send(post))
                 .catch(err => response.send(err));
@@ -34,7 +35,7 @@ module.exports = () => {
                 .then(post => {
                     post.text = request.body.text;
                     post.author = request.body.author;
-
+                    post.title = request.body.title;
                     return post.save();
                 })
                 .then(post => response.send(post))

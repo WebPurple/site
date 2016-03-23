@@ -3,7 +3,9 @@ import PostItem from './post';
 
 interface IPost {
     title: string;
-    content: string;
+    text: string;
+    author: string;
+    date: string;
     _id: number;
 }
 
@@ -18,14 +20,26 @@ export default class Feed extends React.Component<IFeedProps, IFeedState> {
 
     constructor(props: any) {
         super(props);
+
         this.state = {
-            postList: [{title: "First Post", content: "Bla Bla Bla", _id: 0}]
-        }
+            postList: []
+        };
+
+
+        fetch("./api/posts")
+            .then(response => {
+                if (response.status !== 200) {
+                    return Promise.reject(new Error(response.statusText));
+                }
+                return response.json();
+            }).then((postList: IPost[]) => {
+                this.setState({postList});
+            });
     }
 
     render() {
         var list = this.state.postList.map(post => {
-            return <PostItem key={post._id} title={post.title} content={post.content}/>;
+            return <PostItem key={post._id} title={post.title} text={post.text} author={post.author} date={new Date(post.date)} />;
         });
         return <div>{ list }</div>;
     }

@@ -24,7 +24,7 @@ export function ajaxJson(url: string, method: string = 'get', params?: any): Pro
         },
         body: params && JSON.stringify(params)
     })
-        .then(response=> response.json())
+        .then(response=> response.status === 200 ? response.json() : Promise.reject(response.statusText))
         .then(obj => {
             return obj;
         });
