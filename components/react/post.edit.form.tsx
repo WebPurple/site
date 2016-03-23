@@ -36,7 +36,7 @@ const PostEditForm = ({post, onSubmit, deferredPost, onToggleDeferredPost}: Post
             <CheckBox label='Export to Twitter'/>
             <br/>
             <Toggle title='Deferred post' labelPosition='right'
-                    onToggle={(e, isInputChecked) => onToggleDeferredPost(isInputChecked)}/>
+                    onToggle={(e, isInputChecked) => onToggleDeferredPost && onToggleDeferredPost(isInputChecked)}/>
             <DatePicker hintText='Post on'
                         container='dialog'
                         mode='landscape'
