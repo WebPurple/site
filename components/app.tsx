@@ -2,21 +2,30 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+
 import AppHeader from './react/app.header';
 import Feed from './react/feed';
-import {getJson} from './utils/ajax';
+import NewPost from './react/post/new-post';
+import appReducer from './reducers/app';
 
-const App = ({user, post}) => (
+const App = ({header, feed, newPost}: {header?: any, feed?: any, newPost?: any}) => (
     <div className='page'>
-        <AppHeader user={user}/>
+        <AppHeader {...header}/>
         <main className='container'>
-            <Feed/>
+            <Feed {...feed}/>
         </main>
+        <NewPost/>
     </div>
 );
 
 injectTapEventPlugin();
 
-document.addEventListener('DOMContentLoaded', () => getJson('api/user')
-    .then(user => render(<App user={user} post={{}}/>, document.getElementById('main')))
-    .catch(err => render(<App user={null} post={{}}/>, document.getElementById('main'))));
+let store = createStore(appReducer);
+
+document.addEventListener('DOMContentLoaded', () => render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('main')));

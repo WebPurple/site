@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "jsx": "react",
     "module": "commonjs",
     "target": "es5"
