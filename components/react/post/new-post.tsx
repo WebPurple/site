@@ -7,19 +7,27 @@ import Dialog from 'material-ui/lib/dialog'
 
 import PostEditForm from './post.edit.form';
 
-let NewPost = ({state, postEditor, dispatch}: {state?, postEditor?, dispatch?}) => (
+const NewPostComponent = ({state, postEditor, onDialogOpen, onDialogClose}) => (
     <div>
-        <FloatingActionButton onTouchTap={() => dispatch({type: 'OPEN_DIALOG'})} style={{position: 'fixed', right: 50, bottom: 50}}>
+        <FloatingActionButton onTouchTap={onDialogOpen} style={{position: 'fixed', right: 50, bottom: 50}}>
             <ContentAdd />
         </FloatingActionButton>
         <Dialog title='New post'
                 open={state.dialogOpen}
-                onRequestClose={() => dispatch({type: 'CLOSE_DIALOG'})}>
+                onRequestClose={onDialogClose}>
             <PostEditForm {...postEditor}/>
         </Dialog>
     </div>
 );
 
-NewPost = connect(state => state.newPost)(NewPost);
+const NewPostContainer = connect(
+    state => state.newPost,
+    dispatch => {
+        return {
+            onDialogOpen: () => dispatch({type: 'OPEN_DIALOG'}),
+            onDialogClose: () => dispatch({type: 'CLOSE_DIALOG'})
+        };
+    }
+)(NewPostComponent);
 
-export default NewPost;
+export default NewPostContainer;

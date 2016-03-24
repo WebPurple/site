@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
-import header from './header';
-import feed from './feed';
+import header from './header.reducer';
+import feed from './feed.reducer';
 import newPost from './new-post';
 
 const app = combineReducers({

@@ -8,19 +8,17 @@ import CheckBox from "material-ui/lib/checkbox";
 import Toggle from "material-ui/lib/toggle";
 import DatePicker from "material-ui/lib/date-picker/date-picker";
 
-interface PostVO {
-    title: string;
-    text: string;
-}
+import {IPost} from "../../vo/index";
+import {submitPostForm, toggleDeferredPost} from "../../actions/post-edit-form.actions";
 
 export interface PostEditFormProps {
-    post: PostVO;
+    post: IPost;
     onSubmit: any;
     deferredPost?: boolean;
-    dispatch?: (e: {type: string}) => void;
+    onToggleDeferredPost: Function;
 }
 
-let PostEditForm = ({post, onSubmit, deferredPost, dispatch}: PostEditFormProps) => (
+let PostEditForm = ({post, onSubmit, deferredPost, onToggleDeferredPost}: PostEditFormProps) => (
     <div>
         <TextField floatingLabelText='Title' fullWidth={true} value={post.title}/>
         <TextField floatingLabelText='Text'
@@ -33,7 +31,7 @@ let PostEditForm = ({post, onSubmit, deferredPost, dispatch}: PostEditFormProps)
         <br/>
         <Toggle title='Deferred post' labelPosition='right'
                 toggled={deferredPost}
-                onToggle={(e, isInputChecked) => dispatch({type: 'DEFERRED_POST'})}/>
+                onToggle={onToggleDeferredPost}/>
         <DatePicker hintText='Post on'
                     container='dialog'
                     mode='landscape'
@@ -47,5 +45,14 @@ let PostEditForm = ({post, onSubmit, deferredPost, dispatch}: PostEditFormProps)
     </div>
 );
 
-PostEditForm = connect(state => state.newPost)(PostEditForm);
+PostEditForm = connect(
+    state => state.newPost,
+    (dispatch: Redux.Dispatch, {post}) => {
+        return {
+            onSubmit: () => dispatch(submitPostForm(post)),
+            onToggleDeferredPost: () => dispatch(toggleDeferredPost())
+        };
+    }
+)(PostEditForm);
+
 export default PostEditForm;

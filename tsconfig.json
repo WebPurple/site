@@ -3,13 +3,12 @@
     "noImplicitAny": false,
     "jsx": "react",
     "module": "commonjs",
-    "target": "es5"
+    "target": "es6"
   },
-  "files": [
-    "./typings/main.d.ts",
-    "./components/app.tsx",
-    "./components/react/feed.tsx",
-    "./components/react/post.tsx",
-    "./components/utils/ajax.ts"
+  "exclude": [
+    "node_modules",
+    "typings/browser.d.ts",
+    "typings/main",
+    "typings/browser"
   ]
 }
