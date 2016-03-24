@@ -9,7 +9,7 @@ import thunkMiddleware from 'redux-thunk'
 import AppHeader from './react/app.header';
 import Feed from './react/feed';
 import NewPost from './react/post/new-post';
-import appReducer from './reducers/app';
+import appReducer from './reducers/app.reducer';
 import {fetchPosts} from './actions/feed.actions';
 import {fetchUser} from './actions/user.actions';
 

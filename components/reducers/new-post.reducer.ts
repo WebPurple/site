@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import postEditor from './post-edit';
+import postEditor from './post-edit.reducer';
 
 let newPost = (state = {dialogOpen: false}, action: {type: string}) => {
     switch (action.type) {
