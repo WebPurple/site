@@ -37,7 +37,7 @@ const PostEditFormComponent = ({post, onSubmit, deferredPost, onToggleDeferredPo
         <CheckBox label='Export to Facebook'/>
         <CheckBox label='Export to Twitter'/>
         <br/>
-        <Toggle title='Deferred post' labelPosition='right'
+        <Toggle label='Deferred post' labelPosition='right'
                 toggled={deferredPost}
                 onToggle={onToggleDeferredPost}/>
         <DatePicker hintText='Post on'
@@ -48,7 +48,9 @@ const PostEditFormComponent = ({post, onSubmit, deferredPost, onToggleDeferredPo
                     maxDate={new Date()}
                     disabled={!deferredPost}/>
         <CardActions>
-            <RaisedButton label='Submit' primary={true} onMouseUp={onSubmit}/>
+            <RaisedButton label='Submit' primary={true}
+                          disabled={!post.title || !post.text}
+                          onMouseUp={onSubmit}/>
         </CardActions>
     </div>
 );
