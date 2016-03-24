@@ -1,56 +1,23 @@
 import * as React from 'react';
+import {connect} from "react-redux";
 import PostItem from './post';
-
-interface IUser {
-    gender: string;
-    vkDisplayName: string;
-    vkPhotoUrl: string;
-    vkProfileUrl: string;
-    vkUserId: number;
-    vkUserName: string;
-    _id: number;
-}
-
-interface IPost {
-    title: string;
-    text: string;
-    author: IUser;
-    date: string;
-    _id: number;
-}
-
-export interface IFeedState {
-    postList?: IPost[];
-}
+import {IPost} from '../reducers/feed';
 
 export interface IFeedProps {
+    posts: IPost[];
+    dispatch?: (e: { type: string }) => void
 }
 
-export default class Feed extends React.Component<IFeedProps, IFeedState> {
-
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            postList: []
-        };
-
-
-        fetch("./api/posts")
-            .then(response => {
-                if (response.status !== 200) {
-                    return Promise.reject(new Error(response.statusText));
-                }
-                return response.json();
-            }).then((postList: IPost[]) => {
-                this.setState({postList});
-            });
+let Feed = ({ posts, dispatch}: IFeedProps) => (
+    <div>
+    {
+        posts.map(post =>
+            <PostItem key= { post._id } title= { post.title } text= { post.text } author= { post.author } date= { new Date(post.date) } />
+        )
     }
+    </div>
+);
 
-    render() {
-        var list = this.state.postList.map(post => {
-            return <PostItem key={post._id} title={post.title} text={post.text} author={post.author} date={new Date(post.date)} />;
-        });
-        return <div>{ list }</div>;
-    }
-}
+Feed = connect(state => state.feed)(Feed);
+
+export default Feed;

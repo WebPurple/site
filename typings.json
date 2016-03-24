@@ -16,6 +16,7 @@
     "react-dom": "registry:dt/react-dom#0.14.0+20160314090524",
     "react-redux": "registry:dt/react-redux#4.4.0+20160316155526",
     "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160226083632",
-    "redux": "registry:dt/redux#1.0.0+20160317120654"
+    "redux": "registry:dt/redux#1.0.0+20160317120654",
+    "redux-thunk": "registry:dt/redux-thunk#2.0.1+20160317120654"
   }
 }
