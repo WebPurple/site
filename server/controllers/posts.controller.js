@@ -21,6 +21,7 @@ module.exports = () => {
         })
         // get all posts
         .get((request, response) => Post.find()
+            .sort('-date')
             .populate('author')
             .exec()
             .then(post => response.send(post))

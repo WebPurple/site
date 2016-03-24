@@ -9,22 +9,30 @@ import Toggle from "material-ui/lib/toggle";
 import DatePicker from "material-ui/lib/date-picker/date-picker";
 
 import {IPost} from "../../vo/index";
-import {submitPostForm, toggleDeferredPost} from "../../actions/post-edit-form.actions";
+import {
+    submitPostForm, toggleDeferredPost, changePostTitle,
+    changePostText
+} from "../../actions/post-edit-form.actions";
 
 export interface PostEditFormProps {
     post: IPost;
     onSubmit: any;
     deferredPost?: boolean;
     onToggleDeferredPost: Function;
+    onTitleChange: React.FormEventHandler;
+    onChangeText: React.FormEventHandler;
 }
 
-let PostEditForm = ({post, onSubmit, deferredPost, onToggleDeferredPost}: PostEditFormProps) => (
+const PostEditFormComponent = ({post, onSubmit, deferredPost, onToggleDeferredPost, onTitleChange, onChangeText}: PostEditFormProps) => (
     <div>
-        <TextField floatingLabelText='Title' fullWidth={true} value={post.title}/>
+        <TextField floatingLabelText='Title' fullWidth={true}
+                   value={post.title}
+                   onChange={e => onTitleChange(e.target.value)}/>
         <TextField floatingLabelText='Text'
                    multiLine={true}
                    rows={3} rowsMax={5} fullWidth={true}
-                   value={post.text}/>
+                   value={post.text}
+                   onChange={e => onChangeText(e.target.value)}/>
         <CheckBox label='Export to VK'/>
         <CheckBox label='Export to Facebook'/>
         <CheckBox label='Export to Twitter'/>
@@ -45,14 +53,16 @@ let PostEditForm = ({post, onSubmit, deferredPost, onToggleDeferredPost}: PostEd
     </div>
 );
 
-PostEditForm = connect(
+const PostEditFormContainer = connect(
     state => state.newPost,
     (dispatch: Redux.Dispatch, {post}) => {
         return {
             onSubmit: () => dispatch(submitPostForm(post)),
-            onToggleDeferredPost: () => dispatch(toggleDeferredPost())
+            onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
+            onTitleChange: (newTitle) => dispatch(changePostTitle(newTitle)),
+            onChangeText: (newText) => dispatch(changePostText(newText))
         };
     }
-)(PostEditForm);
+)(PostEditFormComponent);
 
-export default PostEditForm;
+export default PostEditFormContainer;
