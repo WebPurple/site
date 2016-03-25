@@ -23,15 +23,17 @@ export interface PostEditFormProps {
     onChangeText: React.FormEventHandler;
 }
 
-const PostEditFormComponent = ({post, onSubmit, deferredPost, onToggleDeferredPost, onTitleChange, onChangeText}: PostEditFormProps) => (
+const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onTitleChange, onChangeText}: PostEditFormProps) => (
     <div>
         <TextField floatingLabelText='Title' fullWidth={true}
                    value={post.title}
+                   disabled={isFetching}
                    onChange={e => onTitleChange(e.target.value)}/>
         <TextField floatingLabelText='Text'
                    multiLine={true}
                    rows={3} rowsMax={5} fullWidth={true}
                    value={post.text}
+                   disabled={isFetching}
                    onChange={e => onChangeText(e.target.value)}/>
         <CheckBox label='Export to VK'/>
         <CheckBox label='Export to Facebook'/>
@@ -42,14 +44,13 @@ const PostEditFormComponent = ({post, onSubmit, deferredPost, onToggleDeferredPo
                 onToggle={onToggleDeferredPost}/>
         <DatePicker hintText='Post on'
                     container='dialog'
-                    mode='landscape'
                     autoOk={true}
                     disableYearSelection={true}
                     maxDate={new Date()}
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
-                          disabled={!post.title || !post.text}
+                          disabled={!post.title || !post.text || isFetching}
                           onMouseUp={onSubmit}/>
         </CardActions>
     </div>

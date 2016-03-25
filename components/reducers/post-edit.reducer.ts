@@ -1,4 +1,7 @@
-import {DEFERRED_POST, CHANGE_POST_TITLE, CHANGE_POST_TEXT, POST_ADDED} from "../actions/post-edit-form.actions";
+import {
+    DEFERRED_POST, CHANGE_POST_TITLE, CHANGE_POST_TEXT, POST_ADDED,
+    SUBMIT_POST_FORM
+} from "../actions/post-edit-form.actions";
 import {IAction} from "../actions/actions";
 
 const editPost = (state = {post: {}, deferredPost: false}, action: IAction<any>) => {
@@ -13,8 +16,10 @@ const editPost = (state = {post: {}, deferredPost: false}, action: IAction<any>)
             });
         case DEFERRED_POST:
             return Object.assign({}, state, {deferredPost: !state.deferredPost});
+        case SUBMIT_POST_FORM:
+            return Object.assign({}, state, {isFetching: true});
         case POST_ADDED:
-            return Object.assign({}, state, {post: {}});
+            return Object.assign({}, state, {post: {}, isFetching: false});
         default:
             return state;
     }

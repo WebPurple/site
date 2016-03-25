@@ -16,6 +16,7 @@ module.exports = () => {
                 author: request.user._id,
                 title: request.body.title
             }).save()
+                .then(post => Post.populate(post, 'author'))
                 .then(post => response.send(post))
                 .catch(err => response.send(err));
         })
