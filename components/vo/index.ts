@@ -10,7 +10,6 @@ export interface IUser {
 
 export interface IPost {
     _id: number;
-    title: string;
     text: string;
     author: IUser;
     date: string;

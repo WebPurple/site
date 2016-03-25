@@ -24,15 +24,6 @@ export function toggleDeferredPost(): IAction<void> {
     }
 }
 
-export const CHANGE_POST_TITLE = 'change_post_title';
-
-export function changePostTitle(newTitle) {
-    return {
-        type: CHANGE_POST_TITLE,
-        payload: newTitle
-    }
-}
-
 export const CHANGE_POST_TEXT = 'change_post_text';
 
 export function changePostText(newText) {

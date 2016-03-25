@@ -9,10 +9,7 @@ import * as Toggle from "material-ui/lib/toggle";
 import * as DatePicker from "material-ui/lib/date-picker/date-picker";
 
 import {IPost} from "../../vo/index";
-import {
-    submitPostForm, toggleDeferredPost, changePostTitle,
-    changePostText
-} from "../../actions/post-edit-form.actions";
+import {submitPostForm, toggleDeferredPost, changePostText} from "../../actions/post-edit-form.actions";
 
 export interface PostEditFormProps {
     post: IPost;
@@ -23,13 +20,9 @@ export interface PostEditFormProps {
     onChangeText: React.FormEventHandler;
 }
 
-const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onTitleChange, onChangeText}: PostEditFormProps) => (
+const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText}: PostEditFormProps) => (
     <div>
-        <TextField floatingLabelText='Title' fullWidth={true}
-                   value={post.title}
-                   disabled={isFetching}
-                   onChange={e => onTitleChange(e.target.value)}/>
-        <TextField floatingLabelText='Text'
+        <TextField floatingLabelText='Tell us something interesting'
                    multiLine={true}
                    rows={3} rowsMax={5} fullWidth={true}
                    value={post.text}
@@ -50,7 +43,7 @@ const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onTogg
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
-                          disabled={!post.title.trim() || !post.text.trim() || isFetching}
+                          disabled={!post.text.trim() || isFetching}
                           onMouseUp={onSubmit}/>
         </CardActions>
     </div>
@@ -62,7 +55,6 @@ const PostEditFormContainer = connect(
         return {
             onSubmit: () => dispatch(submitPostForm(post)),
             onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
-            onTitleChange: (newTitle) => dispatch(changePostTitle(newTitle)),
             onChangeText: (newText) => dispatch(changePostText(newText))
         };
     }

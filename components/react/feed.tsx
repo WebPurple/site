@@ -14,7 +14,6 @@ const FeedComponent = ({posts, dispatch}: IFeedProps) => (
         {
             posts.map(post =>
                 <PostItem key={post._id}
-                          title={post.title}
                           text={post.text}
                           author={post.author}
                           date={new Date(post.date)}/>

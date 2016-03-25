@@ -13,8 +13,7 @@ module.exports = () => {
             return new Post({
                 text: request.body.text,
                 date: new Date(),
-                author: request.user._id,
-                title: request.body.title
+                author: request.user._id
             }).save()
                 .then(post => Post.populate(post, 'author'))
                 .then(post => response.send(post))
@@ -41,7 +40,6 @@ module.exports = () => {
                 .then(post => {
                     post.text = request.body.text;
                     post.author = request.body.author;
-                    post.title = request.body.title;
                     return post.save();
                 })
                 .then(post => response.send(post))
