@@ -4,7 +4,7 @@ import {
 } from "../actions/post-edit-form.actions";
 import {IAction} from "../actions/actions";
 
-const editPost = (state = {post: {}, deferredPost: false}, action: IAction<any>) => {
+const editPost = (state = {post: {title: '', text: ''}, deferredPost: false}, action: IAction<any>) => {
     switch (action.type) {
         case CHANGE_POST_TITLE:
             return Object.assign({}, state, {

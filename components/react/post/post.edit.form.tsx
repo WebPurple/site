@@ -50,7 +50,7 @@ const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onTogg
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
-                          disabled={!post.title || !post.text || isFetching}
+                          disabled={!post.title.trim() || !post.text.trim() || isFetching}
                           onMouseUp={onSubmit}/>
         </CardActions>
     </div>
