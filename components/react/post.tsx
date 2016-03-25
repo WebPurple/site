@@ -7,7 +7,7 @@ import * as CardText from "material-ui/lib/card/card-text";
 import {IPost} from '../vo/index'
 
 const PostItem = ({text, date, author}: IPost) => (
-    <Card style={{marginBottom: 10}}>
+    <Card className='post'>
         <CardHeader
             title={ author.vkDisplayName }
             subtitle={ date.toLocaleDateString() }

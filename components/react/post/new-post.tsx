@@ -9,7 +9,7 @@ import PostEditForm from './post.edit.form';
 
 const NewPostComponent = ({state, postEditor, onDialogOpen, onDialogClose}) => (
     <div>
-        <FloatingActionButton onTouchTap={onDialogOpen} style={{position: 'fixed', right: 50, bottom: 50}}>
+        <FloatingActionButton onTouchTap={onDialogOpen} className='new-post-button'>
             <Create/>
         </FloatingActionButton>
         <Dialog title='New post'

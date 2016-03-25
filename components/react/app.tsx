@@ -23,7 +23,7 @@ const App = ({leftNavOpen}) => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <div className='page'>
             <AppHeader/>
-            <main className='container' style={{marginLeft: leftNavOpen ? 150 : 0}}>
+            <main className={'container' + (leftNavOpen ? ' container--with-left-nav' : '')}>
                 <Feed/>
             </main>
             <AppLeftNav/>

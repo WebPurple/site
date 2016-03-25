@@ -10,7 +10,7 @@ export interface IFeedProps {
 }
 
 const FeedComponent = ({posts, dispatch}: IFeedProps) => (
-    <div>
+    <div className="feed">
         {
             posts.map(post =>
                 <PostItem key={post._id}

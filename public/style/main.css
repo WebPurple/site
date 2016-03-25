@@ -10,16 +10,67 @@ body {
 }
 
 .container {
-    width: 700px;
-    margin-top: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    transition: margin 500ms;
+    transition: padding 500ms;
+    width: 100%;
 }
 
-@media (max-width: 700px)  {
+.container--with-left-nav {
+    padding-left: 270px;
+}
+
+.left-nav {
+    top: 64px !important; /* app header height */
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.post {
+    margin-bottom: 25px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 500px;
+}
+
+.new-post-button {
+    position: fixed !important;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    right: 50px;
+    bottom: 50px;
+    z-index: 1;
+}
+
+@media (max-width: 700px) {
+    .left-nav {
+        background: #fff !important;
+        box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px !important;
+    }
+
     .container {
-        width: 100%;
-        margin-top: 5px;
+        margin-top: 10px;
+    }
+
+    .container--with-left-nav {
+        padding-left: 0;
+    }
+
+    .post {
+        margin-bottom: 10px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .new-post-button {
+        right: 25px;
+        bottom: 25px;
     }
 }

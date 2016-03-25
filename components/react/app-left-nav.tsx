@@ -4,14 +4,8 @@ import * as MenuItem from 'material-ui/lib/menus/menu-item';
 import * as ActionHome from 'material-ui/lib/svg-icons/action/home';
 import {connect} from 'react-redux';
 
-const navStyle = {
-    top: 64, /* app header height */
-    background: 'none',
-    boxShadow: 'none'
-};
-
 const AppLeftNavComponent = ({leftNavOpen}) => (
-    <LeftNav open={leftNavOpen} style={navStyle}>
+    <LeftNav open={leftNavOpen} className="left-nav">
         <MenuItem leftIcon={<ActionHome/>} primaryText='Feed' focusState='focused'/>
     </LeftNav>
 );
