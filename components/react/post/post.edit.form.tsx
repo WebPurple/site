@@ -7,6 +7,7 @@ import * as TextField from "material-ui/lib/text-field";
 import * as CheckBox from "material-ui/lib/checkbox";
 import * as Toggle from "material-ui/lib/toggle";
 import * as DatePicker from "material-ui/lib/date-picker/date-picker";
+import * as TimePicker from "material-ui/lib/time-picker";
 
 import {IPost} from "../../vo/index";
 import {submitPostForm, toggleDeferredPost, changePostText} from "../../actions/post-edit-form.actions";
@@ -39,7 +40,11 @@ const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onTogg
                     container='dialog'
                     autoOk={true}
                     disableYearSelection={true}
-                    maxDate={new Date()}
+                    minDate={new Date()}
+                    disabled={!deferredPost}/>
+        <TimePicker hintText='Post at'
+                    format="24hr"
+                    autoOk={true}
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
