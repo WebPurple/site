@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux'
 
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
-import Dialog from 'material-ui/lib/dialog'
+import * as FloatingActionButton from 'material-ui/lib/floating-action-button';
+import * as ContentAdd from 'material-ui/lib/svg-icons/content/add';
+import * as Dialog from 'material-ui/lib/dialog'
 
 import PostEditForm from './post.edit.form';
 

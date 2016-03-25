@@ -1,12 +1,12 @@
 import * as React from "react";
 import {connect} from "react-redux";
 
-import CardActions from "material-ui/lib/card/card-actions";
-import RaisedButton from "material-ui/lib/raised-button";
-import TextField from "material-ui/lib/text-field";
-import CheckBox from "material-ui/lib/checkbox";
-import Toggle from "material-ui/lib/toggle";
-import DatePicker from "material-ui/lib/date-picker/date-picker";
+import * as CardActions from "material-ui/lib/card/card-actions";
+import * as RaisedButton from "material-ui/lib/raised-button";
+import * as TextField from "material-ui/lib/text-field";
+import * as CheckBox from "material-ui/lib/checkbox";
+import * as Toggle from "material-ui/lib/toggle";
+import * as DatePicker from "material-ui/lib/date-picker/date-picker";
 
 import {IPost} from "../../vo/index";
 import {

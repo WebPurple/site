@@ -19,7 +19,7 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
-    "material-ui": "^0.15.0-alpha.2",
+    "material-ui": "^0.14.4",
     "mongoose": "^4.4.7",
     "passport": "^0.3.2",
     "passport-vkontakte": "^0.4.0",

@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import Card from "material-ui/lib/card/card";
-import CardHeader from "material-ui/lib/card/card-header";
-import CardTitle from "material-ui/lib/card/card-title";
-import CardText from "material-ui/lib/card/card-text";
+import * as Card from "material-ui/lib/card/card";
+import * as CardHeader from "material-ui/lib/card/card-header";
+import * as CardTitle from "material-ui/lib/card/card-title";
+import * as CardText from "material-ui/lib/card/card-text";
 
 import {IUser} from '../vo/index'
 

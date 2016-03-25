@@ -2,8 +2,8 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
+import * as getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import * as MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import {purple500, purple700, purple100} from 'material-ui/lib/styles/colors';
 
 import {createStore, applyMiddleware} from 'redux'
