@@ -4,17 +4,17 @@ import {connect} from 'react-redux';
 
 import * as AppBar from 'material-ui/lib/app-bar';
 import * as Avatar from 'material-ui/lib/avatar';
-import * as FlatButton from 'material-ui/lib/flat-button';
 import * as IconButton from "material-ui/lib/icon-button";
 import * as Menu from "material-ui/lib/svg-icons/navigation/menu";
 import * as NavigationClose from "material-ui/lib/svg-icons/navigation/close";
 
+import LoginComponent from './login.component';
 import {toggleLeftNav} from "../actions/left-nav.actions";
 
 const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen}) => (
     <AppBar title={`WebPurple${user && ` | ${user.vkDisplayName}` || ''}`}
             iconElementLeft={<IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu/>}</IconButton>}
-            iconElementRight={user ? <Avatar src={user.vkPhotoUrl}/>: <FlatButton label='Login' linkButton={true} href='auth/vk'/>}/>
+            iconElementRight={user ? <Avatar src={user.vkPhotoUrl}/>: <LoginComponent />}/>
 );
 
 const AppHeaderContainer = connect(
