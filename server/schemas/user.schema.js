@@ -4,11 +4,14 @@ var userSchema = mongoose.Schema({
     email: String,
     /* VK */
     gender: String, // gender
-    vkUserId: Number, // id
+    vkUserId: String, // id
     vkUserName: String, // username
     vkDisplayName: String, // displayName
     vkProfileUrl: String, // profileUrl
-    vkPhotoUrl: String // photos[0].value
+    vkPhotoUrl: String, // photos[0].value
+    /* Facebook */
+    fbUserId: String, // id
+    fbDisplayName: String
 });
 
 module.exports = userSchema;

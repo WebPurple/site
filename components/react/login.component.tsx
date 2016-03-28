@@ -20,6 +20,8 @@ export default class LoginComponent extends React.Component<any, {dialogOpened: 
                         open={this.state.dialogOpened}
                         onRequestClose={() => this.setState({dialogOpened: false})}>
                     <FlatButton label="VK" href="auth/vk" linkButton={true}/>
+                    <br/>
+                    <FlatButton label="Facebook" href="auth/fb" linkButton={true}/>
                 </Dialog>
             </div>
         );
