@@ -32,3 +32,12 @@ export function changePostText(newText) {
         payload: newText
     }
 }
+
+export const EXPORT_TO_FACEBOOK = 'export_to_facebook';
+
+export function toggleExportToFacebook(checked): IAction<boolean> {
+    return {
+        type: EXPORT_TO_FACEBOOK,
+        payload: checked
+    };
+}

@@ -6,6 +6,8 @@ export interface IUser {
     vkProfileUrl: string;
     vkUserId: number;
     vkUserName: string;
+    fbUserId: string;
+    fbDisplayName: string;
 }
 
 export interface IPost {
@@ -13,4 +15,5 @@ export interface IPost {
     text: string;
     author: IUser;
     date: string;
+    exportToFacebook: boolean;
 }

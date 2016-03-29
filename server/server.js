@@ -33,5 +33,5 @@ mongoose.connection
     .on('error', (err) => console.log(err))
     .once('open', () => {
         console.log('Connection to DB successful.');
-        app.listen(serverConf.port, () => console.log(`Server is listening http://localhost:${serverConf.port}.`))
+        app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`))
     });

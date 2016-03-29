@@ -18,12 +18,16 @@ module.exports = (app, passport) => {
                 }
                 return doc;
             })
-            .then(doc => done(null, doc))
+            .then(doc => {
+                var user = doc.toObject();
+                user.fbAccessToken = accessToken;
+                done(null, user);
+            })
             .catch(err => done(new Error('Something went wrong')))
     ));
 
     app.get('/auth/fb', passport.authenticate('facebook', {
-        scope: ['email']
+        scope: ['email', 'manage_pages', 'publish_pages']
     }));
     app.get('/auth/fb/callback', passport.authenticate('facebook', {
         successRedirect: '/',

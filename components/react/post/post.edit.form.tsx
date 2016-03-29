@@ -9,19 +9,21 @@ import * as Toggle from "material-ui/lib/toggle";
 import * as DatePicker from "material-ui/lib/date-picker/date-picker";
 import * as TimePicker from "material-ui/lib/time-picker";
 
-import {IPost} from "../../vo/index";
+import {IPost, IUser} from "../../vo/index";
 import {submitPostForm, toggleDeferredPost, changePostText} from "../../actions/post-edit-form.actions";
+import {toggleExportToFacebook} from "../../actions/post-edit-form.actions";
 
 export interface PostEditFormProps {
+    user: IUser
     post: IPost;
+    isFetching: boolean;
     onSubmit: any;
     deferredPost?: boolean;
     onToggleDeferredPost: Function;
-    onTitleChange: React.FormEventHandler;
     onChangeText: React.FormEventHandler;
 }
 
-const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText}: PostEditFormProps) => (
+const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText, onToggleExportToFacebook, user}: PostEditFormProps) => (
     <div>
         <TextField floatingLabelText='Tell us something interesting'
                    multiLine={true}
@@ -29,11 +31,15 @@ const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onTogg
                    value={post.text}
                    disabled={isFetching}
                    onChange={e => onChangeText(e.target.value)}/>
-        <CheckBox label='Export to VK'/>
-        <CheckBox label='Export to Facebook'/>
-        <CheckBox label='Export to Twitter'/>
+        <CheckBox label='Export to VK' disabled={true}/>
+        <CheckBox label='Export to Facebook'
+                  disabled={!(user && user.fbUserId)}
+                  checked={post.exportToFacebook}
+                  onCheck={(e, checked) => onToggleExportToFacebook(checked)}/>
+        <CheckBox label='Export to Twitter' disabled={true}/>
         <br/>
         <Toggle label='Deferred post' labelPosition='right'
+                disabled={true}
                 toggled={deferredPost}
                 onToggle={onToggleDeferredPost}/>
         <DatePicker hintText='Post on'
@@ -48,19 +54,20 @@ const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onTogg
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
-                          disabled={!post.text.trim() || isFetching}
+                          disabled={!user || !post.text.trim() || isFetching}
                           onMouseUp={onSubmit}/>
         </CardActions>
     </div>
 );
 
 const PostEditFormContainer = connect(
-    state => state.newPost,
+    state => Object.assign({}, state.newPost, {user: state.header.user}),
     (dispatch: Redux.Dispatch, {post}) => {
         return {
             onSubmit: () => dispatch(submitPostForm(post)),
             onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
-            onChangeText: (newText) => dispatch(changePostText(newText))
+            onChangeText: (newText) => dispatch(changePostText(newText)),
+            onToggleExportToFacebook: (checked) => dispatch(toggleExportToFacebook(checked))
         };
     }
 )(PostEditFormComponent);

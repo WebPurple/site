@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 
-var postSchema = mongoose.Schema({
+var Schema = mongoose.Schema;
+
+var postSchema = Schema({
     text: String,
     date: Date,
-    author: {type: mongoose.Schema.Types.ObjectId, ref: 'user'}
+    author: {type: Schema.Types.ObjectId, ref: 'user'},
+    fbPostId: String
 });
 
 module.exports = postSchema;

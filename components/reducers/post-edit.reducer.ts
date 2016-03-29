@@ -1,6 +1,6 @@
 import {
     DEFERRED_POST, CHANGE_POST_TEXT, POST_ADDED,
-    SUBMIT_POST_FORM
+    SUBMIT_POST_FORM, EXPORT_TO_FACEBOOK
 } from "../actions/post-edit-form.actions";
 import {IAction} from "../actions/actions";
 
@@ -12,10 +12,14 @@ const editPost = (state = {post: {text: ''}, deferredPost: false}, action: IActi
             });
         case DEFERRED_POST:
             return Object.assign({}, state, {deferredPost: !state.deferredPost});
+        case EXPORT_TO_FACEBOOK:
+            return Object.assign({}, state, {
+                post: Object.assign({}, state.post, {exportToFacebook: action.payload})
+            });
         case SUBMIT_POST_FORM:
             return Object.assign({}, state, {isFetching: true});
         case POST_ADDED:
-            return Object.assign({}, state, {post: {}, isFetching: false});
+            return Object.assign({}, state, {post: {text: ''}, isFetching: false});
         default:
             return state;
     }

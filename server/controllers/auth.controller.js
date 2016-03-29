@@ -1,4 +1,3 @@
-var express = require('express');
 var passport = require('passport');
 
 var vkStategyFonf = require('./auth/vk.strategy.conf');
@@ -13,6 +12,4 @@ module.exports = (app) => {
 
     vkStategyFonf(app, passport);
     fbStategyFonf(app, passport);
-
-    app.all('/*', (request, response, next) => request.isAuthenticated() || request.method == 'GET' ? next() : response.redirect('/login.html'))
 };
