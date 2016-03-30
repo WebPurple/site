@@ -3,12 +3,17 @@ import {
     SUBMIT_POST_FORM, EXPORT_TO_FACEBOOK
 } from "../actions/post-edit-form.actions";
 import {IAction} from "../actions/actions";
+import {CHANGE_POST_IMAGE} from "../actions/post-edit-form.actions";
 
 const editPost = (state = {post: {text: ''}, deferredPost: false}, action: IAction<any>) => {
     switch (action.type) {
         case CHANGE_POST_TEXT:
             return Object.assign({}, state, {
                 post: Object.assign({}, state.post, {text: action.payload})
+            });
+        case CHANGE_POST_IMAGE:
+            return Object.assign({}, state, {
+                post: Object.assign({}, state.post, {imageLink: action.payload})
             });
         case DEFERRED_POST:
             return Object.assign({}, state, {deferredPost: !state.deferredPost});

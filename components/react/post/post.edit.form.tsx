@@ -11,7 +11,7 @@ import * as TimePicker from "material-ui/lib/time-picker";
 
 import {IPost, IUser} from "../../vo/index";
 import {submitPostForm, toggleDeferredPost, changePostText} from "../../actions/post-edit-form.actions";
-import {toggleExportToFacebook} from "../../actions/post-edit-form.actions";
+import {toggleExportToFacebook, changePostImage} from "../../actions/post-edit-form.actions";
 
 export interface PostEditFormProps {
     user: IUser
@@ -23,14 +23,19 @@ export interface PostEditFormProps {
     onChangeText: React.FormEventHandler;
 }
 
-const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText, onToggleExportToFacebook, user}: PostEditFormProps) => (
+const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText, onToggleExportToFacebook, user, onChangeImage}: PostEditFormProps) => (
     <div>
         <TextField floatingLabelText='Tell us something interesting'
-                   multiLine={true}
-                   rows={3} rowsMax={5} fullWidth={true}
+                   multiLine={true} rows={3} rowsMax={5}
+                   fullWidth={true}
                    value={post.text}
                    disabled={isFetching}
                    onChange={e => onChangeText(e.target.value)}/>
+        <TextField floatingLabelText='Add some beautiful picture'
+                   fullWidth={true}
+                   value={post.imageLink}
+                   disabled={isFetching}
+                   onChange={e => onChangeImage(e.target.value)}/>
         <CheckBox label='Export to VK' disabled={true}/>
         <CheckBox label='Export to Facebook'
                   disabled={!(user && user.fbUserId)}
@@ -67,7 +72,8 @@ const PostEditFormContainer = connect(
             onSubmit: () => dispatch(submitPostForm(post)),
             onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
             onChangeText: (newText) => dispatch(changePostText(newText)),
-            onToggleExportToFacebook: (checked) => dispatch(toggleExportToFacebook(checked))
+            onToggleExportToFacebook: (checked) => dispatch(toggleExportToFacebook(checked)),
+            onChangeImage: (newImageLink) => dispatch(changePostImage(newImageLink))
         };
     }
 )(PostEditFormComponent);

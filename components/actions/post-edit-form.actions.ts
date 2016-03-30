@@ -41,3 +41,12 @@ export function toggleExportToFacebook(checked): IAction<boolean> {
         payload: checked
     };
 }
+
+export const CHANGE_POST_IMAGE = 'change_post_image';
+
+export function changePostImage(newImageLink: string): IAction<string> {
+    return {
+        type: CHANGE_POST_IMAGE,
+        payload: newImageLink
+    }
+}

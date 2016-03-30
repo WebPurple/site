@@ -28,6 +28,7 @@ module.exports = () => {
                 postPromise.then(fbPost => {
                         return new Post({
                             text: postMessage,
+                            imageLink: request.body.imageLink,
                             date: new Date(),
                             author: request.user._id,
                             fbPostId: fbPost && fbPost.id
@@ -58,7 +59,7 @@ module.exports = () => {
                 Post.findById(request.params.post_id).exec()
                     .then(post => {
                         post.text = request.body.text;
-                        post.author = request.body.author;
+                        post.imageLink = request.body.imageLink;
                         return post.save();
                     })
                     .then(post => response.send(post))

@@ -11,14 +11,7 @@ export interface IFeedProps {
 
 const FeedComponent = ({posts, dispatch}: IFeedProps) => (
     <div className="feed">
-        {
-            posts.map(post =>
-                <PostItem key={post._id}
-                          text={post.text}
-                          author={post.author}
-                          date={new Date(post.date)}/>
-            )
-        }
+        {posts.map(post => <PostItem key={post._id} {...post}/>)}
     </div>
 );
 

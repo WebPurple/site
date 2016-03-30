@@ -16,4 +16,5 @@ export interface IPost {
     author: IUser;
     date: string;
     exportToFacebook: boolean;
+    imageLink: String;
 }
