@@ -4,38 +4,43 @@ var fbGraphHost = 'https://graph.facebook.com';
 
 /**
  *  Converts parameters object to string separated with ampersand (&).
+ *  First parameter is preceded with ?.
  *  If no parameters passed, empty string will be returned.
  *
  *  Example:
- *  {a: 1, b: 2} => '&a=1&b=2'
+ *  {a: 1, b: 2} => '?a=1&b=2'
  *
  * @param params
  * @returns {string}
  */
 function convertParams(params) {
     return Object.keys(params || {})
-        .reduce((resultString, paramName) => resultString + `&${paramName}=${params[paramName]}`, '');
+        .reduce((resultString, paramName) => resultString + (!resultString ? '?' : '&') + `${paramName}=${params[paramName]}`, '');
 }
 
 /**
  * Common method for all api calls.
  *
- * @param accessToken
+ * @param access_token
  * @param url
  * @param params
  * @param method='get' HTTP method
  * @returns {Promise.<T>|Thenable<U>|Promise<U>}
  */
-function apiCall(accessToken, url, params, method) {
-    return fetch(`${fbGraphHost}/v2.5/${url}?access_token=${accessToken}${convertParams(params)}`, {
+function apiCall(url, params, method) {
+    return fetch(`${fbGraphHost}/v2.5/${url}${encodeURI(convertParams(params))}`, {
         method: method || 'get'
     })
         .then(response => response.json())
         .then(response => response.error ? Promise.reject(response.error) : response);
 }
 
+function secureApiCall(access_token, url, params, method) {
+    return apiCall(url, Object.assign({access_token}, params), method);
+}
+
 function getPageAccessToken(userAccessToken, pageId) {
-    return apiCall(userAccessToken, 'me/accounts')
+    return secureApiCall(userAccessToken, 'me/accounts')
         .then(response => {
             var accounts = response.data;
             if (accounts && accounts.length) {
@@ -48,12 +53,21 @@ function getPageAccessToken(userAccessToken, pageId) {
         })
 }
 
+function getLongLiveAccessToken(userAccessToken, appId, appSecret) {
+    return apiCall('oauth/access_token', {
+        grant_type: 'fb_exchange_token',
+        client_id: appId,
+        client_secret: appSecret,
+        fb_exchange_token: userAccessToken
+    });
+}
+
 function addPost(accessToken, message) {
-    return apiCall(accessToken, 'feed', {message}, 'post');
+    return secureApiCall(accessToken, 'feed', {message}, 'post');
 }
 
 module.exports = {
-    apiCall,
     getPageAccessToken,
+    getLongLiveAccessToken,
     addPost
 };
