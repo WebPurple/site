@@ -10,28 +10,49 @@ import * as DatePicker from "material-ui/lib/date-picker/date-picker";
 import * as TimePicker from "material-ui/lib/time-picker";
 
 import {IPost, IUser} from "../../vo/index";
-import {submitPostForm, toggleDeferredPost, changePostText} from "../../actions/post-edit-form.actions";
-import {toggleExportToFacebook, changePostImage} from "../../actions/post-edit-form.actions";
+import {submitPostForm,
+    toggleDeferredPost,
+    changePostText,
+    toggleExportToFacebook,
+    changePostImage,
+    changePostLink,
+    changePostLinkTitle
+} from "../../actions/post-edit-form.actions";
 
-export interface PostEditFormProps {
-    user: IUser
-    post: IPost;
-    isFetching: boolean;
-    onSubmit: any;
-    deferredPost?: boolean;
-    onToggleDeferredPost: Function;
-    onChangeText: React.FormEventHandler;
-}
-
-const PostEditFormComponent = ({post, isFetching, onSubmit, deferredPost, onToggleDeferredPost, onChangeText, onToggleExportToFacebook, user, onChangeImage}: PostEditFormProps) => (
+const PostEditFormComponent = ({post,
+    isFetching,
+    onSubmit,
+    deferredPost,
+    onToggleDeferredPost,
+    onToggleExportToFacebook,
+    user,
+    onChangeLink,
+    onChangeText,
+    onChangeLinkTitle,
+    onChangeImage
+    }) => (
     <div>
-        <TextField floatingLabelText='Tell us something interesting'
+        <TextField floatingLabelText='What do you want to share with us'
+                   hintText='Some link'
+                   fullWidth={true}
+                   value={post.link}
+                   disabled={isFetching}
+                   onChange={e => onChangeLink(e.target.value)}/>
+        <TextField floatingLabelText='What do you think about it'
+                   hintText='Comment'
                    multiLine={true} rows={3} rowsMax={5}
                    fullWidth={true}
                    value={post.text}
                    disabled={isFetching}
                    onChange={e => onChangeText(e.target.value)}/>
+        <TextField floatingLabelText='Give us short description of your link'
+                   hintText='Link title'
+                   fullWidth={true}
+                   value={post.linkTitle}
+                   disabled={isFetching}
+                   onChange={e => onChangeLinkTitle(e.target.value)}/>
         <TextField floatingLabelText='Add some beautiful picture'
+                   hintText='Image link'
                    fullWidth={true}
                    value={post.imageLink}
                    disabled={isFetching}
@@ -69,11 +90,13 @@ const PostEditFormContainer = connect(
     state => Object.assign({}, state.newPost, {user: state.header.user}),
     (dispatch: Redux.Dispatch, {post}) => {
         return {
-            onSubmit: () => dispatch(submitPostForm(post)),
+            onSubmit: () => dispatch(submitPostForm(post as IPost)),
             onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
-            onChangeText: (newText) => dispatch(changePostText(newText)),
-            onToggleExportToFacebook: (checked) => dispatch(toggleExportToFacebook(checked)),
-            onChangeImage: (newImageLink) => dispatch(changePostImage(newImageLink))
+            onToggleExportToFacebook: checked => dispatch(toggleExportToFacebook(checked)),
+            onChangeLink: newLink => dispatch(changePostLink(newLink)),
+            onChangeText: newText => dispatch(changePostText(newText)),
+            onChangeLinkTitle: newLinkTitle => dispatch(changePostLinkTitle(newLinkTitle)),
+            onChangeImage: newImageLink => dispatch(changePostImage(newImageLink))
         };
     }
 )(PostEditFormComponent);

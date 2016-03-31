@@ -11,7 +11,7 @@ body {
 
 .container {
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 86px; /* 20px + app header height */
     display: flex;
     flex-direction: column;
     transition: padding 500ms;
@@ -19,7 +19,7 @@ body {
 }
 
 .container--with-left-nav {
-    padding-left: 270px;
+    padding-left: 250px;
 }
 
 .left-nav {

@@ -50,3 +50,21 @@ export function changePostImage(newImageLink: string): IAction<string> {
         payload: newImageLink
     }
 }
+
+export const CHANGE_POST_LINK = 'change_post_link';
+
+export function changePostLink(newLink): IAction<String> {
+    return {
+        type: CHANGE_POST_LINK,
+        payload: newLink
+    }
+}
+
+export const CHANGE_POST_LINK_TITLE = 'change_post_link_title';
+
+export function changePostLinkTitle(newLinkTitle): IAction<String> {
+    return {
+        type: CHANGE_POST_LINK_TITLE,
+        payload: newLinkTitle
+    }
+}

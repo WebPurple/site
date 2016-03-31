@@ -62,8 +62,8 @@ function getLongLiveAccessToken(userAccessToken, appId, appSecret) {
     });
 }
 
-function addPost(accessToken, message) {
-    return secureApiCall(accessToken, 'feed', {message}, 'post');
+function addPost(accessToken, resourceId, message, link) {
+    return secureApiCall(accessToken, `${resourceId}/feed`, {message, link}, 'post');
 }
 
 module.exports = {

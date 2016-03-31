@@ -13,6 +13,8 @@ export interface IUser {
 export interface IPost {
     _id: number;
     text: string;
+    link: string;
+    linkTitle: string;
     author: IUser;
     date: string;
     exportToFacebook: boolean;

@@ -14,21 +14,26 @@ module.exports = () => {
         // add new post
         .post(checkPermissions,
             (request, response) => {
-                var postMessage = request.body.text;
+                var text = request.body.text;
+                var link = request.body.link;
+                var linkTitle = request.body.linkTitle;
+                var imageLink = request.body.imageLink;
                 //TODO: Promise.all should be used for all social networks
                 var postPromise = Promise.resolve();
 
                 if (request.body.exportToFacebook) {
                     postPromise = postPromise
                         .then(() => getFacebookPageAccessToken(request, appConf.facebookPageId))
-                        .then(fbPageAccessToken => facebook.addPost(fbPageAccessToken, postMessage))
+                        .then(fbPageAccessToken => facebook.addPost(fbPageAccessToken, appConf.facebookPageId, text, link))
                 }
 
                 // only if we managed to share our post in all social networks, we save it locally
                 postPromise.then(fbPost => {
                         return new Post({
-                            text: postMessage,
-                            imageLink: request.body.imageLink,
+                            text,
+                            link,
+                            linkTitle,
+                            imageLink,
                             date: new Date(),
                             author: request.user._id,
                             fbPostId: fbPost && fbPost.id

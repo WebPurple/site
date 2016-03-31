@@ -23,7 +23,7 @@ const AppAvatar = ({user}) => (
 );
 
 const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen}) => (
-    <AppBar title={'WebPurple' + (user ? ` | ${getUserName(user)}` : '')}
+    <AppBar style={{position: 'fixed'}} title={'WebPurple' + (user ? ` | ${getUserName(user)}` : '')}
             iconElementLeft={<IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu/>}</IconButton>}
             iconElementRight={user ? <AppAvatar user={user}/> : <LoginComponent />}/>
 );
