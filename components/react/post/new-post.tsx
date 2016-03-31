@@ -14,6 +14,7 @@ const NewPostComponent = ({state, postEditor, onDialogOpen, onDialogClose}) => (
         </FloatingActionButton>
         <Dialog title='New post'
                 open={state.dialogOpen}
+                autoScrollBodyContent={true}
                 onRequestClose={onDialogClose}>
             <PostEditForm {...postEditor}/>
         </Dialog>
