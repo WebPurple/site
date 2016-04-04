@@ -1,5 +1,16 @@
 export function getJson(url: string, params?: any): Promise<any> {
     return ajaxJson(url, 'get', params);
+
+    if (params === undefined) {
+        return ajaxJson(url);
+    }
+    
+    var paramsQueryPart = Object.keys(params)
+        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(params[key]))
+        .join("&")
+        .replace(/%20/g, "+");
+
+    return ajaxJson(url + "?" + paramsQueryPart, 'get');
 }
 
 export function postJson(url: string, params?: any): Promise<any> {

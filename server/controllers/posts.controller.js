@@ -7,12 +7,14 @@ var Post = mongoose.model('posts', postSchema);
 var appConf = require('./../conf/app.conf');
 var facebook = require('./../services/facebook.service');
 
+var securityUtils = require('./../utils/security-utils');
+
 module.exports = () => {
     var router = express.Router();
 
     router.route('/posts')
         // add new post
-        .post(checkPermissions,
+        .post(securityUtils.checkPermissions,
             (request, response) => {
                 var text = request.body.text;
                 var link = request.body.link;
@@ -59,7 +61,7 @@ module.exports = () => {
             .then(post => response.send(post))
             .catch(err => response.send(err)))
         // update post
-        .put(checkPermissions,
+        .put(securityUtils.checkPermissions,
             (request, response) => {
                 Post.findById(request.params.post_id).exec()
                     .then(post => {
@@ -70,22 +72,13 @@ module.exports = () => {
                     .then(post => response.send(post))
                     .catch(err => response.send(err))
             })
-        .delete(checkPermissions,
+        .delete(securityUtils.checkPermissions,
             (request, response) => Post.remove({_id: request.params.post_id})
                 .then(post => response.send(post))
                 .catch(err => response.send(err)));
 
     return router;
 };
-
-function checkPermissions(request, response, next) {
-    if (request.isAuthenticated()) {
-        next();
-    } else {
-        response.status(403);
-        response.send({error: 'Access denied'})
-    }
-}
 
 function getFacebookPageAccessToken(request, pageId) {
     var fbPageAccessToken = request.session.fbPageAccessTokens && request.session.fbPageAccessTokens[pageId];

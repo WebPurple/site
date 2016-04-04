@@ -9,6 +9,8 @@ var dbConf = require('./conf/db');
 var authApi = require('./controllers/auth.controller');
 var postsApi = require('./controllers/posts.controller');
 
+var pageInfoApi = require('./controllers/page-info.controller');
+
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -27,6 +29,7 @@ authApi(app);
 
 app.use('/api', postsApi());
 app.get('/api/user', (request, response) => response.send(request.user));
+app.use('/', pageInfoApi());
 
 mongoose.connect(`mongodb://${dbConf.user}:${dbConf.password}@${dbConf.host}:${dbConf.port}/${dbConf.dbName}`);
 mongoose.connection
