@@ -15,3 +15,6 @@ Notes
 -------------
 To build js from TypeScript use the following command from command prompt (you should be in the root project folder):
 ```npm run-script build```
+
+The reason of almost all compilation errors is https://github.com/callemall/material-ui/issues/3594,
+after stable 15 version be released, everything is gonna be ok.
