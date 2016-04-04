@@ -1,6 +1,4 @@
 export function getJson(url: string, params?: any): Promise<any> {
-    return ajaxJson(url, 'get', params);
-
     if (params === undefined) {
         return ajaxJson(url);
     }
