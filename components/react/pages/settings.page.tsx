@@ -10,26 +10,40 @@ import * as FlatButton from "material-ui/lib/flat-button";
 import * as CircularProgress from "material-ui/lib/circular-progress";
 
 import {IUser} from "../../vo/index";
+import {changeUserName, saveUser} from "../../actions/user.actions";
 
-const SettingsPage = (user: IUser) => (
+const SettingsPage = ({account, isFetching, onUserNameChange, onUserSave}: {account: IUser, isFetching: boolean}) => (
     <Card style={{margin: 10}}>
         <CardHeader title="Settings"/>
         {
-            user ? (
+            account ? (
                 <CardText>
-                    <TextField floatingLabelText="Username" disabled={true} value={user.displayName}/>
+                    <TextField floatingLabelText="Username"
+                               disabled={isFetching}
+                               value={account.displayName}
+                               onChange={e => onUserNameChange(e.target.value)}/>
                     <br/>
-                    <TextField floatingLabelText="Email" disabled={true} value={user.email}/>
+                    <TextField floatingLabelText="Email"
+                               disabled={true || isFetching}
+                               value={account.email}/>
                 </CardText>
             )
                 : <CircularProgress/>
         }
         <CardActions>
-            <FlatButton label="Save" disabled={true}/>
+            <FlatButton label="Save" disabled={isFetching} onTouchTap={() => onUserSave(account)}/>
         </CardActions>
     </Card>
 );
 
-const SettingsPageContainer = connect(state => state.user)(SettingsPage);
+const SettingsPageContainer = connect(
+    state => state.user,
+    (dispatch: Redux.Dispatch) => {
+        return {
+            onUserNameChange: (newName) => dispatch(changeUserName(newName)),
+            onUserSave: user => dispatch(saveUser(user))
+        }
+    }
+)(SettingsPage);
 
 export default SettingsPageContainer;
