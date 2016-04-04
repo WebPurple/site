@@ -20,7 +20,7 @@ const PostItem = ({link, text, linkTitle, date, author, imageLink}: IPost) => (
             title={author.vkDisplayName || author.fbDisplayName}
             subtitle={(new Date(date)).toLocaleDateString()}
             avatar={author.vkPhotoUrl}/>
-        <CardMedia style={cardMediaStyle} overlay={<CardTitle title={linkTitle}/>}>
+        <CardMedia style={cardMediaStyle} overlay={<CardTitle title={linkTitle}/>} onTouchTap={() => window.open(link, '_blank')}>
             <img src={imageLink}/>
         </CardMedia>
         <CardText>{text}</CardText>
