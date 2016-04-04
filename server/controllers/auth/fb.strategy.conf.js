@@ -11,8 +11,8 @@ module.exports = (app, passport) => {
             .then(doc => {
                 if (!doc) {
                     return new User({
+                        displayName: profile.displayName,
                         fbUserId: profile.id,
-                        fbDisplayName: profile.displayName,
                         email: profile.email
                     }).save();
                 }

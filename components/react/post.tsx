@@ -17,7 +17,7 @@ var cardMediaStyle = {
 const PostItem = ({link, text, linkTitle, date, author, imageLink}: IPost) => (
     <Card className='post'>
         <CardHeader
-            title={author.vkDisplayName || author.fbDisplayName}
+            title={author.displayName}
             subtitle={(new Date(date)).toLocaleDateString()}
             avatar={author.vkPhotoUrl}/>
         <CardMedia style={cardMediaStyle} overlay={<CardTitle title={linkTitle}/>} onTouchTap={() => window.open(link, '_blank')}>

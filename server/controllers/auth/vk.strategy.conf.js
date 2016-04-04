@@ -11,10 +11,11 @@ module.exports = (app, passport) => {
             .then(doc => {
                 if (!doc) {
                     return new User({
-                        gender: profile.gender,
+                        email: profile.email,
+                        displayName: profile.displayName,
+                        gender: profile.gender === 'male' ? 1 : 0,
                         vkUserId: profile.id,
-                        vkUserName: profile.username,
-                        vkDisplayName: profile.displayName,
+                        vkUsername: profile.username,
                         vkProfileUrl: profile.profileUrl,
                         vkPhotoUrl: profile.photos[0].value
                     }).save();

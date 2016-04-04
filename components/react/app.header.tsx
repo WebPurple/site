@@ -13,18 +13,14 @@ import * as NavigationClose from "material-ui/lib/svg-icons/navigation/close";
 import LoginComponent from './login.component';
 import {toggleLeftNav} from "../actions/left-nav.actions";
 
-//TODO: create user settings page and displayName property
-function getUserName(user) {
-    return user.vkDisplayName || user.fbDisplayName;
-}
-
+const AppAvatar = ({user, onTouchTap}) => (
 const AppAvatar = ({user, onTouchTap}) => (
     user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl} onTouchTap={onTouchTap}/>
         : <Avatar icon={<SocialPerson/>} onTouchTap={onTouchTap}/>
 );
 
 const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen, onAvatarClick}) => (
-    <AppBar style={{position: 'fixed'}} title={'WebPurple' + (user ? ` | ${getUserName(user)}` : '')}
+    <AppBar style={{position: 'fixed'}} title={'WebPurple' + (user ? ` | ${user.displayName}` : '')}
             iconElementLeft={<IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu/>}</IconButton>}
             iconElementRight={user ? <AppAvatar user={user} onTouchTap={onAvatarClick} /> : <LoginComponent />}/>
 );

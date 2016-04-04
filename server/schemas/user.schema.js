@@ -2,16 +2,15 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
     email: String,
+    displayName: String,
+    gender: Number, // 1 - male, 0 - female
     /* VK */
-    gender: String, // gender
     vkUserId: String, // id
-    vkUserName: String, // username
-    vkDisplayName: String, // displayName
+    vkUsername: String, // username
     vkProfileUrl: String, // profileUrl
     vkPhotoUrl: String, // photos[0].value
     /* Facebook */
-    fbUserId: String, // id
-    fbDisplayName: String
+    fbUserId: String // id
 });
 
 module.exports = userSchema;

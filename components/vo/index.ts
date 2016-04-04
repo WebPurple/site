@@ -1,14 +1,12 @@
 export interface IUser {
     _id: number;
     email: string;
-    gender: string;
-    vkDisplayName: string;
+    displayName: string;
+    gender: number; // 1 - male, 0 - female
     vkPhotoUrl: string;
     vkProfileUrl: string;
     vkUserId: number;
-    vkUserName: string;
     fbUserId: string;
-    fbDisplayName: string;
 }
 
 export interface IPost {

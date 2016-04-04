@@ -17,7 +17,7 @@ const SettingsPage = (user: IUser) => (
         {
             user ? (
                 <CardText>
-                    <TextField floatingLabelText="Username" disabled={true} value={user.vkDisplayName || user.fbDisplayName}/>
+                    <TextField floatingLabelText="Username" disabled={true} value={user.displayName}/>
                     <br/>
                     <TextField floatingLabelText="Email" disabled={true} value={user.email}/>
                 </CardText>
