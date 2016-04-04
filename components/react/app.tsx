@@ -8,8 +8,6 @@ import {purple500, purple700, purple100} from 'material-ui/lib/styles/colors';
 
 import AppHeader from './app.header';
 import AppLeftNav from './app-left-nav';
-import Feed from './feed';
-import NewPost from './post/new-post';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -19,15 +17,14 @@ const muiTheme = getMuiTheme({
     },
 });
 
-const App = ({leftNavOpen}) => (
+const App = ({leftNavOpen, children}) => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <div className='page'>
             <AppHeader/>
             <main className={'container' + (leftNavOpen ? ' container--with-left-nav' : '')}>
-                <Feed/>
+                {children}
             </main>
             <AppLeftNav/>
-            <NewPost/>
         </div>
     </MuiThemeProvider>
 );

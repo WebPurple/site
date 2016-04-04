@@ -80,14 +80,14 @@ const PostEditFormComponent = ({post,
                     disabled={!deferredPost}/>
         <CardActions>
             <RaisedButton label='Submit' primary={true}
-                          disabled={!user || !post.text.trim() || isFetching}
+                          disabled={!user || isFetching}
                           onMouseUp={onSubmit}/>
         </CardActions>
     </div>
 );
 
 const PostEditFormContainer = connect(
-    state => Object.assign({}, state.newPost, {user: state.header.user}),
+    state => Object.assign({}, state.newPost, {user: state.user}),
     (dispatch: Redux.Dispatch, {post}) => {
         return {
             onSubmit: () => dispatch(submitPostForm(post as IPost)),

@@ -1,15 +1,4 @@
-import {combineReducers} from 'redux';
-
-import header from './header.reducer';
-import feed from './feed.reducer';
-import newPost from './new-post.reducer';
-import leftNav from './left-nav.reducer';
-
-const app = combineReducers({
-    header,
-    feed,
-    newPost,
-    leftNav
-});
-
-export default app;
+export {default as feed} from './feed.reducer';
+export {default as newPost} from './new-post.reducer';
+export {default as leftNav} from './left-nav.reducer';
+export {default as user} from './user.reducer';

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 
-import PostItem from './post';
-import {IPost} from '../vo/index'
+import PostItem from './../post';
+import NewPost from './../post/new-post';
+import {IPost} from '../../vo/index';
 
 export interface IFeedProps {
     posts: IPost[];
@@ -10,8 +11,11 @@ export interface IFeedProps {
 }
 
 const FeedComponent = ({posts, dispatch}: IFeedProps) => (
-    <div className="feed">
-        {posts.map(post => <PostItem key={post._id} {...post}/>)}
+    <div>
+        <div className="feed">
+            {posts.map(post => <PostItem key={post._id} {...post}/>)}
+        </div>
+        <NewPost/>
     </div>
 );
 

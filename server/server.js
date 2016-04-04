@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
+var history = require('connect-history-api-fallback');
 
 var serverConf = require('./conf/server');
 var dbConf = require('./conf/db');
@@ -16,14 +17,20 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(history({
+    rewrites: [
+        {from: /\/auth/, to: context => context.parsedUrl}
+    ]
+}));
+
+app.use(express.static('public'));
+
 app.use(expressSession({
     name: serverConf.sessionCookieName,
     secret: serverConf.secretKey,
     resave: false,
     saveUninitialized: false
 }));
-
-app.use(express.static('public'));
 
 authApi(app);
 

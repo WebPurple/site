@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux'
 
 import * as AppBar from 'material-ui/lib/app-bar';
 import * as Avatar from 'material-ui/lib/avatar';
@@ -17,22 +18,23 @@ function getUserName(user) {
     return user.vkDisplayName || user.fbDisplayName;
 }
 
-const AppAvatar = ({user}) => (
-    user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl}/>
-        : <Avatar icon={<SocialPerson/>}/>
+const AppAvatar = ({user, onTouchTap}) => (
+    user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl} onTouchTap={onTouchTap}/>
+        : <Avatar icon={<SocialPerson/>} onTouchTap={onTouchTap}/>
 );
 
-const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen}) => (
+const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen, onAvatarClick}) => (
     <AppBar style={{position: 'fixed'}} title={'WebPurple' + (user ? ` | ${getUserName(user)}` : '')}
             iconElementLeft={<IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu/>}</IconButton>}
-            iconElementRight={user ? <AppAvatar user={user}/> : <LoginComponent />}/>
+            iconElementRight={user ? <AppAvatar user={user} onTouchTap={onAvatarClick} /> : <LoginComponent />}/>
 );
 
 const AppHeaderContainer = connect(
-    state => Object.assign({}, state.header, {leftNavOpen: state.leftNav.leftNavOpen}),
-    (dispatch:Redux.Dispatch) => {
+    state => Object.assign({}, {user: state.user}, {leftNavOpen: state.leftNav.leftNavOpen}),
+    (dispatch: Redux.Dispatch) => {
         return {
-            onToggleLeftNav: () => dispatch(toggleLeftNav())
+            onToggleLeftNav: () => dispatch(toggleLeftNav()),
+            onAvatarClick: () => dispatch(push('/settings'))
         }
     }
 )(AppHeaderComponent);

@@ -1,5 +1,6 @@
 export interface IUser {
     _id: number;
+    email: string;
     gender: string;
     vkDisplayName: string;
     vkPhotoUrl: string;

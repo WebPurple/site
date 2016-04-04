@@ -1,9 +1,6 @@
-
 var express = require('express');
 var fetch = require('isomorphic-fetch');
 var cheerio = require('cheerio');
-
-var securityUtils = require('./../utils/security-utils');
 
 module.exports = () => {
     var router = express.Router();
