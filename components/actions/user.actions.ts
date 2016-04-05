@@ -46,3 +46,28 @@ export function saveUser(user: IUser) {
             .then(user => dispatch(receiveUser(user)));
     }
 }
+
+export const REQUEST_ALL_USERS = 'request_all_users';
+
+export function requestAllUsers(): IAction<void> {
+    return {
+        type: REQUEST_ALL_USERS
+    }
+}
+
+export const RECEIVE_ALL_USERS = 'receive_all_users';
+
+export function receiveAllUsers(users: IUser[]): IAction<IUser[]> {
+    return {
+        type: RECEIVE_ALL_USERS,
+        payload: users
+    }
+}
+
+export function fetchAllUsers() {
+    return (dispatch: Redux.Dispatch) => {
+        dispatch(requestAllUsers());
+        return getJson('/api/users')
+            .then(users => dispatch(receiveAllUsers(users)));
+    }
+}
