@@ -13,7 +13,7 @@ import {IUser} from "../../vo/index";
 import {changeUserName, saveUser} from "../../actions/user.actions";
 
 const SettingsPage = ({account, isFetching, onUserNameChange, onUserSave}: {account: IUser, isFetching: boolean}) => (
-    <Card style={{margin: 10}}>
+    <Card>
         <CardHeader title="Settings"/>
         {
             account ? (
