@@ -3,22 +3,22 @@ import {connect} from "react-redux";
 
 import PostItem from './../post';
 import NewPost from './../post/new-post';
-import {IPost} from '../../vo/index';
+import {IPost, IUser} from '../../vo/index';
 
 export interface IFeedProps {
     posts: IPost[];
-    dispatch: Redux.Dispatch
+    account: IUser;
 }
 
-const FeedComponent = ({posts, dispatch}: IFeedProps) => (
+const FeedComponent = ({posts, account}: IFeedProps) => (
     <div>
         <div className="feed">
             {posts.map(post => <PostItem key={post._id} {...post}/>)}
         </div>
-        <NewPost/>
+        {account && account._id ? <NewPost/> : ''}
     </div>
 );
 
-const FeedContainer = connect(state => state.feed)(FeedComponent);
+const FeedContainer = connect(state => Object.assign({}, state.feed, state.user))(FeedComponent);
 
 export default FeedContainer;
