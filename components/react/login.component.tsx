@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
 
-import * as FlatButton from 'material-ui/lib/flat-button';
-import * as Dialog from 'material-ui/lib/dialog';
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var FlatButton = require('material-ui/lib/flat-button');
+var Dialog = require('material-ui/lib/dialog');
 
 export default class LoginComponent extends React.Component<any, {dialogOpened: boolean}> {
 

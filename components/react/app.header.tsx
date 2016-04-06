@@ -2,11 +2,13 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
-import * as AppBar from 'material-ui/lib/app-bar';
-import * as IconButton from 'material-ui/lib/icon-button';
-import * as Menu from 'material-ui/lib/svg-icons/navigation/menu';
-import * as NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
-import * as CircularProgress from 'material-ui/lib/circular-progress';
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var AppBar = require('material-ui/lib/app-bar');
+var IconButton = require('material-ui/lib/icon-button');
+var Menu = require('material-ui/lib/svg-icons/navigation/menu');
+var NavigationClose = require('material-ui/lib/svg-icons/navigation/close');
+var CircularProgress = require('material-ui/lib/circular-progress');
 
 import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';

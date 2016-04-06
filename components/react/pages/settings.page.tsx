@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 
-import * as Card from "material-ui/lib/card/card";
-import * as CardHeader from "material-ui/lib/card/card-header";
-import * as TextField from "material-ui/lib/text-field";
-import * as CardText from "material-ui/lib/card/card-text";
-import * as CardActions from "material-ui/lib/card/card-actions";
-import * as FlatButton from "material-ui/lib/flat-button";
-import * as CircularProgress from "material-ui/lib/circular-progress";
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var Card = require("material-ui/lib/card/card");
+var CardHeader = require("material-ui/lib/card/card-header");
+var TextField = require("material-ui/lib/text-field");
+var CardText = require("material-ui/lib/card/card-text");
+var CardActions = require("material-ui/lib/card/card-actions");
+var FlatButton = require("material-ui/lib/flat-button");
+var CircularProgress = require("material-ui/lib/circular-progress");
 
 import {IUser} from "../../vo/index";
 import {changeUserName, saveUser} from "../../actions/user.actions";

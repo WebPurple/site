@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-import * as Card from 'material-ui/lib/card/card';
-import * as CardHeader from 'material-ui/lib/card/card-header';
-import * as CardTitle from 'material-ui/lib/card/card-title';
-import * as CardText from 'material-ui/lib/card/card-text';
-import * as CardMedia from 'material-ui/lib/card/card-media';
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var Card = require('material-ui/lib/card/card');
+var CardHeader = require('material-ui/lib/card/card-header');
+var CardTitle = require('material-ui/lib/card/card-title');
+var CardText = require('material-ui/lib/card/card-text');
+var CardMedia = require('material-ui/lib/card/card-media');
 
 import {IPost} from '../vo/index';
 

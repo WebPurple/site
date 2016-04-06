@@ -3,10 +3,12 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux'
 
-import * as LeftNav from 'material-ui/lib/left-nav';
-import * as MenuItem from 'material-ui/lib/menus/menu-item';
-import * as ActionHome from 'material-ui/lib/svg-icons/action/home';
-import * as SocialPeople from "material-ui/lib/svg-icons/social/people";
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var LeftNav = require('material-ui/lib/left-nav');
+var MenuItem = require('material-ui/lib/menus/menu-item');
+var ActionHome = require('material-ui/lib/svg-icons/action/home');
+var SocialPeople = require('material-ui/lib/svg-icons/social/people');
 
 const AppLeftNavComponent = ({leftNavOpen, dispatch}) => (
     <LeftNav open={leftNavOpen} className="left-nav">

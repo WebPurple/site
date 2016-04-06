@@ -1,7 +1,9 @@
 import * as React from 'react';
 
-import * as Avatar from 'material-ui/lib/avatar';
-import * as SocialPerson from 'material-ui/lib/svg-icons/social/person';
+// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
+// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
+var Avatar = require('material-ui/lib/avatar');
+var SocialPerson = require('material-ui/lib/svg-icons/social/person');
 
 import {IUser} from '../vo/index';
 
