@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "build": "webpack",
     "postinstall": "typings install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,9 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
     "ts-loader": "^0.8.1"
   }
 }
