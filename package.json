@@ -39,7 +39,12 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "karma": "^0.13.22",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7",
     "sinon": "^1.17.3",
     "ts-loader": "^0.8.1"
   }
