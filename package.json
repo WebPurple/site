@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "build": "webpack",
     "postinstall": "typings install",
-    "test": "mocha --recursive"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "imports-loader": "^0.6.5",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-mocha": "^0.2.2",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7",
     "sinon": "^1.17.3",
     "ts-loader": "^0.8.1"
   }

@@ -19,10 +19,14 @@ module.exports = {
     },
     module: {
         loaders: [
+            {test: /sinon\.js$/, loader: "imports?define=>false,require=>false"},
+            
             {test: /\.ts(x?)$/, loader: 'ts-loader'}
-        ]
+        ],
+        noParse: [/sinon/]
     },
     resolve: {
+        alias: {'sinon': 'sinon/pkg/sinon'},
         extensions: ['', '.ts', '.tsx', '.js']
     },
 
