@@ -3,9 +3,10 @@ import {RECEIVE_USER, CHANGE_USER_NAME, SAVE_USER, REQUEST_USER} from "../action
 const userReducer = (state: {account: IUser, isFetching: boolean} = {}, action) => {
     switch (action.type) {
         case CHANGE_USER_NAME:
-            return Object.assign({}, state, {
-                account: Object.assign({}, state.account, {displayName: action.payload})
-            });
+            return {
+                ...state,
+                account: {...state.account, displayName: action.payload}
+            };
         case SAVE_USER:
         case REQUEST_USER:
             return Object.assign({}, state, {isFetching: true});

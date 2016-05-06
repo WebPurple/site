@@ -5,10 +5,10 @@ import {POST_ADDED, OPEN_DIALOG, CLOSE_DIALOG} from "../actions/post-edit-form.a
 let newPost = (state = {dialogOpen: false}, action) => {
     switch (action.type) {
         case OPEN_DIALOG:
-            return Object.assign({}, state, {dialogOpen: true});
+            return {...state, dialogOpen: true};
         case POST_ADDED:
         case CLOSE_DIALOG:
-            return Object.assign({}, state, {dialogOpen: false});
+            return {...state, dialogOpen: false};
         default:
             return state;
     }

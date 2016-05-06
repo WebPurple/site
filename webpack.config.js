@@ -21,14 +21,15 @@ module.exports = {
         loaders: [
             {
                 test: /sinon\.js$/,
-                loader: "imports?define=>false,require=>false"
+                loader: 'imports?define=>false,require=>false'
             },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-object-rest-spread']
                 }
             }
         ],

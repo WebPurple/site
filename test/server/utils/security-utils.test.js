@@ -1,7 +1,7 @@
-var assert = require('chai').assert;
-var sinon = require('sinon');
+import {assert} from 'chai';
+import sinon from 'sinon';
 
-var securityUtils = require('./../../../src/server/utils/security-utils');
+import securityUtils from './../../../src/server/utils/security-utils';
 
 describe('securityUtils', function () {
 

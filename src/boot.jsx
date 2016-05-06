@@ -24,9 +24,10 @@ injectTapEventPlugin();
 const middleware = routerMiddleware(browserHistory);
 
 let store = createStore(
-    combineReducers(Object.assign(reducers, {
+    combineReducers({
+        ...reducers,
         routing: routerReducer
-    })),
+    }),
     applyMiddleware(thunkMiddleware, middleware)
 );
 

@@ -1,8 +1,7 @@
-var expect = require('chai').expect;
+import {expect} from 'chai';
 
-var newPostReducer = require('./../../../src/reducers/new-post.reducer').default;
-var OPEN_DIALOG = require('./../../../src/actions/post-edit-form.actions').OPEN_DIALOG;
-var CLOSE_DIALOG = require('./../../../src/actions/post-edit-form.actions').CLOSE_DIALOG;
+import newPostReducer from './../../src/reducers/new-post.reducer';
+import {OPEN_DIALOG, CLOSE_DIALOG} from './../../src/actions/post-edit-form.actions';
 
 describe('new-post.reducer', function () {
     var state = {state: {dialogOpen: true}};

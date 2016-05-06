@@ -4,16 +4,18 @@ import {POST_ADDED} from "../actions/post-edit-form.actions";
 const feed = (state = {isFetching: false, posts: []}, action) => {
     switch (action.type) {
         case REQUEST_POSTS:
-            return Object.assign({}, state, {isFetching: true});
+            return {...state, isFetching: true};
         case RECEIVE_POSTS:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: false,
                 posts: action.payload
-            });
+            };
         case POST_ADDED:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 posts: [action.payload].concat(state.posts)
-            });
+            };
         default:
             return state;
     }
