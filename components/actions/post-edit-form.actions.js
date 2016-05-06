@@ -1,13 +1,11 @@
-import {IAction} from "./actions";
-import {IPost} from "../vo/index";
 import {postJson} from "../utils/ajax";
 import {queryPageInfo} from "../utils/page-info"
 
 export const SUBMIT_POST_FORM = 'submit_post_form';
 export const POST_ADDED = 'post_saved';
 
-export function submitPostForm(post: IPost) {
-    return (dispatch: Redux.Dispatch) => {
+export function submitPostForm(post) {
+    return (dispatch) => {
         dispatch({type: SUBMIT_POST_FORM});
         postJson('api/posts', post)
             .then(savedPost => dispatch({
@@ -19,7 +17,7 @@ export function submitPostForm(post: IPost) {
 
 export const DEFERRED_POST = 'deferred_post';
 
-export function toggleDeferredPost(): IAction<void> {
+export function toggleDeferredPost() {
     return {
         type: DEFERRED_POST
     }
@@ -36,7 +34,7 @@ export function changePostText(newText) {
 
 export const EXPORT_TO_FACEBOOK = 'export_to_facebook';
 
-export function toggleExportToFacebook(checked): IAction<boolean> {
+export function toggleExportToFacebook(checked) {
     return {
         type: EXPORT_TO_FACEBOOK,
         payload: checked
@@ -45,7 +43,7 @@ export function toggleExportToFacebook(checked): IAction<boolean> {
 
 export const CHANGE_POST_IMAGE = 'change_post_image';
 
-export function changePostImage(newImageLink: string): IAction<string> {
+export function changePostImage(newImageLink) {
     return {
         type: CHANGE_POST_IMAGE,
         payload: newImageLink
@@ -55,7 +53,7 @@ export function changePostImage(newImageLink: string): IAction<string> {
 export const CHANGE_POST_LINK = 'change_post_link';
 
 export function changePostLink(newLink) {
-    return (dispatch: Redux.Dispatch) => {
+    return (dispatch) => {
         dispatch({
             type: CHANGE_POST_LINK,
             payload: newLink
@@ -80,7 +78,7 @@ export function changePostLink(newLink) {
 
 export const CHANGE_POST_LINK_TITLE = 'change_post_link_title';
 
-export function changePostLinkTitle(newLinkTitle): IAction<String> {
+export function changePostLinkTitle(newLinkTitle) {
     return {
         type: CHANGE_POST_LINK_TITLE,
         payload: newLinkTitle

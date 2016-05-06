@@ -11,7 +11,7 @@ module.exports = {
             'material-ui',
             'redux-thunk'
         ],
-        main: './components/boot.tsx'
+        main: './components/boot.jsx'
     },
     output: {
         path: path.join(__dirname, 'public', 'build'),
@@ -19,15 +19,24 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /sinon\.js$/, loader: "imports?define=>false,require=>false"},
-            
-            {test: /\.ts(x?)$/, loader: 'ts-loader'}
+            {
+                test: /sinon\.js$/,
+                loader: "imports?define=>false,require=>false"
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            }
         ],
         noParse: [/sinon/]
     },
     resolve: {
         alias: {'sinon': 'sinon/pkg/sinon'},
-        extensions: ['', '.ts', '.tsx', '.js']
+        extensions: ['', '.jsx', '.js']
     },
 
     plugins: [

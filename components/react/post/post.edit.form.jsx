@@ -11,7 +11,6 @@ var Toggle = require('material-ui/lib/toggle');
 var DatePicker = require('material-ui/lib/date-picker/date-picker');
 var TimePicker = require('material-ui/lib/time-picker');
 
-import {IPost} from "../../vo/index";
 import {submitPostForm,
     toggleDeferredPost,
     changePostText,
@@ -90,9 +89,9 @@ const PostEditFormComponent = ({post,
 
 const PostEditFormContainer = connect(
     state => Object.assign({}, state.newPost, {user: state.user}),
-    (dispatch: Redux.Dispatch, {post}) => {
+    (dispatch, {post}) => {
         return {
-            onSubmit: () => dispatch(submitPostForm(post as IPost)),
+            onSubmit: () => dispatch(submitPostForm(post)),
             onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
             onToggleExportToFacebook: checked => dispatch(toggleExportToFacebook(checked)),
             onChangeLink: newLink => dispatch(changePostLink(newLink)),

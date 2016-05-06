@@ -3,14 +3,8 @@ import {connect} from "react-redux";
 
 import PostItem from './../post';
 import NewPost from './../post/new-post';
-import {IPost, IUser} from '../../vo/index';
 
-export interface IFeedProps {
-    posts: IPost[];
-    account: IUser;
-}
-
-const FeedComponent = ({posts, account}: IFeedProps) => (
+const FeedComponent = ({posts, account}) => (
     <div>
         <div className="feed">
             {posts.map(post => <PostItem key={post._id} {...post}/>)}

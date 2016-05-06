@@ -13,7 +13,6 @@ var CircularProgress = require('material-ui/lib/circular-progress');
 import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';
 import {toggleLeftNav} from '../actions/left-nav.actions';
-import {IUser} from '../vo/index';
 
 const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen, onAvatarClick}) => (
     <AppBar style={{position: 'fixed'}} title={renderTitle(user)}
@@ -21,7 +20,7 @@ const AppHeaderComponent = ({user, onToggleLeftNav, leftNavOpen, onAvatarClick})
             iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onAvatarClick={onAvatarClick}/>}/>
 );
 
-function renderTitle(user: {account: IUser}) {
+function renderTitle(user) {
     return 'WebPurple' + (user.account && user.account._id ? ` | ${user.account.displayName}` : '');
 }
 
@@ -37,7 +36,7 @@ const RightMenu = ({user, isFetching, onAvatarClick}) => (
 
 const AppHeaderContainer = connect(
     state => Object.assign({}, {user: state.user}, {leftNavOpen: state.leftNav.leftNavOpen}),
-    (dispatch: Redux.Dispatch) => {
+    dispatch => {
         return {
             onToggleLeftNav: () => dispatch(toggleLeftNav()),
             onAvatarClick: () => dispatch(push('/settings'))

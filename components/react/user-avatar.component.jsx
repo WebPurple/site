@@ -5,9 +5,7 @@ import * as React from 'react';
 var Avatar = require('material-ui/lib/avatar');
 var SocialPerson = require('material-ui/lib/svg-icons/social/person');
 
-import {IUser} from '../vo/index';
-
-const UserAvatar = ({user, onTouchTap, style}: {user: IUser, onTouchTap?: Function, style: any}) => (
+const UserAvatar = ({user, onTouchTap, style}) => (
     user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl} style={style} onTouchTap={onTouchTap}/>
         : <Avatar icon={<SocialPerson/>} style={style} onTouchTap={onTouchTap}/>
 );

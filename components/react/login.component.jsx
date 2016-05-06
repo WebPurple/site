@@ -5,7 +5,7 @@ import * as React from 'react';
 var FlatButton = require('material-ui/lib/flat-button');
 var Dialog = require('material-ui/lib/dialog');
 
-export default class LoginComponent extends React.Component<any, {dialogOpened: boolean}> {
+export default class LoginComponent extends React.Component {
 
     constructor(props) {
         super(props);

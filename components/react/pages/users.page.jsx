@@ -8,10 +8,9 @@ var List = require('material-ui/lib/lists/list');
 var ListItem = require('material-ui/lib/lists/list-item');
 var CircularProgress = require('material-ui/lib/circular-progress');
 
-import {IUser} from '../../vo/index';
 import UserAvatar from './../user-avatar.component';
 
-const UsersPage = ({users}: {users: IUser[]}) => (
+const UsersPage = ({users}) => (
     <Card>
         <List subheader="Registered users">
             {users ? users.map(user => <ListItem key={user._id} leftIcon={<UserAvatar user={user}/>} primaryText={user.displayName}/>)

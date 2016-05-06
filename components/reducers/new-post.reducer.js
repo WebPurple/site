@@ -1,9 +1,8 @@
 import {combineReducers} from 'redux';
 import postEditor from './post-edit.reducer';
 import {POST_ADDED, OPEN_DIALOG, CLOSE_DIALOG} from "../actions/post-edit-form.actions";
-import {IAction} from "../actions/actions";
 
-let newPost = (state = {dialogOpen: false}, action: IAction<any>) => {
+let newPost = (state = {dialogOpen: false}, action) => {
     switch (action.type) {
         case OPEN_DIALOG:
             return Object.assign({}, state, {dialogOpen: true});

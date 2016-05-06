@@ -8,9 +8,8 @@ import {
     CHANGE_POST_LINK,
     CHANGE_POST_LINK_TITLE
 } from "../actions/post-edit-form.actions";
-import {IAction} from "../actions/actions";
 
-const editPost = (state = {post: {text: ''}, deferredPost: false}, action: IAction<any>) => {
+const editPost = (state = {post: {text: ''}, deferredPost: false}, action) => {
     switch (action.type) {
         case CHANGE_POST_LINK:
             return Object.assign({}, state, {

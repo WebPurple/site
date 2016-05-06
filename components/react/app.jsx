@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import {connect} from 'react-redux'
 
-import * as getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import * as MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import {purple500, purple700, purple100} from 'material-ui/lib/styles/colors';
 
 import AppHeader from './app.header';
@@ -14,7 +14,7 @@ const muiTheme = getMuiTheme({
         primary1Color: purple500,
         primary2Color: purple700,
         primary3Color: purple100
-    },
+    }
 });
 
 const App = ({leftNavOpen, children}) => (

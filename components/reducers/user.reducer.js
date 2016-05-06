@@ -1,8 +1,6 @@
-import {IAction} from "../actions/actions";
-import {IUser} from "../vo/index";
 import {RECEIVE_USER, CHANGE_USER_NAME, SAVE_USER, REQUEST_USER} from "../actions/user.actions";
 
-const userReducer = (state: {account: IUser, isFetching: boolean} = {}, action: IAction<any>) => {
+const userReducer = (state: {account: IUser, isFetching: boolean} = {}, action) => {
     switch (action.type) {
         case CHANGE_USER_NAME:
             return Object.assign({}, state, {

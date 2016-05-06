@@ -11,10 +11,9 @@ var CardActions = require("material-ui/lib/card/card-actions");
 var FlatButton = require("material-ui/lib/flat-button");
 var CircularProgress = require("material-ui/lib/circular-progress");
 
-import {IUser} from "../../vo/index";
 import {changeUserName, saveUser} from "../../actions/user.actions";
 
-const SettingsPage = ({account, isFetching, onUserNameChange, onUserSave}: {account: IUser, isFetching: boolean}) => (
+const SettingsPage = ({account, isFetching, onUserNameChange, onUserSave}) => (
     <Card>
         <CardHeader title="Settings"/>
         {
@@ -40,7 +39,7 @@ const SettingsPage = ({account, isFetching, onUserNameChange, onUserSave}: {acco
 
 const SettingsPageContainer = connect(
     state => state.user,
-    (dispatch: Redux.Dispatch) => {
+    dispatch => {
         return {
             onUserNameChange: (newName) => dispatch(changeUserName(newName)),
             onUserSave: user => dispatch(saveUser(user))

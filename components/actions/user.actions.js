@@ -1,10 +1,8 @@
 import {getJson, putJson} from "../utils/ajax";
-import {IAction} from "./actions";
-import {IUser} from "../vo/index";
 
 export const REQUEST_USER = 'request_user';
 
-export function requestUser(): IAction<void> {
+export function requestUser() {
     return {
         type: REQUEST_USER
     };
@@ -12,7 +10,7 @@ export function requestUser(): IAction<void> {
 
 export const RECEIVE_USER = 'receive_user';
 
-export function receiveUser(user: IUser): IAction<IUser> {
+export function receiveUser(user) {
     return {
         type: RECEIVE_USER,
         payload: user
@@ -20,7 +18,7 @@ export function receiveUser(user: IUser): IAction<IUser> {
 }
 
 export function fetchUser() {
-    return (dispatch: Redux.Dispatch) => {
+    return (dispatch) => {
         dispatch(requestUser());
         return getJson('/api/user')
             .then(user => dispatch(receiveUser(user)))
@@ -30,7 +28,7 @@ export function fetchUser() {
 
 export const CHANGE_USER_NAME = 'change_user_name';
 
-export function changeUserName(newName: string): IAction<string> {
+export function changeUserName(newName) {
     return {
         type: CHANGE_USER_NAME,
         payload: newName
@@ -39,8 +37,8 @@ export function changeUserName(newName: string): IAction<string> {
 
 export const SAVE_USER = 'save_user';
 
-export function saveUser(user: IUser) {
-    return (dispatch: Redux.Dispatch) => {
+export function saveUser(user) {
+    return (dispatch) => {
         dispatch({type: SAVE_USER, payload: user});
         return putJson(`/api/users/${user._id}`, user)
             .then(user => dispatch(receiveUser(user)));
@@ -49,7 +47,7 @@ export function saveUser(user: IUser) {
 
 export const REQUEST_ALL_USERS = 'request_all_users';
 
-export function requestAllUsers(): IAction<void> {
+export function requestAllUsers() {
     return {
         type: REQUEST_ALL_USERS
     }
@@ -57,7 +55,7 @@ export function requestAllUsers(): IAction<void> {
 
 export const RECEIVE_ALL_USERS = 'receive_all_users';
 
-export function receiveAllUsers(users: IUser[]): IAction<IUser[]> {
+export function receiveAllUsers(users) {
     return {
         type: RECEIVE_ALL_USERS,
         payload: users
@@ -65,7 +63,7 @@ export function receiveAllUsers(users: IUser[]): IAction<IUser[]> {
 }
 
 export function fetchAllUsers() {
-    return (dispatch: Redux.Dispatch) => {
+    return (dispatch) => {
         dispatch(requestAllUsers());
         return getJson('/api/users')
             .then(users => dispatch(receiveAllUsers(users)));

@@ -8,15 +8,13 @@ var CardTitle = require('material-ui/lib/card/card-title');
 var CardText = require('material-ui/lib/card/card-text');
 var CardMedia = require('material-ui/lib/card/card-media');
 
-import {IPost} from '../vo/index';
-
 var cardMediaStyle = {
     maxHeight: 250,
     overflow: 'hidden',
     cursor: 'pointer'
 };
 
-const PostItem = ({link, text, linkTitle, date, author, imageLink}: IPost) => (
+const PostItem = ({link, text, linkTitle, date, author, imageLink}) => (
     <Card className='post'>
         <CardHeader
             title={author.displayName}
