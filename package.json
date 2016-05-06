@@ -2,11 +2,10 @@
   "name": "web-purple",
   "version": "1.0.0",
   "description": "Web Purple Community Web Site",
-  "main": "index.js",
+  "main": "src/boot.jsx",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node src/server/server.js",
     "build": "webpack",
-    "postinstall": "typings install",
     "test": "karma start"
   },
   "repository": {

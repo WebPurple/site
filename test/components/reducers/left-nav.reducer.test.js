@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-var leftNavReducer = require('./../../../components/reducers/left-nav.reducer').default;
-var TOGGLE_LEFT_NAV = require('./../../../components/actions/left-nav.actions').TOGGLE_LEFT_NAV;
+var leftNavReducer = require('./../../../src/reducers/left-nav.reducer').default;
+var TOGGLE_LEFT_NAV = require('./../../../src/actions/left-nav.actions').TOGGLE_LEFT_NAV;
 
 describe('left-nav.reducer', function () {
 

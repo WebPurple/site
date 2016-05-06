@@ -1,9 +1,9 @@
 var expect = require('chai').expect;
 
-var feedReducer = require('./../../../components/reducers/feed.reducer').default;
-var REQUEST_POSTS = require('./../../../components/actions/feed.actions').REQUEST_POSTS;
-var RECEIVE_POSTS = require('./../../../components/actions/feed.actions').RECEIVE_POSTS;
-var POST_ADDED = require('./../../../components/actions/post-edit-form.actions').POST_ADDED;
+var feedReducer = require('./../../../src/reducers/feed.reducer').default;
+var REQUEST_POSTS = require('./../../../src/actions/feed.actions').REQUEST_POSTS;
+var RECEIVE_POSTS = require('./../../../src/actions/feed.actions').RECEIVE_POSTS;
+var POST_ADDED = require('./../../../src/actions/post-edit-form.actions').POST_ADDED;
 
 describe('feed.reducer', function () {
 

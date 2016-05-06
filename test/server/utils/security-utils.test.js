@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var sinon = require('sinon');
 
-var securityUtils = require('./../../../server/utils/security-utils');
+var securityUtils = require('./../../../src/server/utils/security-utils');
 
 describe('securityUtils', function () {
 

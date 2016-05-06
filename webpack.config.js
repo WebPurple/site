@@ -11,7 +11,7 @@ module.exports = {
             'material-ui',
             'redux-thunk'
         ],
-        main: './components/boot.jsx'
+        main: path.join(__dirname, 'src', 'boot.jsx')
     },
     output: {
         path: path.join(__dirname, 'public', 'build'),
