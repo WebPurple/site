@@ -39,12 +39,10 @@ app.use('/api', postsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
-var PORT = process.env.PORT || serverConf.port;
-
 mongoose.connect(`mongodb://${dbConf.user}:${dbConf.password}@${dbConf.host}:${dbConf.port}/${dbConf.dbName}`);
 mongoose.connection
     .on('error', (err) => console.log(err))
     .once('open', () => {
         console.log('Connection to DB successful.');
-        app.listen(PORT, () => console.log(`Server is listening http://${serverConf.host}:${PORT}.`))
+        app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`))
     });
