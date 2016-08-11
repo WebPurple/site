@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+require.resolve('babel-loader');
 
 module.exports = {
     context: path.resolve(__dirname),
