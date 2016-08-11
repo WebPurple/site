@@ -37,7 +37,7 @@ module.exports = {
     },
     resolve: {
         alias: {'sinon': 'sinon/pkg/sinon'},
-        extensions: ['', '.jsx', '.js']
+        extensions: ['', '.webpack-loader.js', '.web-loader.js', '.loader.js', '.jsx', '.js']
     },
 
     resolveLoader: {
