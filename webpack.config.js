@@ -40,6 +40,10 @@ module.exports = {
         extensions: ['', '.jsx', '.js']
     },
 
+    resolveLoader: {
+        root: path.resolve(__dirname, 'node_modules')
+    },
+
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
     ],
