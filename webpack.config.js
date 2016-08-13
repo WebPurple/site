@@ -1,9 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-require.resolve('babel-loader');
 
 module.exports = {
-    context: path.resolve(__dirname),
+
+    context: path.join(__dirname, '.'),
 
     entry: {
         vendors: [
@@ -14,12 +14,15 @@ module.exports = {
             'material-ui',
             'redux-thunk'
         ],
-        main: path.join(__dirname, 'src', 'boot.jsx')
+
+        main: path.join(__dirname, 'src', 'boot.jsx'),
     },
+
     output: {
         path: path.join(__dirname, 'public', 'build'),
-        filename: 'app.js'
+        filename: '[name].js'
     },
+
     module: {
         loaders: [
             {
@@ -30,25 +33,21 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react'],
-                    plugins: ['transform-object-rest-spread']
-                }
             }
         ],
         noParse: [/sinon/]
     },
-    resolve: {
-        alias: {'sinon': 'sinon/pkg/sinon'},
-        extensions: ['', '.webpack-loader.js', '.web-loader.js', '.loader.js', '.jsx', '.js']
-    },
 
-    resolveLoader: {
-        root: path.resolve(__dirname, 'node_modules')
+    resolve: {
+        alias: { 'sinon': 'sinon/pkg/sinon' },
+        extensions: ['', '.jsx', '.js']
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+            minChunks: Infinity,
+        })
     ],
 
     devtool: 'source-map'
