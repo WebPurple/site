@@ -8,9 +8,9 @@
     "build": "webpack",
     "build-watch": "webpack --watch",
     "test": "mocha --require babel-register --recursive",
-    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcov --report html node_modules/mocha/bin/_mocha -- --recursive",
+    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly --report html node_modules/mocha/bin/_mocha -- --recursive",
     "precoveralls": "npm run test:cov",
-    "coveralls": "coveralls < coverage/lcov-report",
+    "coveralls": "coveralls < coverage/lcov.info",
     "clean": "rimraf node_modules coverage public/build",
     "postinstall": "webpack"
   },
