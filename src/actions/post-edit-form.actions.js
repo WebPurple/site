@@ -1,16 +1,16 @@
-import {postJson} from "../utils/ajax";
-import {queryPageInfo} from "../utils/page-info"
+import { postJson } from '../utils/ajax';
+import { queryPageInfo } from '../utils/page-info';
 
 export const SUBMIT_POST_FORM = 'submit_post_form';
 export const POST_ADDED = 'post_saved';
 
 export function submitPostForm(post) {
     return (dispatch) => {
-        dispatch({type: SUBMIT_POST_FORM});
+        dispatch({ type: SUBMIT_POST_FORM });
         postJson('api/posts', post)
             .then(savedPost => dispatch({
                 type: POST_ADDED,
-                payload: savedPost
+                payload: savedPost,
             }));
     };
 }
@@ -19,8 +19,8 @@ export const DEFERRED_POST = 'deferred_post';
 
 export function toggleDeferredPost() {
     return {
-        type: DEFERRED_POST
-    }
+        type: DEFERRED_POST,
+    };
 }
 
 export const CHANGE_POST_TEXT = 'change_post_text';
@@ -28,8 +28,8 @@ export const CHANGE_POST_TEXT = 'change_post_text';
 export function changePostText(newText) {
     return {
         type: CHANGE_POST_TEXT,
-        payload: newText
-    }
+        payload: newText,
+    };
 }
 
 export const EXPORT_TO_FACEBOOK = 'export_to_facebook';
@@ -37,7 +37,7 @@ export const EXPORT_TO_FACEBOOK = 'export_to_facebook';
 export function toggleExportToFacebook(checked) {
     return {
         type: EXPORT_TO_FACEBOOK,
-        payload: checked
+        payload: checked,
     };
 }
 
@@ -46,43 +46,43 @@ export const CHANGE_POST_IMAGE = 'change_post_image';
 export function changePostImage(newImageLink) {
     return {
         type: CHANGE_POST_IMAGE,
-        payload: newImageLink
-    }
+        payload: newImageLink,
+    };
 }
 
 export const CHANGE_POST_LINK = 'change_post_link';
+
+export const CHANGE_POST_LINK_TITLE = 'change_post_link_title';
 
 export function changePostLink(newLink) {
     return (dispatch) => {
         dispatch({
             type: CHANGE_POST_LINK,
-            payload: newLink
+            payload: newLink,
         });
         queryPageInfo(newLink)
             .then(pageInfo => {
                 dispatch({
                     type: CHANGE_POST_TEXT,
-                    payload: pageInfo.description
+                    payload: pageInfo.description,
                 });
                 dispatch({
                     type: CHANGE_POST_LINK_TITLE,
-                    payload: pageInfo.title
+                    payload: pageInfo.title,
                 });
                 dispatch({
                     type: CHANGE_POST_IMAGE,
-                    payload: pageInfo.imageUrl
+                    payload: pageInfo.imageUrl,
                 });
             });
     };
 }
 
-export const CHANGE_POST_LINK_TITLE = 'change_post_link_title';
-
 export function changePostLinkTitle(newLinkTitle) {
     return {
         type: CHANGE_POST_LINK_TITLE,
-        payload: newLinkTitle
-    }
+        payload: newLinkTitle,
+    };
 }
 
 export const OPEN_DIALOG = 'OPEN_DIALOG';

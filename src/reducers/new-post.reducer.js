@@ -1,22 +1,22 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import postEditor from './post-edit.reducer';
-import {POST_ADDED, OPEN_DIALOG, CLOSE_DIALOG} from "../actions/post-edit-form.actions";
+import { POST_ADDED, OPEN_DIALOG, CLOSE_DIALOG } from '../actions/post-edit-form.actions';
 
-let newPost = (state = {dialogOpen: false}, action) => {
+const newPostReducer = (state = { dialogOpen: false }, action) => {
     switch (action.type) {
         case OPEN_DIALOG:
-            return {...state, dialogOpen: true};
+            return { ...state, dialogOpen: true };
         case POST_ADDED:
         case CLOSE_DIALOG:
-            return {...state, dialogOpen: false};
+            return { ...state, dialogOpen: false };
         default:
             return state;
     }
 };
 
-newPost = combineReducers({
-    state: newPost,
-    postEditor
+const newPost = combineReducers({
+    state: newPostReducer,
+    postEditor,
 });
 
 export default newPost;

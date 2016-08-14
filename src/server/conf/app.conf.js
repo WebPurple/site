@@ -1,3 +1,3 @@
 module.exports = {
-    facebookPageId: '814494148634691'
+    facebookPageId: '814494148634691',
 };

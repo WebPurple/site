@@ -1,7 +1,7 @@
-var passport = require('passport');
+const passport = require('passport');
 
-var vkStategyFonf = require('./auth/vk.strategy.conf');
-var fbStategyFonf = require('./auth/fb.strategy.conf');
+const vkStategyFonf = require('./auth/vk.strategy.conf');
+const fbStategyFonf = require('./auth/fb.strategy.conf');
 
 module.exports = (app) => {
     passport.serializeUser((user, done) => done(null, user));

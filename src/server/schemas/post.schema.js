@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var postSchema = Schema({
+const postSchema = Schema({ // eslint-disable-line new-cap
     text: String,
     link: String,
     linkTitle: String,
     imageLink: String,
     date: Date,
-    author: {type: Schema.Types.ObjectId, ref: 'user'},
-    fbPostId: String
+    author: { type: Schema.Types.ObjectId, ref: 'user' },
+    fbPostId: String,
 });
 
 module.exports = postSchema;

@@ -1,27 +1,27 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var expressSession = require('express-session');
-var history = require('connect-history-api-fallback');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const expressSession = require('express-session');
+const history = require('connect-history-api-fallback');
 
-var serverConf = require('./conf/server');
-var dbConf = require('./conf/db');
+const serverConf = require('./conf/server');
+const dbConf = require('./conf/db');
 
-var authApi = require('./controllers/auth.controller');
-var postsApi = require('./controllers/posts.controller');
-var userApi = require('./controllers/user.controller');
+const authApi = require('./controllers/auth.controller');
+const postsApi = require('./controllers/posts.controller');
+const userApi = require('./controllers/user.controller');
 
-var pageInfoApi = require('./controllers/page-info.controller');
+const pageInfoApi = require('./controllers/page-info.controller');
 
-var app = express();
+const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(history({
     rewrites: [
-        {from: /\/auth/, to: context => context.parsedUrl}
-    ]
+        { from: /\/auth/, to: context => context.parsedUrl },
+    ],
 }));
 
 app.use(express.static('public'));
@@ -30,7 +30,7 @@ app.use(expressSession({
     name: serverConf.sessionCookieName,
     secret: serverConf.secretKey,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 
 authApi(app);
@@ -44,5 +44,5 @@ mongoose.connection
     .on('error', (err) => console.log(err))
     .once('open', () => {
         console.log('Connection to DB successful.');
-        app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`))
+        app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`));
     });

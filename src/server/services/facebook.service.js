@@ -1,6 +1,6 @@
-var fetch = require('isomorphic-fetch');
+const fetch = require('isomorphic-fetch');
 
-var fbGraphHost = 'https://graph.facebook.com';
+const fbGraphHost = 'https://graph.facebook.com';
 
 /**
  *  Converts parameters object to string separated with ampersand (&).
@@ -14,8 +14,9 @@ var fbGraphHost = 'https://graph.facebook.com';
  * @returns {string}
  */
 function convertParams(params) {
-    return Object.keys(params || {})
-        .reduce((resultString, paramName) => resultString + (!resultString ? '?' : '&') + `${paramName}=${params[paramName]}`, '');
+    return '?' + Object.keys(params || {}) // eslint-disable-line prefer-template
+        .map((resultString, paramName) => `${paramName}=${params[paramName]}`)
+        .join('&');
 }
 
 /**
@@ -29,28 +30,28 @@ function convertParams(params) {
  */
 function apiCall(url, params, method) {
     return fetch(`${fbGraphHost}/v2.5/${url}${encodeURI(convertParams(params))}`, {
-        method: method || 'get'
+        method: method || 'get',
     })
         .then(response => response.json())
         .then(response => response.error ? Promise.reject(response.error) : response);
 }
 
-function secureApiCall(access_token, url, params, method) {
-    return apiCall(url, Object.assign({access_token}, params), method);
+function secureApiCall(accessToken, url, params, method) {
+    return apiCall(url, Object.assign({ access_token: accessToken }, params), method);
 }
 
 function getPageAccessToken(userAccessToken, pageId) {
     return secureApiCall(userAccessToken, 'me/accounts')
         .then(response => {
-            var accounts = response.data;
+            const accounts = response.data;
             if (accounts && accounts.length) {
-                var account = accounts.find(account => account.id == pageId);
+                const account = accounts.find(acc => acc.id == pageId); // eslint-disable-line eqeqeq
                 if (account) {
                     return account.access_token;
                 }
             }
             return Promise.reject(`User doesn't have permissions for posting to page: ${pageId}`);
-        })
+        });
 }
 
 function getLongLiveAccessToken(userAccessToken, appId, appSecret) {
@@ -58,16 +59,16 @@ function getLongLiveAccessToken(userAccessToken, appId, appSecret) {
         grant_type: 'fb_exchange_token',
         client_id: appId,
         client_secret: appSecret,
-        fb_exchange_token: userAccessToken
+        fb_exchange_token: userAccessToken,
     });
 }
 
 function addPost(accessToken, resourceId, message, link) {
-    return secureApiCall(accessToken, `${resourceId}/feed`, {message, link}, 'post');
+    return secureApiCall(accessToken, `${resourceId}/feed`, { message, link }, 'post');
 }
 
 module.exports = {
     getPageAccessToken,
     getLongLiveAccessToken,
-    addPost
+    addPost,
 };

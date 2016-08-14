@@ -1,10 +1,10 @@
-import {getJson} from "../utils/ajax";
+import { getJson } from '../utils/ajax';
 
 export const REQUEST_POSTS = 'request_posts';
 
 export function requestPosts() {
     return {
-        type: REQUEST_POSTS
+        type: REQUEST_POSTS,
     };
 }
 
@@ -13,7 +13,7 @@ export const RECEIVE_POSTS = 'receive_posts';
 export function receivePosts(posts) {
     return {
         type: RECEIVE_POSTS,
-        payload: posts
+        payload: posts,
     };
 }
 
@@ -22,5 +22,5 @@ export function fetchPosts() {
         dispatch(requestPosts());
         getJson('/api/posts')
             .then((postList) => dispatch(receivePosts(postList)));
-    }
+    };
 }

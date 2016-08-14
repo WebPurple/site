@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({ // eslint-disable-line new-cap
     email: String,
     displayName: String,
     gender: Number, // 1 - male, 0 - female
@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
     vkProfileUrl: String, // profileUrl
     vkPhotoUrl: String, // photos[0].value
     /* Facebook */
-    fbUserId: String // id
+    fbUserId: String, // id
 });
 
 module.exports = userSchema;

@@ -1,13 +1,14 @@
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 
-var userSchema = require('./../schemas/user.schema');
-var User = mongoose.model('users', userSchema);
+const userSchema = require('./../schemas/user.schema');
 
-var securityUtils = require('./../utils/security-utils');
+const securityUtils = require('./../utils/security-utils');
+
+const User = mongoose.model('users', userSchema);
 
 module.exports = () => {
-    var router = express.Router();
+    const router = express.Router(); // eslint-disable-line new-cap
 
     router.route('/user')
         // get current user
@@ -25,16 +26,18 @@ module.exports = () => {
             .catch(err => response.send(err)))
         // update user
         .put(securityUtils.checkPermissions,
-            (request, response) => {
-                User.findById(request.params.user_id).exec()
-                    .then(user => {
-                        user.displayName = request.body.displayName;
-                        user.email = request.body.email;
-                        return user.save();
-                    })
-                    .then(user => response.send(user))
-                    .catch(err => response.send(err))
-            });
+        (request, response) => {
+            User.findById(request.params.user_id).exec()
+                .then(user => {
+                    /* eslint-disable no-param-reassign */
+                    user.displayName = request.body.displayName;
+                    user.email = request.body.email;
+                    /* eslint-enable no-param-reassign */
+                    return user.save();
+                })
+                .then(user => response.send(user))
+                .catch(err => response.send(err));
+        });
 
     return router;
 };

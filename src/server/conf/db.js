@@ -3,5 +3,5 @@ module.exports = {
     port: '64718',
     dbName: 'webpurple',
     user: 'admin',
-    password: '123123'
+    password: '123123',
 };

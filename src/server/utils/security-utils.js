@@ -3,10 +3,10 @@ function checkPermissions(request, response, next) {
         next();
     } else {
         response.status(403);
-        response.send({error: 'Access denied'})
+        response.send({ error: 'Access denied' });
     }
 }
 
 module.exports = {
-    checkPermissions
+    checkPermissions,
 };
