@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "build:watch": "webpack --watch",
-    "lint": "./node_modules/.bin/eslint src/**",
+    "lint": "./node_modules/.bin/eslint src/** test/**",
     "test": "mocha --require babel-register --recursive",
     "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly --report html node_modules/mocha/bin/_mocha -- --recursive",
     "precoveralls": "npm run test:cov",
