@@ -1,6 +1,33 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var env = process.env.NODE_ENV || 'development';
+var isProd = () => env === 'production';
+
+var plugins = [
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(env),
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendors',
+        minChunks: Infinity,
+    }),
+    new ForceCaseSensitivityPlugin(),
+    new HtmlWebpackPlugin({
+        title: 'WebPurple',
+        filename: '../index.html',
+        hash: true,
+        template: './src/index.html',
+    }),
+];
+
+if (isProd()) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
 module.exports = {
 
     context: path.join(__dirname, '.'),
@@ -20,35 +47,24 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, 'public', 'build'),
-        filename: '[name].js'
+        filename: '[name].[hash].js'
     },
 
     module: {
         loaders: [
             {
-                test: /sinon\.js$/,
-                loader: 'imports?define=>false,require=>false'
-            },
-            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-            }
+            },
         ],
-        noParse: [/sinon/]
     },
 
     resolve: {
-        alias: { 'sinon': 'sinon/pkg/sinon' },
-        extensions: ['', '.jsx', '.js']
+        extensions: ['', '.jsx', '.js'],
     },
 
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendors',
-            minChunks: Infinity,
-        })
-    ],
+    plugins,
 
-    devtool: 'source-map'
+    devtool: isProd() ? 'source-map' : 'eval'
 };
