@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Web Purple Community Web Site",
   "main": "src/boot.jsx",
+  "engines": {
+    "node": "6.2.0"
+  },
   "scripts": {
     "start": "node src/server/server.js",
     "build": "webpack",
