@@ -75,18 +75,22 @@ const PostEditFormComponent = ({
             disabled
             toggled={deferredPost}
             onToggle={onToggleDeferredPost} />
-        <DatePicker
-            hintText="Post on"
-            container="dialog"
-            autoOk
-            disableYearSelection
-            minDate={new Date()}
-            disabled={!deferredPost} />
-        <TimePicker
-            hintText="Post at"
-            format="24hr"
-            autoOk
-            disabled={!deferredPost} />
+        {
+            deferredPost && <DatePicker
+                hintText="Post on"
+                container="dialog"
+                autoOk
+                disableYearSelection
+                minDate={new Date()}
+                disabled={!deferredPost} />
+        }
+        {
+            deferredPost && <TimePicker
+                hintText="Post at"
+                format="24hr"
+                autoOk
+                disabled={!deferredPost} />
+        }
         <CardActions>
             <RaisedButton
                 label="Submit" primary
