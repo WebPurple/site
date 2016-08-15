@@ -1,12 +1,10 @@
 import * as React from 'react';
 
-// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
-// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
-const Card = require('material-ui/lib/card/card');
-const CardHeader = require('material-ui/lib/card/card-header');
-const CardTitle = require('material-ui/lib/card/card-title');
-const CardText = require('material-ui/lib/card/card-text');
-const CardMedia = require('material-ui/lib/card/card-media');
+import Card from 'material-ui/Card/Card';
+import CardHeader from 'material-ui/Card/CardHeader';
+import CardTitle from 'material-ui/Card/CardTitle';
+import CardText from 'material-ui/Card/CardText';
+import CardMedia from 'material-ui/Card/CardMedia';
 
 const cardMediaStyle = {
     maxHeight: 250,

@@ -2,17 +2,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import Menu from 'material-ui/svg-icons/navigation/menu';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import CircularProgress from 'material-ui/CircularProgress';
+
 import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';
 import { toggleLeftNav } from '../actions/left-nav.actions';
-
-// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
-// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
-const AppBar = require('material-ui/lib/app-bar');
-const IconButton = require('material-ui/lib/icon-button');
-const Menu = require('material-ui/lib/svg-icons/navigation/menu');
-const NavigationClose = require('material-ui/lib/svg-icons/navigation/close');
-const CircularProgress = require('material-ui/lib/circular-progress');
 
 const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onAvatarClick }) => (
     <AppBar

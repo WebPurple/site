@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import UserAvatar from './../user-avatar.component';
+import Card from 'material-ui/Card/Card';
+import { List, ListItem } from 'material-ui/List';
+import CircularProgress from 'material-ui/CircularProgress';
 
-// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
-// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
-const Card = require('material-ui/lib/card/card');
-const List = require('material-ui/lib/lists/list');
-const ListItem = require('material-ui/lib/lists/list-item');
-const CircularProgress = require('material-ui/lib/circular-progress');
+import UserAvatar from './../user-avatar.component';
 
 const UsersPage = ({ users }) => (
     <Card>

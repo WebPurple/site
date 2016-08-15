@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import PostEditForm from './post.edit.form';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Create from 'material-ui/svg-icons/content/create';
+import Dialog from 'material-ui/Dialog';
 
-// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
-// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
-const FloatingActionButton = require('material-ui/lib/floating-action-button');
-const Create = require('material-ui/lib/svg-icons/content/create');
-const Dialog = require('material-ui/lib/dialog');
+import PostEditForm from './post.edit.form';
 
 const NewPostComponent = ({ state, postEditor, onDialogOpen, onDialogClose }) => (
     <div>

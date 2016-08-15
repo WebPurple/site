@@ -1,6 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import CardActions from 'material-ui/Card/CardActions';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import CheckBox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
+import DatePicker from 'material-ui/DatePicker/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
+
 import {
     submitPostForm,
     toggleDeferredPost,
@@ -10,16 +18,6 @@ import {
     changePostLink,
     changePostLinkTitle,
 } from '../../actions/post-edit-form.actions';
-
-// all require's below should be replaced with es6 imports after moving to material-ui 15.x.x
-// it caused by this problem: https://github.com/callemall/material-ui/issues/3594
-const CardActions = require('material-ui/lib/card/card-actions');
-const RaisedButton = require('material-ui/lib/raised-button');
-const TextField = require('material-ui/lib/text-field');
-const CheckBox = require('material-ui/lib/checkbox');
-const Toggle = require('material-ui/lib/toggle');
-const DatePicker = require('material-ui/lib/date-picker/date-picker');
-const TimePicker = require('material-ui/lib/time-picker');
 
 const PostEditFormComponent = ({
     post,

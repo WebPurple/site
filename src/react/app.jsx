@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { connect } from 'react-redux';
 
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import { purple500, purple700, purple100 } from 'material-ui/lib/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { purple500, purple700, purple100 } from 'material-ui/styles/colors';
 
 import AppHeader from './app.header';
 import AppLeftNav from './app-left-nav';
