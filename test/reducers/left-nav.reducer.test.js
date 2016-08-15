@@ -4,11 +4,17 @@ import leftNavReducer from './../../src/reducers/left-nav.reducer';
 import { TOGGLE_LEFT_NAV } from './../../src/actions/left-nav.actions';
 
 describe('left-nav.reducer', () => {
+    const state = Object.freeze({ leftNavOpen: true });
     const toggleAction = { type: TOGGLE_LEFT_NAV };
 
-    it('should toggle correctly', () => {
-        expect(leftNavReducer({ leftNavOpen: true }, toggleAction).leftNavOpen).to.be.false;
+    it('should create empty object on init', () => expect(leftNavReducer(undefined, {})).to.be.defined);
 
-        expect(leftNavReducer({ leftNavOpen: false }, toggleAction).leftNavOpen).to.be.true;
+    it('should return old state on unknown action', () => expect(leftNavReducer(state, {})).to.equal(state));
+
+    it('should toggle correctly', () => {
+        const newState = leftNavReducer(state, toggleAction);
+        expect(newState.leftNavOpen).to.be.false;
+
+        expect(leftNavReducer(newState, toggleAction).leftNavOpen).to.be.true;
     });
 });
