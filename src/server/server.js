@@ -13,6 +13,9 @@ const userApi = require('./controllers/user.controller');
 
 const pageInfoApi = require('./controllers/page-info.controller');
 
+// Use native promises
+mongoose.Promise = global.Promise;
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
