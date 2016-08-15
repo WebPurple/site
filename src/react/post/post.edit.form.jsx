@@ -92,11 +92,15 @@ const PostEditFormComponent = ({
         <CardActions>
             <RaisedButton
                 label="Submit" primary
-                disabled={!user || isFetching}
+                disabled={!user || isFetching || !requiredFieldsAreFilled(post)}
                 onMouseUp={onSubmit} />
         </CardActions>
     </div>
     );
+
+function requiredFieldsAreFilled(post) {
+    return post.link && post.text && post.linkTitle;
+}
 
 const PostEditFormContainer = connect(
     state => Object.assign({}, state.newPost, { user: state.user }),
