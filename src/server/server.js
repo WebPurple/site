@@ -10,6 +10,7 @@ const dbConf = require('./conf/db');
 const authApi = require('./controllers/auth.controller');
 const postsApi = require('./controllers/posts.controller');
 const userApi = require('./controllers/user.controller');
+const rssApi = require('./controllers/rss.controller');
 
 const pageInfoApi = require('./controllers/page-info.controller');
 
@@ -23,11 +24,14 @@ app.use(bodyParser.json());
 
 app.use(history({
     rewrites: [
+        { from: /\/rss/, to: context => context.parsedUrl },
         { from: /\/auth/, to: context => context.parsedUrl },
     ],
 }));
 
 app.use(express.static('public'));
+
+rssApi(app);
 
 app.use(expressSession({
     name: serverConf.sessionCookieName,
