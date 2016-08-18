@@ -1,5 +1,4 @@
-import { postJson } from '../utils/ajax';
-import { queryPageInfo } from '../utils/page-info';
+import { postJson, getJson } from '../utils/ajax';
 
 export const SUBMIT_POST_FORM = 'submit_post_form';
 export const POST_ADDED = 'post_saved';
@@ -23,15 +22,6 @@ export function toggleDeferredPost() {
     };
 }
 
-export const CHANGE_POST_TEXT = 'change_post_text';
-
-export function changePostText(newText) {
-    return {
-        type: CHANGE_POST_TEXT,
-        payload: newText,
-    };
-}
-
 export const EXPORT_TO_FACEBOOK = 'export_to_facebook';
 
 export function toggleExportToFacebook(checked) {
@@ -50,39 +40,36 @@ export function changePostImage(newImageLink) {
     };
 }
 
-export const CHANGE_POST_LINK = 'change_post_link';
+export const CHANGE_POST_COMMENT = 'change_post_text';
 
-export const CHANGE_POST_LINK_TITLE = 'change_post_link_title';
+export const FETCH_LINK_INFO = 'fetch_link_info';
+export const RECEIVE_LINK_INFO = 'receive_link_info';
 
-export function changePostLink(newLink) {
-    return (dispatch) => {
-        dispatch({
-            type: CHANGE_POST_LINK,
-            payload: newLink,
-        });
-        queryPageInfo(newLink)
-            .then(pageInfo => {
-                dispatch({
-                    type: CHANGE_POST_TEXT,
-                    payload: pageInfo.description,
+// maybe it should be replaced with https://gist.github.com/dperini/729294
+const urlRegexp = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+export function changePostComment(newComment) {
+    return (dispatch, getState) => {
+        dispatch({ type: CHANGE_POST_COMMENT, payload: newComment });
+
+        const urlMatch = newComment.match(urlRegexp);
+        if (urlMatch && !getState().newPost.postEditor.post.url) {
+            dispatch({ type: FETCH_LINK_INFO });
+            getJson('/page-info', { pageUrl: urlMatch[0] })
+                .then(pageInfo => {
+                    dispatch({
+                        type: RECEIVE_LINK_INFO,
+                        payload: { ...pageInfo, url: urlMatch[0] },
+                    });
                 });
-                dispatch({
-                    type: CHANGE_POST_LINK_TITLE,
-                    payload: pageInfo.title,
-                });
-                dispatch({
-                    type: CHANGE_POST_IMAGE,
-                    payload: pageInfo.imageUrl,
-                });
-            });
+        }
     };
 }
 
-export function changePostLinkTitle(newLinkTitle) {
-    return {
-        type: CHANGE_POST_LINK_TITLE,
-        payload: newLinkTitle,
-    };
+export const CLEAR_SNIPPET = 'clear_snippet';
+
+export function clearSnippet() {
+    return { type: CLEAR_SNIPPET };
 }
 
 export const OPEN_DIALOG = 'OPEN_DIALOG';

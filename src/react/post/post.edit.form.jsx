@@ -8,15 +8,18 @@ import CheckBox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
+import LinearProgress from 'material-ui/LinearProgress';
+import IconButton from 'material-ui/IconButton';
+import Close from 'material-ui/svg-icons/navigation/close';
+
+import Post from '../post';
 
 import {
     submitPostForm,
     toggleDeferredPost,
-    changePostText,
+    changePostComment,
     toggleExportToFacebook,
-    changePostImage,
-    changePostLink,
-    changePostLinkTitle,
+    clearSnippet,
 } from '../../actions/post-edit-form.actions';
 
 const PostEditFormComponent = ({
@@ -27,42 +30,27 @@ const PostEditFormComponent = ({
     onToggleDeferredPost,
     onToggleExportToFacebook,
     user,
-    onChangeLink,
-    onChangeText,
-    onChangeLinkTitle,
-    onChangeImage,
+    onChangeComment,
+    onClearSnippet,
 }) => (
     <div>
+        {isFetching && <LinearProgress mode="indeterminate" />}
         <TextField
             floatingLabelText="What do you want to share with us"
-            hintText="Some link"
+            hintText="Some link and maybe your thoughts about it"
             fullWidth
-            value={post.link}
+            value={post.comment}
             disabled={isFetching}
-            onChange={e => onChangeLink(e.target.value)} />
-        <TextField
-            floatingLabelText="What do you think about it"
-            hintText="Comment"
-            multiLine rows={3} rowsMax={5}
-            fullWidth
-            value={post.text}
-            disabled={isFetching}
-            onChange={e => onChangeText(e.target.value)} />
-        <TextField
-            floatingLabelText="Give us short description of your link"
-            hintText="Link title"
-            fullWidth
-            value={post.linkTitle}
-            disabled={isFetching}
-            onChange={e => onChangeLinkTitle(e.target.value)} />
-        <TextField
-            floatingLabelText="Add some beautiful picture"
-            hintText="Image link"
-            fullWidth
-            value={post.imageLink}
-            disabled={isFetching}
-            onChange={e => onChangeImage(e.target.value)} />
-        <CheckBox label="Export to VK" disabled />
+            onChange={e => onChangeComment(e.target.value)} />
+        {post.url && (
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+                <Post {...post} comment="" />
+                <IconButton style={{ position: 'absolute', top: 0, right: 0 }} onTouchTap={onClearSnippet}>
+                    <Close />
+                </IconButton>
+            </div>
+        )}
+        <CheckBox label="Export to VK" title={'Post will be automaticly shared in VK'} disabled checked />
         <CheckBox
             label="Export to Facebook"
             disabled={!(user && user.fbUserId)}
@@ -101,7 +89,7 @@ const PostEditFormComponent = ({
     );
 
 function requiredFieldsAreFilled(post) {
-    return post.link && post.text && post.linkTitle;
+    return post.comment || (post.title && post.description);
 }
 
 const PostEditFormContainer = connect(
@@ -110,10 +98,8 @@ const PostEditFormContainer = connect(
         onSubmit: () => dispatch(submitPostForm(post)),
         onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
         onToggleExportToFacebook: checked => dispatch(toggleExportToFacebook(checked)),
-        onChangeLink: newLink => dispatch(changePostLink(newLink)),
-        onChangeText: newText => dispatch(changePostText(newText)),
-        onChangeLinkTitle: newLinkTitle => dispatch(changePostLinkTitle(newLinkTitle)),
-        onChangeImage: newImageLink => dispatch(changePostImage(newImageLink)),
+        onChangeComment: newText => dispatch(changePostComment(newText)),
+        onClearSnippet: () => dispatch(clearSnippet()),
     })
 )(PostEditFormComponent);
 

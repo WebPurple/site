@@ -1,39 +1,36 @@
 import {
     DEFERRED_POST,
-    CHANGE_POST_TEXT,
+    CHANGE_POST_COMMENT,
     POST_ADDED,
+    CLOSE_DIALOG,
     SUBMIT_POST_FORM,
     EXPORT_TO_FACEBOOK,
     CHANGE_POST_IMAGE,
-    CHANGE_POST_LINK,
-    CHANGE_POST_LINK_TITLE,
+    RECEIVE_LINK_INFO,
+    FETCH_LINK_INFO,
+    CLEAR_SNIPPET,
 } from '../actions/post-edit-form.actions';
 
-const editPost = (state = { post: { text: '' }, deferredPost: false }, action) => {
+const defaultState = { post: { comment: '' }, isFetching: false };
+
+const editPost = (state = defaultState, action) => {
     switch (action.type) {
-        case CHANGE_POST_LINK:
+        case CHANGE_POST_COMMENT:
             return {
                 ...state,
                 post: {
                     ...state.post,
-                    link: action.payload,
+                    comment: action.payload,
                 },
             };
-        case CHANGE_POST_TEXT:
+        case RECEIVE_LINK_INFO:
             return {
                 ...state,
                 post: {
                     ...state.post,
-                    text: action.payload,
+                    ...action.payload,
                 },
-            };
-        case CHANGE_POST_LINK_TITLE:
-            return {
-                ...state,
-                post: {
-                    ...state.post,
-                    linkTitle: action.payload,
-                },
+                isFetching: false,
             };
         case CHANGE_POST_IMAGE:
             return {
@@ -56,16 +53,21 @@ const editPost = (state = { post: { text: '' }, deferredPost: false }, action) =
                     exportToFacebook: action.payload,
                 },
             };
+        case FETCH_LINK_INFO:
         case SUBMIT_POST_FORM:
             return {
                 ...state,
                 isFetching: true,
             };
+        case CLOSE_DIALOG:
         case POST_ADDED:
+            return defaultState;
+        case CLEAR_SNIPPET:
             return {
                 ...state,
-                post: { text: '' },
-                isFetching: false,
+                post: {
+                    comment: state.post.comment,
+                },
             };
         default:
             return state;

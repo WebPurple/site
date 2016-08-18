@@ -29,11 +29,11 @@ function getPageInfoFromHtml(data) {
     const content = cheerio.load(data);
 
     return {
-        title: content('meta[property="og:title"]').attr('content'),
-        type: content('meta[property="og:type"]').attr('content'),
         url: content('meta[property="og:url"]').attr('content'),
-        siteName: content('meta[property="og:site_name"]').attr('content'),
+        title: content('meta[property="og:title"]').attr('content'),
         description: content('meta[property="og:description"]').attr('content'),
-        imageUrl: content('meta[property="og:image"]').attr('content'),
+        image: content('meta[property="og:image"]').attr('content'),
+        type: content('meta[property="og:type"]').attr('content'),
+        siteName: content('meta[property="og:site_name"]').attr('content'),
     };
 }

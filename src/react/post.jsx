@@ -12,16 +12,19 @@ const cardMediaStyle = {
     cursor: 'pointer',
 };
 
-const PostItem = ({ link, text, linkTitle, date, author, imageLink }) => (
+const PostItem = ({ url, title, description, comment, date, author, image }) => (
     <Card className="post">
-        <CardHeader
+        {author && <CardHeader
             title={author.displayName}
             subtitle={(new Date(date)).toLocaleDateString()}
-            avatar={author.vkPhotoUrl} />
-        <CardMedia style={cardMediaStyle} overlay={<CardTitle title={linkTitle} />} onTouchTap={() => window.open(link, '_blank')}>
-            <img src={imageLink} alt={linkTitle} />
+            avatar={author.vkPhotoUrl} />}
+        <CardMedia
+            style={cardMediaStyle}
+            overlay={<CardTitle title={title} subtitle={description} />}
+            onTouchTap={() => window.open(url, '_blank')}>
+            <img src={image} alt={title} />
         </CardMedia>
-        <CardText>{text}</CardText>
+        {comment && <CardText>{comment}</CardText>}
     </Card>
 );
 

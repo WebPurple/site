@@ -2,14 +2,13 @@ import { expect } from 'chai';
 
 import postEditReducer from './../../src/reducers/post-edit.reducer';
 import {
-    CHANGE_POST_LINK,
-    changePostText,
-    CHANGE_POST_LINK_TITLE,
     CHANGE_POST_IMAGE,
     toggleDeferredPost,
     toggleExportToFacebook,
     SUBMIT_POST_FORM,
     POST_ADDED,
+    CHANGE_POST_COMMENT,
+    RECEIVE_LINK_INFO,
 } from './../../src/actions/post-edit-form.actions';
 
 describe('post-edit.reducer', () => {
@@ -24,32 +23,8 @@ describe('post-edit.reducer', () => {
 
     it('should return old state on unknown action', () => expect(postEditReducer(state, {})).to.equal(state));
 
-    describe('CHANGE_POST_LINK action', () => {
-        it('should set new link', () => {
-            const link = 'awesome link';
-            expect(postEditReducer(state, { type: CHANGE_POST_LINK, payload: link }).post.link).to.equal(link);
-        });
-    });
-
-    describe('CHANGE_POST_TEXT action', () => {
-        it('should set new text', () => {
-            const text = 'awesome text';
-            expect(postEditReducer(state, changePostText(text)).post.text).to.equal(text);
-        });
-    });
-
-    describe('CHANGE_POST_LINK_TITLE action', () => {
-        it('should set new text', () => {
-            const linkTitle = 'awesome title';
-            expect(postEditReducer(state, {
-                type: CHANGE_POST_LINK_TITLE,
-                payload: linkTitle,
-            }).post.linkTitle).to.equal(linkTitle);
-        });
-    });
-
     describe('CHANGE_POST_IMAGE action', () => {
-        it('should set new text', () => {
+        it('should set new image', () => {
             const imageLink = 'awesome image';
             expect(postEditReducer(state, {
                 type: CHANGE_POST_IMAGE,
@@ -82,8 +57,48 @@ describe('post-edit.reducer', () => {
     describe('POST_ADDED action', () => {
         it('should clear all post fields and set isFetching to false after post saved', () => {
             const newState = postEditReducer(state, { type: POST_ADDED });
-            expect(newState.post).to.deep.equal({ text: '' });
+            expect(newState.post).to.deep.equal({ comment: '' });
             expect(newState.isFetching).to.equal(false);
         });
+    });
+
+    describe('CHANGE_POST_COMMENT action', () => {
+        it('should set new comment', () => {
+            const comment = 'awesome comment';
+            expect(postEditReducer(state, {
+                type: CHANGE_POST_COMMENT,
+                payload: comment,
+            }).post.comment).to.equal(comment);
+        });
+    });
+
+    describe('RECEIVE_LINK_INFO action', () => {
+        const fetched = {
+            field1: 1,
+            field2: 2,
+        };
+        const oldState = Object.freeze({
+            ...state,
+            post: {
+                comment: 'super comment',
+            },
+        });
+
+        const newState = postEditReducer(oldState, {
+            type: RECEIVE_LINK_INFO,
+            payload: fetched,
+        });
+
+        it('should extend post object with fetched data',
+            () => expect(newState.post)
+                .to.eql({
+                    comment: 'super comment',
+                    field1: 1,
+                    field2: 2,
+                }));
+
+        it('should set isFetching to false',
+            () => expect(newState).to.have.property('isFetching')
+                .and.equal(false));
     });
 });
