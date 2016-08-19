@@ -60,7 +60,8 @@ function getLongLiveAccessToken(userAccessToken, appId, appSecret) {
         client_id: appId,
         client_secret: appSecret,
         fb_exchange_token: userAccessToken,
-    });
+    })
+        .then(response => response.access_token);
 }
 
 function addPost(accessToken, resourceId, message, link) {

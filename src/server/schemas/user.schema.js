@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({ // eslint-disable-line new-cap
     vkPhotoUrl: String, // photos[0].value
     /* Facebook */
     fbUserId: String, // id
+    longLiveAccessToken: String,
 });
 
 module.exports = userSchema;

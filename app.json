@@ -27,6 +27,15 @@
     },
     "DB_PASSWORD": {
       "required": true
+    },
+    "FB_CLIENT_ID": {
+      "required": true
+    },
+    "FB_CLIENT_SECRET": {
+      "required": true
+    },
+    "FB_PAGE_ID": {
+      "required": true
     }
   },
   "formation": {
