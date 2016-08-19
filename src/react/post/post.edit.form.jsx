@@ -29,7 +29,7 @@ const PostEditFormComponent = ({
     deferredPost,
     onToggleDeferredPost,
     onToggleExportToFacebook,
-    user,
+    account,
     onChangeComment,
     onClearSnippet,
 }) => (
@@ -53,7 +53,7 @@ const PostEditFormComponent = ({
         <CheckBox label="Export to VK" title={'Post will be automaticly shared in VK'} disabled checked />
         <CheckBox
             label="Export to Facebook"
-            disabled={!(user && user.fbUserId)}
+            disabled={!(account && account.fbUserId)}
             checked={post.exportToFacebook}
             onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
         <CheckBox label="Export to Twitter" disabled />
@@ -82,7 +82,7 @@ const PostEditFormComponent = ({
         <CardActions>
             <RaisedButton
                 label="Submit" primary
-                disabled={!user || isFetching || !requiredFieldsAreFilled(post)}
+                disabled={!account || isFetching || !requiredFieldsAreFilled(post)}
                 onMouseUp={onSubmit} />
         </CardActions>
     </div>
@@ -93,7 +93,10 @@ function requiredFieldsAreFilled(post) {
 }
 
 const PostEditFormContainer = connect(
-    state => Object.assign({}, state.newPost, { user: state.user }),
+    state => ({
+        ...state.newPost,
+        account: state.user && state.user.account,
+    }),
     (dispatch, { post }) => ({
         onSubmit: () => dispatch(submitPostForm(post)),
         onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
