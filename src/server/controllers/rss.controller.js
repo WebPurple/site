@@ -21,11 +21,11 @@ module.exports = (app) => {
                 site_url: 'https://webpurple.herokuapp.com/',
             });
 
-            posts.forEach(({ linkTitle, text, link, date, author }) => {
+            posts.forEach(({ title, description, url, date, author }) => {
                 feed.item({
-                    title: linkTitle,
-                    description: text,
-                    url: link,
+                    title,
+                    description,
+                    url,
                     date,
                     author: author.displayName,
                 });
