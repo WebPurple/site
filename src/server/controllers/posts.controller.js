@@ -28,7 +28,7 @@ module.exports = () => {
             if (request.body.exportToFacebook) {
                 postPromise = postPromise
                     .then(() => getFacebookPageAccessToken(request, appConf.facebookPageId))
-                    .then(fbPageAccessToken => facebook.addPost(fbPageAccessToken, appConf.facebookPageId, comment, url));
+                    .then(fbPageAccessToken => facebook.addPost(fbPageAccessToken, appConf.facebookPageId, comment || url, url));
             }
 
             // only if we managed to share our post in all social networks, we save it locally
