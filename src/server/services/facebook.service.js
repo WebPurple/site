@@ -15,7 +15,7 @@ const fbGraphHost = 'https://graph.facebook.com';
  */
 function convertParams(params) {
     return '?' + Object.keys(params || {}) // eslint-disable-line prefer-template
-        .map((resultString, paramName) => `${paramName}=${params[paramName]}`)
+        .map(paramName => `${paramName}=${params[paramName]}`)
         .join('&');
 }
 
