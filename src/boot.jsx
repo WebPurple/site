@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
 import * as reducers from './reducers/app.reducer';
-import { fetchUser, fetchAllUsers } from './actions/user.actions';
+import { fetchUser } from './actions/user.actions';
 
 import App from './react/app';
 import FeedPage from './react/pages/feed.page';
@@ -35,7 +35,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // TODO: request data only on page opening
 store.dispatch(fetchUser());
-store.dispatch(fetchAllUsers());
 
 document.addEventListener('DOMContentLoaded', () => render(
     <Provider store={store}>
