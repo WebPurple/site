@@ -1,5 +1,4 @@
 #Web Purple Web Site
-============
 [![Build Status](https://travis-ci.org/kitos/web-purple.svg?branch=master)](https://travis-ci.org/kitos/web-purple)
 [![Coverage Status](https://coveralls.io/repos/github/kitos/web-purple/badge.svg?branch=master)](https://coveralls.io/github/kitos/web-purple?branch=master)
 [![Dependency status](https://david-dm.org/kitos/web-purple/status.png)](https://david-dm.org/kitos/web-purple#info=dependencies&view=table)
@@ -19,3 +18,6 @@ const user = 'admin';
 const password = '123123';
 ```
 or set up your own db (500mb fo free in [mLab](https://mlab.com/welcome/))
+
+##Useful links
+[redux](http://redux.js.org/)
