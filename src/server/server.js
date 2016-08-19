@@ -46,7 +46,7 @@ app.use('/api', postsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
-mongoose.connect(`mongodb://${dbConf.user}:${dbConf.password}@${dbConf.host}:${dbConf.port}/${dbConf.dbName}`);
+mongoose.connect(dbConf.connectionUrl);
 mongoose.connection
     .on('error', (err) => console.log(err))
     .once('open', () => {

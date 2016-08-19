@@ -12,6 +12,21 @@
     },
     "VK_CALLBACK_URL": {
       "required": true
+    },
+    "DB_HOST": {
+      "required": true
+    },
+    "DB_PORT": {
+      "required": true
+    },
+    "DB_NAME": {
+      "required": true
+    },
+    "DB_USER": {
+      "required": true
+    },
+    "DB_PASSWORD": {
+      "required": true
     }
   },
   "formation": {
