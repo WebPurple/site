@@ -38,8 +38,7 @@
             4
         ],
         "linebreak-style": [
-            "warn",
-            "windows"
+            "off"
         ],
         "max-len": [
             "warn",
