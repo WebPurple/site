@@ -22,7 +22,7 @@ injectTapEventPlugin();
 // Apply the middleware to the store
 const middleware = routerMiddleware(browserHistory);
 
-let store = createStore(
+const store = createStore(
     combineReducers({
         ...reducers,
         routing: routerReducer,
