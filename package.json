@@ -13,7 +13,7 @@
     "build:watch": "webpack --watch",
     "lint": "./node_modules/.bin/eslint src/** test/**",
     "test": "mocha --require babel-register --recursive",
-    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly --report html node_modules/mocha/bin/_mocha -- --recursive",
+    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly node_modules/mocha/bin/_mocha -- --recursive",
     "precoveralls": "npm run test:cov",
     "coveralls": "coveralls < coverage/lcov.info",
     "clean": "rimraf node_modules coverage public/build",
