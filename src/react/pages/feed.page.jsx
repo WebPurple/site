@@ -5,6 +5,7 @@ import PostItem from './../post';
 import NewPost from './../post/new-post';
 
 import { fetchPosts } from '../../actions/feed.actions';
+import { isEditor } from '../../utils/common-utils';
 
 class FeedComponent extends React.Component {
 
@@ -19,7 +20,7 @@ class FeedComponent extends React.Component {
                 <div className="feed">
                     {posts.map(post => <PostItem key={post._id} {...post} />)}
                 </div>
-                {account && account._id ? <NewPost /> : ''}
+                {account && isEditor(account) ? <NewPost /> : ''}
             </div>
         );
     }

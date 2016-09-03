@@ -7,6 +7,7 @@ const appConf = require('./../conf/app.conf');
 const facebook = require('./../services/facebook.service');
 
 const securityUtils = require('./../utils/security-utils');
+const commonUtils = require('./../../utils/common-utils');
 
 const Post = mongoose.model('posts', postSchema);
 
@@ -15,7 +16,7 @@ module.exports = () => {
 
     router.route('/posts')
         // add new post
-        .post(securityUtils.checkPermissions,
+        .post(securityUtils.checkPermissions(commonUtils.isEditor),
         (request, response) => {
             const url = request.body.url;
             const title = request.body.title;
@@ -62,7 +63,7 @@ module.exports = () => {
             .then(post => response.send(post))
             .catch(err => response.send(err)))
         // update post
-        .put(securityUtils.checkPermissions,
+        .put(securityUtils.checkPermissions(), // TODO change "check" according to editing logic
         (request, response) => {
             Post.findById(request.params.post_id).exec()
                 .then(post => {
@@ -75,7 +76,7 @@ module.exports = () => {
                 .then(post => response.send(post))
                 .catch(err => response.send(err));
         })
-        .delete(securityUtils.checkPermissions,
+        .delete(securityUtils.checkPermissions(), // TODO change "check" according to editing logic
         (request, response) => Post.remove({ _id: request.params.post_id })
             .then(post => response.send(post))
             .catch(err => response.send(err)));

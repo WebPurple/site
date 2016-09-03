@@ -4,6 +4,7 @@ const userSchema = mongoose.Schema({ // eslint-disable-line new-cap
     email: String,
     displayName: String,
     gender: Number, // 1 - male, 0 - female
+    roles: [String],
     /* VK */
     vkUserId: String, // id
     vkUsername: String, // username

@@ -25,7 +25,7 @@ module.exports = () => {
             .then(user => response.send(user))
             .catch(err => response.send(err)))
         // update user
-        .put(securityUtils.checkPermissions,
+        .put(securityUtils.checkPermissions(),
         (request, response) => {
             User.findById(request.params.user_id).exec()
                 .then(user => {
