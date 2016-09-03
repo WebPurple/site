@@ -12,10 +12,10 @@ import thunkMiddleware from 'redux-thunk';
 import * as reducers from './reducers/app.reducer';
 import { fetchUser } from './actions/user.actions';
 
-import App from './react/app';
-import FeedPage from './react/pages/feed.page';
-import UsersPage from './react/pages/users.page';
-import SettingsPage from './react/pages/settings.page';
+import App from './containers/app';
+import FeedPage from './containers/feed.page';
+import UsersPage from './containers/users.page';
+import SettingsPage from './containers/settings.page';
 
 injectTapEventPlugin();
 

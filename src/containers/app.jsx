@@ -6,8 +6,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { purple500, purple700, purple100 } from 'material-ui/styles/colors';
 
-import AppHeader from './app.header';
-import AppLeftNav from './app-left-nav';
+import AppHeader from '../components/app.header';
+import AppLeftNav from '../components/app-left-nav';
 
 const muiTheme = getMuiTheme({
     palette: {

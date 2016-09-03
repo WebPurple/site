@@ -5,9 +5,9 @@ import Card from 'material-ui/Card/Card';
 import { List, ListItem } from 'material-ui/List';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import UserAvatar from './../user-avatar.component';
+import UserAvatar from './../components/user-avatar.component';
 
-import { fetchAllUsers } from '../../actions/user.actions';
+import { fetchAllUsers } from '../actions/user.actions';
 
 class UsersPage extends React.Component {
 

@@ -9,7 +9,7 @@ import CardActions from 'material-ui/Card/CardActions';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import { changeUserName, saveUser } from '../../actions/user.actions';
+import { changeUserName, saveUser } from '../actions/user.actions';
 
 const SettingsPage = ({ account, isFetching, onUserNameChange, onUserSave }) => (
     <Card>
