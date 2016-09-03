@@ -1,8 +1,8 @@
-const host = 'ds064718.mlab.com';
-const port = '64718';
-const name = 'webpurple';
-const user = 'admin';
-const password = '123123';
+const host = process.env.DB_HOST;
+const port = process.env.DB_PORT;
+const name = process.env.DB_NAME;
+const user = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
 
 module.exports = {
     host,
