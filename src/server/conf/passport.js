@@ -11,7 +11,7 @@ module.exports = {
         fb: {
             clientID: '1094823327247465',
             clientSecret: 'cb8f46a70e9909769e411a41ba1df8b5',
-            callbackURL: `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/fb/callback`,
+            callbackURL: process.env.FB_CALLBACK_URL || `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/fb/callback`,
         },
     },
 };

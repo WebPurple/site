@@ -13,6 +13,9 @@
     "VK_CALLBACK_URL": {
       "required": true
     },
+    "FB_CALLBACK_URL": {
+      "required": true
+    },
     "DB_HOST": {
       "required": true
     },
