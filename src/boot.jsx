@@ -14,7 +14,6 @@ import { fetchUser } from './actions/user.actions';
 
 import App from './containers/app';
 import FeedPage from './containers/feed.page';
-import UsersPage from './containers/users.page';
 import SettingsPage from './containers/settings.page';
 
 injectTapEventPlugin();
@@ -42,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => render(
             <Route path="/" component={App}>
                 <IndexRoute component={FeedPage} />
                 <Route path="feed" component={FeedPage} />
-                <Route path="users" component={UsersPage} />
                 <Route path="settings" component={SettingsPage} />
             </Route>
         </Router>
