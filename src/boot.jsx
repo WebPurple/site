@@ -9,7 +9,9 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
-import * as reducers from './reducers/app.reducer';
+import { reducer as formReducer } from 'redux-form';
+
+import * as reducers from './reducers';
 import { fetchUser } from './actions/user.actions';
 
 import App from './containers/app';
@@ -25,6 +27,7 @@ const store = createStore(
     combineReducers({
         ...reducers,
         routing: routerReducer,
+        form: formReducer,
     }),
     applyMiddleware(thunkMiddleware, middleware)
 );

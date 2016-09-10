@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const userSchema = require('./../schemas/user.schema');
 
 const securityUtils = require('./../utils/security-utils');
+const commonUtils = require('./../../utils/common-utils');
 
 const User = mongoose.model('users', userSchema);
 
@@ -28,16 +29,28 @@ module.exports = () => {
         .put(securityUtils.checkPermissions(),
         (request, response) => {
             User.findById(request.params.user_id).exec()
-                .then(user => {
+                .then(userToUpdate => {
+                    const { user } = request;
+                    const { displayName, email, roles } = request.body;
                     /* eslint-disable no-param-reassign */
-                    user.displayName = request.body.displayName;
-                    user.email = request.body.email;
+                    if (displayName) {
+                        userToUpdate.displayName = request.body.displayName;
+                    }
+                    if (email) {
+                        userToUpdate.email = email;
+                    }
+                    if (commonUtils.isAdmin(user) && roles) {
+                        userToUpdate.roles = roles;
+                    }
                     /* eslint-enable no-param-reassign */
-                    return user.save();
+                    return userToUpdate.save();
                 })
                 .then(user => response.send(user))
                 .catch(err => response.send(err));
         });
+
+    router.route('/roles')
+        .get((request, response) => response.send(['admin', 'editor']));
 
     return router;
 };

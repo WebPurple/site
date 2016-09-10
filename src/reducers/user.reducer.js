@@ -3,6 +3,7 @@ import {
     CHANGE_USER_NAME,
     SAVE_USER,
     REQUEST_USER,
+    RECEIVE_ROLES,
 } from '../actions/user.actions';
 
 const userReducer = (state = {}, action) => {
@@ -14,9 +15,11 @@ const userReducer = (state = {}, action) => {
             };
         case SAVE_USER:
         case REQUEST_USER:
-            return Object.assign({}, state, { isFetching: true });
+            return { ...state, isFetching: true };
         case RECEIVE_USER:
-            return { account: action.payload, isFetching: false };
+            return { ...state, account: action.payload, isFetching: false };
+        case RECEIVE_ROLES:
+            return { ...state, allRoles: action.payload };
         default:
             return state;
     }
