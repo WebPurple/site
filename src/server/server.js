@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const history = require('connect-history-api-fallback');
 
+const morgan = require('morgan');
+
 const serverConf = require('./conf/server');
 const dbConf = require('./conf/db');
 
@@ -18,6 +20,8 @@ const pageInfoApi = require('./controllers/page-info.controller');
 mongoose.Promise = global.Promise;
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -45,6 +49,16 @@ authApi(app);
 app.use('/api', postsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    if (res.headersSent) {
+        next(err);
+    } else {
+        res.status(500);
+        res.json('error', { error: err });
+    }
+});
 
 mongoose.connect(dbConf.connectionUrl);
 mongoose.connection
