@@ -34,6 +34,7 @@ app.use(history({
 }));
 
 app.use(express.static('public'));
+app.use(express.static('favicon'));
 
 rssApi(app);
 
