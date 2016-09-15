@@ -17,31 +17,31 @@ body {
     transition: padding 500ms;
     width: 100%;
     padding: 20px;
+
+    &--with-left-nav {
+        padding-left: 270px;
+    }
 }
 
-.container--with-left-nav {
-    padding-left: 270px;
-}
-
-.left-nav {
+:global .left-nav {
     top: 64px !important; /* app header height */
     background: none !important;
     box-shadow: none !important;
 }
 
-.feed {
+:global .feed {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.post {
+:global .post {
     margin-bottom: 25px;
     margin-left: 30px;
     width: 500px;
 }
 
-.new-post-button {
+:global .new-post-button {
     position: fixed !important;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
     right: 50px;
@@ -50,26 +50,26 @@ body {
 }
 
 @media (max-width: 700px) {
-    .left-nav {
+    :global .left-nav {
         background: #fff !important;
         box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px !important;
     }
 
-    .container {
+    :global .container {
         margin-top: 10px;
     }
 
-    .container--with-left-nav {
+    :global .container--with-left-nav {
         padding-left: 0;
     }
 
-    .post {
+    :global .post {
         margin-bottom: 10px;
         margin-right: 5px;
         margin-left: 5px;
     }
 
-    .new-post-button {
+    :global .new-post-button {
         right: 25px;
         bottom: 25px;
     }

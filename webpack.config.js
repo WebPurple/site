@@ -1,11 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var env = process.env.NODE_ENV || 'development';
 var isProd = () => env === 'production';
+
+var extractLess = new ExtractTextPlugin('main.[contenthash].css');
 
 var plugins = [
     new webpack.DefinePlugin({
@@ -22,6 +26,7 @@ var plugins = [
         hash: true,
         template: './src/index.html',
     }),
+    extractLess,
 ];
 
 if (isProd()) {
@@ -57,6 +62,10 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
+            {
+                test: /\.(le|c)ss/,
+                loader: extractLess.extract(['css?modules', 'less']),
+            }
         ],
     },
 

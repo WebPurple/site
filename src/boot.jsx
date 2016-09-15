@@ -14,7 +14,7 @@ import { reducer as formReducer } from 'redux-form';
 import * as reducers from './reducers';
 import { fetchUser } from './actions/user.actions';
 
-import App from './containers/app';
+import App from './containers/app/app';
 import FeedPage from './containers/feed.page';
 import SettingsPage from './containers/settings.page';
 import AboutPage from './components/about-page';
