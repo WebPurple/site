@@ -16,6 +16,13 @@ const rssApi = require('./controllers/rss.controller');
 
 const pageInfoApi = require('./controllers/page-info.controller');
 
+const webpack = require('webpack');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackConf = require('../../webpack.config');
+
+const isProd = process.env.NODE_ENV === 'production';
+
 // Use native promises
 mongoose.Promise = global.Promise;
 
@@ -32,6 +39,13 @@ app.use(history({
         { from: /\/auth/, to: context => context.parsedUrl },
     ],
 }));
+
+if (isProd) {
+    app.use(express.static('__build__'));
+} else {
+    const compiler = webpack(webpackConf);
+    app.use(webpackMiddleware(compiler, { publicPath: webpackConf.output.publicPath }));
+}
 
 app.use(express.static('public'));
 app.use(express.static('favicon'));

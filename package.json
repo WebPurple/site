@@ -9,8 +9,6 @@
   "scripts": {
     "start": "node src/server/server.js",
     "build": "webpack",
-    "build:prod": "cross-env NODE_ENV=production webpack",
-    "build:watch": "webpack --watch",
     "lint": "./node_modules/.bin/eslint src/** test/**",
     "test": "mocha --require babel-register --recursive",
     "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly node_modules/mocha/bin/_mocha -- --recursive",
@@ -63,7 +61,6 @@
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
     "coveralls": "^2.11.12",
-    "cross-env": "^2.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.3.0",
     "eslint-config-airbnb": "^10.0.1",
@@ -79,6 +76,7 @@
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "webpack-dev-middleware": "^1.7.0"
   }
 }

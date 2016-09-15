@@ -22,7 +22,7 @@ var plugins = [
     new ForceCaseSensitivityPlugin(),
     new HtmlWebpackPlugin({
         title: 'WebPurple',
-        filename: '../index.html',
+        filename: 'index.html',
         hash: true,
         template: './src/index.html',
     }),
@@ -47,12 +47,13 @@ module.exports = {
             'redux-thunk'
         ],
 
-        main: path.join(__dirname, 'src', 'boot.jsx'),
+        main: path.join(__dirname, 'src', 'boot'),
     },
 
     output: {
-        path: path.join(__dirname, 'public', 'build'),
-        filename: '[name].[hash].js'
+        path: path.join(__dirname, '__build__'),
+        filename: '[name].[hash].js',
+        publicPath: '/',
     },
 
     module: {
