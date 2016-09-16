@@ -1,8 +1,12 @@
 language: node_js
 node_js:
   - "6.2"
+env:
+  - NODE_ENV=production
+  - COMMANDS_TO_RUN=lint
+  - COMMANDS_TO_RUN=coveralls
+  - COMMANDS_TO_RUN=build
 script:
-  - npm run lint
-  - npm run coveralls
+  - npm run $COMMANDS_TO_RUN
 notifications:
   slack: webpurple:mFXgdAsg8h2xwQSK6JqX0gKL
