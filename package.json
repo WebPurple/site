@@ -14,8 +14,7 @@
     "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly node_modules/mocha/bin/_mocha -- --recursive",
     "precoveralls": "npm run test:cov",
     "coveralls": "coveralls < coverage/lcov.info || true",
-    "clean": "rimraf node_modules coverage public/build",
-    "postinstall": "webpack"
+    "clean": "rimraf node_modules coverage __build__"
   },
   "repository": {
     "type": "git",
