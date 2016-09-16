@@ -1,12 +1,18 @@
 language: node_js
 node_js:
-  - "6.2"
+- "6.2"
 env:
-  - NODE_ENV=production
-  - COMMANDS_TO_RUN=lint
-  - COMMANDS_TO_RUN=coveralls
-  - COMMANDS_TO_RUN=build
+- NODE_ENV=production
+- COMMANDS_TO_RUN=lint
+- COMMANDS_TO_RUN=coveralls
+- COMMANDS_TO_RUN=build
 script:
-  - npm run $COMMANDS_TO_RUN
+- npm run $COMMANDS_TO_RUN
+deploy:
+  provider: heroku
+  app: webpurple
+  skip_cleanup: true
+  api_key:
+    secure: JlYA7eAjjCl+L/Jt3W1ysmXtZssVJM3x58u+tPpbhUDJ8dmKxMA8CudMwEjpJPPD/wCXu6ZOv2Pl6J32ksP9wauaPr/KyXRL9bUqJ20sdDRJz7v98S9EbNAnMt8VTx/pZ3PV006AbxnHLVJGyyD3xHqi3Vcec93TPAbF6V5daSsq0KIZXAF9/nSISUb/Qw0kBVJy8o7MVQwkW8UPYyr8ZlnjfFSgrrmRESW+6TCaPY+p9ruU7nR9F4cxwPlC+LSISr5YHpSToxzjBbnTMtFDnpMJPF166pmcEKqcVmlaxx1YB8aAlzVUrwoHyU8gxRCFpNO0miJvdhDXV9+tnmY1fqjpRJPcskctFJP9u7PiJ7XTsLHVfSKi6W8hN9Lr35nEESiNytdmkSoyFxPnycCC7SBETnQjvIbDy6b29NbJr2pU3LKRumZSHRCl8J2HmmgUu95wG4czaTePYK+3UjgREUCBNqdXqro4PaDaKoRIVaka+IC8icBdPqAYnYT5dwelB7FAuRqxZ1g/inka8eWQ+uy+wiYShNeY9SBoYstAvLbc0sfkjixXD0V8Gn/I8Kvk4O2J5DsMq+9Aa4JAYvwplhD8VtNNL0owIFt1bOs2MG2MQbEf+n/bgbKHXrMmzorJSi/vmqIJxP0JiM2c20ef9Dk/286tumEtKhEP4IZ0Yhc=
 notifications:
   slack: webpurple:mFXgdAsg8h2xwQSK6JqX0gKL
