@@ -35,8 +35,8 @@ app.use(bodyParser.json());
 
 app.use(history({
     rewrites: [
-        { from: /\/rss/, to: context => context.parsedUrl },
-        { from: /\/auth/, to: context => context.parsedUrl },
+        { from: /\/rss/, to: '/rss' },
+        { from: /\/auth/, to: context => context.parsedUrl.pathname },
     ],
 }));
 
@@ -47,7 +47,6 @@ if (isProd) {
     app.use(webpackMiddleware(compiler, { publicPath: webpackConf.output.publicPath }));
 }
 
-app.use(express.static('public'));
 app.use(express.static('favicon'));
 
 rssApi(app);
@@ -70,8 +69,8 @@ app.use((err, req, res, next) => {
     if (res.headersSent) {
         next(err);
     } else {
-        res.status(500);
-        res.json('error', { error: err });
+        res.status(500)
+            .json({ error: err.message });
     }
 });
 
