@@ -15,7 +15,7 @@ import * as reducers from './reducers';
 import { fetchUser } from './actions/user.actions';
 
 import App from './containers/app/app';
-import FeedPage from './containers/feed.page';
+import Feed from './containers/feed/feed';
 import SettingsPage from './containers/settings.page';
 import AboutPage from './components/about-page';
 
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => render(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={FeedPage} />
-                <Route path="feed" component={FeedPage} />
+                <IndexRoute component={Feed} />
+                <Route path="feed" component={Feed} />
                 <Route path="about" component={AboutPage} />
                 <Route path="settings" component={SettingsPage} />
             </Route>

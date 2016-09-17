@@ -1,4 +1,4 @@
-import { getJson } from '../utils/ajax';
+import { getJson } from '../../utils/ajax';
 
 export const REQUEST_POSTS = 'request_posts';
 
