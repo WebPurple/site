@@ -41,10 +41,16 @@ module.exports = {
         vendors: [
             'react',
             'react-dom',
+            'react-router',
             'react-tap-event-plugin',
             'redux',
+            'redux-thunk',
+            'react-redux',
+            'react-router-redux',
+            'redux-form',
             'material-ui',
-            'redux-thunk'
+            'redux-form-material-ui',
+            'scriptjs',
         ],
 
         main: path.join(__dirname, 'src', 'boot'),
