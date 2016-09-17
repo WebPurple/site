@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import leftNavReducer from './../../src/reducers/left-nav.reducer';
-import { TOGGLE_LEFT_NAV } from './../../src/actions/left-nav.actions';
+import leftNavReducer from './../../../src/containers/navigation/navigation-bar.reducer';
+import { TOGGLE_LEFT_NAV } from './../../../src/containers/navigation/navigation-bar.actions';
 
 describe('left-nav.reducer', () => {
     const state = Object.freeze({ leftNavOpen: true });

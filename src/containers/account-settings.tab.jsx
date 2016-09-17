@@ -9,7 +9,7 @@ import CardActions from 'material-ui/Card/CardActions';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import { TextField } from 'redux-form-material-ui';
+import { TextField } from 'redux-form-material-ui'; // eslint-disable-line import/no-unresolved
 
 import { saveUser } from '../actions/user.actions';
 
@@ -32,7 +32,7 @@ const AccountSettingsTab = ({ account, isFetching, handleSubmit, dispatch }) => 
             <FlatButton
                 label="Save"
                 disabled={isFetching}
-                onTouchTap={handleSubmit(({ username }) => dispatch(saveUser({ _id: account._id, displayName: username }))) } />
+                onTouchTap={handleSubmit(({ username }) => dispatch(saveUser({ _id: account._id, displayName: username })))} />
         </CardActions>
     </Card>
 );
