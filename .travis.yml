@@ -3,14 +3,10 @@ node_js:
 - '6.2'
 env:
 - NODE_ENV=production
-matrix:
-  fast_finish: true
-  include:
-  - env: COMMANDS_TO_RUN=lint
-  - env: COMMANDS_TO_RUN=coveralls
-  - env: COMMANDS_TO_RUN=build
 script:
-- npm run $COMMANDS_TO_RUN
+- npm run build
+- npm run lint
+- npm run coveralls
 deploy:
   provider: heroku
   app: webpurple
