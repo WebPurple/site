@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { purple500, purple700, purple100 } from 'material-ui/styles/colors';
 
 import AppHeader from '../../components/app.header';
-import AppLeftNav from '../../components/app-left-nav';
+import NavigationBar from '../../containers/navigation/navigation-bar';
 
 import styles from './main.less';
 
@@ -27,7 +27,7 @@ const App = ({ leftNavOpen, children }) => (
             <main className={styles.container + (leftNavOpen ? (' ' + styles['container--with-left-nav']) : '')}>
                 {children}
             </main>
-            <AppLeftNav />
+            <NavigationBar />
         </div>
     </MuiThemeProvider>
 );

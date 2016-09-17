@@ -1,4 +1,4 @@
-import { TOGGLE_LEFT_NAV } from '../actions/left-nav.actions';
+import { TOGGLE_LEFT_NAV } from './navigation-bar.actions';
 
 export default function (state = { leftNavOpen: true }, action) {
     switch (action.type) {

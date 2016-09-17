@@ -10,7 +10,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';
-import { toggleLeftNav } from '../actions/left-nav.actions';
+import { toggleLeftNav } from '../containers/navigation/navigation-bar.actions';
 
 const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onAvatarClick }) => (
     <AppBar
