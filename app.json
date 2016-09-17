@@ -16,19 +16,7 @@
     "FB_CALLBACK_URL": {
       "required": true
     },
-    "DB_HOST": {
-      "required": true
-    },
-    "DB_PORT": {
-      "required": true
-    },
-    "DB_NAME": {
-      "required": true
-    },
-    "DB_USER": {
-      "required": true
-    },
-    "DB_PASSWORD": {
+    "DB_CONNECTION_URL": {
       "required": true
     },
     "FB_CLIENT_ID": {

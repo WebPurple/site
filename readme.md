@@ -11,11 +11,7 @@ To change connection configuration see *src/server/conf/db.js*
 
 For development purposes you can use next db:
 ```javascript
-const host = 'ds064718.mlab.com';
-const port = '64718';
-const name = 'webpurple';
-const user = 'admin';
-const password = '123123';
+const connectionUrl = 'mongodb://admin:123123@ds064718.mlab.com:64718/webpurple';
 ```
 or set up your own db (500mb fo free in [mLab](https://mlab.com/welcome/))
 
