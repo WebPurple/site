@@ -23,12 +23,6 @@ body {
     }
 }
 
-:global .post {
-    margin-bottom: 25px;
-    margin-left: 30px;
-    width: 500px;
-}
-
 :global .new-post-button {
     position: fixed !important;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
@@ -41,16 +35,9 @@ body {
 
     .container {
         margin-top: 10px;
-    }
-
-    :global .container--with-left-nav {
-        padding-left: 0;
-    }
-
-    :global .post {
-        margin-bottom: 10px;
-        margin-right: 5px;
-        margin-left: 5px;
+        &--with-left-nav {
+            padding-left: 0;
+        }
     }
 
     :global .new-post-button {

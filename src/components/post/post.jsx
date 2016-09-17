@@ -6,20 +6,16 @@ import CardTitle from 'material-ui/Card/CardTitle';
 import CardText from 'material-ui/Card/CardText';
 import CardMedia from 'material-ui/Card/CardMedia';
 
-const cardMediaStyle = {
-    maxHeight: 250,
-    overflow: 'hidden',
-    cursor: 'pointer',
-};
+import styles from './post.less';
 
 const PostItem = ({ url, title, description, comment, date, author, image }) => (
-    <Card className="post">
+    <Card className={styles.post}>
         {author && <CardHeader
             title={author.displayName}
             subtitle={(new Date(date)).toLocaleDateString()}
             avatar={author.vkPhotoUrl} />}
         <CardMedia
-            style={cardMediaStyle}
+            className={styles.media}
             overlay={<CardTitle title={title} subtitle={description} />}
             onTouchTap={() => window.open(url, '_blank')}>
             <img src={image} alt={title} />

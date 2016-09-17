@@ -12,7 +12,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 
-import Post from '../post';
+import Post from './post';
 
 import {
     submitPostForm,
