@@ -29,15 +29,6 @@ export function fetchUser() {
     };
 }
 
-export const CHANGE_USER_NAME = 'change_user_name';
-
-export function changeUserName(newName) {
-    return {
-        type: CHANGE_USER_NAME,
-        payload: newName,
-    };
-}
-
 export const SAVE_USER = 'save_user';
 
 export function saveUser(user) {

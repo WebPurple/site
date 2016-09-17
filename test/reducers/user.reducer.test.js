@@ -4,7 +4,6 @@ import userReducer from './../../src/reducers/user.reducer';
 import {
     requestUser,
     receiveUser,
-    changeUserName,
     SAVE_USER,
 } from './../../src/actions/user.actions';
 
@@ -32,10 +31,5 @@ describe('user.reducer', () => {
     it('should save received user', () => {
         const user = 'user1';
         expect(userReducer(state, receiveUser(user)).account).to.equal(user);
-    });
-
-    it('should update user name on CHANGE_USER_NAME', () => {
-        const userName = 'userName';
-        expect(userReducer(state, changeUserName(userName)).account.displayName).to.equal(userName);
     });
 });

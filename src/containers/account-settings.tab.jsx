@@ -1,46 +1,60 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { Field, reduxForm } from 'redux-form';
+
 import Card from 'material-ui/Card/Card';
-import TextField from 'material-ui/TextField';
 import CardText from 'material-ui/Card/CardText';
 import CardActions from 'material-ui/Card/CardActions';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import { changeUserName, saveUser } from '../actions/user.actions';
+import { TextField } from 'redux-form-material-ui';
 
-const AccountSettingsTab = ({ account, isFetching, onUserNameChange, onUserSave }) => (
+import { saveUser } from '../actions/user.actions';
+
+const AccountSettingsTab = ({ account, isFetching, handleSubmit, dispatch }) => (
     <Card>
         {
             account ? (
                 <CardText>
-                    <TextField
+                    <Field
+                        name="username"
+                        component={TextField}
                         floatingLabelText="Username"
-                        disabled={isFetching}
-                        value={account.displayName}
-                        onChange={e => onUserNameChange(e.target.value)} />
+                        disabled={isFetching} />
                     <br />
-                    <TextField
-                        floatingLabelText="Email"
-                        disabled={true || isFetching}
-                        value={account.email} />
                 </CardText>
             )
-            : <CircularProgress />
+                : <CircularProgress />
         }
         <CardActions>
-            <FlatButton label="Save" disabled={isFetching} onTouchTap={() => onUserSave(account)} />
+            <FlatButton
+                label="Save"
+                disabled={isFetching}
+                onTouchTap={handleSubmit(({ username }) => dispatch(saveUser({ _id: account._id, displayName: username }))) } />
         </CardActions>
     </Card>
 );
 
-const AccountSettingsTabContainer = connect(
-    state => state.user,
-    dispatch => ({
-        onUserNameChange: (newName) => dispatch(changeUserName(newName)),
-        onUserSave: user => dispatch(saveUser(user)),
-    })
-)(AccountSettingsTab);
+export const FORM_ID = 'settings.account';
 
-export default AccountSettingsTabContainer;
+const AccountSettingsTabForm = reduxForm({
+    form: FORM_ID,
+})(AccountSettingsTab);
+
+export default connect(({ user: { account, isFetching } }) => {
+    let props = {
+        account,
+        isFetching,
+    };
+    if (account) { // initialValues can be set only one time
+        props = {
+            ...props,
+            initialValues: {
+                username: account.displayName,
+            },
+        };
+    }
+    return props;
+})(AccountSettingsTabForm);

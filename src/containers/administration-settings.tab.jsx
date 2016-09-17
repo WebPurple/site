@@ -132,7 +132,7 @@ const validate = fields => {
     return errors;
 };
 
-export const FORM_ID = 'administration-settings';
+export const FORM_ID = 'settings.administration';
 
 const AdministrationSettingsTabForm = reduxForm({
     form: FORM_ID,
