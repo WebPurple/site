@@ -29,6 +29,7 @@ You can find a list of issues you can work on [here](https://github.com/kitos/we
 Feel free to create new ones.
 
 In general, the contribution workflow looks like this:
+
 1. Fork the repo.
 2. Create a new feature branch based off the master branch.
 3. Make sure all tests pass (`npm run test`) and there are no linting errors (`npm run lint`).
