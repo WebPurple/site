@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import postEditReducer from './../../src/reducers/post-edit.reducer';
+import postEditReducer from './../../../src/containers/feed/post-edit-form/post-edit-form.reducer';
 import {
     CHANGE_POST_IMAGE,
     toggleDeferredPost,
@@ -9,7 +9,7 @@ import {
     POST_ADDED,
     CHANGE_POST_COMMENT,
     RECEIVE_LINK_INFO,
-} from './../../src/actions/post-edit-form.actions';
+} from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
 
 describe('post-edit.reducer', () => {
     const state = Object.freeze({});

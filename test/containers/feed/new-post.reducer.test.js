@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import newPostReducer from './../../src/reducers/new-post.reducer';
-import { OPEN_DIALOG, CLOSE_DIALOG } from './../../src/actions/post-edit-form.actions';
+import newPostReducer from './../../../src/containers/feed/new-post/new-post.reducer';
+import { OPEN_DIALOG, CLOSE_DIALOG } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
 
 describe('new-post.reducer', () => {
     const state = { state: { dialogOpen: true } };

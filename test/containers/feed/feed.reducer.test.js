@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import feedReducer from './../../../src/containers/feed/feed.reducer';
 import { REQUEST_POSTS, RECEIVE_POSTS } from './../../../src/containers/feed/feed.actions';
-import { POST_ADDED } from './../../../src/actions/post-edit-form.actions';
+import { POST_ADDED } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
 
 describe('feed.reducer', () => {
     const state = Object.freeze({});

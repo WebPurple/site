@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import PostItem from './../../components/post/post';
-import NewPost from './../../components/post/new-post';
+import NewPost from './new-post/new-post';
 
 import { fetchPosts } from './feed.actions';
 import { isEditor } from '../../utils/common-utils';

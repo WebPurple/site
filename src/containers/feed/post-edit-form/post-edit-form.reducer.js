@@ -9,7 +9,7 @@ import {
     RECEIVE_LINK_INFO,
     FETCH_LINK_INFO,
     CLEAR_SNIPPET,
-} from '../actions/post-edit-form.actions';
+} from './post-edit-form.actions';
 
 const defaultState = { post: { comment: '' }, isFetching: false };
 

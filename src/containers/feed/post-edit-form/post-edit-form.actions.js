@@ -1,4 +1,4 @@
-import { postJson, getJson } from '../utils/ajax';
+import { postJson, getJson } from '../../../utils/ajax';
 
 export const SUBMIT_POST_FORM = 'submit_post_form';
 export const POST_ADDED = 'post_saved';

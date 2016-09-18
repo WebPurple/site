@@ -12,7 +12,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 
-import Post from './post';
+import Post from '../../../components/post/post';
 
 import {
     submitPostForm,
@@ -20,7 +20,7 @@ import {
     changePostComment,
     toggleExportToFacebook,
     clearSnippet,
-} from '../../actions/post-edit-form.actions';
+} from './post-edit-form.actions';
 
 const PostEditFormComponent = ({
     post,
