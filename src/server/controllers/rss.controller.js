@@ -24,10 +24,14 @@ module.exports = (app) => {
             posts.forEach(({ title, description, url, date, author, image }) => {
                 feed.item({
                     title,
-                    description: `<img src="${image}" /> ${description}`,
+                    description,
                     url,
                     date,
                     author: author.displayName,
+                    enclosure: {
+                        url: image,
+                        type: 'image/jpeg',
+                    },
                 });
             });
 
