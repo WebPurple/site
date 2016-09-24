@@ -22,14 +22,14 @@ module.exports = (app) => {
             });
 
             posts.forEach(({ title, description, url, date, author, image }) => {
-                const extention = image.substr(image.lastIndexOf('.') + 1);
+                const extention = image && image.substr(image.lastIndexOf('.') + 1);
                 feed.item({
                     title,
                     description,
                     url,
                     date,
                     author: author.displayName,
-                    enclosure: {
+                    enclosure: image && {
                         url: image,
                         type: `image/${extention}`,
                     },
