@@ -21,10 +21,10 @@ module.exports = (app) => {
                 site_url: 'https://webpurple.herokuapp.com/',
             });
 
-            posts.forEach(({ title, description, url, date, author, image }) => {
+            posts.forEach(({ title, description, comment, url, date, author, image }) => {
                 const item = {
                     title,
-                    description,
+                    description: comment || description,
                     url,
                     date,
                     author: author && author.displayName,
