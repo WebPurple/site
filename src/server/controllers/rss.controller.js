@@ -22,18 +22,21 @@ module.exports = (app) => {
             });
 
             posts.forEach(({ title, description, url, date, author, image }) => {
-                const extention = image && image.substr(image.lastIndexOf('.') + 1);
-                feed.item({
+                const item = {
                     title,
                     description,
                     url,
                     date,
                     author: author.displayName,
-                    enclosure: image && {
+                };
+                if (image && image.length) {
+                    const extention = image.substr(image.lastIndexOf('.') + 1);
+                    item.enclosure = {
                         url: image,
                         type: `image/${extention}`,
-                    },
-                });
+                    };
+                }
+                feed.item(item);
             });
 
             response.setHeader('content-type', 'application/rss+xml');
