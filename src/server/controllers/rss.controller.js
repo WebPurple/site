@@ -27,7 +27,7 @@ module.exports = (app) => {
                     description,
                     url,
                     date,
-                    author: author.displayName,
+                    author: author && author.displayName,
                 };
                 if (image && image.length) {
                     const extention = image.substr(image.lastIndexOf('.') + 1);
