@@ -71,6 +71,7 @@
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.6.5",
     "isparta": "^4.0.0",
+    "istanbul": "0.4.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
