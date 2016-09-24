@@ -2,11 +2,21 @@ import * as React from 'react';
 import { get as loadScript } from 'scriptjs';
 
 const APP_ID = '1094823327247465';
+const FB_API_VERSION = 'v2.7';
 
 export default class VkCommunityWidget extends React.Component {
 
-    componentWillMount() {
-        loadScript(`//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=${APP_ID}`, () => 1);
+    componentDidMount() {
+        loadScript('//connect.facebook.net/ru_RU/sdk.js',
+            () => {
+                /* eslint-disable no-undef */
+                FB.init({
+                    appId: APP_ID,
+                    version: FB_API_VERSION,
+                });
+                FB.XFBML.parse();
+                /* eslint-enable no-undef */
+            });
     }
 
     render() {
