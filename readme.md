@@ -39,5 +39,8 @@ Please try to keep your pull request focused in scope and avoid including unrela
 
 You can read here more about contributing [here](https://guides.github.com/activities/contributing-to-open-source/). 
 
+### Commit messages
+Feel free to use emoji in your commit messages :anguished: (More about it [here](https://github.com/dannyfritz/commit-message-emoji)).
+
 ## Useful links
 [redux](http://redux.js.org/)
