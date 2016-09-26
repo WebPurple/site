@@ -6,6 +6,8 @@ import CardTitle from 'material-ui/Card/CardTitle';
 import CardText from 'material-ui/Card/CardText';
 import CardMedia from 'material-ui/Card/CardMedia';
 
+import Dotdotdot from 'react-dotdotdot';
+
 import styles from './post.less';
 
 const PostItem = ({ url, title, description, comment, date, author, image }) => (
@@ -16,7 +18,9 @@ const PostItem = ({ url, title, description, comment, date, author, image }) => 
             avatar={author.vkPhotoUrl} />}
         <CardMedia
             className={styles.media}
-            overlay={<CardTitle title={title} subtitle={description} />}
+            overlay={<CardTitle
+                title={title}
+                subtitle={<Dotdotdot clamp={3}>{description}</Dotdotdot>} />}
             onTouchTap={() => window.open(url, '_blank')}>
             <img src={image} alt={title} />
         </CardMedia>
