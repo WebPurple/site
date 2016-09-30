@@ -30,6 +30,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
+    "whatwg-fetch": "^1.0.0",
     "material-ui": "^0.15.4",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
