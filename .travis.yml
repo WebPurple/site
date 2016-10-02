@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '6.2'
+env:
+  global:
+    - NODE_ENV=travisci
 script:
 - npm run build
 - npm run lint

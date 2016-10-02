@@ -7,7 +7,7 @@ var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin'
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var env = process.env.NODE_ENV || 'development';
-var isProd = () => env === 'production';
+var isProd = env === 'production' || env === 'travisci';
 
 var extractLess = new ExtractTextPlugin('main.[contenthash].css');
 
@@ -29,7 +29,7 @@ var plugins = [
     extractLess,
 ];
 
-if (isProd()) {
+if (isProd) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
@@ -83,5 +83,5 @@ module.exports = {
 
     plugins,
 
-    devtool: isProd() ? 'source-map' : 'eval'
+    devtool: isProd ? 'source-map' : 'eval'
 };
