@@ -27,6 +27,7 @@
     "cheerio": "^0.20.0",
     "classnames": "^2.2.5",
     "connect-history-api-fallback": "^1.2.0",
+    "core-js": "^2.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
@@ -50,8 +51,7 @@
     "redux-thunk": "^2.0.1",
     "rss": "^1.2.1",
     "scriptjs": "^2.5.8",
-    "webpack": "^1.12.14",
-    "whatwg-fetch": "^1.0.0"
+    "webpack": "^1.12.14"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

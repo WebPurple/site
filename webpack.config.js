@@ -58,8 +58,6 @@ module.exports = {
             'material-ui',
             'redux-form-material-ui',
             'scriptjs',
-            'babel-polyfill',
-            'whatwg-fetch'
         ],
 
         main: path.join(__dirname, 'src', 'boot'),
