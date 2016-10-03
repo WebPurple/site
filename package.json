@@ -30,7 +30,6 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
-    "whatwg-fetch": "^1.0.0",
     "material-ui": "^0.15.4",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
@@ -47,10 +46,12 @@
     "redux": "^3.3.1",
     "redux-form": "^6.0.2",
     "redux-form-material-ui": "^4.0.1",
+    "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
     "rss": "^1.2.1",
     "scriptjs": "^2.5.8",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
