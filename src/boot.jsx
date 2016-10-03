@@ -8,6 +8,7 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -22,7 +23,14 @@ import AboutPage from './components/about-page';
 injectTapEventPlugin();
 
 // Apply the middleware to the store
-const middleware = routerMiddleware(browserHistory);
+const routeMiddleware = routerMiddleware(browserHistory);
+
+const middlewares = [thunkMiddleware, routeMiddleware];
+
+if (process.env.NODE_ENV === 'development') {
+    const loggerMiddleware = createLogger();
+    middlewares.push(loggerMiddleware);
+}
 
 const store = createStore(
     combineReducers({
@@ -30,7 +38,7 @@ const store = createStore(
         routing: routerReducer,
         form: formReducer,
     }),
-    applyMiddleware(thunkMiddleware, middleware)
+    applyMiddleware(...middlewares)
 );
 
 // Create an enhanced history that syncs navigation events with the store
