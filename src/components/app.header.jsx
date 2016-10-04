@@ -14,7 +14,7 @@ import { toggleLeftNav } from '../containers/navigation/navigation-bar.actions';
 
 const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onAvatarClick }) => (
     <AppBar
-        style={{ position: 'fixed' }}
+        style={{ position: 'fixed', left: 0 }}
         title={renderTitle(user)}
         iconElementLeft={<LeftIcon leftNavOpen={leftNavOpen} onToggleLeftNav={onToggleLeftNav} />}
         iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onAvatarClick={onAvatarClick} />} />
