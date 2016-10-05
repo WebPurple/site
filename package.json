@@ -26,6 +26,7 @@
     "body-parser": "^1.15.0",
     "cheerio": "^0.20.0",
     "classnames": "^2.2.5",
+    "compression": "^1.6.2",
     "connect-history-api-fallback": "^1.2.0",
     "core-js": "^2.4.1",
     "express": "^4.13.4",
