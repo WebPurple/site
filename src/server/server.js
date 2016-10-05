@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const history = require('connect-history-api-fallback');
+const compression = require('compression');
 
 const morgan = require('morgan');
 
@@ -29,6 +30,7 @@ mongoose.Promise = global.Promise;
 const app = express();
 
 app.use(morgan('dev'));
+app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
