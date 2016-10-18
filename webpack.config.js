@@ -33,6 +33,12 @@ var plugins = [
         hash: true,
         template: './src/index.html',
     }),
+    // Webpack 1.0
+    new webpack.optimize.OccurenceOrderPlugin(),
+    // Webpack 2.0 fixed this mispelling
+    // new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     extractLess,
 ];
 
@@ -58,6 +64,7 @@ module.exports = {
             'material-ui',
             'redux-form-material-ui',
             'scriptjs',
+            'webpack-hot-middleware/client?reload=true',
         ],
 
         main: path.join(__dirname, 'src', 'boot'),

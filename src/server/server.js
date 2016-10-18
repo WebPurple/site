@@ -47,6 +47,7 @@ if (isProd) {
 } else {
     const compiler = webpack(webpackConf);
     app.use(webpackMiddleware(compiler, { publicPath: webpackConf.output.publicPath }));
+    app.use(require("webpack-hot-middleware")(compiler));
 }
 
 app.use(express.static('favicon'));
