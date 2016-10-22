@@ -5,17 +5,25 @@ import CardHeader from 'material-ui/Card/CardHeader';
 import CardTitle from 'material-ui/Card/CardTitle';
 import CardText from 'material-ui/Card/CardText';
 import CardMedia from 'material-ui/Card/CardMedia';
+import IconButton from 'material-ui/IconButton';
+import Close from 'material-ui/svg-icons/navigation/close';
 
 import Dotdotdot from 'react-dotdotdot';
 
 import styles from './post.less';
 
-const PostItem = ({ url, title, description, comment, date, author, image }) => (
+const PostItem = ({ url, title, description, comment, date, author, image, onDelete, showDeleteButton }) => (
     <Card className={styles.post}>
-        {author && <CardHeader
-            title={author.displayName}
-            subtitle={(new Date(date)).toLocaleDateString()}
-            avatar={author.vkPhotoUrl} />}
+        {author && (
+            <CardHeader
+                title={author.displayName}
+                subtitle={(new Date(date)).toLocaleDateString()}
+                avatar={author.vkPhotoUrl}>
+                {showDeleteButton && (
+                    <IconButton className={styles['close-button']} onTouchTap={onDelete}><Close /></IconButton>
+                )}
+            </CardHeader>
+        )}
         <CardMedia
             className={styles.media}
             overlay={<CardTitle

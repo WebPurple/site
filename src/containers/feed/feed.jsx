@@ -1,32 +1,44 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import PostItem from './../../components/post/post';
 import NewPost from './new-post/new-post';
 
-import { fetchPosts } from './feed.actions';
-import { isEditor } from '../../utils/common-utils';
+import { fetchPosts, deletePost } from './feed.actions';
+import { isEditor, isAdmin } from '../../utils/common-utils';
 
 import styles from './feed.less';
 
-class FeedComponent extends React.Component {
+class FeedContainer extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(fetchPosts());
+        this.props.fetchPosts();
     }
 
     render() {
-        const { posts, account } = this.props;
+        const { posts, account, onDeletePost } = this.props;
         return (
             <div>
                 <div className={styles.feed}>
-                    {posts.map(post => <PostItem key={post._id} {...post} />)}
+                    {posts.map(post => (
+                        <PostItem
+                            key={post._id}
+                            onDelete={() => onDeletePost(post._id)}
+                            showDeleteButton={account && (isAdmin(account) || (isEditor(account) && account._id === post.author._id))}
+                            {...post} />
+                    ))}
                 </div>
                 {account && isEditor(account) ? <NewPost /> : ''}
             </div>
         );
     }
 }
-const FeedContainer = connect(state => Object.assign({}, state.feed, state.user))(FeedComponent);
 
-export default FeedContainer;
+export default connect(
+    state => ({ ...state.feed, ...state.user }),
+    dispatch => bindActionCreators({
+        fetchPosts,
+        onDeletePost: deletePost,
+    }, dispatch)
+)(FeedContainer);

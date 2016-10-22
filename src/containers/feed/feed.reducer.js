@@ -1,4 +1,4 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from './feed.actions';
+import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED } from './feed.actions';
 import { POST_ADDED } from './post-edit-form/post-edit-form.actions';
 
 const feed = (state = { isFetching: false, posts: [] }, action) => {
@@ -15,6 +15,11 @@ const feed = (state = { isFetching: false, posts: [] }, action) => {
             return {
                 ...state,
                 posts: [action.payload].concat(state.posts),
+            };
+        case POST_REMOVED:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post._id !== action.payload._id),
             };
         default:
             return state;
