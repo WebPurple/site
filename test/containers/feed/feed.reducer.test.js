@@ -1,7 +1,8 @@
 import { expect } from 'chai';
+import deepFreeze from 'deep-freeze';
 
 import feedReducer from './../../../src/containers/feed/feed.reducer';
-import { REQUEST_POSTS, RECEIVE_POSTS } from './../../../src/containers/feed/feed.actions';
+import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED } from './../../../src/containers/feed/feed.actions';
 import { POST_ADDED } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
 
 describe('feed.reducer', () => {
@@ -41,6 +42,20 @@ describe('feed.reducer', () => {
 
         it('should add new post to the beginning of array', () => {
             expect(newState.posts[0]).to.be.equal(post);
+        });
+    });
+
+    describe('post_removed action', () => {
+        const removedPost = { _id: 1, title: 'post 1' };
+        const action = { type: POST_REMOVED, payload: removedPost };
+        const newState = feedReducer(
+            deepFreeze({ posts: [removedPost, { title: 'Remaining post' }] }),
+            action
+        );
+
+        it('should remove deleted post from array', () => {
+            expect(newState.posts.length).to.be.equal(1);
+            expect(newState.posts[0]).to.be.not.equal(removedPost);
         });
     });
 });

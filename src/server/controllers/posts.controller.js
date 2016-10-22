@@ -76,10 +76,25 @@ module.exports = () => {
                 .then(post => response.send(post))
                 .catch(err => response.send(err));
         })
-        .delete(securityUtils.checkPermissions(), // TODO change "check" according to editing logic
-        (request, response) => Post.remove({ _id: request.params.post_id })
-            .then(post => response.send(post))
-            .catch(err => response.send(err)));
+        .delete(securityUtils.checkPermissions(),
+            (request, response) => Post.findById(request.params.post_id)
+                .then(post => {
+                    const user = request.user;
+                    if (commonUtils.isAdmin(user) || (commonUtils.isEditor(user) && post.author.equals(user._id))) {
+                        post.remove(error => {
+                            if (error) {
+                                response.status(500)
+                                    .json(error);
+                            } else {
+                                response.json(post);
+                            }
+                        });
+                    } else {
+                        response.status(403)
+                            .json({ error: 'You are not allowed to remove this post: only admin and post author can do it.' });
+                    }
+                })
+                .catch(err => response.status(500).send(err)));
 
     return router;
 };

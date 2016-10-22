@@ -1,4 +1,4 @@
-import { getJson } from '../../utils/ajax';
+import { getJson, deleteJson } from '../../utils/ajax';
 
 export const REQUEST_POSTS = 'request_posts';
 
@@ -23,4 +23,18 @@ export function fetchPosts() {
         getJson('/api/posts')
             .then((postList) => dispatch(receivePosts(postList)));
     };
+}
+
+export const POST_REMOVED = 'post_removed';
+
+export function postRemoved(post) {
+    return {
+        type: POST_REMOVED,
+        payload: post,
+    };
+}
+
+export function deletePost(id) {
+    return dispatch => deleteJson(`api/posts/${id}`)
+        .then(removedPost => dispatch(postRemoved(removedPost)));
 }
