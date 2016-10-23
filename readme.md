@@ -22,6 +22,19 @@ const connectionUrl = 'mongodb://admin:123123@ds064718.mlab.com:64718/webpurple'
 ```
 or set up your own db (500mb fo free in [mLab](https://mlab.com/welcome/))
 
+## Facebook
+Authorisation in app can be done via facebook.
+Credentials of facebook app should be passed to *src/server/conf/passport.js*
+
+For development purposes you can use next credentials:
+
+```javascript
+fb: {
+    clientID: '1208431049220025',
+    clientSecret: '39bf839eeb8805fd32f77dd70fac3604',
+    ...
+```
+
 ## How to contribute?
 We are open to, and grateful for, any contributions made by the community.
 
