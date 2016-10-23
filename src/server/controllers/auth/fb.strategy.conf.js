@@ -29,11 +29,7 @@ module.exports = (app, passport) => {
                 doc.longLiveAccessToken = longLiveAccessToken; // eslint-disable-line no-param-reassign
                 return doc.save();
             })
-            .then(doc => {
-                const user = doc.toObject();
-                user.fbAccessToken = accessToken;
-                done(null, user);
-            })
+            .then(user => done(null, user))
             .catch(err => done(new Error('Something went wrong: ' + err))) // eslint-disable-line prefer-template
     ));
 
