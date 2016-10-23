@@ -4,15 +4,15 @@ const FbStrategy = require('passport-facebook').Strategy;
 const passportConf = require('./../../conf/passport');
 const UserSchema = require('./../../schemas/user.schema');
 
-const appConf = require('./../../conf/app.conf');
 const facebook = require('./../../services/facebook.service');
 
 const User = mongoose.model('users', UserSchema);
 
 module.exports = (app, passport) => {
     let longLiveAccessToken;
-    passport.use('facebook', new FbStrategy(passportConf.strategies.fb,
-        (accessToken, refreshToken, profile, done) => facebook.getLongLiveAccessToken(accessToken, appConf.client_id, appConf.client_secret)
+    const fbConf = passportConf.strategies.fb;
+    passport.use('facebook', new FbStrategy(fbConf,
+        (accessToken, refreshToken, profile, done) => facebook.getLongLiveAccessToken(accessToken, fbConf.clientID, fbConf.clientSecret)
             .then(longLiveToken => {
                 longLiveAccessToken = longLiveToken;
                 return User.findOne({ fbUserId: profile.id });
