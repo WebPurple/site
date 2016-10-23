@@ -1,11 +1,16 @@
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 const vkStrategyConf = require('./auth/vk.strategy.conf');
 const fbStrategyConf = require('./auth/fb.strategy.conf');
 
+const UserSchema = require('./../schemas/user.schema');
+
+const User = mongoose.model('users', UserSchema);
+
 module.exports = (app) => {
-    passport.serializeUser((user, done) => done(null, user));
-    passport.deserializeUser((obj, done) => done(null, obj));
+    passport.serializeUser((user, done) => done(null, user._id));
+    passport.deserializeUser((id, done) => User.findById(id, (error, user) => done(error, user)));
 
     app.use(passport.initialize());
     app.use(passport.session());
