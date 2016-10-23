@@ -103,7 +103,7 @@ function getFacebookPageAccessToken(request, pageId) {
     const fbPageAccessToken = request.session.fbPageAccessTokens && request.session.fbPageAccessTokens[pageId];
 
     return fbPageAccessToken ? Promise.resolve(fbPageAccessToken)
-        : facebook.getPageAccessToken(request.user.fbAccessToken, pageId)
+        : facebook.getPageAccessToken(request.user.longLiveAccessToken, pageId)
             .then(newFbPageAccessToken => {
                 /* eslint-disable no-param-reassign, no-return-assign */
                 request.session.fbPageAccessTokens = request.session.fbPageAccessTokens || {};
