@@ -11,4 +11,20 @@ describe('feed.actions', () => {
                 payload: post,
             });
     });
+
+    it('should create and action to request posts', () => {
+        expect(actions.requestPosts())
+            .to.deep.equal({
+                type: actions.REQUEST_POSTS,
+            });
+    });
+
+    it('should create and action to receive posts', () => {
+        const posts = [{ _id: 1 }];
+        expect(actions.receivePosts(posts))
+            .to.deep.equal({
+                type: actions.RECEIVE_POSTS,
+                payload: posts,
+            });
+    });
 });
