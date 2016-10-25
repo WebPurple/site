@@ -20,7 +20,7 @@ export function receivePosts(posts) {
 export function fetchPosts() {
     return (dispatch) => {
         dispatch(requestPosts());
-        getJson('/api/posts')
+        return getJson('/api/posts')
             .then((postList) => dispatch(receivePosts(postList)));
     };
 }
@@ -35,6 +35,6 @@ export function postRemoved(post) {
 }
 
 export function deletePost(id) {
-    return dispatch => deleteJson(`api/posts/${id}`)
+    return dispatch => deleteJson(`/api/posts/${id}`)
         .then(removedPost => dispatch(postRemoved(removedPost)));
 }
