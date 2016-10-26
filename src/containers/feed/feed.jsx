@@ -25,7 +25,7 @@ class FeedContainer extends React.Component {
                         <PostItem
                             key={post._id}
                             onDelete={() => onDeletePost(post._id)}
-                            showDeleteButton={account && (isAdmin(account) || (isEditor(account) && account._id === post.author && post.author._id))}
+                            showDeleteButton={account && (isAdmin(account) || isAuthorOf(account, post))}
                             {...post} />
                     ))}
                 </div>
@@ -33,6 +33,10 @@ class FeedContainer extends React.Component {
             </div>
         );
     }
+}
+
+function isAuthorOf(user, post) {
+    return isEditor(user) && user._id === post.author && post.author._id;
 }
 
 export default connect(
