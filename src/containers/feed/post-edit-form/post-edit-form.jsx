@@ -56,7 +56,6 @@ const PostEditFormComponent = ({
             disabled={!(account && account.fbUserId)}
             checked={post.exportToFacebook}
             onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
-        <CheckBox label="Export to Twitter" disabled />
         <br />
         <Toggle
             label="Deferred post" labelPosition="right"
