@@ -1,6 +1,6 @@
 {
   "name": "web-purple",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Web Purple Community Web Site",
   "main": "src/boot.jsx",
   "engines": {
