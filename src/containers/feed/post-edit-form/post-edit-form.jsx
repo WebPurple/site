@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import CardActions from 'material-ui/Card/CardActions';
@@ -15,7 +16,6 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import Post from '../../../components/post/post';
 
 import {
-    submitPostForm,
     toggleDeferredPost,
     changePostComment,
     toggleExportToFacebook,
@@ -89,7 +89,7 @@ const PostEditFormContainer = ({
             <RaisedButton
                 label="Submit" primary
                 disabled={!account || isFetching || !requiredFieldsAreFilled(post)}
-                onMouseUp={onSubmit} />
+                onMouseUp={() => onSubmit(post)} />
         </CardActions>
     </div>
     );
@@ -103,11 +103,10 @@ export default connect(
         ...state.newPost,
         account: state.user && state.user.account,
     }),
-    (dispatch, { post }) => ({
-        onSubmit: () => dispatch(submitPostForm(post)),
-        onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
-        onToggleExportToFacebook: checked => dispatch(toggleExportToFacebook(checked)),
-        onChangeComment: newText => dispatch(changePostComment(newText)),
-        onClearSnippet: () => dispatch(clearSnippet()),
-    })
+    dispatch => bindActionCreators({
+        onToggleDeferredPost: toggleDeferredPost,
+        onToggleExportToFacebook: toggleExportToFacebook,
+        onChangeComment: changePostComment,
+        onClearSnippet: clearSnippet,
+    }, dispatch)
 )(PostEditFormContainer);

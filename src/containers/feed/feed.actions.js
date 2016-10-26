@@ -1,5 +1,7 @@
 import { getJson, deleteJson } from '../../utils/ajax';
 
+import { POST_ADDED } from './feed.action-types';
+
 export const REQUEST_POSTS = 'request_posts';
 
 export function requestPosts() {
@@ -37,4 +39,11 @@ export function postRemoved(post) {
 export function deletePost(id) {
     return dispatch => deleteJson(`/api/posts/${id}`)
         .then(removedPost => dispatch(postRemoved(removedPost)));
+}
+
+export function postAdded(post) {
+    return {
+        type: POST_ADDED,
+        payload: post,
+    };
 }

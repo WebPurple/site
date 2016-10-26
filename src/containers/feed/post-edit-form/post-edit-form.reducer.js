@@ -1,15 +1,14 @@
 import {
     DEFERRED_POST,
     CHANGE_POST_COMMENT,
-    POST_ADDED,
-    SUBMIT_POST_FORM,
     EXPORT_TO_FACEBOOK,
     CHANGE_POST_IMAGE,
     RECEIVE_LINK_INFO,
     FETCH_LINK_INFO,
     CLEAR_SNIPPET,
 } from './post-edit-form.actions';
-import { CLOSE_DIALOG } from './../new-post/new-post.action-types';
+import { CLOSE_DIALOG, SUBMIT_POST_FORM } from './../new-post/new-post.action-types';
+import { POST_ADDED } from './../feed.action-types';
 
 const defaultState = { post: { comment: '' }, isFetching: false };
 

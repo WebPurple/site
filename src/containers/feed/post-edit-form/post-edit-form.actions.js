@@ -1,18 +1,4 @@
-import { postJson, getJson } from '../../../utils/ajax';
-
-export const SUBMIT_POST_FORM = 'submit_post_form';
-export const POST_ADDED = 'post_saved';
-
-export function submitPostForm(post) {
-    return (dispatch) => {
-        dispatch({ type: SUBMIT_POST_FORM });
-        postJson('api/posts', post)
-            .then(savedPost => dispatch({
-                type: POST_ADDED,
-                payload: savedPost,
-            }));
-    };
-}
+import { getJson } from '../../../utils/ajax';
 
 export const DEFERRED_POST = 'deferred_post';
 

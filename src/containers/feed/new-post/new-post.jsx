@@ -11,7 +11,7 @@ import * as actions from './new-post.actions';
 
 import styles from './new-post.less';
 
-const NewPostComponent = ({ state, postEditor, openDialog, closeDialog }) => (
+const NewPostComponent = ({ state, postEditor, openDialog, closeDialog, submitPostForm }) => (
     <div>
         <FloatingActionButton onTouchTap={openDialog} className={styles['new-post-button']}>
             <Create />
@@ -21,7 +21,7 @@ const NewPostComponent = ({ state, postEditor, openDialog, closeDialog }) => (
             open={state.dialogOpen}
             autoScrollBodyContent
             onRequestClose={closeDialog}>
-            <PostEditForm {...postEditor} />
+            <PostEditForm onSubmit={post => submitPostForm(post)} {...postEditor} />
         </Dialog>
     </div>
 );

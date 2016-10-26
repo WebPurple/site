@@ -1,5 +1,5 @@
+import { POST_ADDED } from './feed.action-types';
 import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED } from './feed.actions';
-import { POST_ADDED } from './post-edit-form/post-edit-form.actions';
 
 const feed = (state = { isFetching: false, posts: [] }, action) => {
     switch (action.type) {

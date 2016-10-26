@@ -5,11 +5,11 @@ import {
     CHANGE_POST_IMAGE,
     toggleDeferredPost,
     toggleExportToFacebook,
-    SUBMIT_POST_FORM,
-    POST_ADDED,
     CHANGE_POST_COMMENT,
     RECEIVE_LINK_INFO,
 } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
+import { SUBMIT_POST_FORM } from './../../../src/containers/feed/new-post/new-post.action-types';
+import { postAdded } from './../../../src/containers/feed/feed.actions';
 
 describe('post-edit.reducer', () => {
     const state = Object.freeze({});
@@ -56,7 +56,7 @@ describe('post-edit.reducer', () => {
 
     describe('POST_ADDED action', () => {
         it('should clear all post fields and set isFetching to false after post saved', () => {
-            const newState = postEditReducer(state, { type: POST_ADDED });
+            const newState = postEditReducer(state, postAdded());
             expect(newState.post).to.deep.equal({ comment: '' });
             expect(newState.isFetching).to.equal(false);
         });
