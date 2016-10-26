@@ -22,7 +22,8 @@ import {
     clearSnippet,
 } from './post-edit-form.actions';
 
-const PostEditFormComponent = ({
+const PostEditFormContainer = ({
+    extended,
     post,
     isFetching,
     onSubmit,
@@ -50,34 +51,40 @@ const PostEditFormComponent = ({
                 </IconButton>
             </div>
         )}
-        <CheckBox label="Export to VK" title={'Post will be automaticly shared in VK'} disabled checked />
-        <CheckBox
-            label="Export to Facebook"
-            disabled={!(account && account.fbUserId)}
-            checked={post.exportToFacebook}
-            onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
+        {extended && (
+            <CheckBox label="Export to VK" title="Post will be automaticly shared in VK" disabled checked />
+        )}
+        {extended && (
+            <CheckBox
+                label="Export to Facebook"
+                disabled={!(account && account.fbUserId)}
+                checked={post.exportToFacebook}
+                onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
+        )}
         <br />
-        <Toggle
-            label="Deferred post" labelPosition="right"
-            disabled
-            toggled={deferredPost}
-            onToggle={onToggleDeferredPost} />
-        {
-            deferredPost && <DatePicker
+        {extended && (
+            <Toggle
+                label="Deferred post" labelPosition="right"
+                disabled
+                toggled={deferredPost}
+                onToggle={onToggleDeferredPost} />
+        )}
+        {extended && deferredPost && (
+            <DatePicker
                 hintText="Post on"
                 container="dialog"
                 autoOk
                 disableYearSelection
                 minDate={new Date()}
                 disabled={!deferredPost} />
-        }
-        {
-            deferredPost && <TimePicker
+        )}
+        {extended && deferredPost && (
+            <TimePicker
                 hintText="Post at"
                 format="24hr"
                 autoOk
                 disabled={!deferredPost} />
-        }
+        )}
         <CardActions>
             <RaisedButton
                 label="Submit" primary
@@ -91,7 +98,7 @@ function requiredFieldsAreFilled(post) {
     return post.comment || (post.title && post.description);
 }
 
-const PostEditFormContainer = connect(
+export default connect(
     state => ({
         ...state.newPost,
         account: state.user && state.user.account,
@@ -103,6 +110,4 @@ const PostEditFormContainer = connect(
         onChangeComment: newText => dispatch(changePostComment(newText)),
         onClearSnippet: () => dispatch(clearSnippet()),
     })
-)(PostEditFormComponent);
-
-export default PostEditFormContainer;
+)(PostEditFormContainer);
