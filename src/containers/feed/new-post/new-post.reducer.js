@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import postEditor from '../post-edit-form/post-edit-form.reducer';
-import { POST_ADDED, OPEN_DIALOG, CLOSE_DIALOG } from '../post-edit-form/post-edit-form.actions';
+import { POST_ADDED } from '../post-edit-form/post-edit-form.actions';
+import { OPEN_DIALOG, CLOSE_DIALOG } from './new-post.action-types';
 
 const newPostReducer = (state = { dialogOpen: false }, action) => {
     switch (action.type) {

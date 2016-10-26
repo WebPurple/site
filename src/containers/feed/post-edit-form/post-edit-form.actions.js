@@ -71,6 +71,3 @@ export const CLEAR_SNIPPET = 'clear_snippet';
 export function clearSnippet() {
     return { type: CLEAR_SNIPPET };
 }
-
-export const OPEN_DIALOG = 'OPEN_DIALOG';
-export const CLOSE_DIALOG = 'CLOSE_DIALOG';
