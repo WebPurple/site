@@ -11,24 +11,26 @@ import * as actions from './new-post.actions';
 
 import styles from './new-post.less';
 
-const NewPostComponent = ({ state, postEditor, openDialog, closeDialog, submitPostForm }) => (
+const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, submitPostForm, suggest }) => (
     <div>
-        <FloatingActionButton onTouchTap={openDialog} className={styles['new-post-button']}>
+        <FloatingActionButton title={title(suggest)} onTouchTap={openDialog} className={styles['new-post-button']}>
             <Create />
         </FloatingActionButton>
         <Dialog
-            title="New post"
+            title={title(suggest)}
             open={state.dialogOpen}
             autoScrollBodyContent
             onRequestClose={closeDialog}>
-            <PostEditForm onSubmit={post => submitPostForm(post)} {...postEditor} />
+            <PostEditForm onSubmit={post => submitPostForm({ ...post, suggest })} extended={!suggest} {...postEditor} />
         </Dialog>
     </div>
 );
 
-const NewPostContainer = connect(
+function title(suggest) {
+    return `${suggest ? 'Suggest' : 'Add'} new post`;
+}
+
+export default connect(
     state => state.newPost,
     dispatch => bindActionCreators(actions, dispatch)
-)(NewPostComponent);
-
-export default NewPostContainer;
+)(NewPostContainer);

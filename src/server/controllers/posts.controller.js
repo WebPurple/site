@@ -16,17 +16,21 @@ module.exports = () => {
 
     router.route('/posts')
         // add new post
-        .post(securityUtils.checkPermissions(commonUtils.isEditor),
+        .post(securityUtils.checkPermissions(),
         (request, response) => {
-            const url = request.body.url;
-            const title = request.body.title;
-            const description = request.body.description;
-            const comment = request.body.comment;
-            const image = request.body.image;
+            const {
+                url,
+                title,
+                description,
+                comment,
+                image,
+                suggest,
+                exportToFacebook,
+            } = request.body;
             // TODO: Promise.all should be used for all social networks
             let postPromise = Promise.resolve();
 
-            if (request.body.exportToFacebook) {
+            if (exportToFacebook) {
                 postPromise = postPromise
                     .then(() => getFacebookPageAccessToken(request, appConf.facebookPageId))
                     .then(fbPageAccessToken => facebook.addPost(fbPageAccessToken, appConf.facebookPageId, comment || url, url));
@@ -39,6 +43,7 @@ module.exports = () => {
                 description,
                 comment,
                 image,
+                type: suggest ? 'suggest' : undefined,
                 date: new Date(),
                 author: request.user._id,
                 fbPostId: fbPost && fbPost.id,
@@ -48,12 +53,15 @@ module.exports = () => {
                 .catch(err => response.send(err));
         })
         // get all posts
-        .get((request, response) => Post.find()
-            .sort('-date')
-            .populate('author')
-            .exec()
-            .then(post => response.send(post))
-            .catch(err => response.send(err)));
+        .get((request, response) => {
+            // by default normal (not suggested) posts should be returned
+            Post.find({ type: request.query.type ? request.query.type : null })
+                .sort('-date')
+                .populate('author')
+                .exec()
+                .then(post => response.send(post))
+                .catch(err => response.send(err));
+        });
 
     router.route('/posts/:post_id')
         // get post by id

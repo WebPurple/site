@@ -11,6 +11,11 @@ const postSchema = Schema({ // eslint-disable-line new-cap
     date: Date,
     author: { type: Schema.Types.ObjectId, ref: 'user' },
     fbPostId: String,
+    type: {
+        type: String,
+        enum: ['suggest'],
+        required: false,
+    },
 });
 
 module.exports = postSchema;
