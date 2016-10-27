@@ -86,15 +86,15 @@ module.exports = () => {
         })
         .delete(securityUtils.checkPermissions(),
             (request, response) => Post.findById(request.params.post_id)
-                .then(post => {
+                .then(postDoc => {
                     const user = request.user;
-                    if (commonUtils.isAdmin(user) || (commonUtils.isEditor(user) && post.author.equals(user._id))) {
-                        post.remove(error => {
+                    if (commonUtils.isAdmin(user) || commonUtils.isAuthorOf(user, postDoc)) {
+                        postDoc.remove(error => {
                             if (error) {
                                 response.status(500)
                                     .json(error);
                             } else {
-                                response.json(post);
+                                response.json(postDoc);
                             }
                         });
                     } else {
