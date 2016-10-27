@@ -36,7 +36,7 @@ class FeedContainer extends React.Component {
 }
 
 function isAuthorOf(user, post) {
-    return (isEditor(user) || post.type === 'suggest') && user._id === post.author && post.author._id;
+    return (isEditor(user) || post.type === 'suggest') && user._id === (post.author && post.author._id);
 }
 
 export default connect(
