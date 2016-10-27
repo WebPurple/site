@@ -6,7 +6,7 @@ import PostItem from './../../components/post/post';
 import NewPost from './new-post/new-post';
 
 import { fetchPosts, deletePost } from './feed.actions';
-import { isEditor, isAdmin } from '../../utils/common-utils';
+import { isEditor, isAdmin, isAuthorOf } from '../../utils/common-utils';
 
 import styles from './feed.less';
 
@@ -33,10 +33,6 @@ class FeedContainer extends React.Component {
             </div>
         );
     }
-}
-
-function isAuthorOf(user, post) {
-    return (isEditor(user) || post.type === 'suggest') && user._id === (post.author && post.author._id);
 }
 
 export default connect(
