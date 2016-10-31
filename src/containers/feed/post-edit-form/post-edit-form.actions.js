@@ -32,6 +32,7 @@ export const FETCH_LINK_INFO = 'fetch_link_info';
 export const RECEIVE_LINK_INFO = 'receive_link_info';
 
 // maybe it should be replaced with https://gist.github.com/dperini/729294
+// eslint-disable-next-line no-useless-escape
 const urlRegexp = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
 export function changePostComment(newComment) {
