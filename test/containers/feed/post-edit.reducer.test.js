@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import deepFreeze from 'deep-freeze';
 
 import postEditReducer from './../../../src/containers/feed/post-edit-form/post-edit-form.reducer';
 import {
@@ -7,8 +8,9 @@ import {
     toggleExportToFacebook,
     CHANGE_POST_COMMENT,
     RECEIVE_LINK_INFO,
+    clearSnippet,
 } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
-import { SUBMIT_POST_FORM } from './../../../src/containers/feed/new-post/new-post.action-types';
+import { editPost, formSubmitted } from './../../../src/containers/feed/new-post/new-post.actions';
 import { postAdded } from './../../../src/containers/feed/feed.actions';
 
 describe('post-edit.reducer', () => {
@@ -50,7 +52,7 @@ describe('post-edit.reducer', () => {
 
     describe('SUBMIT_POST_FORM action', () => {
         it('should set isFetching to true', () => {
-            expect(postEditReducer(state, { type: SUBMIT_POST_FORM }).isFetching).to.equal(true);
+            expect(postEditReducer(state, formSubmitted()).isFetching).to.equal(true);
         });
     });
 
@@ -100,5 +102,27 @@ describe('post-edit.reducer', () => {
         it('should set isFetching to false',
             () => expect(newState).to.have.property('isFetching')
                 .and.equal(false));
+    });
+
+    describe('CLEAR_SNIPPET action', () => {
+        it('should left only comment', () => {
+            const comment = 'comment to left';
+            expect(postEditReducer(deepFreeze({
+                post: {
+                    comment,
+                    description: 'to remove',
+                    url: 'to remove',
+                },
+            }), clearSnippet()))
+                .to.eql({ post: { comment } });
+        });
+    });
+
+    describe('EDIT_POST action', () => {
+        it('should save copy post object and remove type property', () => {
+            const post = { comment: 'new post', type: 'it will be removed' };
+            expect(postEditReducer(deepFreeze({ post }), editPost(post)))
+                .to.eql({ post: { ...post, type: undefined } });
+        });
     });
 });
