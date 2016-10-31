@@ -17,12 +17,12 @@ module.exports = () => {
 
     router.route('/users')
         // get all users
-        .get((request, response) => User.find().exec()
+        .get((request, response) => User.find().lean().exec()
             .then(users => response.send(users)));
 
     router.route('/users/:user_id')
         // get user by id
-        .get((request, response) => User.findById(request.params.user_id).exec()
+        .get((request, response) => User.findById(request.params.user_id).lean().exec()
             .then(user => response.send(user))
             .catch(err => response.send(err)))
         // update user

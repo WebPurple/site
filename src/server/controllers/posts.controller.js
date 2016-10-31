@@ -58,6 +58,7 @@ module.exports = () => {
             Post.find({ type: request.query.type ? request.query.type : null })
                 .sort('-date')
                 .populate('author')
+                .lean()
                 .exec()
                 .then(post => response.send(post))
                 .catch(err => response.send(err));
@@ -67,6 +68,7 @@ module.exports = () => {
         // get post by id
         .get((request, response) => Post.findById(request.params.post_id)
             .populate('author')
+            .lean()
             .exec()
             .then(post => response.send(post))
             .catch(err => response.send(err)))

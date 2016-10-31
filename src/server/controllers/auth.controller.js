@@ -10,7 +10,7 @@ const User = mongoose.model('users', UserSchema);
 
 module.exports = (app) => {
     passport.serializeUser((user, done) => done(null, user._id));
-    passport.deserializeUser((id, done) => User.findById(id, (error, user) => done(error, user)));
+    passport.deserializeUser((id, done) => User.findById(id).lean().exec((error, user) => done(error, user)));
 
     app.use(passport.initialize());
     app.use(passport.session());

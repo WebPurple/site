@@ -12,6 +12,7 @@ module.exports = (app) => {
         .sort('-date')
         .limit(MAX_ITEM_COUNT)
         .populate('author')
+        .lean()
         .exec()
         .then(posts => {
             const feed = new RSS({
