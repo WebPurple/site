@@ -19,10 +19,10 @@ export function receivePosts(posts) {
     };
 }
 
-export function fetchPosts() {
+export function fetchPosts(type) {
     return (dispatch) => {
         dispatch(requestPosts());
-        return getJson('/api/posts')
+        return getJson('/api/posts', { type })
             .then((postList) => dispatch(receivePosts(postList)));
     };
 }

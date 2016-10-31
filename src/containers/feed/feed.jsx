@@ -13,7 +13,13 @@ import styles from './feed.less';
 class FeedContainer extends React.Component {
 
     componentWillMount() {
-        this.props.fetchPosts();
+        this.props.fetchPosts(this.props.postsType);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.postsType !== prevProps.postsType) {
+            this.props.fetchPosts(this.props.postsType);
+        }
     }
 
     render() {
@@ -36,7 +42,11 @@ class FeedContainer extends React.Component {
 }
 
 export default connect(
-    state => ({ ...state.feed, ...state.user }),
+    (state, ownProps) => ({
+        ...state.feed,
+        ...state.user,
+        postsType: ownProps.location.query.type,
+    }),
     dispatch => bindActionCreators({
         fetchPosts,
         onDeletePost: deletePost,
