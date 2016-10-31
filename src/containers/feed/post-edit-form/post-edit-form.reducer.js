@@ -7,7 +7,7 @@ import {
     FETCH_LINK_INFO,
     CLEAR_SNIPPET,
 } from './post-edit-form.actions';
-import { CLOSE_DIALOG, SUBMIT_POST_FORM } from './../new-post/new-post.action-types';
+import { CLOSE_DIALOG, SUBMIT_POST_FORM, EDIT_POST } from './../new-post/new-post.action-types';
 import { POST_ADDED } from './../feed.action-types';
 
 const defaultState = { post: { comment: '' }, isFetching: false };
@@ -66,6 +66,14 @@ const editPost = (state = defaultState, action) => {
                 ...state,
                 post: {
                     comment: state.post.comment,
+                },
+            };
+        case EDIT_POST:
+            return {
+                ...state,
+                post: {
+                    ...action.payload,
+                    type: undefined, // we should remove 'suggest', 'draft' types
                 },
             };
         default:

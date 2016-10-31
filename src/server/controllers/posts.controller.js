@@ -71,13 +71,13 @@ module.exports = () => {
             .then(post => response.send(post))
             .catch(err => response.send(err)))
         // update post
-        .put(securityUtils.checkPermissions(), // TODO change "check" according to editing logic
+        .put(securityUtils.checkPermissions(commonUtils.isAdmin, commonUtils.isEditor),
         (request, response) => {
             Post.findById(request.params.post_id).exec()
                 .then(post => {
                     /* eslint-disable no-param-reassign */
-                    post.text = request.body.text;
-                    post.imageLink = request.body.imageLink;
+                    post.type = request.body.type;
+                    post.comment = request.body.comment;
                     /* eslint-enable no-param-reassign */
                     return post.save();
                 })
