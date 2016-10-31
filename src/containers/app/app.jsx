@@ -23,8 +23,7 @@ const muiTheme = getMuiTheme({
     },
 });
 
-/* eslint-disable prefer-template */
-const App = ({ leftNavOpen, children }) => (
+const AppContainer = ({ leftNavOpen, children }) => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <div className={styles.page}>
             <AppHeader />
@@ -40,6 +39,4 @@ const App = ({ leftNavOpen, children }) => (
     </MuiThemeProvider>
 );
 
-const AppContainer = connect(state => state.leftNav)(App);
-
-export default AppContainer;
+export default connect(state => state.leftNav)(AppContainer);

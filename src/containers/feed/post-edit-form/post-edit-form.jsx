@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import CardActions from 'material-ui/Card/CardActions';
@@ -15,14 +16,14 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import Post from '../../../components/post/post';
 
 import {
-    submitPostForm,
     toggleDeferredPost,
     changePostComment,
     toggleExportToFacebook,
     clearSnippet,
 } from './post-edit-form.actions';
 
-const PostEditFormComponent = ({
+const PostEditFormContainer = ({
+    extended,
     post,
     isFetching,
     onSubmit,
@@ -50,40 +51,45 @@ const PostEditFormComponent = ({
                 </IconButton>
             </div>
         )}
-        <CheckBox label="Export to VK" title={'Post will be automaticly shared in VK'} disabled checked />
-        <CheckBox
-            label="Export to Facebook"
-            disabled={!(account && account.fbUserId)}
-            checked={post.exportToFacebook}
-            onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
-        <CheckBox label="Export to Twitter" disabled />
+        {extended && (
+            <CheckBox label="Export to VK" title="Post will be automaticly shared in VK" disabled checked />
+        )}
+        {extended && (
+            <CheckBox
+                label="Export to Facebook"
+                disabled={!(account && account.fbUserId)}
+                checked={post.exportToFacebook}
+                onCheck={(e, checked) => onToggleExportToFacebook(checked)} />
+        )}
         <br />
-        <Toggle
-            label="Deferred post" labelPosition="right"
-            disabled
-            toggled={deferredPost}
-            onToggle={onToggleDeferredPost} />
-        {
-            deferredPost && <DatePicker
+        {extended && (
+            <Toggle
+                label="Deferred post" labelPosition="right"
+                disabled
+                toggled={deferredPost}
+                onToggle={onToggleDeferredPost} />
+        )}
+        {extended && deferredPost && (
+            <DatePicker
                 hintText="Post on"
                 container="dialog"
                 autoOk
                 disableYearSelection
                 minDate={new Date()}
                 disabled={!deferredPost} />
-        }
-        {
-            deferredPost && <TimePicker
+        )}
+        {extended && deferredPost && (
+            <TimePicker
                 hintText="Post at"
                 format="24hr"
                 autoOk
                 disabled={!deferredPost} />
-        }
+        )}
         <CardActions>
             <RaisedButton
                 label="Submit" primary
                 disabled={!account || isFetching || !requiredFieldsAreFilled(post)}
-                onMouseUp={onSubmit} />
+                onMouseUp={() => onSubmit(post)} />
         </CardActions>
     </div>
     );
@@ -92,18 +98,15 @@ function requiredFieldsAreFilled(post) {
     return post.comment || (post.title && post.description);
 }
 
-const PostEditFormContainer = connect(
+export default connect(
     state => ({
         ...state.newPost,
         account: state.user && state.user.account,
     }),
-    (dispatch, { post }) => ({
-        onSubmit: () => dispatch(submitPostForm(post)),
-        onToggleDeferredPost: () => dispatch(toggleDeferredPost()),
-        onToggleExportToFacebook: checked => dispatch(toggleExportToFacebook(checked)),
-        onChangeComment: newText => dispatch(changePostComment(newText)),
-        onClearSnippet: () => dispatch(clearSnippet()),
-    })
-)(PostEditFormComponent);
-
-export default PostEditFormContainer;
+    dispatch => bindActionCreators({
+        onToggleDeferredPost: toggleDeferredPost,
+        onToggleExportToFacebook: toggleExportToFacebook,
+        onChangeComment: changePostComment,
+        onClearSnippet: clearSnippet,
+    }, dispatch)
+)(PostEditFormContainer);

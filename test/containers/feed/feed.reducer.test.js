@@ -2,8 +2,7 @@ import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import feedReducer from './../../../src/containers/feed/feed.reducer';
-import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED } from './../../../src/containers/feed/feed.actions';
-import { POST_ADDED } from './../../../src/containers/feed/post-edit-form/post-edit-form.actions';
+import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED, postAdded } from './../../../src/containers/feed/feed.actions';
 
 describe('feed.reducer', () => {
     const state = Object.freeze({});
@@ -37,8 +36,7 @@ describe('feed.reducer', () => {
 
     describe('post_added action', () => {
         const post = { id: 1, title: 'post 1' };
-        const action = { type: POST_ADDED, payload: post };
-        const newState = feedReducer(state, action);
+        const newState = feedReducer(state, postAdded(post));
 
         it('should add new post to the beginning of array', () => {
             expect(newState.posts[0]).to.be.equal(post);

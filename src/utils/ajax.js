@@ -13,16 +13,7 @@ export function ajaxJson(url, method = 'get', params) {
 }
 
 export function getJson(url, params) {
-    if (params === undefined) {
-        return ajaxJson(url);
-    }
-
-    const paramsQueryPart = Object.keys(params)
-        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
-        .join('&')
-        .replace(/%20/g, '+');
-
-    return ajaxJson(url + '?' + paramsQueryPart, 'get'); // eslint-disable-line prefer-template
+    return ajaxJson(url + mapParamsObjectToQueryString(params)); // eslint-disable-line prefer-template
 }
 
 export function postJson(url, params) {
@@ -35,4 +26,16 @@ export function putJson(url, params) {
 
 export function deleteJson(url, params) {
     return ajaxJson(url, 'delete', params);
+}
+
+export function mapParamsObjectToQueryString(params) {
+    if (!params) { return ''; }
+
+    const nonEmptyProps = Object.keys(params).filter(key => params[key] !== undefined);
+    return nonEmptyProps.length
+        ? '?' + nonEmptyProps // eslint-disable-line prefer-template
+        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
+        .join('&')
+        .replace(/%20/g, '+')
+        : '';
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -6,30 +7,30 @@ import Create from 'material-ui/svg-icons/content/create';
 import Dialog from 'material-ui/Dialog';
 
 import PostEditForm from '../post-edit-form/post-edit-form';
+import * as actions from './new-post.actions';
 
 import styles from './new-post.less';
 
-const NewPostComponent = ({ state, postEditor, onDialogOpen, onDialogClose }) => (
+const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, submitPostForm, suggest }) => (
     <div>
-        <FloatingActionButton onTouchTap={onDialogOpen} className={styles['new-post-button']}>
+        <FloatingActionButton title={title(suggest)} onTouchTap={openDialog} className={styles['new-post-button']}>
             <Create />
         </FloatingActionButton>
         <Dialog
-            title="New post"
+            title={title(suggest)}
             open={state.dialogOpen}
             autoScrollBodyContent
-            onRequestClose={onDialogClose}>
-            <PostEditForm {...postEditor} />
+            onRequestClose={closeDialog}>
+            <PostEditForm onSubmit={post => submitPostForm({ ...post, suggest })} extended={!suggest} {...postEditor} />
         </Dialog>
     </div>
 );
 
-const NewPostContainer = connect(
-    state => state.newPost,
-    dispatch => ({
-        onDialogOpen: () => dispatch({ type: 'OPEN_DIALOG' }),
-        onDialogClose: () => dispatch({ type: 'CLOSE_DIALOG' }),
-    })
-)(NewPostComponent);
+function title(suggest) {
+    return `${suggest ? 'Suggest' : 'Add'} new post`;
+}
 
-export default NewPostContainer;
+export default connect(
+    state => state.newPost,
+    dispatch => bindActionCreators(actions, dispatch)
+)(NewPostContainer);
