@@ -12,18 +12,18 @@ export function requestPosts() {
 
 export const RECEIVE_POSTS = 'receive_posts';
 
-export function receivePosts(posts) {
+export function receivePosts(posts, type, from, limit) {
     return {
         type: RECEIVE_POSTS,
-        payload: posts,
+        payload: { posts, type, from, limit },
     };
 }
 
-export function fetchPosts(type) {
+export function fetchPosts(type, from = 0, limit) {
     return (dispatch) => {
         dispatch(requestPosts());
-        return getJson('/api/posts', { type })
-            .then((postList) => dispatch(receivePosts(postList)));
+        return getJson('/api/posts', { type, from, limit })
+            .then((postList) => dispatch(receivePosts(postList, type, from, limit)));
     };
 }
 
