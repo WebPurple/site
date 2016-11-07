@@ -9,7 +9,10 @@ const feed = (state = { isFetching: false, posts: [] }, action) => {
             return {
                 ...state,
                 isFetching: false,
-                posts: action.payload,
+                allPostsLoaded: action.payload.posts.length < action.payload.limit,
+                posts: action.payload.from === 0
+                    ? action.payload.posts
+                    : state.posts.concat(action.payload.posts),
             };
         case POST_ADDED:
             return {

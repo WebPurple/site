@@ -27,26 +27,34 @@ describe('feed.actions', () => {
 
     it('should create an action to receive posts', () => {
         const posts = [{ _id: 1 }];
-        expect(actions.receivePosts(posts))
+        const type = 'cha';
+        const from = 0;
+        const limit = 1;
+        expect(actions.receivePosts(posts, type, from, limit))
             .to.deep.equal({
                 type: actions.RECEIVE_POSTS,
-                payload: posts,
+                payload: { posts, type, from, limit },
             });
     });
 
     describe('async', () => {
+        afterEach(fetchMock.restore);
+
         it('should create an action to fetch posts', () => {
             const posts = [{ _id: 1 }];
+            const type = 'cha';
+            const from = 0;
+            const limit = 1;
             const store = mockStore();
 
-            fetchMock.get('/api/posts', posts);
+            fetchMock.get('/api/posts?type=cha&from=0&limit=1', posts);
 
-            store.dispatch(actions.fetchPosts())
+            return store.dispatch(actions.fetchPosts(type, from, limit))
                 .then(() => {
-                    expect(fetchMock.called('/api/posts')).to.be.true;
+                    expect(fetchMock.called('/api/posts?type=cha&from=0&limit=1')).to.be.true;
                     expect(store.getActions()).to.deep.equal([
-                        { type: actions.REQUEST_POSTS },
-                        { type: actions.RECEIVE_POSTS, payload: posts },
+                        actions.requestPosts(),
+                        actions.receivePosts(posts, type, from, limit),
                     ]);
                 });
         });
@@ -57,7 +65,7 @@ describe('feed.actions', () => {
 
             fetchMock.delete('/api/posts/1', post);
 
-            store.dispatch(actions.deletePost(1))
+            return store.dispatch(actions.deletePost(1))
                 .then(() => {
                     expect(fetchMock.called('/api/posts/1')).to.be.true;
                     expect(store.getActions()).to.deep.equal([

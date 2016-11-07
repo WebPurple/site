@@ -53,10 +53,11 @@ module.exports = () => {
                 .catch(err => response.send(err));
         })
         // get all posts
-        .get((request, response) => {
-            // by default normal (not suggested) posts should be returned
-            Post.find({ type: request.query.type ? request.query.type : null })
+        .get(({ query: { type, from, limit } }, response) => {
+            Post.find({ type: type || null }) // by default normal (not suggested) posts should be returned
                 .sort('-date')
+                .skip(parseInt(from, 10) || 0)
+                .limit(parseInt(limit, 10) || null)
                 .populate('author')
                 .lean()
                 .exec()
