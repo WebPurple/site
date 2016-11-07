@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import feedReducer from './../../../src/containers/feed/feed.reducer';
-import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED, postAdded } from './../../../src/containers/feed/feed.actions';
+import { REQUEST_POSTS, receivePosts, POST_REMOVED, postAdded } from './../../../src/containers/feed/feed.actions';
 
 describe('feed.reducer', () => {
-    const state = Object.freeze({});
+    const state = deepFreeze({ posts: [] });
 
     it('should create empty object on init', () => expect(feedReducer(undefined, {})).to.be.defined);
 
@@ -22,11 +22,22 @@ describe('feed.reducer', () => {
 
     describe('receive_posts action', () => {
         const posts = [{ id: 1, title: 'post 1' }];
-        const action = { type: RECEIVE_POSTS, payload: posts };
-        const newState = feedReducer(state, action);
+        let newState = feedReducer(state, receivePosts(posts, undefined, 0));
 
-        it('should save all received items', () => {
+        it('should rewrite all received items if from === 0', () => {
             expect(newState.posts).to.be.equal(posts);
+        });
+
+        it('should concat received items to existing posts if position !== 0', () => {
+            newState = feedReducer(deepFreeze(newState), receivePosts(posts));
+            expect(newState.posts).to.eql(posts.concat(posts));
+        });
+
+        it('should set allPostsLoaded to true when received count of items less then requested', () => {
+            newState = feedReducer(state, receivePosts(posts, undefined, 0, 1));
+            expect(newState.allPostsLoaded).to.equal(false);
+            newState = feedReducer(state, receivePosts(posts, undefined, 0, 2));
+            expect(newState.allPostsLoaded).to.equal(true);
         });
 
         it('should assign true to isFetching', () => {
