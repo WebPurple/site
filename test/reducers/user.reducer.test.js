@@ -4,11 +4,12 @@ import userReducer from './../../src/reducers/user.reducer';
 import {
     requestUser,
     receiveUser,
+    receiveRoles,
     SAVE_USER,
 } from './../../src/actions/user.actions';
 
 describe('user.reducer', () => {
-    const state = { account: {} };
+    const state = { account: {}, allRoles: [] };
     Object.freeze(state);
 
     it('should create empty object on init', () => {
@@ -31,5 +32,10 @@ describe('user.reducer', () => {
     it('should save received user', () => {
         const user = 'user1';
         expect(userReducer(state, receiveUser(user)).account).to.equal(user);
+    });
+
+    it('should save received roles', () => {
+        const roles = ['admin', 'editor'];
+        expect(userReducer(state, receiveRoles(roles)).allRoles).to.eql(roles);
     });
 });
