@@ -1,29 +1,28 @@
+import { fromJS, List } from 'immutable';
+
 import { POST_ADDED } from './feed.action-types';
 import { REQUEST_POSTS, RECEIVE_POSTS, POST_REMOVED } from './feed.actions';
 
-const feed = (state = { isFetching: false, posts: [] }, action) => {
+const initialState = fromJS({
+    isFetching: false,
+    posts: [],
+});
+
+const feed = (state = initialState, action) => {
     switch (action.type) {
         case REQUEST_POSTS:
-            return { ...state, isFetching: true };
+            return state.set('isFetching', true);
         case RECEIVE_POSTS:
-            return {
-                ...state,
-                isFetching: false,
-                allPostsLoaded: action.payload.posts.length < action.payload.limit,
-                posts: action.payload.from === 0
-                    ? action.payload.posts
-                    : state.posts.concat(action.payload.posts),
-            };
+            return state.withMutations(mutableState => mutableState
+                .set('isFetching', false)
+                .set('allPostsLoaded', action.payload.posts.length < action.payload.limit)
+                .update('posts', posts => action.payload.from === 0
+                    ? new List(action.payload.posts)
+                    : posts.concat(action.payload.posts)));
         case POST_ADDED:
-            return {
-                ...state,
-                posts: [action.payload].concat(state.posts),
-            };
+            return state.update('posts', posts => posts.unshift(action.payload));
         case POST_REMOVED:
-            return {
-                ...state,
-                posts: state.posts.filter(post => post._id !== action.payload._id),
-            };
+            return state.update('posts', posts => posts.filter(post => post._id !== action.payload._id));
         default:
             return state;
     }

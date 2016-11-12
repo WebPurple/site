@@ -43,7 +43,7 @@ class FeedContainer extends React.Component {
     }
 
     rowCount(posts) {
-        return Math.ceil((posts || this.props.posts).length / this.columnCount);
+        return Math.ceil((posts || this.props.posts).size / this.columnCount);
     }
 
     fetchPosts(from = 0, limit = this.columnCount * 6) {
@@ -96,7 +96,7 @@ class FeedContainer extends React.Component {
                                     columnCount={this.columnCount}
                                     columnWidth={this.columnWidth}
                                     cellRenderer={({ columnIndex, rowIndex, style, key }) => {
-                                        const post = posts[this.mapTwoDimensionalIndexesToOneDimensional(columnIndex, rowIndex)];
+                                        const post = posts.get(this.mapTwoDimensionalIndexesToOneDimensional(columnIndex, rowIndex));
                                         return post && (
                                             <div key={key} style={style}>
                                                 <PostItem
@@ -125,7 +125,7 @@ function canSubmit(user, post) {
 
 export default connect(
     (state, ownProps) => ({
-        ...state.feed,
+        ...state.feed.toObject(),
         ...state.user,
         postsType: ownProps.location.query.type,
     }),
