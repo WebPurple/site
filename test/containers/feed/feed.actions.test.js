@@ -5,10 +5,29 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import * as actions from '../../../src/containers/feed/feed.actions';
+import * as actionTypes from '../../../src/containers/feed/feed.action-types';
 
 const mockStore = configureMockStore([thunk]);
 
 describe('feed.actions', () => {
+    describe.only('POST_ADDED action', () => {
+        const newPost = 'new post';
+        it('should return post as payload when error parameter is falsy', () => expect(actions.postAdded(newPost))
+            .to.eql({
+                type: actionTypes.POST_ADDED,
+                payload: newPost,
+                error: undefined,
+            }));
+
+        const error = 'error';
+        it('should return error as payload, and error === true in case of error', () => expect(actions.postAdded(error, true))
+            .to.eql({
+                type: actionTypes.POST_ADDED,
+                payload: error,
+                error: true,
+            }));
+    });
+
     it('should create an action to remove post', () => {
         const post = 'removed post';
         expect(actions.postRemoved(post))
