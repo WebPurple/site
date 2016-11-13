@@ -11,7 +11,7 @@ import * as actions from './new-post.actions';
 
 import styles from './new-post.less';
 
-const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, submitPostForm, suggest }) => (
+const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, closeErrorDialog, submitPostForm, suggest }) => (
     <div>
         <FloatingActionButton title={title(suggest)} onTouchTap={openDialog} className={styles['new-post-button']}>
             <Create />
@@ -22,6 +22,13 @@ const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, submitPo
             autoScrollBodyContent
             onRequestClose={closeDialog}>
             <PostEditForm onSubmit={post => submitPostForm({ ...post, suggest })} extended={!suggest} {...postEditor} />
+            {state.error && (
+                <Dialog
+                    open onRequestClose={closeErrorDialog}
+                    title={`Failed to ${title(suggest).toLowerCase()}`}>
+                    {state.error}
+                </Dialog>
+            )}
         </Dialog>
     </div>
 );

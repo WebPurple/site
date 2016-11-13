@@ -20,7 +20,8 @@ const feed = (state = initialState, action) => {
                     ? new List(action.payload.posts)
                     : posts.concat(action.payload.posts)));
         case POST_ADDED:
-            return state.update('posts', posts => posts.unshift(action.payload));
+            return action.error ? state
+                : state.update('posts', posts => posts.unshift(action.payload));
         case POST_REMOVED:
             return state.update('posts', posts => posts.filter(post => post._id !== action.payload._id));
         default:
