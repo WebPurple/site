@@ -32,3 +32,12 @@ export default class VkCommunityWidget extends React.Component {
         return <div id={WIDGET_ROOT_ID} />;
     }
 }
+
+VkCommunityWidget.propTypes = {
+    mode: React.PropTypes.number,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    color1: React.PropTypes.string,
+    color2: React.PropTypes.string,
+    color3: React.PropTypes.string,
+}
