@@ -49,9 +49,12 @@ describe('feed.reducer', () => {
         const post = { id: 1, title: 'post 1' };
         const newState = feedReducer(state, postAdded(post));
 
-        it('should add new post to the beginning of array', () => {
-            expect(newState.get('posts').get(0)).to.be.equal(post);
-        });
+        it('should add new post to the beginning of array',
+            () => expect(newState.get('posts').get(0)).to.equal(post));
+
+
+        it('should not save post if error returned',
+            () => expect(feedReducer(newState, postAdded('some error', true))).to.equal(newState));
     });
 
     describe('post_removed action', () => {

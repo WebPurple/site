@@ -41,9 +41,10 @@ export function deletePost(id) {
         .then(removedPost => dispatch(postRemoved(removedPost)));
 }
 
-export function postAdded(post) {
+export function postAdded(postOrError, failed) {
     return {
         type: POST_ADDED,
-        payload: post,
+        payload: postOrError,
+        error: failed,
     };
 }

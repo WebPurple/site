@@ -3,6 +3,7 @@ import {
     CLOSE_DIALOG,
     SUBMIT_POST_FORM,
     EDIT_POST,
+    CLOSE_ERROR_DIALOG,
 } from './new-post.action-types';
 
 import { postAdded } from './../feed.actions';
@@ -17,6 +18,10 @@ export function closeDialog() {
     return { type: CLOSE_DIALOG };
 }
 
+export function closeErrorDialog() {
+    return { type: CLOSE_ERROR_DIALOG };
+}
+
 export function editPost(post) {
     return { type: EDIT_POST, payload: post };
 }
@@ -29,7 +34,8 @@ export function submitPostForm(post) {
     return (dispatch) => {
         dispatch(formSubmitted());
         const { _id } = post;
-        (_id ? putJson : postJson)(`/api/posts/${_id || ''}`, post)
-            .then(savedPost => dispatch(postAdded(savedPost)));
+        return (_id ? putJson : postJson)(`/api/posts/${_id || ''}`, post)
+            .then(savedPost => dispatch(postAdded(savedPost)))
+            .catch(error => dispatch(postAdded(error, true)));
     };
 }
