@@ -10,7 +10,7 @@ import * as actionTypes from '../../../src/containers/feed/feed.action-types';
 const mockStore = configureMockStore([thunk]);
 
 describe('feed.actions', () => {
-    describe.only('POST_ADDED action', () => {
+    describe('POST_ADDED action', () => {
         const newPost = 'new post';
         it('should return post as payload when error parameter is falsy', () => expect(actions.postAdded(newPost))
             .to.eql({

@@ -34,7 +34,7 @@ export function submitPostForm(post) {
     return (dispatch) => {
         dispatch(formSubmitted());
         const { _id } = post;
-        (_id ? putJson : postJson)(`/api/posts/${_id || ''}`, post)
+        return (_id ? putJson : postJson)(`/api/posts/${_id || ''}`, post)
             .then(savedPost => dispatch(postAdded(savedPost)))
             .catch(error => dispatch(postAdded(error, true)));
     };
