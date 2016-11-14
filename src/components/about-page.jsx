@@ -16,7 +16,7 @@ const AboutPage = () => (
                 </p>
                 <p>
                     By the way this site is open sourse project, so feel free to contribute
-                    (and don't forget to add start to a project if you like it).
+                    (and don't forget to add star to a project if you like it).
                 </p>
                 <GithubButton />
             </CardText>
