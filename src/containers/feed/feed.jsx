@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
 import { Grid, InfiniteLoader, WindowScroller } from 'react-virtualized';
 
@@ -118,6 +119,15 @@ class FeedContainer extends React.Component {
         );
     }
 }
+
+FeedContainer.propTypes = {
+    account: React.PropTypes.object,
+    posts: React.PropTypes.instanceOf(List),
+    fetchPosts: React.PropTypes.func,
+    deletePost: React.PropTypes.func,
+    editPost: React.PropTypes.func,
+    allPostsLoaded: React.PropTypes.bool
+};
 
 function canSubmit(user, post) {
     return post.type === 'suggest' && (isAdmin(user) || isEditor(user));

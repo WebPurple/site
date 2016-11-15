@@ -19,6 +19,10 @@ const AppLeftNavComponent = ({ leftNavOpen }) => (
     </Drawer>
 );
 
+AppLeftNavComponent.propTypes = {
+    leftNavOpen: React.PropTypes.bool
+};
+
 const AppLeftNavContainer = connect(state => state.leftNav)(AppLeftNavComponent);
 
 export default AppLeftNavContainer;
