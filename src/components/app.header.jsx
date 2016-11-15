@@ -20,6 +20,13 @@ const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onAvatarClick 
         iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onAvatarClick={onAvatarClick} />} />
 );
 
+AppHeaderComponent.propTypes = {
+    user: React.PropTypes.object,
+    onToggleLeftNav: React.PropTypes.func,
+    leftNavOpen: React.PropTypes.bool,
+    onAvatarClick: React.PropTypes.func
+};
+
 function renderTitle(user) {
     // eslint-disable-next-line prefer-template
     return 'WebPurple' + (user.account && user.account._id ? ` | ${user.account.displayName}` : '');
