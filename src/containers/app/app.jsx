@@ -39,4 +39,8 @@ const AppContainer = ({ leftNavOpen, children }) => (
     </MuiThemeProvider>
 );
 
+AppContainer.propTypes = {
+    leftNavOpen: React.PropTypes.bool
+};
+
 export default connect(state => state.leftNav)(AppContainer);

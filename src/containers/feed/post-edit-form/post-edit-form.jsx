@@ -98,6 +98,19 @@ function requiredFieldsAreFilled(post) {
     return post.comment || (post.title && post.description);
 }
 
+PostEditFormContainer.propTypes = {
+    extended: React.PropTypes.bool,
+    post: React.PropTypes.object,
+    isFetching: React.PropTypes.bool,
+    onSubmit: React.PropTypes.func,
+    deferredPost: React.PropTypes.bool,
+    onToggleDeferredPost: React.PropTypes.func,
+    onToggleExportToFacebook: React.PropTypes.func,
+    account: React.PropTypes.object,
+    onChangeComment: React.PropTypes.func,
+    onClearSnippet: React.PropTypes.func,
+};
+
 export default connect(
     state => ({
         ...state.newPost,
