@@ -33,6 +33,16 @@ const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, closeErr
     </div>
 );
 
+NewPostContainer.propTypes = {
+    state: React.PropTypes.object,
+    postEditor: React.PropTypes.object,
+    openDialog: React.PropTypes.func,
+    closeDialog: React.PropTypes.func,
+    closeErrorDialog: React.PropTypes.func,
+    submitPostForm: React.PropTypes.func,
+    suggest: React.PropTypes.bool
+};
+
 function title(suggest) {
     return `${suggest ? 'Suggest' : 'Add'} new post`;
 }
