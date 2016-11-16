@@ -17,7 +17,7 @@ let storeEnhancer = applyMiddleware(...middlewares);
 
 if (process.env.NODE_ENV !== 'production') {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-    storeEnhancer = composeEnhancers(storeEnhancer)
+    storeEnhancer = composeEnhancers(storeEnhancer);
 }
 
 export default function configureStore(preloadedState) {
