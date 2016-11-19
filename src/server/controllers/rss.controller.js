@@ -31,14 +31,20 @@ module.exports = (app) => {
                     author: author && author.displayName,
                 };
                 if (image && image.length) {
-                    const extention = image.substr(image.lastIndexOf('.') + 1);
                     item.enclosure = {
                         url: image,
-                        type: `image/${extention}`,
+                        type: `image/${extractExtension(image)}`,
                     };
                 }
                 feed.item(item);
             });
+
+            function extractExtension(fileUrl) {
+                const extracted = /.*\.([a-z]+)/.exec(fileUrl.toLowerCase())[1];
+                return /jpeg|gif|png|tiff|webp/.test(extracted)
+                    ? extracted
+                    : 'jpeg'; // jpg should also be jpeg
+            }
 
             response.setHeader('content-type', 'application/rss+xml');
             response.send(feed.xml({ indent: true }));
