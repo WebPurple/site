@@ -64,9 +64,8 @@
             "warn",
             "after-props"
         ],
-        // TODO must be warn at least
         "react/prop-types": [
-            "off"
+            "warn"
         ]
     }
 }
