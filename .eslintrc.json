@@ -14,9 +14,7 @@
         }
     },
     "env": {
-        "browser": true,
-        // TODO must be false
-        "node": true
+        "browser": true
     },
     "globals": {
         "fetch": true
