@@ -40,7 +40,7 @@ app.use(history({
     rewrites: [
         { from: /\/rss/, to: '/rss' },
         { from: /\/auth/, to: context => context.parsedUrl.pathname },
-        { from: /\/logout/, to: context => context.parsedUrl.pathname },
+        { from: /\/logout/, to: '/logout'},
     ],
 }));
 
