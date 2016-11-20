@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 const middlewares = [thunkMiddleware, routerMiddleware(browserHistory)];
 let storeEnhancer = applyMiddleware(...middlewares);
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
     storeEnhancer = composeEnhancers(storeEnhancer);
 }
