@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const serverConf = require('./conf/server');
 const dbConf = require('./conf/db');
 
+const logoutApi = require('./controllers/logout.controller');
 const authApi = require('./controllers/auth.controller');
 const postsApi = require('./controllers/posts.controller');
 const userApi = require('./controllers/user.controller');
@@ -39,6 +40,7 @@ app.use(history({
     rewrites: [
         { from: /\/rss/, to: '/rss' },
         { from: /\/auth/, to: context => context.parsedUrl.pathname },
+        { from: /\/logout/, to: context => context.parsedUrl.pathname },
     ],
 }));
 
@@ -61,6 +63,7 @@ app.use(expressSession({
 }));
 
 authApi(app);
+logoutApi(app);
 
 app.use('/api', postsApi());
 app.use('/api', userApi());

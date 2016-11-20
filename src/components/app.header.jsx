@@ -12,19 +12,19 @@ import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';
 import { toggleLeftNav } from '../containers/navigation/navigation-bar.actions';
 
-const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onAvatarClick }) => (
+const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onSettingsClick }) => (
     <AppBar
         style={{ position: 'fixed', left: 0 }}
         title={renderTitle(user)}
         iconElementLeft={<LeftIcon leftNavOpen={leftNavOpen} onToggleLeftNav={onToggleLeftNav} />}
-        iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onAvatarClick={onAvatarClick} />} />
+        iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onSettingsClick={onSettingsClick} />} />
 );
 
 AppHeaderComponent.propTypes = {
     user: React.PropTypes.object,
     onToggleLeftNav: React.PropTypes.func,
     leftNavOpen: React.PropTypes.bool,
-    onAvatarClick: React.PropTypes.func
+    onSettingsClick: React.PropTypes.func
 };
 
 function renderTitle(user) {
@@ -36,8 +36,8 @@ const LeftIcon = ({ leftNavOpen, onToggleLeftNav }) => (
     <IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu />}</IconButton>
 );
 
-const RightMenu = ({ user, isFetching, onAvatarClick }) => (
-    user && user._id ? <UserAvatar user={user} onTouchTap={onAvatarClick} />
+const RightMenu = ({ user, isFetching, onSettingsClick }) => (
+    user && user._id ? <UserAvatar user={user} onSettingsTap={onSettingsClick} />
         : isFetching ? <CircularProgress color="#fff" size={0.5} />
             : <LoginComponent />
 );
@@ -46,7 +46,7 @@ const AppHeaderContainer = connect(
     state => Object.assign({}, { user: state.user }, { leftNavOpen: state.leftNav.leftNavOpen }),
     dispatch => ({
         onToggleLeftNav: () => dispatch(toggleLeftNav()),
-        onAvatarClick: () => dispatch(push('/settings')),
+        onSettingsClick: () => dispatch(push('/settings')),
     })
 )(AppHeaderComponent);
 
