@@ -12,12 +12,12 @@ import LoginComponent from './login.component';
 import UserAvatar from './user-avatar.component';
 import { toggleLeftNav } from '../containers/navigation/navigation-bar.actions';
 
-const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen, onSettingsClick }) => (
+const AppHeaderComponent = ({ user, onToggleLeftNav, leftNavOpen }) => (
     <AppBar
         style={{ position: 'fixed', left: 0 }}
         title={renderTitle(user)}
         iconElementLeft={<LeftIcon leftNavOpen={leftNavOpen} onToggleLeftNav={onToggleLeftNav} />}
-        iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} onSettingsClick={onSettingsClick} />} />
+        iconElementRight={<RightMenu user={user.account} isFetching={user.isFetching} />} />
 );
 
 AppHeaderComponent.propTypes = {
@@ -36,8 +36,8 @@ const LeftIcon = ({ leftNavOpen, onToggleLeftNav }) => (
     <IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu />}</IconButton>
 );
 
-const RightMenu = ({ user, isFetching, onSettingsClick }) => (
-    user && user._id ? <UserAvatar user={user} onSettingsTap={onSettingsClick} />
+const RightMenu = ({ user, isFetching}) => (
+    user && user._id ? <UserAvatar user={user} />
         : isFetching ? <CircularProgress color="#fff" size={0.5} />
             : <LoginComponent />
 );
@@ -46,7 +46,6 @@ const AppHeaderContainer = connect(
     state => Object.assign({}, { user: state.user }, { leftNavOpen: state.leftNav.leftNavOpen }),
     dispatch => ({
         onToggleLeftNav: () => dispatch(toggleLeftNav()),
-        onSettingsClick: () => dispatch(push('/settings')),
     })
 )(AppHeaderComponent);
 
