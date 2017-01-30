@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import securityUtils from './../../../src/server/utils/security-utils';
@@ -20,8 +19,8 @@ describe('securityUtils', () => {
 
             checkPermissions(request, response, next);
 
-            expect(response.status.calledWith(403)).to.be.true;
-            expect(response.send.called).to.be.true;
+            expect(response.status.calledWith(403)).toBe(true);
+            expect(response.send.called).toBe(true);
         });
 
         it('should call next() when all passed predicate[s] returned true', () => {
@@ -29,8 +28,8 @@ describe('securityUtils', () => {
 
             checkPermissions(request, response, next);
 
-            expect(response.status.calledWith(403)).to.be.true;
-            expect(response.send.called).to.be.true;
+            expect(response.status.calledWith(403)).toBe(true);
+            expect(response.send.called).toBe(true);
         });
 
         it('should check if request is authenticated by default', () => {
@@ -39,14 +38,14 @@ describe('securityUtils', () => {
             request.isAuthenticated = sinon.stub().returns(false);
             checkPermissions(request, response, next);
 
-            expect(response.status.calledWith(403)).to.be.true;
-            expect(response.send.called).to.be.true;
-            expect(next.called).to.be.false;
+            expect(response.status.calledWith(403)).toBe(true);
+            expect(response.send.called).toBe(true);
+            expect(next.called).toBe(false);
 
             request.isAuthenticated = sinon.stub().returns(true);
             checkPermissions(request, response, next);
 
-            expect(next.called).to.be.true;
+            expect(next.called).toBe(true);
         });
     });
 });
