@@ -11,11 +11,13 @@ import * as actions from './new-post.actions';
 
 import styles from './new-post.less';
 
-const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, closeErrorDialog, submitPostForm, suggest }) => (
+const NewPostContainer = ({ state, postEditor, openDialog, closeDialog, closeErrorDialog, submitPostForm, suggest, isAuthorized }) => (
     <div>
-        <FloatingActionButton title={title(suggest)} onTouchTap={openDialog} className={styles['new-post-button']}>
-            <Create />
-        </FloatingActionButton>
+        {isAuthorized && (
+            <FloatingActionButton title={title(suggest)} onTouchTap={openDialog} className={styles['new-post-button']}>
+                <Create />
+            </FloatingActionButton>
+        )}
         <Dialog
             title={title(suggest)}
             open={state.dialogOpen}
@@ -40,7 +42,8 @@ NewPostContainer.propTypes = {
     closeDialog: React.PropTypes.func,
     closeErrorDialog: React.PropTypes.func,
     submitPostForm: React.PropTypes.func,
-    suggest: React.PropTypes.bool
+    suggest: React.PropTypes.bool,
+    isAuthorized: React.PropTypes.bool
 };
 
 function title(suggest) {
@@ -48,6 +51,6 @@ function title(suggest) {
 }
 
 export default connect(
-    state => state.newPost,
+    state => ({ ...state.newPost, isAuthorized: state.user.isAuthorized }),
     dispatch => bindActionCreators(actions, dispatch)
 )(NewPostContainer);
