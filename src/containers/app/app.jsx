@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 const Header = styled.header`
     margin: 0 175px;
+    display: flex;
 `;
 
 const Logo = styled.h1`
     width: 162px;
     height: 31px;
-    float: left;
     text-transform: uppercase;
     font-family: Rubik, sans-serif;
     font-size: 26px;
@@ -22,7 +22,6 @@ const Logo = styled.h1`
 `;
 
 const NavigationBar = styled.ul`
-    float: left;
 `;
 
 const MenuItem = styled.li`
