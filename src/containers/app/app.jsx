@@ -30,9 +30,11 @@ const MenuItem = styled.li`
     display: inline-block;
     padding: 10px;
     box-sizing: border-box;
-    
+    transition: border-color 1s ease-out;
+    border-bottom: solid 3px transparent;
+
     &:hover {
-        border-bottom: solid 3px #e62270;
+        border-bottom-color: #e62270;
     }
 `;
 
