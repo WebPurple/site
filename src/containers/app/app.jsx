@@ -21,16 +21,10 @@ const Header = styled.header`
 `;
 
 const Logo = styled.h1`
-    width: 162px;
-    height: 31px;
     text-transform: uppercase;
     font-family: Rubik, sans-serif;
     font-size: 26px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
     color: #e62270;
 `;
 
@@ -53,16 +47,10 @@ const MenuItem = styled.li`
 `;
 
 const NavigationLink = styled.a`
-    width: 52px;
-    height: 16px;
     text-decoration: none;
     font-family: Rubik, sans-serif;
     font-size: 18px;
     font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 0.89;
-    letter-spacing: normal;
     text-align: center;
     color: #a1a1a1;
 `;
