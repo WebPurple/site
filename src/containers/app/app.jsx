@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 
@@ -25,7 +25,7 @@ const Logo = styled.h1`
     font-family: Rubik, sans-serif;
     font-size: 26px;
     font-weight: bold;
-    color: #e62270;
+    color: ${props => props.theme.lipstick};
 `;
 
 const NavigationBar = styled.ul`
@@ -42,7 +42,7 @@ const MenuItem = styled.li`
     border-bottom: solid 3px transparent;
 
     &:hover {
-        border-bottom-color: #e62270;
+        border-bottom-color: ${props => props.theme.lipstick};
     }
 `;
 
@@ -52,7 +52,7 @@ const NavigationLink = styled.a`
     font-size: 18px;
     font-weight: 500;
     text-align: center;
-    color: #a1a1a1;
+    color: ${props => props.theme.warmGrey};
 `;
 
 const Footer = styled.footer`
@@ -60,28 +60,37 @@ const Footer = styled.footer`
     ${media.tablet`padding: 40px 175px;`}
     left: 0;
     bottom: 0;
-    background-color: #432867;
+    background-color: ${props => props.theme.grape};
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
     color: white;
     font-family: Rubik, sans-serif;
 `;
 
+const theme = {
+    grape: '#432867',
+    warmGrey: '#a1a1a1',
+    lipstick: '#e62270',
+    vividPurple: '#9012fe',
+};
+
 const AppContainer = ({ children }) => (
-    <Container>
-        <Header>
-            <Logo>Webpurple</Logo>
-            <NavigationBar>
-                <MenuItem><NavigationLink href="#home">Home</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink href="#events">Events</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink href="#speakers">Speakers</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
-            </NavigationBar>
-        </Header>
-        <main>
-            {children}
-        </main>
-        <Footer>Footer is supposed to be here</Footer>
-    </Container>
+    <ThemeProvider theme={theme}>
+        <Container>
+            <Header>
+                <Logo>Webpurple</Logo>
+                <NavigationBar>
+                    <MenuItem><NavigationLink href="#home">Home</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink href="#events">Events</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink href="#speakers">Speakers</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
+                </NavigationBar>
+            </Header>
+            <main>
+                {children}
+            </main>
+            <Footer>Footer is supposed to be here</Footer>
+        </Container>
+    </ThemeProvider>
 );
 
 export default AppContainer;
