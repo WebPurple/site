@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 
-import SubscriptionForm from './subscription-block';
+import SubscriptionForm from './subscription-form';
 
 const EmptyBlock = styled.section`
     font-family: Rubik;
