@@ -1,10 +1,23 @@
 import * as React from 'react';
-
 import styled from 'styled-components';
 
-const Header = styled.header`
-    margin: 0 175px;
+import { media } from '../../utils/css-utils';
+
+const Container = styled.div`
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    ${media.desktop`width: 1280px;`}
+    ${media.hd`width: 1440px;`}
+`;
+
+const Header = styled.header`
+    display: flex;
+    
+    margin: 0 50px;
+    ${media.hd`margin: 0 175px;`}
 `;
 
 const Logo = styled.h1`
@@ -22,6 +35,8 @@ const Logo = styled.h1`
 `;
 
 const NavigationBar = styled.ul`
+    display: none;
+    ${media.tablet`display: block;`}
 `;
 
 const MenuItem = styled.li`
@@ -53,10 +68,8 @@ const NavigationLink = styled.a`
 `;
 
 const Footer = styled.footer`
-    position: fixed;
-    width: 100%;
-    margin: 0;
-    padding: 40px 175px;
+    padding: 40px;
+    ${media.tablet`padding: 40px 175px;`}
     left: 0;
     bottom: 0;
     background-color: #432867;
@@ -66,7 +79,7 @@ const Footer = styled.footer`
 `;
 
 const AppContainer = ({ children }) => (
-    <div>
+    <Container>
         <Header>
             <Logo>Webpurple</Logo>
             <NavigationBar>
@@ -80,7 +93,7 @@ const AppContainer = ({ children }) => (
             {children}
         </main>
         <Footer>Footer is supposed to be here</Footer>
-    </div>
+    </Container>
 );
 
 export default AppContainer;
