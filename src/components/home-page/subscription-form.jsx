@@ -18,7 +18,7 @@ const SubscriptionForm = styled.section`
 const Header = styled.h2`
     text-align: center;
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: .615rem; /* 16px */
     font-family: Rubik, sans-serif;
     font-weight: bold;
     color: #fff;
@@ -31,7 +31,7 @@ const Header = styled.h2`
 const SubHeader = styled.p`
     text-align: center;
     margin: 0;
-    margin-bottom: 40px;
+    margin-bottom: 2.86rem; /* 40px */
     font-family: 'Oxygen', sans-serif;
     color: #fff;
     font-size: 1.4em;
@@ -57,10 +57,10 @@ const Input = styled.input`
     width: 100%;
     padding: .83em 1.25em;
     color: #ccc;
-    margin-bottom: 25px;
+    margin-bottom: 1rem; /* 24px */
     ${media.tablet`
         width: 350px;
-        margin-right: 15px;
+        margin-right: .625rem; /* 15px */
         margin-bottom: 0;
     `}
 `;
