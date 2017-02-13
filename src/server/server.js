@@ -51,6 +51,7 @@ if (isProd) {
 }
 
 app.use(express.static('favicon'));
+app.use(express.static('public'));
 
 rssApi(app);
 
