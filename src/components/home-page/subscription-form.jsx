@@ -11,8 +11,8 @@ const SubscriptionForm = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px;
-    ${media.desktop`padding: 100px 20px;`}
+    padding: 6em 2em;
+    ${media.desktop`padding: 10em 2em;`}
 `;
 
 const Header = styled.h2`
@@ -22,11 +22,9 @@ const Header = styled.h2`
     font-family: Rubik, sans-serif;
     font-weight: bold;
     color: #fff;
-    line-height: 26px;
-    font-size: 26px;
+    font-size: 2.6em;
     ${media.tablet`
-        line-height: 48px;
-        font-size: 48px;
+        font-size: 4.8em;
     `}
 `;
 
@@ -36,10 +34,9 @@ const SubHeader = styled.p`
     margin-bottom: 40px;
     font-family: 'Oxygen', sans-serif;
     color: #fff;
-    font-size: 14px;
+    font-size: 1.4em;
     ${media.tablet`
-        line-height: 24px;
-        font-size: 24px;
+        font-size: 2.4em;
     `}
 `;
 
@@ -55,10 +52,10 @@ const FormWrapper = styled.form`
 
 const Input = styled.input`
     font-family: 'Oxygen', sans-serif;
-    font-size: 24px;
+    font-size: 2.4em;
     box-sizing: border-box;
     width: 100%;
-    padding: 20px 30px;
+    padding: .83em 1.25em;
     color: #ccc;
     margin-bottom: 25px;
     ${media.tablet`
@@ -73,8 +70,8 @@ const SubscribeButton = styled.button`
     background: transparent;
     font-family: 'Rubik', sans-serif;
     text-transform: uppercase;
-    font-size: 24px;
-    padding: 20px 30px;
+    font-size: 2.4em;
+    padding: .83em 1.25em;
     font-weight: bold;
     color: #fff;
     transition: all 0.2s ease-in-out;
