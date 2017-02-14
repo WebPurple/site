@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import PastEvents from '../past-events/past-events';
-
-// import SubscriptionForm from './subscription-block';
+import SubscriptionForm from './subscription-form';
 
 const EmptyBlock = styled.section`
     font-family: Rubik;
@@ -15,8 +14,6 @@ const EmptyBlock = styled.section`
     ${media.tablet`line-height: 200px;`}
     ${media.hd`line-height: 300px;`}
 `;
-
-// return subscription form before PR!
 
 const HomePage = () => (
     <div>
