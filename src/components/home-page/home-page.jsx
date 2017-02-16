@@ -19,7 +19,6 @@ const EmptyBlock = styled.section`
 const HomePage = () => (
     <div>
         <EmptyBlock>Upcoming events</EmptyBlock>
-        <EmptyBlock>Passed events</EmptyBlock>
         <PastEvents />
         <SubscriptionForm />
         <EmptyBlock>Social networks block</EmptyBlock>

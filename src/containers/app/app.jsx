@@ -71,6 +71,9 @@ const theme = {
     warmGrey: '#a1a1a1',
     lipstick: '#e62270',
     vividPurple: '#9012fe',
+    cerise: '#ee2a7b',
+    warmPurple: '#662d91',
+    rouge: '#b21d3d',
 };
 
 const AppContainer = ({ children }) => (
