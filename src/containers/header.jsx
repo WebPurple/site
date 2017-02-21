@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { media } from '../utils/css-utils';
+import { Link } from 'react-router';
+
 
 import {
     WebpurpleIcon
@@ -51,7 +53,7 @@ const MenuItem = styled.li`
     }
 `;
 
-const NavigationLink = styled.a`
+const NavigationLink = styled(Link)`
     text-decoration: none;
     font-family: Rubik, sans-serif;
     font-size: 18px;
@@ -82,10 +84,10 @@ export default withTheme(({ theme }) => (
         </Logo>
         <Title>Webpurple</Title>
         <NavigationBar>
-            <MenuItem><NavigationLink href="#home">Home</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink href="#events">Events</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink href="#speakers">Speakers</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
+            <MenuItem><NavigationLink to="#Home">Home</NavigationLink></MenuItem>
+            <MenuItem><NavigationLink to="#events">Events</NavigationLink></MenuItem>
+            <MenuItem><NavigationLink to="#speakers">Speakers</NavigationLink></MenuItem>
+            <MenuItem><NavigationLink to="#feed">Feed</NavigationLink></MenuItem>
         </NavigationBar>
         <SignStatus>/ sign in </SignStatus>
     </Header>
