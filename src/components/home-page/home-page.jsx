@@ -5,15 +5,16 @@ import { media } from '../../utils/css-utils';
 import PastEvents from '../past-events/past-events';
 
 import SubscriptionForm from './subscription-form';
+import SocialLinks from './social-links-block';
 
 const EmptyBlock = styled.section`
-    font-family: Rubik;
-    font-size: 48px;
+    font-family: Rubik, sans-serif;
+    font-size: 4.8em;
     text-align: center;
     vertical-align: middle;
-    line-height: 100px;
-    ${media.tablet`line-height: 200px;`}
-    ${media.hd`line-height: 300px;`}
+    line-height: 2em;
+    ${media.tablet`line-height: 4em;`}
+    ${media.hd`line-height: 6em;`}
 `;
 
 const HomePage = () => (
@@ -21,7 +22,7 @@ const HomePage = () => (
         <EmptyBlock>Upcoming events</EmptyBlock>
         <PastEvents />
         <SubscriptionForm />
-        <EmptyBlock>Social networks block</EmptyBlock>
+        <SocialLinks />
     </div>
 );
 
