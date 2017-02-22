@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import PostItem from './../../components/post/post';
 import NewPost from './new-post/new-post';
+import styles from '../navigation/navigation-bar.less';
 
 import * as feedActions from './feed.actions';
 import * as newPostActions from './new-post/new-post.actions';
@@ -20,8 +21,6 @@ class FeedContainer extends React.Component {
         super(props);
         this.gridWidth = 1600;
         this.rowHeight = 450;
-        this.columnCount = 3; // TODO: grid should be responsive
-        this.columnWidth = 520;
         // Number of columns to render before/after the visible slice of the grid.
         this.overscanRowCount = 3;
         // Threshold at which to pre-fetch data. A threshold X means that data will start loading when a user scrolls within X rows.
@@ -31,6 +30,10 @@ class FeedContainer extends React.Component {
         this.loadMoreRows = this.loadMoreRows.bind(this);
         this.rowCount = this.rowCount.bind(this);
         this.mapTwoDimensionalIndexesToOneDimensional = this.mapTwoDimensionalIndexesToOneDimensional.bind(this);
+        this.state = {
+            columnCount: 3,
+            columnWidth: 520,
+        };
     }
 
     componentWillMount() {
@@ -41,13 +44,37 @@ class FeedContainer extends React.Component {
         if (this.props.postsType !== prevProps.postsType) {
             this.fetchPosts();
         }
+        if (this.props.leftNav !== prevProps.leftNav) {
+            this.updateColumns(true);
+        }
+    }
+
+    componentDidMount() {
+        this.updateColumns();
+        window.addEventListener('resize', (event) => {
+            this.updateColumns();
+        });
+    }
+
+    updateColumns(componentUpdate) {
+        let navBarWidth = 0;
+        if (componentUpdate) {
+            let width = document.getElementsByClassName(styles.navigation)[0].offsetWidth;
+            navBarWidth = this.props.leftNav.leftNavOpen ? -width : width;
+        }
+        let feedBox = document.getElementsByClassName('feed-container')[0];
+        let columnCount = Math.floor((feedBox.offsetWidth + navBarWidth ) / 520);
+        this.setState({
+            columnCount: columnCount,
+            columnWidth: Math.floor((feedBox.offsetWidth + navBarWidth) / columnCount),
+        });
     }
 
     rowCount(posts) {
-        return Math.ceil((posts || this.props.posts).size / this.columnCount);
+        return Math.ceil((posts || this.props.posts).size / this.state.columnCount);
     }
 
-    fetchPosts(from = 0, limit = this.columnCount * 6) {
+    fetchPosts(from = 0, limit = this.state.columnCount * 6) {
         return this.props.fetchPosts(this.props.postsType, from, limit);
     }
 
@@ -56,7 +83,7 @@ class FeedContainer extends React.Component {
     }
 
     loadMoreRows({ startIndex, stopIndex }) {
-        return this.fetchPosts(startIndex * this.columnCount, (stopIndex - startIndex) * this.columnCount);
+        return this.fetchPosts(startIndex * this.state.columnCount, (stopIndex - startIndex) * this.state.columnCount);
     }
 
     mapRowRenderInfo({ rowOverscanStartIndex, rowOverscanStopIndex, rowStartIndex, rowStopIndex }) {
@@ -69,13 +96,13 @@ class FeedContainer extends React.Component {
     }
 
     mapTwoDimensionalIndexesToOneDimensional(columnIndex, rowIndex) {
-        return (rowIndex * this.columnCount) + columnIndex;
+        return (rowIndex * this.state.columnCount) + columnIndex;
     }
 
     render() {
         const { posts, account, deletePost, editPost, allPostsLoaded } = this.props;
         return (
-            <div>
+            <div className={'feed-container'}>
                 <WindowScroller>
                     {({ height, scrollTop }) => (
                         <InfiniteLoader
@@ -88,14 +115,14 @@ class FeedContainer extends React.Component {
                                     ref={registerChild}
                                     onSectionRendered={info => onRowsRendered(this.mapRowRenderInfo(info))}
                                     autoHeight
-                                    height={height}
-                                    width={this.gridWidth}
+                                    height={1600}
+                                    width={this.state.columnWidth * this.state.columnCount}
                                     scrollTop={scrollTop}
                                     overscanRowCount={this.overscanRowCount}
                                     rowCount={this.rowCount(posts)}
                                     rowHeight={this.rowHeight}
-                                    columnCount={this.columnCount}
-                                    columnWidth={this.columnWidth}
+                                    columnCount={this.state.columnCount}
+                                    columnWidth={this.state.columnWidth}
                                     cellRenderer={({ columnIndex, rowIndex, style, key }) => {
                                         const post = posts.get(this.mapTwoDimensionalIndexesToOneDimensional(columnIndex, rowIndex));
                                         return post && (
@@ -109,7 +136,8 @@ class FeedContainer extends React.Component {
                                                     {...post} />
                                             </div>
                                         );
-                                    }} />
+                                    }}
+                                />
                             )}
                         </InfiniteLoader>
                     )}
@@ -137,6 +165,7 @@ export default connect(
     (state, ownProps) => ({
         ...state.feed.toObject(),
         ...state.user,
+        leftNav: state.leftNav,
         postsType: ownProps.location.query.type,
     }),
     dispatch => bindActionCreators({
