@@ -25,7 +25,7 @@ export function fetchUser() {
         dispatch(requestUser());
         return getJson('/api/user')
             .then(user => dispatch(receiveUser(user)))
-            .catch(err => dispatch(receiveUser(err)));
+            .catch(() => dispatch(receiveUser()));
     };
 }
 

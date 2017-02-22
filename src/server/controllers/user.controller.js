@@ -13,7 +13,8 @@ module.exports = () => {
 
     router.route('/user')
         // get current user
-        .get((request, response) => response.send(request.user));
+        .get((request, response) =>
+            request.user ? response.send(request.user) : response.status(401).send('You are not logged in'));
 
     router.route('/users')
         // get all users
