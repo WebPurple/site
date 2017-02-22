@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import postEditReducer from './../../../src/containers/feed/post-edit-form/post-edit-form.reducer';
@@ -18,12 +17,11 @@ describe('post-edit.reducer', () => {
 
     it('should create empty post object on init', () => {
         const newState = postEditReducer(undefined, {});
-        expect(newState).to.be.defined;
-        expect(newState.post).to.be.defined;
-        expect(newState.post.text).to.be.defined;
+        expect(newState).toBeDefined();
+        expect(newState.post).toBeDefined();
     });
 
-    it('should return old state on unknown action', () => expect(postEditReducer(state, {})).to.equal(state));
+    it('should return old state on unknown action', () => expect(postEditReducer(state, {})).toEqual(state));
 
     describe('CHANGE_POST_IMAGE action', () => {
         it('should set new image', () => {
@@ -31,36 +29,36 @@ describe('post-edit.reducer', () => {
             expect(postEditReducer(state, {
                 type: CHANGE_POST_IMAGE,
                 payload: imageLink,
-            }).post.imageLink).to.equal(imageLink);
+            }).post.imageLink).toBe(imageLink);
         });
     });
 
     describe('DEFERRED_POST action', () => {
         it('should toggle deferredPost', () => {
             const newState = postEditReducer(state, toggleDeferredPost());
-            expect(newState.deferredPost).to.equal(true);
-            expect(postEditReducer(newState, toggleDeferredPost()).deferredPost).to.equal(false);
+            expect(newState.deferredPost).toBe(true);
+            expect(postEditReducer(newState, toggleDeferredPost()).deferredPost).toEqual(false);
         });
     });
 
     describe('EXPORT_TO_FACEBOOK action', () => {
         it('should set exportToFacebook', () => {
-            expect(postEditReducer(state, toggleExportToFacebook(true)).post.exportToFacebook).to.equal(true);
-            expect(postEditReducer(state, toggleExportToFacebook(false)).post.exportToFacebook).to.equal(false);
+            expect(postEditReducer(state, toggleExportToFacebook(true)).post.exportToFacebook).toBe(true);
+            expect(postEditReducer(state, toggleExportToFacebook(false)).post.exportToFacebook).toBe(false);
         });
     });
 
     describe('SUBMIT_POST_FORM action', () => {
         it('should set isFetching to true', () => {
-            expect(postEditReducer(state, formSubmitted()).isFetching).to.equal(true);
+            expect(postEditReducer(state, formSubmitted()).isFetching).toBe(true);
         });
     });
 
     describe('POST_ADDED action', () => {
         it('should clear all post fields and set isFetching to false after post saved', () => {
             const newState = postEditReducer(state, postAdded());
-            expect(newState.post).to.deep.equal({ comment: '' });
-            expect(newState.isFetching).to.equal(false);
+            expect(newState.post).toEqual({ comment: '' });
+            expect(newState.isFetching).toBe(false);
         });
     });
 
@@ -70,7 +68,7 @@ describe('post-edit.reducer', () => {
             expect(postEditReducer(state, {
                 type: CHANGE_POST_COMMENT,
                 payload: comment,
-            }).post.comment).to.equal(comment);
+            }).post.comment).toBe(comment);
         });
     });
 
@@ -93,15 +91,14 @@ describe('post-edit.reducer', () => {
 
         it('should extend post object with fetched data',
             () => expect(newState.post)
-                .to.eql({
+                .toEqual({
                     comment: 'super comment',
                     field1: 1,
                     field2: 2,
                 }));
 
         it('should set isFetching to false',
-            () => expect(newState).to.have.property('isFetching')
-                .and.equal(false));
+            () => expect(newState.isFetching).toBe(false));
     });
 
     describe('CLEAR_SNIPPET action', () => {
@@ -114,7 +111,7 @@ describe('post-edit.reducer', () => {
                     url: 'to remove',
                 },
             }), clearSnippet()))
-                .to.eql({ post: { comment } });
+                .toEqual({ post: { comment } });
         });
     });
 
@@ -122,7 +119,7 @@ describe('post-edit.reducer', () => {
         it('should save copy post object and remove type property', () => {
             const post = { comment: 'new post', type: 'it will be removed' };
             expect(postEditReducer(deepFreeze({ post }), editPost(post)))
-                .to.eql({ post: { ...post, type: undefined } });
+                .toEqual({ post: { ...post, type: undefined } });
         });
     });
 });

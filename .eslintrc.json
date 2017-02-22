@@ -14,9 +14,7 @@
         }
     },
     "env": {
-        "browser": true,
-        // TODO must be false
-        "node": true
+        "browser": true
     },
     "globals": {
         "fetch": true
@@ -64,9 +62,8 @@
             "warn",
             "after-props"
         ],
-        // TODO must be warn at least
         "react/prop-types": [
-            "off"
+            "warn"
         ]
     }
 }
