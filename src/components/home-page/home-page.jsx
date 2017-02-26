@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
+import PastEvents from '../past-events/past-events';
 
 import SubscriptionForm from './subscription-form';
 import SocialLinks from './social-links-block';
@@ -19,7 +20,7 @@ const EmptyBlock = styled.section`
 const HomePage = () => (
     <div>
         <EmptyBlock>Upcoming events</EmptyBlock>
-        <EmptyBlock>Passed events</EmptyBlock>
+        <PastEvents />
         <SubscriptionForm />
         <SocialLinks />
     </div>
