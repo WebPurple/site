@@ -10,8 +10,8 @@
     "start": "node src/server/server.js",
     "build": "webpack",
     "lint": "./node_modules/.bin/eslint src/** test/**",
-    "test": "mocha --require babel-register --recursive",
-    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly node_modules/mocha/bin/_mocha -- --recursive",
+    "test": "jest",
+    "test:cov": "jest --coverage",
     "precoveralls": "npm run test:cov",
     "coveralls": "coveralls < coverage/lcov.info || true",
     "clean": "rimraf node_modules coverage __build__"
@@ -22,6 +22,17 @@
   },
   "author": "Nikita_Kirsanov@epam.com, Ilya_Kuznetsov@epam.com",
   "license": "ISC",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "testRegex": "/test/.*\\.(js|jsx)$"
+  },
   "dependencies": {
     "body-parser": "^1.15.0",
     "cheerio": "^0.20.0",
@@ -58,6 +69,7 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "@types/jest": "^16.0.4",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
@@ -66,10 +78,10 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.11.6",
-    "chai": "^3.5.0",
     "coveralls": "^2.11.12",
     "css-loader": "^0.25.0",
     "deep-freeze": "0.0.1",
+    "enzyme": "^2.7.0",
     "eslint": "^3.3.0",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-plugin-import": "^1.13.0",
@@ -79,13 +91,11 @@
     "fetch-mock": "^5.5.0",
     "force-case-sensitivity-webpack-plugin": "^0.1.1",
     "html-webpack-plugin": "^2.22.0",
+    "identity-obj-proxy": "^3.0.0",
     "imports-loader": "^0.6.5",
-    "isparta": "^4.0.0",
-    "istanbul": "0.4.4",
+    "jest": "^18.1.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "mocha": "^2.4.5",
-    "mocha-lcov-reporter": "^1.2.0",
     "redux-mock-store": "^1.2.1",
     "sinon": "^1.17.3",
     "webpack-dev-middleware": "^1.7.0"

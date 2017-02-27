@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 
@@ -11,25 +10,25 @@ import * as feedActions from './../../../../src/containers/feed/feed.actions';
 describe('new-post.actions', () => {
     it('should create an action to open dialog',
         () => expect(actions.openDialog())
-            .to.deep.equal({ type: actionTypes.OPEN_DIALOG }));
+            .toEqual({ type: actionTypes.OPEN_DIALOG }));
 
     it('should create an action to close dialog',
         () => expect(actions.closeDialog())
-            .to.deep.equal({ type: actionTypes.CLOSE_DIALOG }));
+            .toEqual({ type: actionTypes.CLOSE_DIALOG }));
 
     it('should create an action to close error dialog',
         () => expect(actions.closeErrorDialog())
-            .to.deep.equal({ type: actionTypes.CLOSE_ERROR_DIALOG }));
+            .toEqual({ type: actionTypes.CLOSE_ERROR_DIALOG }));
 
     it('should create an action to edit post', () => {
         const postToEdit = 'post';
         expect(actions.editPost(postToEdit))
-            .to.deep.equal({ type: actionTypes.EDIT_POST, payload: postToEdit });
+            .toEqual({ type: actionTypes.EDIT_POST, payload: postToEdit });
     });
 
     it('should create an action to notify that post form was submitted',
         () => expect(actions.formSubmitted())
-            .to.deep.equal({ type: actionTypes.SUBMIT_POST_FORM }));
+            .toEqual({ type: actionTypes.SUBMIT_POST_FORM }));
 
     describe('async', () => {
         const mockStore = configureMockStore([thunk]);
@@ -49,8 +48,8 @@ describe('new-post.actions', () => {
 
                 return store.dispatch(actions.submitPostForm(postToAdd))
                     .then(() => {
-                        expect(fetchMock.called('/api/posts/')).to.be.true;
-                        expect(store.getActions()).to.eql([
+                        expect(fetchMock.called('/api/posts/')).toBe(true);
+                        expect(store.getActions()).toEqual([
                             actions.formSubmitted(),
                             feedActions.postAdded(addedPost),
                         ]);
@@ -64,8 +63,8 @@ describe('new-post.actions', () => {
 
                 return store.dispatch(actions.submitPostForm(postToUpdate))
                     .then(() => {
-                        expect(fetchMock.called('/api/posts/1')).to.be.true;
-                        expect(store.getActions()).to.eql([
+                        expect(fetchMock.called('/api/posts/1')).toBe(true);
+                        expect(store.getActions()).toEqual([
                             actions.formSubmitted(),
                             feedActions.postAdded(postToUpdate),
                         ]);
@@ -79,8 +78,8 @@ describe('new-post.actions', () => {
 
                 return store.dispatch(actions.submitPostForm(postToUpdate))
                     .then(() => {
-                        expect(fetchMock.called('/api/posts/1')).to.be.true;
-                        expect(store.getActions()).to.eql([
+                        expect(fetchMock.called('/api/posts/1')).toBe(true);
+                        expect(store.getActions()).toEqual([
                             actions.formSubmitted(),
                             feedActions.postAdded('Internal Server Error', true),
                         ]);

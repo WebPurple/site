@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 
@@ -13,7 +12,7 @@ describe('feed.actions', () => {
     describe('POST_ADDED action', () => {
         const newPost = 'new post';
         it('should return post as payload when error parameter is falsy', () => expect(actions.postAdded(newPost))
-            .to.eql({
+            .toEqual({
                 type: actionTypes.POST_ADDED,
                 payload: newPost,
                 error: undefined,
@@ -21,7 +20,7 @@ describe('feed.actions', () => {
 
         const error = 'error';
         it('should return error as payload, and error === true in case of error', () => expect(actions.postAdded(error, true))
-            .to.eql({
+            .toEqual({
                 type: actionTypes.POST_ADDED,
                 payload: error,
                 error: true,
@@ -31,7 +30,7 @@ describe('feed.actions', () => {
     it('should create an action to remove post', () => {
         const post = 'removed post';
         expect(actions.postRemoved(post))
-            .to.deep.equal({
+            .toEqual({
                 type: actions.POST_REMOVED,
                 payload: post,
             });
@@ -39,7 +38,7 @@ describe('feed.actions', () => {
 
     it('should create an action to request posts', () => {
         expect(actions.requestPosts())
-            .to.deep.equal({
+            .toEqual({
                 type: actions.REQUEST_POSTS,
             });
     });
@@ -50,7 +49,7 @@ describe('feed.actions', () => {
         const from = 0;
         const limit = 1;
         expect(actions.receivePosts(posts, type, from, limit))
-            .to.deep.equal({
+            .toEqual({
                 type: actions.RECEIVE_POSTS,
                 payload: { posts, type, from, limit },
             });
@@ -70,8 +69,8 @@ describe('feed.actions', () => {
 
             return store.dispatch(actions.fetchPosts(type, from, limit))
                 .then(() => {
-                    expect(fetchMock.called('/api/posts?type=cha&from=0&limit=1')).to.be.true;
-                    expect(store.getActions()).to.deep.equal([
+                    expect(fetchMock.called('/api/posts?type=cha&from=0&limit=1')).toBe(true);
+                    expect(store.getActions()).toEqual([
                         actions.requestPosts(),
                         actions.receivePosts(posts, type, from, limit),
                     ]);
@@ -86,8 +85,8 @@ describe('feed.actions', () => {
 
             return store.dispatch(actions.deletePost(1))
                 .then(() => {
-                    expect(fetchMock.called('/api/posts/1')).to.be.true;
-                    expect(store.getActions()).to.deep.equal([
+                    expect(fetchMock.called('/api/posts/1')).toBe(true);
+                    expect(store.getActions()).toEqual([
                         { type: actions.POST_REMOVED, payload: post },
                     ]);
                 });
