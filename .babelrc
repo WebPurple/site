@@ -1,9 +1,11 @@
 {
     "presets": [
-        "es2015",
+        ["es2015", { "modules": false }],
+        "stage-2",
         "react"
     ],
     "plugins": [
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "react-hot-loader/babel"
     ]
 }
