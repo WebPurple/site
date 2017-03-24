@@ -2,6 +2,7 @@ import App from './containers/app/app';
 
 const loadModule = cb => module => cb(null, module.default);
 
+// eslint-disable-next-line no-console
 const handleError = err => console.error(`Failed to load route component: ${err}`);
 
 export default {
@@ -13,7 +14,7 @@ export default {
     getIndexRoute(partialNextState, cb) {
         import('./components/home-page/home-page')
             .then(module => cb(null, { component: module.default }))
-            .catch(handleError)
+            .catch(handleError);
     },
 
     childRoutes: [
@@ -23,7 +24,7 @@ export default {
             getComponents(nextState, cb) {
                 import('./components/home-page/home-page')
                     .then(loadModule(cb))
-                    .catch(handleError)
+                    .catch(handleError);
             },
         },
         {
@@ -32,7 +33,7 @@ export default {
             getComponents(nextState, cb) {
                 import('./components/events-page/events-page')
                     .then(loadModule(cb))
-                    .catch(handleError)
+                    .catch(handleError);
             },
         },
     ],

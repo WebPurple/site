@@ -126,7 +126,7 @@ FeedContainer.propTypes = {
     fetchPosts: React.PropTypes.func,
     deletePost: React.PropTypes.func,
     editPost: React.PropTypes.func,
-    allPostsLoaded: React.PropTypes.bool
+    allPostsLoaded: React.PropTypes.bool,
 };
 
 function canSubmit(user, post) {

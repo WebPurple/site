@@ -73,6 +73,7 @@ app.use('/api', postsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
+// eslint-disable no-console
 app.use((err, req, res, next) => {
     console.error(err.stack);
     if (res.headersSent) {
