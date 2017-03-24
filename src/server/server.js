@@ -20,6 +20,7 @@ const pageInfoApi = require('./controllers/page-info.controller');
 const webpack = require('webpack');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConf = require('../../webpack.config');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -47,7 +48,11 @@ if (isProd) {
     app.use(express.static('__build__'));
 } else {
     const compiler = webpack(webpackConf);
-    app.use(webpackMiddleware(compiler, { publicPath: webpackConf.output.publicPath }));
+    app.use(webpackMiddleware(compiler, {
+        publicPath: webpackConf.output.publicPath,
+        hot: true,
+    }));
+    app.use(webpackHotMiddleware(compiler));
 }
 
 app.use(express.static('favicon'));
@@ -68,6 +73,7 @@ app.use('/api', postsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
+// eslint-disable no-console
 app.use((err, req, res, next) => {
     console.error(err.stack);
     if (res.headersSent) {
