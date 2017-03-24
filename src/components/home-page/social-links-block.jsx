@@ -1,8 +1,8 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
-import Separator from '../separator';
+import BlockHeader from '../common/block-header';
 import {
     VkIcon,
     FacebookIcon,
@@ -58,11 +58,9 @@ const StyledYoutubeIcon = responsiveHeight(YoutubeIcon, 30, 60, 70);
 const StyledTwitterIcon = responsiveHeight(TwitterIcon, 30, 55, 65);
 const StyledInstagramIcon = responsiveHeight(InstagramIcon, 30, 65, 80);
 
-export default withTheme(({ theme }) => (
+export default () => (
     <SocialLinksContainer>
-        <Separator color={theme.lipstick}>
-            <Heading>Join&nbsp;us&nbsp;in&nbsp;social networks!</Heading>
-        </Separator>
+        <BlockHeader>Join&nbsp;us&nbsp;in&nbsp;social networks!</BlockHeader>
         <LinksWrapper>
             <li>
                 <a href="https://vk.com/webpurple" target="_blank" rel="noopener noreferrer">
@@ -86,4 +84,4 @@ export default withTheme(({ theme }) => (
             <li><StyledInstagramIcon /></li>
         </LinksWrapper>
     </SocialLinksContainer>
-));
+);
