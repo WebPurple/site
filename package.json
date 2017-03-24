@@ -35,14 +35,20 @@
     ],
     "plugins": [
       "transform-object-rest-spread",
-      "react-hot-loader/babel"
+      "react-hot-loader/babel",
+      "syntax-dynamic-import"
     ],
     "env": {
       "test": {
-        "presets": [
-          "es2015",
-          "stage-2",
-          "react"
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
+      },
+      "travisci": {
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
         ]
       }
     }
@@ -105,6 +111,8 @@
     "babel-eslint": "^7.2.1",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.4",
+    "babel-plugin-dynamic-import-node": "^1.0.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
