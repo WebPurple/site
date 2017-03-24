@@ -6,13 +6,12 @@ import Separator from './separator';
 
 const Header = styled.h2`
     font-family: Rubik, sans-serif;
-    font-size: 2.6em;
-    ${media.tablet`font-size: 4.8em;`}
+    font-size: 2.6rem;
+    ${media.tablet`font-size: 4.8rem;`}
     font-weight: bold;
     color: ${(props) => props.theme.lipstick};
     text-align: center;
     vertical-align: middle;
-    line-height: 1em;
     ${media.desktop`white-space: nowrap;`}
     padding: 0 3rem;
     ${media.tablet`padding: 0 4rem;`}
