@@ -1,26 +1,41 @@
-import * as React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-
 import App from './containers/app/app';
-import HomePage from './components/home-page/home-page';
-import Feed from './containers/feed/feed';
-import SettingsPage from './containers/settings.page';
-import AboutPage from './components/about-page';
 
-export default function configureRoutes(store) {
-    // Create an enhanced history that syncs navigation events with the store
-    const history = syncHistoryWithStore(browserHistory, store);
+const loadModule = cb => module => cb(null, module.default);
 
-    return () => (
-        <Router history={history}>
-            <Route path="/" component={App}>
-                <IndexRoute component={HomePage} />
-                <Route path="home" component={HomePage} />
-                <Route path="feed" component={Feed} />
-                <Route path="about" component={AboutPage} />
-                <Route path="settings" component={SettingsPage} />
-            </Route>
-        </Router>
-    );
-}
+// eslint-disable-next-line no-console
+const handleError = err => console.error(`Failed to load route component: ${err}`);
+
+export default {
+
+    path: '/',
+
+    component: App,
+
+    getIndexRoute(partialNextState, cb) {
+        import('./components/home-page/home-page')
+            .then(module => cb(null, { component: module.default }))
+            .catch(handleError);
+    },
+
+    childRoutes: [
+        {
+            path: 'home',
+
+            getComponents(nextState, cb) {
+                import('./components/home-page/home-page')
+                    .then(loadModule(cb))
+                    .catch(handleError);
+            },
+        },
+        {
+            path: 'events',
+
+            getComponents(nextState, cb) {
+                import('./components/events-page/events-page')
+                    .then(loadModule(cb))
+                    .catch(handleError);
+            },
+        },
+    ],
+
+};

@@ -40,4 +40,4 @@ VkCommunityWidget.propTypes = {
     color1: React.PropTypes.string,
     color2: React.PropTypes.string,
     color3: React.PropTypes.string,
-}
+};

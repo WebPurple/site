@@ -65,19 +65,19 @@ export default withTheme(({ theme }) => (
         </Separator>
         <LinksWrapper>
             <li>
-                <a href="https://vk.com/webpurple" target="_blank">
+                <a href="https://vk.com/webpurple" target="_blank" rel="noopener noreferrer">
                     <HiddenText>We are in VK</HiddenText>
                     <StyledVkIcon />
                 </a>
             </li>
             <li>
-                <a href="https://www.facebook.com/WebPurple" target="_blank">
+                <a href="https://www.facebook.com/WebPurple" target="_blank" rel="noopener noreferrer">
                     <HiddenText>We are in Facebook</HiddenText>
                     <StyledFacebookIcon />
                 </a>
             </li>
             <li>
-                <a href="https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA" target="_blank">
+                <a href="https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA" target="_blank" rel="noopener noreferrer">
                     <HiddenText>Our youtube channel</HiddenText>
                     <StyledYoutubeIcon />
                 </a>

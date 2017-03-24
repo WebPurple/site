@@ -20,7 +20,7 @@ const AppLeftNavComponent = ({ leftNavOpen }) => (
 );
 
 AppLeftNavComponent.propTypes = {
-    leftNavOpen: React.PropTypes.bool
+    leftNavOpen: React.PropTypes.bool,
 };
 
 const AppLeftNavContainer = connect(state => state.leftNav)(AppLeftNavComponent);

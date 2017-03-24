@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
@@ -46,7 +47,7 @@ const MenuItem = styled.li`
     }
 `;
 
-const NavigationLink = styled.a`
+const NavigationLink = styled(Link)`
     text-decoration: none;
     font-family: Rubik, sans-serif;
     font-size: 18px;
@@ -83,8 +84,8 @@ const AppContainer = ({ children }) => (
             <Header>
                 <Logo>Webpurple</Logo>
                 <NavigationBar>
-                    <MenuItem><NavigationLink href="#home">Home</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink href="#events">Events</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="home">Home</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="events">Events</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink href="#speakers">Speakers</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
                 </NavigationBar>
