@@ -41,6 +41,9 @@
     "env": {
       "test": {
         "plugins": ["dynamic-import-node"]
+      },
+      "travisci": {
+        "plugins": ["dynamic-import-node"]
       }
     }
   },
