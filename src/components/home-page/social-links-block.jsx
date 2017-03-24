@@ -17,20 +17,6 @@ const SocialLinksContainer = styled.section`
     ${media.desktop`padding: 10rem;`}
 `;
 
-const Heading = styled.h2`
-    text-align: center;
-    margin: 0;
-    padding: 0 2rem;
-    ${media.tablet`padding: 0 3rem;`}
-    font-family: Rubik, sans-serif;
-    line-height: 1em;
-    font-size: 2.6em;
-    ${media.tablet`font-size: 4.8em;`}
-    font-weight: bold;
-    color: ${props => props.theme.lipstick};
-    ${media.desktop`white-space: nowrap;`}
-`;
-
 const LinksWrapper = styled.ul`
     list-style: none;
     padding: 0;
