@@ -70,6 +70,7 @@ const Footer = styled.footer`
 const theme = {
     grape: '#432867',
     warmGrey: '#a1a1a1',
+    greyishBrown: '#545454',
     lipstick: '#e62270',
     vividPurple: '#9012fe',
     vividPurpleTwo: '#9013fe',
