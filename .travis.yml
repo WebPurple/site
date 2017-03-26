@@ -13,7 +13,9 @@ deploy:
   on:
     tags: true
   provider: heroku
-  app: webpurple
+  app:
+    master: webpurple
+    redesign: webpurple-redesign
   skip_cleanup: true
   api_key:
     secure: kws6sirk0xauExTbhTkmyw2OAg1SaiwYEbqXBi0zeb1L0xmTE1jBJPDm4reOqBpkPR1rRHvdAlnbr4VsTq0NoYx1jboPTunERRUrNuFVi1ig1bS/TJ+1mY4aQ2XfJTuLCcbFXOiVOZpurCHITl0BeYHePxx3DD2h1/1dcxz/sf6OdClv+vAqY+h6ObmyAq/A5QoMRhHGdFGEnMNgrViaXqhTOexW79t0LOe2XDZxqwLajsRCQL9ZaZ7REk/LHK4U2nO7p9PbjHGV/qT/aFiqHsX8PnieJJ0uF8s65cWKtPfR0u1/C76FzODsQJMga8qfnmYTF/ZggLudn2nGCTWlHj6UIJxXhJleCIxL6mxYxXRRcG4/jZNEpUT3jp9i4lg2n4DUHLqj76jwm0nzSkYwcDT59lp9KTfpfoZTrsHiGwwW46DdAS+xof8FUp7oHg7ji+6Ihgi5xk2HS/SX3Eb6b58CLzkZXRmnDOgvN9rCcIItdfjiJOiqivcg8JJs5PNo3766Hdyp6L0yWLydK5cnL2IbDzTBFbg8MCUeDeY1IAu5p07Gf/lxZ+0pTANMLpwuWijjhZHhlnlRHk9+vkQVutAD+Dn/ZgcGZtSSz5dLPoGCizDnMrZdwug8h+RoSwRz3+fAkd13Adzj1HShJXBh32tI9732trxI5hJLHZMi86I=
