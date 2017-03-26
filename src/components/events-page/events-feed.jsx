@@ -155,11 +155,13 @@ const FilterTab = styled(Link)`
     position: relative;
     display: block;
     box-sizing: border-box;
-    padding: 2.4rem 0;
+    padding: 1.6rem 0;
+    ${media.desktop`padding: 2.4rem 0;`}
     margin: 0 4.8rem 0 0;
     text-decoration: none;
     color: ${props => props.theme.greyishBrown}
-    font-size: 2.4rem;
+    font-size: 1.8rem;
+    ${media.desktop`font-size: 2.4rem;`}
     font-weight: bold;
     font-family: 'Rubik', sans-serif;
     
@@ -177,7 +179,8 @@ const FilterTab = styled(Link)`
 `;
 
 const SearchBlock = styled.div`
-    display: flex;
+    display: none;
+    ${media.desktop`display: flex;`}
     align-items: center;
 `;
 const SearchInput = styled.input`
