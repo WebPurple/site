@@ -9,9 +9,6 @@ script:
 - npm run lint
 - npm run coveralls
 deploy:
-  all_branches: true
-  on:
-    tags: true
   provider: heroku
   app:
     master: webpurple
