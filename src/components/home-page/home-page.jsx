@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { media } from '../../utils/css-utils';
 import PastEvents from '../past-events/past-events';
 
-import SubscriptionForm from './subscription-form';
+import SubscriptionForm from '../subscription-form/subscription-form';
 import SocialLinks from './social-links-block';
 
 const EmptyBlock = styled.section`
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 4.8em;
     text-align: center;
     vertical-align: middle;

@@ -19,7 +19,7 @@ const Header = styled.h2`
     text-align: center;
     margin: 0;
     margin-bottom: .615rem; /* 16px */
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bold;
     color: #fff;
     font-size: 2.6em;
