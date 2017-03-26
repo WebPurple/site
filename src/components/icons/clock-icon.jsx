@@ -9,6 +9,6 @@ const ClockIcon = (props) => (
 
 export default styled(ClockIcon)`
     display: inline-block;
-    height: 20px;
-    width: 20px;
+    height: 2rem;
+    width: 2rem;
 `;
