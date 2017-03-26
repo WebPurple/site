@@ -1,10 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
-import ClockIcon from '../icons/clock-icon';
-import PlaceholderIcon from '../icons/placeholder-icon';
+import {
+    ClockIcon,
+    PlaceholderIcon,
+    SearchIcon,
+} from '../icons';
 
 import events from './events-stub';
 
@@ -126,9 +130,80 @@ const Tag = styled.li`
     }
 `;
 
+const FilterBlock = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem 0;
+    border-bottom: 2px solid #ededed;
+`;
+
+const TimeFilterTabs = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+`;
+
+const FilterTab = styled(Link)`
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    padding: 2.4rem 0;
+    margin: 0 4.8rem 0 0;
+    text-decoration: none;
+    color: ${props => props.theme.greyishBrown}
+    font-size: 2.4rem;
+    font-weight: bold;
+    font-family: Rubik;
+    
+    &:hover {
+    
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -2px;
+            border-bottom: 4px solid ${props => props.theme.lipstick};
+        }
+    }
+`;
+
+const SearchBlock = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const SearchInput = styled.input`
+    border: 0;
+    font-size: 2.4rem;
+    font-family: Oxygen;
+    outline: none;
+    
+    &:focus {
+    }
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+    height: 2.8rem;
+    width: 2.8rem;
+    margin-left: 1rem;
+    fill: #ccc;
+`;
+
 export default withTheme(theme => (
     <Container>
         <BlockHeader>Events</BlockHeader>
+        <FilterBlock>
+            <TimeFilterTabs>
+                <li><FilterTab to="/events?show=upcomming">Upcoming</FilterTab></li>
+                <li><FilterTab to="/events?show=past">Past</FilterTab></li>
+                <li><FilterTab to="/events?show=all">All</FilterTab></li>
+            </TimeFilterTabs>
+            <SearchBlock>
+                <SearchInput type="text" placeholder="Keywords..." />
+                <StyledSearchIcon />
+            </SearchBlock>
+        </FilterBlock>
         <EventList>
             {events.map((event, eventIndex) => (
                 <EventSnippet key={event.title}>
