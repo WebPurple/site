@@ -22,7 +22,7 @@ const EventList = styled.ul`
     list-style: none;
     padding: 0;
     margin: 3.6rem 0 0;
-    ${media.desktop`margin: 10rem 0 0;`}
+    ${media.desktop`margin-top: 10rem;`}
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -65,7 +65,7 @@ const BackgroundImage = styled.div`
 
 const Title = styled.a`
     margin: 2.4rem 0;
-    font-family: Rubik;
+    font-family: 'Rubik', sans-serif;
     font-size: 3.6rem;
     font-weight: bold;
     text-decoration: none;
@@ -76,14 +76,14 @@ const Info = styled.span`
     display: flex;
     margin-bottom: 1.6rem;
     font-size: 1.6em;
-    font-family: Oxygen;
+    font-family: 'Oxygen', sans-serif;
     color: ${props => props.theme.greyishBrown};
     vertical-align: middle;
 `;
 
 const TalkList = styled.ul`
     list-style: disc;
-    font-family: Oxygen;
+    font-family: 'Oxygen', sans-serif;
     font-size: 1.6rem;
     margin: 2.4rem 0;
     color: #4a4a4a;
@@ -101,7 +101,7 @@ const TagList = styled.ul`
 `;
 
 const TagListLabel = styled.span`
-    font-family: Rubik;
+    font-family: 'Rubik', sans-serif;
     font-size: 1.8rem;
     color: ${props => props.theme.greyishBrown};
     margin-right: 2.4rem;
@@ -123,7 +123,7 @@ const hoverTagColors = [
 ];
 
 const Tag = styled.li`
-    font-family: Oxygen;
+    font-family: 'Oxygen', sans-serif;
     font-size: 1.6rem;
     color: #fff;
     padding: .4rem 1.6rem;
@@ -161,7 +161,7 @@ const FilterTab = styled(Link)`
     color: ${props => props.theme.greyishBrown}
     font-size: 2.4rem;
     font-weight: bold;
-    font-family: Rubik;
+    font-family: 'Rubik', sans-serif;
     
     &:hover {
     
@@ -183,11 +183,8 @@ const SearchBlock = styled.div`
 const SearchInput = styled.input`
     border: 0;
     font-size: 2.4rem;
-    font-family: Oxygen;
+    font-family: 'Oxygen', sans-serif;
     outline: none;
-    
-    &:focus {
-    }
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`

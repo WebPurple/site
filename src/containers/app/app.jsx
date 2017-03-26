@@ -23,7 +23,7 @@ const Header = styled.header`
 
 const Logo = styled.h1`
     text-transform: uppercase;
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 26px;
     font-weight: bold;
     color: ${props => props.theme.lipstick};
@@ -49,7 +49,7 @@ const MenuItem = styled.li`
 
 const NavigationLink = styled(Link)`
     text-decoration: none;
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
@@ -64,7 +64,7 @@ const Footer = styled.footer`
     background-color: ${props => props.theme.grape};
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
     color: white;
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
 `;
 
 const theme = {
