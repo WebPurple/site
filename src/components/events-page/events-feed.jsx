@@ -10,7 +10,7 @@ import {
     SearchIcon,
 } from '../icons';
 
-import events from './events-stub';
+import events, { tags } from './events-stub';
 
 const Container = styled.section`
     padding: 6rem 2rem;
@@ -21,8 +21,8 @@ const Container = styled.section`
 const EventList = styled.ul`
     list-style: none;
     padding: 0;
-    margin: 3.6rem 0 0 0;
-    ${media.desktop`margin: 10rem 0 0 0;`}
+    margin: 3.6rem 0 0;
+    ${media.desktop`margin: 10rem 0 0;`}
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -95,9 +95,16 @@ const Talk = styled.li`
 
 const TagList = styled.ul`
     list-style: none;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     padding: 0;
+`;
+
+const TagListLabel = styled.span`
+    font-family: Rubik;
+    font-size: 1.8rem;
+    color: ${props => props.theme.greyishBrown};
+    margin-right: 2.4rem;
 `;
 
 const tagColors = [
@@ -204,6 +211,12 @@ export default withTheme(theme => (
                 <StyledSearchIcon />
             </SearchBlock>
         </FilterBlock>
+        <div>
+            <TagListLabel>Events tags</TagListLabel>
+            <TagList>
+                {tags.map((tag, i) => <Tag key={tag} index={i}>{tag}</Tag>)}
+            </TagList>
+        </div>
         <EventList>
             {events.map((event, eventIndex) => (
                 <EventSnippet key={event.title}>

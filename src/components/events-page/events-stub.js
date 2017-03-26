@@ -1,4 +1,4 @@
-const tags = [
+export const tags = [
     'angular',
     'HTML',
     'Front-end',
