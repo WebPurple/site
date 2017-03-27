@@ -6,10 +6,10 @@ import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
 import FilterBlock from '../common/filter-block';
+import SearchBlock from '../common/search-block';
 import {
     ClockIcon,
     PlaceholderIcon,
-    SearchIcon,
 } from '../icons';
 
 const EventList = styled.ul`
@@ -165,25 +165,6 @@ const FilterTab = styled(Link)`
     }
 `;
 
-const SearchBlock = styled.div`
-    display: none;
-    ${media.desktop`display: flex;`}
-    align-items: center;
-`;
-const SearchInput = styled.input`
-    border: 0;
-    font-size: 2.4rem;
-    font-family: 'Oxygen', sans-serif;
-    outline: none;
-`;
-
-const StyledSearchIcon = styled(SearchIcon)`
-    height: 2.8rem;
-    width: 2.8rem;
-    margin-left: 1rem;
-    fill: #ccc;
-`;
-
 export default withTheme(({ events, tags, theme }) => (
     <MainContainer>
         <BlockHeader>Events</BlockHeader>
@@ -193,10 +174,7 @@ export default withTheme(({ events, tags, theme }) => (
                 <li><FilterTab to="/events?show=past">Past</FilterTab></li>
                 <li><FilterTab to="/events?show=all">All</FilterTab></li>
             </TimeFilterTabs>
-            <SearchBlock>
-                <SearchInput type="text" placeholder="Keywords..." />
-                <StyledSearchIcon />
-            </SearchBlock>
+            <SearchBlock />
         </FilterBlock>
         <div>
             <TagListLabel>Events tags</TagListLabel>

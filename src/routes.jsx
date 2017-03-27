@@ -36,6 +36,15 @@ export default {
                     .catch(handleError);
             },
         },
+        {
+            path: 'speakers',
+
+            getComponents(nextState, cb) {
+                import('./components/speakers-page/speakers-page')
+                    .then(loadModule(cb))
+                    .catch(handleError);
+            },
+        },
     ],
 
 };

@@ -87,7 +87,7 @@ const AppContainer = ({ children }) => (
                 <NavigationBar>
                     <MenuItem><NavigationLink to="home">Home</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="events">Events</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink href="#speakers">Speakers</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="speakers">Speakers</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
                 </NavigationBar>
             </Header>
