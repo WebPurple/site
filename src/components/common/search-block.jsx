@@ -5,7 +5,7 @@ import { media } from '../../utils/css-utils';
 import { SearchIcon } from '../icons';
 
 const SearchBlockWrapper = styled.div`
-    display: none;
+    padding: 0.9rem 0;
     ${media.desktop`display: flex;`}
     align-items: center;
 `;
