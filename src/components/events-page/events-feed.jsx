@@ -10,8 +10,6 @@ import {
     SearchIcon,
 } from '../icons';
 
-import events, { tags } from './events-stub';
-
 const Container = styled.section`
     padding: 6rem 2rem;
     ${media.desktop`padding: 10rem;`}
@@ -197,7 +195,7 @@ const StyledSearchIcon = styled(SearchIcon)`
     fill: #ccc;
 `;
 
-export default withTheme(theme => (
+export default withTheme(({ events, tags, theme }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
@@ -219,14 +217,14 @@ export default withTheme(theme => (
         </div>
         <EventList>
             {events.map((event, eventIndex) => (
-                <EventSnippet key={event.title}>
+                <EventSnippet key={event._id}>
                     <BackgroundShape>
-                        <BackgroundImage url={event.background} />
+                        <BackgroundImage url={event.image} />
                     </BackgroundShape>
                     <header>
                         <Info>
                             <ClockIcon style={{ marginRight: '1.6rem' }} />
-                            <time>{event.date.toLocaleDateString()}</time>
+                            <time>{new Date(event.date).toLocaleDateString()}</time>
                         </Info>
                         <Info>
                             <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
