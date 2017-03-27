@@ -5,6 +5,7 @@ import styled, { withTheme } from 'styled-components';
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
+import FilterBlock from '../common/filter-block';
 import {
     ClockIcon,
     PlaceholderIcon,
@@ -128,13 +129,6 @@ const Tag = styled.li`
     &:hover {
         background: ${props => hoverTagColors[props.index % tagColors.length]};
     }
-`;
-
-const FilterBlock = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin: 4rem 0;
-    border-bottom: 2px solid #ededed;
 `;
 
 const TimeFilterTabs = styled.ul`
