@@ -4,17 +4,12 @@ import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
+import MainContainer from '../common/main-container';
 import {
     ClockIcon,
     PlaceholderIcon,
     SearchIcon,
 } from '../icons';
-
-const Container = styled.section`
-    padding: 6rem 2rem;
-    ${media.desktop`padding: 10rem;`}
-    ${media.hd`padding: 12rem;`}
-`;
 
 const EventList = styled.ul`
     list-style: none;
@@ -196,7 +191,7 @@ const StyledSearchIcon = styled(SearchIcon)`
 `;
 
 export default withTheme(({ events, tags, theme }) => (
-    <Container>
+    <MainContainer>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
             <TimeFilterTabs>
@@ -241,5 +236,5 @@ export default withTheme(({ events, tags, theme }) => (
                 </EventSnippet>
             ))}
         </EventList>
-    </Container>
+    </MainContainer>
 ));
