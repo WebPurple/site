@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
@@ -149,7 +149,7 @@ const TimeFilterTabs = styled.ul`
     display: flex;
 `;
 
-const FilterTab = styled(Link)`
+const FilterTab = styled(NavLink)`
     position: relative;
     display: block;
     box-sizing: border-box;
@@ -163,15 +163,20 @@ const FilterTab = styled(Link)`
     font-weight: bold;
     font-family: 'Rubik', sans-serif;
     
+    &:after {
+        /* this might should be done via activeClassName https://github.com/styled-components/styled-components/issues/184 */
+        content: ${props => props['data-active'] ? '""' : 'none'};
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -2px;
+        border-bottom: 4px solid ${props => props.theme.lipstick};
+    }
+    
     &:hover {
     
         &:after {
             content: '';
-            position: absolute;
-            width: 100%;
-            left: 0;
-            bottom: -2px;
-            border-bottom: 4px solid ${props => props.theme.lipstick};
         }
     }
 `;
@@ -195,14 +200,16 @@ const StyledSearchIcon = styled(SearchIcon)`
     fill: #ccc;
 `;
 
-export default withTheme(({ events, tags, theme }) => (
+export default withTheme(({ events, tags, show, theme }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
             <TimeFilterTabs>
-                <li><FilterTab to="/events?show=upcomming">Upcoming</FilterTab></li>
-                <li><FilterTab to="/events?show=past">Past</FilterTab></li>
-                <li><FilterTab to="/events?show=all">All</FilterTab></li>
+                {['Upcoming', 'Past', 'All'].map(filter => (
+                    <li key={filter}>
+                        <FilterTab to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
+                    </li>
+                ))}
             </TimeFilterTabs>
             <SearchBlock>
                 <SearchInput type="text" placeholder="Keywords..." />

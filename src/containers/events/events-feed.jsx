@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import {
     loadEvents,
@@ -20,21 +21,32 @@ class EventsFeedContainer extends React.Component {
     }
 
     render() {
-        const { events, tags } = this.props;
-        return <EventsFeed events={events} tags={tags} />;
+        return <EventsFeed {...this.props} />;
     }
 }
 
-const mapStateToProps = state => ({
+const searchStringToObject = query => query.substr(1).split('&')
+    .reduce((result, paramWithValue) => {
+        paramWithValue = paramWithValue.split('='); // eslint-disable-line no-param-reassign
+
+        result[paramWithValue[0]] = paramWithValue[1]; // eslint-disable-line no-param-reassign
+
+        return result;
+    }, {});
+
+const mapStateToProps = (state, ownProps) => ({
     events: eventListSelector(state),
     tags: eventTagsSelector(state),
+    show: searchStringToObject(ownProps.location.search).show,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
 }, dispatch);
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EventsFeedContainer);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(EventsFeedContainer)
+);
