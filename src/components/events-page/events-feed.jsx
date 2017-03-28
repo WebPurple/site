@@ -205,7 +205,7 @@ export default withTheme(({ events, tags, show, theme }) => (
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
             <TimeFilterTabs>
-                {['Upcoming', 'Past', 'All'].map(filter => (
+                {['All', 'Upcoming', 'Past'].map(filter => (
                     <li key={filter}>
                         <FilterTab to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                     </li>

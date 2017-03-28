@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import {
     loadEvents,
     eventListSelector,
+    showFilterSelector,
     eventTagsSelector,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
@@ -25,19 +26,10 @@ class EventsFeedContainer extends React.Component {
     }
 }
 
-const searchStringToObject = query => query.substr(1).split('&')
-    .reduce((result, paramWithValue) => {
-        paramWithValue = paramWithValue.split('='); // eslint-disable-line no-param-reassign
-
-        result[paramWithValue[0]] = paramWithValue[1]; // eslint-disable-line no-param-reassign
-
-        return result;
-    }, {});
-
 const mapStateToProps = (state, ownProps) => ({
-    events: eventListSelector(state),
-    tags: eventTagsSelector(state),
-    show: searchStringToObject(ownProps.location.search).show,
+    events: eventListSelector(state, ownProps),
+    tags: eventTagsSelector(state, ownProps),
+    show: showFilterSelector(state, ownProps),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
