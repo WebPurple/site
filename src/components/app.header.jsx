@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -24,7 +23,7 @@ AppHeaderComponent.propTypes = {
     user: React.PropTypes.object,
     onToggleLeftNav: React.PropTypes.func,
     leftNavOpen: React.PropTypes.bool,
-    onSettingsClick: React.PropTypes.func
+    onSettingsClick: React.PropTypes.func,
 };
 
 function renderTitle(user) {
@@ -36,7 +35,7 @@ const LeftIcon = ({ leftNavOpen, onToggleLeftNav }) => (
     <IconButton onTouchTap={onToggleLeftNav}>{leftNavOpen ? <NavigationClose /> : <Menu />}</IconButton>
 );
 
-const RightMenu = ({ user, isFetching}) => (
+const RightMenu = ({ user, isFetching }) => (
     user && user._id ? <UserAvatar user={user} />
         : isFetching ? <CircularProgress color="#fff" size={0.5} />
             : <LoginComponent />

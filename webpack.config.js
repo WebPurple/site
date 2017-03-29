@@ -1,10 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 if (process.env.NODE_ENV === 'travisci') {
     // if we set NODE_ENV === 'production' on Travis, it will not install devDependencies
@@ -13,81 +10,79 @@ if (process.env.NODE_ENV === 'travisci') {
     process.env.NODE_ENV = 'production';
 }
 
-var env = process.env.NODE_ENV || 'development';
-var isProd = env === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
-var extractLess = new ExtractTextPlugin('main.[contenthash].css');
+const plugins = [
 
-var plugins = [
-    new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env),
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendors',
-        minChunks: Infinity,
-    }),
     new ForceCaseSensitivityPlugin(),
+
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
+
+    // TODO: add manifest bundle to optimize long term caching
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks(module) {
+            // this assumes your vendor imports exist in the node_modules directory
+            return module.context && module.context.indexOf('node_modules') !== -1;
+        },
+    }),
+
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+
     new HtmlWebpackPlugin({
         title: 'WebPurple',
-        filename: 'index.html',
-        hash: true,
-        template: './src/index.html',
+        template: path.resolve(__dirname, 'src', 'index.html'),
     }),
-    extractLess,
 ];
 
 if (isProd) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false,
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+    );
 }
 
-module.exports = {
+const config = {
 
-    context: path.join(__dirname, '.'),
+    entry: [
+        'react-hot-loader/patch',
 
-    entry: {
-        vendors: [
-            'react',
-            'react-dom',
-            'react-router',
-            'react-tap-event-plugin',
-            'redux',
-            'redux-thunk',
-            'react-redux',
-            'react-router-redux',
-            'redux-form',
-            'material-ui',
-            'redux-form-material-ui',
-            'scriptjs',
-        ],
+        'webpack-hot-middleware/client',
 
-        main: path.join(__dirname, 'src', 'boot'),
-    },
+        path.resolve(__dirname, 'src', 'boot.jsx'),
+    ],
 
     output: {
-        path: path.join(__dirname, '__build__'),
+        path: path.resolve(__dirname, '__build__'),
         filename: '[name].[hash].js',
         publicPath: '/',
     },
 
     module: {
-        loaders: [
+
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                use: ['babel-loader'],
             },
-            {
-                test: /\.(le|c)ss/,
-                loader: extractLess.extract(['css?modules', 'less']),
-            }
         ],
     },
 
     resolve: {
-        extensions: ['', '.jsx', '.js'],
+
+        enforceModuleExtension: false,
+
+        extensions: ['.js', '.jsx'],
     },
 
     plugins,
 
-    devtool: isProd ? 'source-map' : 'eval'
+    devtool: isProd ? 'source-map' : 'eval',
 };
+
+module.exports = config;

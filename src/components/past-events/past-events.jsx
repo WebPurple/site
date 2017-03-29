@@ -1,28 +1,13 @@
 import * as React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { media } from '../../utils/css-utils';
-import Separator from '../separator';
 import Diamond from '../diamond';
+import BlockHeader from '../common/block-header';
 
 const PastEventsContainer = styled.section`
     padding: 6rem 2rem;
     ${media.tablet`padding: 9rem 7rem;`}
     ${media.desktop`padding: 10rem;`}
-`;
-
-const Header = styled.h2`
-    font-family: Rubik, sans-serif;
-    font-size: 2.6em;
-    ${media.tablet`font-size: 4.8em;`}
-    font-weight: bold;
-    color: ${(props) => props.theme.lipstick};
-    text-align: center;
-    vertical-align: middle;
-    line-height: 1em;
-    ${media.desktop`white-space: nowrap;`}
-    padding: 0 3rem;
-    ${media.tablet`padding: 0 4rem;`}
-    margin: 0;
 `;
 
 const DiamondsRow = styled.div`
@@ -37,9 +22,7 @@ const DiamondsColumn = styled.div`
 
 export default withTheme(({ theme }) => (
     <PastEventsContainer>
-        <Separator color={theme.lipstick}>
-            <Header>Passed events</Header>
-        </Separator>
+        <BlockHeader>Passed events</BlockHeader>
         <DiamondsRow style={{ marginTop: '8rem' }}>
             <div>
                 <DiamondsRow>
