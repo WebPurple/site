@@ -2,95 +2,153 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-// import { media } from '../../utils/css-utils';
+import { media } from '../../utils/css-utils';
 import SpeakerContacts from '../common/speaker-contacts';
+import { default as NoAvatarIcon } from '../icons/no-avatar-icon';
 
 const Card = styled.div`
-    width: 50%;
     display: flex;
+    padding: 3.5rem 0;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    ${media.phone`
+        width: 50%;
+        flex-direction: row; 
+        align-items: flex-start;
+    `}
+`;
+
+const AvatarContainerHeight = `
+    height: 20rem;
 `;
 
 const SpeakerAvatarContainer = styled.div`
-    width: 122px;
-    height: 206px;
+    width: 12rem;
+    padding-bottom: 2rem;
+    ${AvatarContainerHeight}
+    ${media.phone`padding-bottom: 0;`}
+`;
+
+const avatarFormSize = `
+    width: 11rem;
+    height: 13rem;
 `;
 
 const avatarForm = styled.div`
-    width: 110px;
-    height: 120px;
+    ${avatarFormSize}
     transform-origin: right top;
-    transform: skewY(-26deg);
-    -ms-transform: skewY(-26deg);
-    -webkit-transform: skewY(-26deg);
+
+    transform: skewY(-30deg);
+    -ms-transform: skewY(-30deg);
+    -webkit-transform: skewY(-30deg);
 `;
 
 const SpeakerAvatar = styled(avatarForm)`
-    background-color: rgba(143, 18, 254, 0.5);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 1.2rem 0.8rem rgba(230, 33, 112, 0.5);
+`;
+
+const Avatar = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${AvatarContainerHeight}
     
-    &:after {
-        width: 110px;
-        height: 120px;  
-        display: block;
-        content: '';
-        position: relative;
-        top: 8px;
-        left: 8px;
-        background-color: rgba(230, 33, 112, 0.5);
-    }
+    background: #efefef ${props => props.avatar ? `url(${props.avatar})` : ''} center top no-repeat;
+    background-size: auto 100%;
+    
+    transform: skewY(30deg) translateY(-3.2rem);
+    -ms-transform: skewY(30deg) translateY(-3.2rem);
+    -webkit-transform: skewY(30deg) translateY(-3.2rem);
 `;
 
 const SpeakerInfoContainer = styled.div`
-    padding-left: 2em;
+    text-align: center;
+    ${media.phone`
+        text-align: left;
+        padding-left: 2.5rem;
+    `}
+`;
+
+const speakerLinkHover = (color) => `
+    position: relative;
+    display: inline-block;
+    
+    &:hover {
+        color: ${color}; 
+    }
+    
+    &:after {
+        width: 0;
+        height: 0.2rem;
+        display: block;
+        position: absolute;
+        left: 50%;
+        content: '';
+        background: ${color};
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover:after {
+        left: 0;
+        width: 100%;
+    }
 `;
 
 const SpeakerInitials = styled.a`
-    font-family: Rubik;
-    font-size: 32px;
-    font-weight: 500;
-    font-stretch: normal;
-    line-height: 1.13;
-    letter-spacing: normal;
-    color: #545454;
     margin: 0;
     text-decoration: none;
+    font-family: Rubik;
+    font-size: 3.2rem;
+    font-weight: bold;
+    line-height: 1.13;
+    color: ${props => props.theme.greyishBrown};
+    ${props => speakerLinkHover(props.theme.greyishBrown)}
 `;
 
 const SpeakerDescription = styled.p`
-    font-family: LucidaGrande;
-    font-size: 22px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2em;
-    letter-spacing: normal;
-    color: #432867;
     margin: 0;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+    font-family: Oxygen;
+    font-size: 2.2rem;
+    color: ${props => props.theme.grape};
 `;
 
 const SpeakerAdditionalContainer = styled.div`
     display: flex;
+    justify-content: center;
+    ${media.phone`justify-content: flex-start;`}
 `;
 
-const CountOFTalks = styled.div`
+const CountOFTalks = styled.a`
+    margin-left: 1.5rem;
+    text-decoration: none;
     font-family: Oxygen;
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: bold;
-    line-height: 1;
-    color: #dd005d;
+    color: ${props => props.theme.lipstick};
+    ${props => speakerLinkHover(props.theme.lipstick)}
 `;
 
 
-const SpeakerCard = () => (
+const SpeakerCard = (avatar) => (
     <Card>
         <SpeakerAvatarContainer>
-            <SpeakerAvatar />
+            <SpeakerAvatar>
+                <Avatar>
+                    {avatar ? <NoAvatarIcon /> : ''}
+                </Avatar>
+            </SpeakerAvatar>
         </SpeakerAvatarContainer>
         <SpeakerInfoContainer>
-            <SpeakerInitials href="#">Speaker name</SpeakerInitials>
-            <SpeakerDescription>Freelancer</SpeakerDescription>
+            <SpeakerInitials href="#">Christopher Douglas</SpeakerInitials>
+            <SpeakerDescription>Freelancer, Javascript developer, Senior Front-end developer</SpeakerDescription>
             <SpeakerAdditionalContainer>
                 <SpeakerContacts />
-                <CountOFTalks>7 talks</CountOFTalks>
+                <CountOFTalks href="#">7 talks</CountOFTalks>
             </SpeakerAdditionalContainer>
         </SpeakerInfoContainer>
     </Card>

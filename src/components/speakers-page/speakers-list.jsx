@@ -1,8 +1,8 @@
 import React from 'react';
-// import { Link } from 'react-router';
+
 import styled from 'styled-components';
 
-// import { media } from '../../utils/css-utils';
+import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
 import FilterBlock from '../common/filter-block';
@@ -11,29 +11,36 @@ import SpeakerCard from '../../components/speaker-card/speaker-card';
 
 const SpeakerCardContainer = styled.div`
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     ${media.phone`
+        flex-flow: row wrap;  
+        justify-content: flex-start;
+    `}
 `;
 
 const LoadMoreButton = styled.button`
     display: block;
-    margin: 0px auto;
-    padding: 15px 35px;
-    border: solid 3px #e62270;
+    margin: 0 auto;
+    padding: 2.3rem 10rem;
+    border: solid 0.3rem ${props => props.theme.lipstick};
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: white;
     cursor: pointer;
     font-family: Rubik;
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
-    color: #e62270;
+    color: ${props => props.theme.lipstick};
+    transition: all 0.2s ease-in-out;
     
     &:hover {
-        color: black;
-        border-color: black;
+        color: white;
+        background: ${props => props.theme.lipstick};
     }
 `;
 
-const SpeakersFeed = () => (
+const SpeakersList = () => (
     <MainContainer>
         <BlockHeader>Speakers</BlockHeader>
         <FilterBlock>
@@ -48,4 +55,4 @@ const SpeakersFeed = () => (
     </MainContainer>
 );
 
-export default SpeakersFeed;
+export default SpeakersList;

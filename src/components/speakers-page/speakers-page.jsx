@@ -1,12 +1,12 @@
 import React from 'react';
 
 import SubscriptionForm from '../subscription-form/subscription-form';
-import SpeakersFeed from './speakers-feed';
+import SpeakersList from './speakers-list';
 
 const speackersPage = () => (
     <div>
         <SubscriptionForm />
-        <SpeakersFeed />
+        <SpeakersList />
     </div>
 );
 
