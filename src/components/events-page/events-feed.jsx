@@ -3,6 +3,7 @@ import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
+import { TagList } from '../common/tag';
 import {
     FilterBlock,
     FilterTab,
@@ -94,50 +95,6 @@ const Talk = styled.li`
     margin: 1.6rem 0;
 `;
 
-const TagList = styled.ul`
-    list-style: none;
-    display: inline-flex;
-    flex-wrap: wrap;
-    padding: 0;
-`;
-
-const TagListLabel = styled.span`
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.8rem;
-    color: ${props => props.theme.greyishBrown};
-    margin-right: 2.4rem;
-`;
-
-const tagColors = [
-    '#f290b7',
-    '#c788fe',
-    '#d88e9e',
-    '#a193b3',
-];
-
-// TODO: replace with theme colors
-const hoverTagColors = [
-    '#e62270',
-    '#9012fe',
-    '#b21d3d',
-    '#662d91',
-];
-
-const Tag = styled.li`
-    font-family: 'Oxygen', sans-serif;
-    font-size: 1.6rem;
-    color: #fff;
-    padding: .4rem 1.6rem;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all .2s ease-out;
-    
-    background: ${props => tagColors[props.index % tagColors.length]};
-    &:hover {
-        background: ${props => hoverTagColors[props.index % tagColors.length]};
-    }
-`;
-
 const FlexRow = styled.div`
     display: flex;
 `;
@@ -153,12 +110,7 @@ export default withTheme(({ events, tags, show, theme }) => (
             </FlexRow>
             <Search />
         </FilterBlock>
-        <div>
-            <TagListLabel>Events tags</TagListLabel>
-            <TagList>
-                {tags.map((tag, i) => <Tag key={tag} index={i}>{tag}</Tag>)}
-            </TagList>
-        </div>
+        <TagList label="Events tags" tags={tags} />
         <EventList>
             {events.map((event, eventIndex) => (
                 <EventSnippet key={event._id}>
@@ -179,9 +131,7 @@ export default withTheme(({ events, tags, show, theme }) => (
                     <TalkList>
                         {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
                     </TalkList>
-                    <TagList>
-                        {event.tags.map((tag, i) => <Tag key={tag} index={i}>{tag}</Tag>)}
-                    </TagList>
+                    <TagList tags={event.tags} />
                 </EventSnippet>
             ))}
         </EventList>
