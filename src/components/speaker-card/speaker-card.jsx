@@ -47,7 +47,7 @@ const avatarForm = styled.div`
 const SpeakerAvatar = styled(avatarForm)`
     overflow: hidden;
     position: relative;
-    box-shadow: 1.2rem 0.8rem rgba(230, 33, 112, 0.5);
+    box-shadow: 1.2rem 1.4rem rgba(230, 33, 112, 0.5);
 `;
 
 const Avatar = styled.div`
@@ -68,7 +68,7 @@ const SpeakerInfoContainer = styled.div`
     text-align: center;
     ${media.phone`
         text-align: left;
-        padding-left: 2.5rem;
+        padding-left: 3.5rem;
     `}
 `;
 
