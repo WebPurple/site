@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 import unionWith from 'lodash.unionwith';
 
-import { getJson } from '../../utils/ajax';
+import { getJson, mapQueryStringToObject } from '../../utils/ajax';
 
 const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
@@ -38,7 +38,18 @@ export function loadEvents() {
 
 // SELECTORS
 
-export const eventListSelector = state => state.events.get('eventList');
+export const allEventsSelector = state => state.events.get('eventList');
+
+export const showFilterSelector = (state, props) => mapQueryStringToObject(props.location.search).show || 'all';
+
+export const eventListSelector = createSelector(
+    [allEventsSelector, showFilterSelector],
+
+    (events, show) => events.filter(
+        event => show === 'all'
+        || (show === 'upcoming' && new Date(event.date) > new Date())
+        || (show === 'past' && new Date(event.date) < new Date()))
+);
 
 export const eventTagsSelector = createSelector(
     eventListSelector,

@@ -1,40 +1,21 @@
 import App from './containers/app/app';
+import HomePage from './components/home-page/home-page';
+import EventsPage from './components/events-page/events-page';
 
-const loadModule = cb => module => cb(null, module.default);
-
-// eslint-disable-next-line no-console
-const handleError = err => console.error(`Failed to load route component: ${err}`);
-
-export default {
-
-    path: '/',
-
+export default [{
     component: App,
 
-    getIndexRoute(partialNextState, cb) {
-        import('./components/home-page/home-page')
-            .then(module => cb(null, { component: module.default }))
-            .catch(handleError);
-    },
-
-    childRoutes: [
-        {
-            path: 'home',
-
-            getComponents(nextState, cb) {
-                import('./components/home-page/home-page')
-                    .then(loadModule(cb))
-                    .catch(handleError);
-            },
+    routes: [
+// waiting for https://github.com/ReactTraining/react-router/commit/a4b8408cff1f18541f17066dfe90756ed656fb04
+//        { path: '/',
+//            exact: true,
+//            component: HomePage,
+//        },
+        { path: '/home',
+            component: HomePage,
         },
-        {
-            path: 'events',
-
-            getComponents(nextState, cb) {
-                import('./components/events-page/events-page')
-                    .then(loadModule(cb))
-                    .catch(handleError);
-            },
+        { path: '/events',
+            component: EventsPage,
         },
         {
             path: 'speakers',
@@ -46,5 +27,4 @@ export default {
             },
         },
     ],
-
-};
+}];

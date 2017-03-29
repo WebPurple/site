@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+
+import { renderRoutes } from 'react-router-config';
 
 import { media } from '../../utils/css-utils';
 
@@ -30,30 +32,28 @@ const Logo = styled.h1`
 `;
 
 const NavigationBar = styled.ul`
-    display: none;
-    ${media.tablet`display: block;`}
-`;
-
-const MenuItem = styled.li`
     list-style: none;
-    display: inline-block;
-    padding: 10px;
-    box-sizing: border-box;
-    transition: border-color 1s ease-out;
-    border-bottom: solid 3px transparent;
-
-    &:hover {
-        border-bottom-color: ${props => props.theme.lipstick};
-    }
+    display: none;
+    ${media.tablet`display: flex;`}
+    margin-top: 2rem;
 `;
 
-const NavigationLink = styled(Link)`
+const NavigationLink = styled(NavLink)`
     text-decoration: none;
     font-family: 'Rubik', sans-serif;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
     color: ${props => props.theme.warmGrey};
+    
+    padding: 10px;
+    box-sizing: border-box;
+    transition: border-color 1s ease-out;
+    border-bottom: solid 3px transparent;
+    
+    &:hover, &.active {
+        border-bottom-color: ${props => props.theme.lipstick};
+    }
 `;
 
 const Footer = styled.footer`
@@ -79,24 +79,28 @@ const theme = {
     rouge: '#b21d3d',
 };
 
-const AppContainer = ({ children }) => (
+const AppContainer = ({ route }) => (
     <ThemeProvider theme={theme}>
         <Container>
             <Header>
                 <Logo>Webpurple</Logo>
                 <NavigationBar>
-                    <MenuItem><NavigationLink to="home">Home</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink to="events">Events</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink to="speakers">Speakers</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink href="#feed">Feed</NavigationLink></MenuItem>
+                    <li><NavigationLink to="/home" activeClassName="active">Home</NavigationLink></li>
+                    <li><NavigationLink to="/events" activeClassName="active">Events</NavigationLink></li>
+                    <li><NavigationLink to="/speakers">Speakers</NavigationLink></li>
+                    <li><NavigationLink to="#feed">Feed</NavigationLink></li>
                 </NavigationBar>
             </Header>
             <main>
-                {children}
+                {renderRoutes(route.routes)}
             </main>
             <Footer>Footer is supposed to be here</Footer>
         </Container>
     </ThemeProvider>
 );
+
+AppContainer.propTypes = {
+    route: React.PropTypes.object.isRequired,
+};
 
 export default AppContainer;

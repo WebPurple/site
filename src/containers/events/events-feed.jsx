@@ -1,10 +1,12 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import {
     loadEvents,
     eventListSelector,
+    showFilterSelector,
     eventTagsSelector,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
@@ -20,21 +22,23 @@ class EventsFeedContainer extends React.Component {
     }
 
     render() {
-        const { events, tags } = this.props;
-        return <EventsFeed events={events} tags={tags} />;
+        return <EventsFeed {...this.props} />;
     }
 }
 
-const mapStateToProps = state => ({
-    events: eventListSelector(state),
-    tags: eventTagsSelector(state),
+const mapStateToProps = (state, ownProps) => ({
+    events: eventListSelector(state, ownProps),
+    tags: eventTagsSelector(state, ownProps),
+    show: showFilterSelector(state, ownProps),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
 }, dispatch);
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EventsFeedContainer);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(EventsFeedContainer)
+);

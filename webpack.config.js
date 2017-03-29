@@ -3,6 +3,13 @@ const webpack = require('webpack');
 const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+if (process.env.NODE_ENV === 'travisci') {
+    // if we set NODE_ENV === 'production' on Travis, it will not install devDependencies
+    // but to remove debug code from libraries and add metrics we need NODE_ENV === 'production'
+    // so now I don't know better solution than this hack
+    process.env.NODE_ENV = 'production';
+}
+
 const isProd = process.env.NODE_ENV === 'production';
 
 const plugins = [

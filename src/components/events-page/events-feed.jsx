@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router';
 import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
-import MainContainer from '../common/main-container';
-import FilterBlock from '../common/filter-block';
-import SearchBlock from '../common/search-block';
+import {
+    FilterBlock,
+    FilterTab,
+    Search,
+} from '../page-filter';
 import {
     ClockIcon,
     PlaceholderIcon,
 } from '../icons';
+
+const Container = styled.section`
+    padding: 6rem 2rem;
+    ${media.desktop`padding: 10rem;`}
+    ${media.hd`padding: 12rem;`}
+`;
 
 const EventList = styled.ul`
     list-style: none;
@@ -47,6 +54,7 @@ const BackgroundShape = styled.div`
 `;
 
 const BackgroundImage = styled.div`
+    width: 100%;
     height: 100%;
     filter: grayscale(100);
     opacity: .15;
@@ -130,50 +138,20 @@ const Tag = styled.li`
     }
 `;
 
-const TimeFilterTabs = styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 0;
+const FlexRow = styled.div`
     display: flex;
-    align-items: streigth;
 `;
 
-const FilterTab = styled(Link)`
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    line-height: 8.5rem;
-    margin: 0 4.8rem 0 0;
-    text-decoration: none;
-    color: ${props => props.theme.greyishBrown}
-    font-size: 1.8rem;
-    ${media.desktop`font-size: 2.7rem;`}
-    font-weight: bold;
-    font-family: 'Rubik', sans-serif;
-    
-    &:hover {
-    
-        &:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            left: 0;
-            bottom: -2px;
-            border-bottom: 4px solid ${props => props.theme.lipstick};
-        }
-    }
-`;
-
-export default withTheme(({ events, tags, theme }) => (
-    <MainContainer>
+export default withTheme(({ events, tags, show, theme }) => (
+    <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
-            <TimeFilterTabs>
-                <li><FilterTab to="/events?show=upcomming">Upcoming</FilterTab></li>
-                <li><FilterTab to="/events?show=past">Past</FilterTab></li>
-                <li><FilterTab to="/events?show=all">All</FilterTab></li>
-            </TimeFilterTabs>
-            <SearchBlock />
+            <FlexRow>
+                {['All', 'Upcoming', 'Past'].map(filter => (
+                    <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
+                ))}
+            </FlexRow>
+            <Search />
         </FilterBlock>
         <div>
             <TagListLabel>Events tags</TagListLabel>
@@ -207,5 +185,5 @@ export default withTheme(({ events, tags, theme }) => (
                 </EventSnippet>
             ))}
         </EventList>
-    </MainContainer>
+    </Container>
 ));
