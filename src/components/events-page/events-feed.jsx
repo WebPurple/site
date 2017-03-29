@@ -135,14 +135,14 @@ const TimeFilterTabs = styled.ul`
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: streigth;
 `;
 
 const FilterTab = styled(Link)`
     position: relative;
     display: block;
     box-sizing: border-box;
-    padding: 1.6rem 0;
-    ${media.desktop`padding: 2.5rem 0;`}
+    line-height: 8.5rem;
     margin: 0 4.8rem 0 0;
     text-decoration: none;
     color: ${props => props.theme.greyishBrown}
