@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import SubscriptionForm from '../../components/subscription-form/subscription-form';
 import {
     loadEvents,
     eventListSelector,
@@ -13,7 +14,7 @@ import {
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
 
-class EventsFeedContainer extends React.Component {
+class EventsPageContainer extends React.Component {
 
     static loadEvents = React.PropTypes.func.isRequired;
     static events = React.PropTypes.array.isRequired;
@@ -24,7 +25,12 @@ class EventsFeedContainer extends React.Component {
     }
 
     render() {
-        return <EventsFeed {...this.props} />;
+        return (
+            <div>
+                <SubscriptionForm />
+                <EventsFeed {...this.props} />
+            </div>
+        );
     }
 }
 
@@ -44,5 +50,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(EventsFeedContainer)
+    )(EventsPageContainer)
 );

@@ -1,6 +1,6 @@
 import App from './containers/app/app';
 import HomePage from './components/home-page/home-page';
-import EventsPage from './components/events-page/events-page';
+import EventsPage from './containers/events/events-page';
 
 export default [{
     component: App,
