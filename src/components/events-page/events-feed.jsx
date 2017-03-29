@@ -47,7 +47,6 @@ const BackgroundShape = styled.div`
 `;
 
 const BackgroundImage = styled.div`
-    width: 100%;
     height: 100%;
     filter: grayscale(100);
     opacity: .15;
@@ -143,12 +142,12 @@ const FilterTab = styled(Link)`
     display: block;
     box-sizing: border-box;
     padding: 1.6rem 0;
-    ${media.desktop`padding: 2.4rem 0;`}
+    ${media.desktop`padding: 2.5rem 0;`}
     margin: 0 4.8rem 0 0;
     text-decoration: none;
     color: ${props => props.theme.greyishBrown}
     font-size: 1.8rem;
-    ${media.desktop`font-size: 2.4rem;`}
+    ${media.desktop`font-size: 2.7rem;`}
     font-weight: bold;
     font-family: 'Rubik', sans-serif;
     
