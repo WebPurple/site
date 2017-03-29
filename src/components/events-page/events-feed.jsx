@@ -1,13 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import {
+    FilterBlock,
+    FilterTab,
+    Search,
+} from '../page-filter';
+import {
     ClockIcon,
     PlaceholderIcon,
-    SearchIcon,
 } from '../icons';
 
 const Container = styled.section`
@@ -135,86 +138,20 @@ const Tag = styled.li`
     }
 `;
 
-const FilterBlock = styled.div`
+const FlexRow = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin: 4rem 0;
-    border-bottom: 2px solid #ededed;
-`;
-
-const TimeFilterTabs = styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-`;
-
-const FilterTab = styled(NavLink)`
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    padding: 1.6rem 0;
-    ${media.desktop`padding: 2.4rem 0;`}
-    margin: 0 4.8rem 0 0;
-    text-decoration: none;
-    color: ${props => props.theme.greyishBrown}
-    font-size: 1.8rem;
-    ${media.desktop`font-size: 2.4rem;`}
-    font-weight: bold;
-    font-family: 'Rubik', sans-serif;
-    
-    &:after {
-        /* this might should be done via activeClassName https://github.com/styled-components/styled-components/issues/184 */
-        content: ${props => props['data-active'] ? '""' : 'none'};
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: -2px;
-        border-bottom: 4px solid ${props => props.theme.lipstick};
-    }
-    
-    &:hover {
-    
-        &:after {
-            content: '';
-        }
-    }
-`;
-
-const SearchBlock = styled.div`
-    display: none;
-    ${media.desktop`display: flex;`}
-    align-items: center;
-`;
-const SearchInput = styled.input`
-    border: 0;
-    font-size: 2.4rem;
-    font-family: 'Oxygen', sans-serif;
-    outline: none;
-`;
-
-const StyledSearchIcon = styled(SearchIcon)`
-    height: 2.8rem;
-    width: 2.8rem;
-    margin-left: 1rem;
-    fill: #ccc;
 `;
 
 export default withTheme(({ events, tags, show, theme }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
-            <TimeFilterTabs>
+            <FlexRow>
                 {['All', 'Upcoming', 'Past'].map(filter => (
-                    <li key={filter}>
-                        <FilterTab to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
-                    </li>
+                    <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                 ))}
-            </TimeFilterTabs>
-            <SearchBlock>
-                <SearchInput type="text" placeholder="Keywords..." />
-                <StyledSearchIcon />
-            </SearchBlock>
+            </FlexRow>
+            <Search />
         </FilterBlock>
         <div>
             <TagListLabel>Events tags</TagListLabel>
