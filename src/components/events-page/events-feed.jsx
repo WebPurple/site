@@ -151,7 +151,7 @@ export default withTheme(({ events, tags, show, theme }) => (
                     <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                 ))}
             </FlexRow>
-            <Search />
+            <Search placeholder="Keyword..." />
         </FilterBlock>
         <div>
             <TagListLabel>Events tags</TagListLabel>

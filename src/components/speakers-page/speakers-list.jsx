@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
-import FilterBlock from '../common/filter-block';
-import SearchBlock from '../common/search-block';
+import { FilterBlock, Search } from '../page-filter';
 import SpeakerCard from '../../components/speaker-card/speaker-card';
 
 const SpeakerCardContainer = styled.div`
@@ -44,7 +43,7 @@ const SpeakersList = () => (
     <MainContainer>
         <BlockHeader>Speakers</BlockHeader>
         <FilterBlock>
-            <SearchBlock />
+            <Search placeholder="Search for speaker…" />
         </FilterBlock>
         <SpeakerCardContainer>
             <SpeakerCard />

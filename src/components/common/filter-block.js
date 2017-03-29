@@ -6,7 +6,6 @@ const FilterBlock = styled.div`
     align-items: stretch;
     justify-content: space-between;
     border-bottom: 2px solid #ededed;
-    height: 8.5rem;
 `;
 
 export default FilterBlock;

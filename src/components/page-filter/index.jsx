@@ -69,9 +69,9 @@ const StyledSearchIcon = styled(SearchIcon)`
     fill: #ccc;
 `;
 
-export const Search = () => (
+export const Search = ({ placeholder }) => (
     <SearchWrapper>
-        <SearchInput type="text" placeholder="Keyword..." />
+        <SearchInput type="text" placeholder={placeholder} />
         <StyledSearchIcon />
     </SearchWrapper>
 );

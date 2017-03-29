@@ -1,6 +1,7 @@
 import App from './containers/app/app';
 import HomePage from './components/home-page/home-page';
 import EventsPage from './components/events-page/events-page';
+import SpeakersPage from './components/speakers-page/speakers-page';
 
 export default [{
     component: App,
@@ -11,20 +12,17 @@ export default [{
 //            exact: true,
 //            component: HomePage,
 //        },
-        { path: '/home',
+        {
+            path: '/home',
             component: HomePage,
         },
-        { path: '/events',
+        {
+            path: '/events',
             component: EventsPage,
         },
         {
-            path: 'speakers',
-
-            getComponents(nextState, cb) {
-                import('./components/speakers-page/speakers-page')
-                    .then(loadModule(cb))
-                    .catch(handleError);
-            },
+            path: '/speakers',
+            component: SpeakersPage,
         },
     ],
 }];
