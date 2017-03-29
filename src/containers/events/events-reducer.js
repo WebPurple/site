@@ -10,6 +10,7 @@ const RECEIVE_EVENTS = 'events/receive-events';
 const TOGGLE_TAG = 'events/toggle-tag';
 
 const initialState = fromJS({
+    isFetching: false,
     eventList: [],
     selectedTags: new Set(),
 });
@@ -17,12 +18,16 @@ const initialState = fromJS({
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case RECEIVE_EVENTS:
-            return state.set('eventList', new List(action.payload));
+            return state
+                .set('isFetching', false)
+                .set('eventList', new List(action.payload));
         case TOGGLE_TAG:
             return state.update('selectedTags',
                 selectedTags => selectedTags.has(action.payload)
                     ? selectedTags.delete(action.payload)
                     : selectedTags.add(action.payload));
+        case REQUEST_EVENTS:
+            return state.set('isFetching', true);
         default:
             return state;
     }

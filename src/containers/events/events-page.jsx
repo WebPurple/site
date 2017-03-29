@@ -39,6 +39,7 @@ const mapStateToProps = (state, ownProps) => ({
     tags: eventTagsSelector(state, ownProps),
     selectedTags: selectedTagsSelector(state, ownProps),
     show: showFilterSelector(state, ownProps),
+    isFetching: state.events.get('isFetching'),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

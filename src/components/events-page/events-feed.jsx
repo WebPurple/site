@@ -6,6 +6,7 @@ import { List, Set } from 'immutable';
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import { TagList } from '../common/tag';
+import Loader from '../common/loader';
 import {
     FilterBlock,
     FilterTab,
@@ -101,7 +102,11 @@ const FlexRow = styled.div`
     display: flex;
 `;
 
-const EventsFeed = ({ events, tags, selectedTags, show, theme, onTagClick }) => (
+const StyledLoader = styled(Loader)`
+    margin: 15rem auto;
+`;
+
+const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTagClick }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
@@ -115,30 +120,33 @@ const EventsFeed = ({ events, tags, selectedTags, show, theme, onTagClick }) => 
 
         {tags.length > 0 && <TagList label="Events tags" tags={tags} selectedTags={selectedTags} onTagClick={onTagClick} />}
 
-        <EventList>
-            {events.map((event, eventIndex) => (
-                <EventSnippet key={event._id}>
-                    <BackgroundShape>
-                        <BackgroundImage url={event.image} />
-                    </BackgroundShape>
-                    <header>
-                        <Info>
-                            <ClockIcon style={{ marginRight: '1.6rem' }} />
-                            <time>{new Date(event.date).toLocaleDateString()}</time>
-                        </Info>
-                        <Info>
-                            <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-                            <span>{event.location}</span>
-                        </Info>
-                        <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
-                    </header>
-                    <TalkList>
-                        {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
-                    </TalkList>
-                    <TagList tags={event.tags} />
-                </EventSnippet>
-            ))}
-        </EventList>
+        {isFetching ? <StyledLoader size="80" border="8" />
+            : (
+                <EventList>
+                    {events.map((event, eventIndex) => (
+                        <EventSnippet key={event._id}>
+                            <BackgroundShape>
+                                <BackgroundImage url={event.image} />
+                            </BackgroundShape>
+                            <header>
+                                <Info>
+                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
+                                    <time>{new Date(event.date).toLocaleDateString()}</time>
+                                </Info>
+                                <Info>
+                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
+                                    <span>{event.location}</span>
+                                </Info>
+                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
+                            </header>
+                            <TalkList>
+                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
+                            </TalkList>
+                            <TagList tags={event.tags} />
+                        </EventSnippet>
+                    ))}
+                </EventList>
+            )}
     </Container>
 );
 
