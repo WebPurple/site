@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import Color from 'color';
 
+import { Set } from 'immutable';
+
 export const Tag = styled.li`
     font-family: 'Oxygen', sans-serif;
     font-size: 1.6rem;
@@ -38,19 +40,21 @@ const Tags = styled.ul`
     padding: 0;
 `;
 
-export const TagList = withTheme(({ tags, label, theme }) => (
+export const TagList = withTheme(({ tags, selectedTags, label, theme, onTagClick }) => (
     <div>
         {label && <TagListLabel>{label}</TagListLabel>}
 
         <Tags>
             {tags.map((tag, i) => {
-                const colorHex = theme[tagColors[i % tagColors.length]];
+                const selectedOrHoverColor = theme[tagColors[i % tagColors.length]];
+                const fadeColor = new Color(selectedOrHoverColor).fade(0.5).string();
 
                 return (
                     <Tag
                         key={i}
-                        color={new Color(colorHex).fade(0.5).string()}
-                        hoverColor={colorHex}>
+                        color={selectedTags && selectedTags.has(tag) ? selectedOrHoverColor : fadeColor}
+                        hoverColor={selectedOrHoverColor}
+                        onClick={onTagClick && (() => onTagClick(tag))}>
                         {tag}
                     </Tag>
                 );
@@ -60,6 +64,8 @@ export const TagList = withTheme(({ tags, label, theme }) => (
 ));
 
 TagList.propTypes = {
-    tags: React.PropTypes.arrayOf(String),
+    tags: React.PropTypes.arrayOf(String).isRequired,
+    selectedTags: React.PropTypes.instanceOf(Set),
     label: React.PropTypes.string,
+    onTagClick: React.PropTypes.func,
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 
+import { List, Set } from 'immutable';
+
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import { TagList } from '../common/tag';
@@ -99,7 +101,7 @@ const FlexRow = styled.div`
     display: flex;
 `;
 
-export default withTheme(({ events, tags, show, theme }) => (
+const EventsFeed = ({ events, tags, selectedTags, show, theme, onTagClick }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
@@ -110,7 +112,9 @@ export default withTheme(({ events, tags, show, theme }) => (
             </FlexRow>
             <Search />
         </FilterBlock>
-        <TagList label="Events tags" tags={tags} />
+
+        {tags.length > 0 && <TagList label="Events tags" tags={tags} selectedTags={selectedTags} onTagClick={onTagClick} />}
+
         <EventList>
             {events.map((event, eventIndex) => (
                 <EventSnippet key={event._id}>
@@ -136,4 +140,14 @@ export default withTheme(({ events, tags, show, theme }) => (
             ))}
         </EventList>
     </Container>
-));
+);
+
+EventsFeed.propTypes = {
+    events: React.PropTypes.instanceOf(List).isRequired,
+    tags: React.PropTypes.arrayOf(String),
+    selectedTags: React.PropTypes.instanceOf(Set),
+    show: React.PropTypes.string,
+    onTagClick: React.PropTypes.func,
+};
+
+export default withTheme(EventsFeed);

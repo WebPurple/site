@@ -8,6 +8,8 @@ import {
     eventListSelector,
     showFilterSelector,
     eventTagsSelector,
+    selectedTagsSelector,
+    toggleTag,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
 
@@ -29,11 +31,13 @@ class EventsFeedContainer extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     events: eventListSelector(state, ownProps),
     tags: eventTagsSelector(state, ownProps),
+    selectedTags: selectedTagsSelector(state, ownProps),
     show: showFilterSelector(state, ownProps),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
+    onTagClick: toggleTag,
 }, dispatch);
 
 export default withRouter(
