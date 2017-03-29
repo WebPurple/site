@@ -5,7 +5,6 @@ import { media } from '../../utils/css-utils';
 import { SearchIcon } from '../icons';
 
 const SearchBlockWrapper = styled.div`
-    padding: 0.9rem 0;
     ${media.desktop`display: flex;`}
     align-items: center;
 `;
@@ -15,6 +14,7 @@ const SearchInput = styled.input`
     font-size: 2.4rem;
     font-family: 'Oxygen', sans-serif;
     outline: none;
+    max-width: 240px;
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
