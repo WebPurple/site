@@ -106,6 +106,14 @@ const StyledLoader = styled(Loader)`
     margin: 15rem auto;
 `;
 
+const NoEventsBlock = styled.div`
+    margin: 10rem 0;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 2.5rem;
+    color: ${props => props.theme.warmPurple};
+`;
+
 const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTagClick }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
@@ -123,6 +131,7 @@ const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTag
         )}
 
         {isFetching ? <StyledLoader size="80" border="8" />
+            : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
             : (
                 <EventList>
                     {events.map((event, eventIndex) => (
