@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const NoAvatarIcon = () => (
     <svg width="45" height="40" viewBox="0 0 45 40" xmlns="http://www.w3.org/2000/svg"><title>
@@ -13,6 +12,4 @@ const NoAvatarIcon = () => (
     </svg>
 );
 
-export default styled(NoAvatarIcon)`
-    transform: translate(50%, 50%);    
-`;
+export default NoAvatarIcon;

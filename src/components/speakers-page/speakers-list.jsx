@@ -1,12 +1,13 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
 import { FilterBlock, Search } from '../page-filter';
 import SpeakerCard from '../../components/speaker-card/speaker-card';
+import Button from '../common/button';
 
 const SpeakerCardContainer = styled.div`
     display: flex;
@@ -19,39 +20,32 @@ const SpeakerCardContainer = styled.div`
     `}
 `;
 
-const LoadMoreButton = styled.button`
-    display: block;
-    margin: 0 auto;
-    padding: 2.3rem 10rem;
-    border: solid 0.3rem ${props => props.theme.lipstick};
-    text-transform: uppercase;
-    background-color: white;
-    cursor: pointer;
-    font-family: Rubik;
-    font-size: 2.4rem;
-    font-weight: bold;
-    color: ${props => props.theme.lipstick};
-    transition: all 0.2s ease-in-out;
-    
-    &:hover {
-        color: white;
-        background: ${props => props.theme.lipstick};
-    }
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
 `;
 
-const SpeakersList = () => (
+const speaker = {
+    initials: 'Christopher Douglas',
+    description: 'Freelancer, Javascript developer, Senior Front-end developer',
+    talksCount: 7,
+};
+
+const SpeakersList = withTheme(({ theme }) => (
     <MainContainer>
         <BlockHeader>Speakers</BlockHeader>
         <FilterBlock>
             <Search placeholder="Search for speaker…" />
         </FilterBlock>
         <SpeakerCardContainer>
-            <SpeakerCard />
-            <SpeakerCard />
-            <SpeakerCard />
+            <SpeakerCard speaker={speaker} />
+            <SpeakerCard speaker={speaker} />
+            <SpeakerCard speaker={speaker} />
         </SpeakerCardContainer>
-        <LoadMoreButton>Load More</LoadMoreButton>
+        <ButtonContainer>
+            <Button defaultSheme={theme.lipstick} hoverColor={'#fff'}>Load More</Button>
+        </ButtonContainer>
     </MainContainer>
-);
+));
 
 export default SpeakersList;
