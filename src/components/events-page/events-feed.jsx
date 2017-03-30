@@ -118,7 +118,9 @@ const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTag
             <Search />
         </FilterBlock>
 
-        {tags.length > 0 && <TagList label="Events tags" tags={tags} selectedTags={selectedTags} onTagClick={onTagClick} />}
+        {(tags.length > 0 || !selectedTags.isEmpty()) && (
+            <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
+        )}
 
         {isFetching ? <StyledLoader size="80" border="8" />
             : (
