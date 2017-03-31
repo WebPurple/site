@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
 import unionWith from 'lodash.unionwith';
 
@@ -7,12 +7,27 @@ import { getJson, mapQueryStringToObject } from '../../utils/ajax';
 const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
 
-const initialState = fromJS({ eventList: [] });
+const TOGGLE_TAG = 'events/toggle-tag';
+
+const initialState = fromJS({
+    isFetching: false,
+    eventList: [],
+    selectedTags: new Set(),
+});
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case RECEIVE_EVENTS:
-            return state.set('eventList', action.payload);
+            return state
+                .set('isFetching', false)
+                .set('eventList', new List(action.payload));
+        case TOGGLE_TAG:
+            return state.update('selectedTags',
+                selectedTags => selectedTags.has(action.payload)
+                    ? selectedTags.delete(action.payload)
+                    : selectedTags.add(action.payload));
+        case REQUEST_EVENTS:
+            return state.set('isFetching', true);
         default:
             return state;
     }
@@ -36,19 +51,30 @@ export function loadEvents() {
     };
 }
 
+export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
+
 // SELECTORS
+
+export const selectedTagsSelector = state => state.events.get('selectedTags');
 
 export const allEventsSelector = state => state.events.get('eventList');
 
 export const showFilterSelector = (state, props) => mapQueryStringToObject(props.location.search).show || 'all';
 
 export const eventListSelector = createSelector(
-    [allEventsSelector, showFilterSelector],
+    [allEventsSelector, showFilterSelector, selectedTagsSelector],
 
-    (events, show) => events.filter(
-        event => show === 'all'
-        || (show === 'upcoming' && new Date(event.date) > new Date())
-        || (show === 'past' && new Date(event.date) < new Date()))
+    (events, show, selectedTags) => events.filter(event => {
+        const date = new Date(event.date);
+        const now = new Date();
+
+        if ((show === 'upcoming' && date < now)
+            || (show === 'past' && date > now)) {
+            return false;
+        }
+
+        return selectedTags.isEmpty() || selectedTags.isSubset(event.tags);
+    })
 );
 
 export const eventTagsSelector = createSelector(

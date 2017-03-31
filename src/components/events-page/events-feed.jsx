@@ -1,8 +1,12 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 
+import { List, Set } from 'immutable';
+
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
+import { TagList } from '../common/tag';
+import Loader from '../common/loader';
 import {
     FilterBlock,
     FilterTab,
@@ -94,55 +98,23 @@ const Talk = styled.li`
     margin: 1.6rem 0;
 `;
 
-const TagList = styled.ul`
-    list-style: none;
-    display: inline-flex;
-    flex-wrap: wrap;
-    padding: 0;
-`;
-
-const TagListLabel = styled.span`
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.8rem;
-    color: ${props => props.theme.greyishBrown};
-    margin-right: 2.4rem;
-`;
-
-const tagColors = [
-    '#f290b7',
-    '#c788fe',
-    '#d88e9e',
-    '#a193b3',
-];
-
-// TODO: replace with theme colors
-const hoverTagColors = [
-    '#e62270',
-    '#9012fe',
-    '#b21d3d',
-    '#662d91',
-];
-
-const Tag = styled.li`
-    font-family: 'Oxygen', sans-serif;
-    font-size: 1.6rem;
-    color: #fff;
-    padding: .4rem 1.6rem;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all .2s ease-out;
-    
-    background: ${props => tagColors[props.index % tagColors.length]};
-    &:hover {
-        background: ${props => hoverTagColors[props.index % tagColors.length]};
-    }
-`;
-
 const FlexRow = styled.div`
     display: flex;
 `;
 
-export default withTheme(({ events, tags, show, theme }) => (
+const StyledLoader = styled(Loader)`
+    margin: 15rem auto;
+`;
+
+const NoEventsBlock = styled.div`
+    margin: 10rem 0;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 2.5rem;
+    color: ${props => props.theme.warmPurple};
+`;
+
+const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTagClick }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
@@ -153,37 +125,48 @@ export default withTheme(({ events, tags, show, theme }) => (
             </FlexRow>
             <Search placeholder="Keyword..." />
         </FilterBlock>
-        <div>
-            <TagListLabel>Events tags</TagListLabel>
-            <TagList>
-                {tags.map((tag, i) => <Tag key={tag} index={i}>{tag}</Tag>)}
-            </TagList>
-        </div>
-        <EventList>
-            {events.map((event, eventIndex) => (
-                <EventSnippet key={event._id}>
-                    <BackgroundShape>
-                        <BackgroundImage url={event.image} />
-                    </BackgroundShape>
-                    <header>
-                        <Info>
-                            <ClockIcon style={{ marginRight: '1.6rem' }} />
-                            <time>{new Date(event.date).toLocaleDateString()}</time>
-                        </Info>
-                        <Info>
-                            <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-                            <span>{event.location}</span>
-                        </Info>
-                        <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
-                    </header>
-                    <TalkList>
-                        {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
-                    </TalkList>
-                    <TagList>
-                        {event.tags.map((tag, i) => <Tag key={tag} index={i}>{tag}</Tag>)}
-                    </TagList>
-                </EventSnippet>
-            ))}
-        </EventList>
+
+        {(tags.length > 0 || !selectedTags.isEmpty()) && (
+            <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
+        )}
+
+        {isFetching ? <StyledLoader size="80" border="8" />
+            : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
+            : (
+                <EventList>
+                    {events.map((event, eventIndex) => (
+                        <EventSnippet key={event._id}>
+                            <BackgroundShape>
+                                <BackgroundImage url={event.image} />
+                            </BackgroundShape>
+                            <header>
+                                <Info>
+                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
+                                    <time>{new Date(event.date).toLocaleDateString()}</time>
+                                </Info>
+                                <Info>
+                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
+                                    <span>{event.location}</span>
+                                </Info>
+                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
+                            </header>
+                            <TalkList>
+                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
+                            </TalkList>
+                            <TagList tags={event.tags} />
+                        </EventSnippet>
+                    ))}
+                </EventList>
+            )}
     </Container>
-));
+);
+
+EventsFeed.propTypes = {
+    events: React.PropTypes.instanceOf(List).isRequired,
+    tags: React.PropTypes.arrayOf(String),
+    selectedTags: React.PropTypes.instanceOf(Set),
+    show: React.PropTypes.string,
+    onTagClick: React.PropTypes.func,
+};
+
+export default withTheme(EventsFeed);
