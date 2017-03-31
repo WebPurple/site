@@ -47,6 +47,7 @@ export const FilterTab = styled(NavLink)`
 const SearchWrapper = styled.label`
     position: relative;
     padding-right: 4rem;
+    max-width: 27rem;
 `;
 
 const SearchInput = styled.input`
@@ -69,9 +70,9 @@ const StyledSearchIcon = styled(SearchIcon)`
     fill: #ccc;
 `;
 
-export const Search = () => (
+export const Search = ({ placeholder }) => (
     <SearchWrapper>
-        <SearchInput type="text" placeholder="Keyword..." />
+        <SearchInput type="text" placeholder={placeholder} />
         <StyledSearchIcon />
     </SearchWrapper>
 );

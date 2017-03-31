@@ -1,9 +1,12 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 
+import { List, Set } from 'immutable';
+
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import { TagList } from '../common/tag';
+import Loader from '../common/loader';
 import {
     FilterBlock,
     FilterTab,
@@ -99,7 +102,19 @@ const FlexRow = styled.div`
     display: flex;
 `;
 
-export default withTheme(({ events, tags, show, theme }) => (
+const StyledLoader = styled(Loader)`
+    margin: 15rem auto;
+`;
+
+const NoEventsBlock = styled.div`
+    margin: 10rem 0;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 2.5rem;
+    color: ${props => props.theme.warmPurple};
+`;
+
+const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTagClick }) => (
     <Container>
         <BlockHeader>Events</BlockHeader>
         <FilterBlock>
@@ -108,32 +123,50 @@ export default withTheme(({ events, tags, show, theme }) => (
                     <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                 ))}
             </FlexRow>
-            <Search />
+            <Search placeholder="Keyword..." />
         </FilterBlock>
-        <TagList label="Events tags" tags={tags} />
-        <EventList>
-            {events.map((event, eventIndex) => (
-                <EventSnippet key={event._id}>
-                    <BackgroundShape>
-                        <BackgroundImage url={event.image} />
-                    </BackgroundShape>
-                    <header>
-                        <Info>
-                            <ClockIcon style={{ marginRight: '1.6rem' }} />
-                            <time>{new Date(event.date).toLocaleDateString()}</time>
-                        </Info>
-                        <Info>
-                            <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-                            <span>{event.location}</span>
-                        </Info>
-                        <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
-                    </header>
-                    <TalkList>
-                        {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
-                    </TalkList>
-                    <TagList tags={event.tags} />
-                </EventSnippet>
-            ))}
-        </EventList>
+
+        {(tags.length > 0 || !selectedTags.isEmpty()) && (
+            <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
+        )}
+
+        {isFetching ? <StyledLoader size="80" border="8" />
+            : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
+            : (
+                <EventList>
+                    {events.map((event, eventIndex) => (
+                        <EventSnippet key={event._id}>
+                            <BackgroundShape>
+                                <BackgroundImage url={event.image} />
+                            </BackgroundShape>
+                            <header>
+                                <Info>
+                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
+                                    <time>{new Date(event.date).toLocaleDateString()}</time>
+                                </Info>
+                                <Info>
+                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
+                                    <span>{event.location}</span>
+                                </Info>
+                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
+                            </header>
+                            <TalkList>
+                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
+                            </TalkList>
+                            <TagList tags={event.tags} />
+                        </EventSnippet>
+                    ))}
+                </EventList>
+            )}
     </Container>
-));
+);
+
+EventsFeed.propTypes = {
+    events: React.PropTypes.instanceOf(List).isRequired,
+    tags: React.PropTypes.arrayOf(String),
+    selectedTags: React.PropTypes.instanceOf(Set),
+    show: React.PropTypes.string,
+    onTagClick: React.PropTypes.func,
+};
+
+export default withTheme(EventsFeed);
