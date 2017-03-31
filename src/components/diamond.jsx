@@ -1,28 +1,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const DiamondAngle = '26deg';
-const DiamondSize = 15.7;
-const DiamondBackShift = DiamondSize / 2;
+const Angle = '30deg';
+const Width = 32;
+const Height = Width + 5;
+const ShiftPhoto = Height / 2;
 
-/* how to pass size properly? */
 const EmptyDiamond = styled.div`
-    width: ${(props) => props.size || DiamondSize}rem; 
-    height: ${(props) => props.size || DiamondSize}rem;
+    width: ${(props) => props.size || Width}rem; 
+    height: ${(props) => props.size + 5 || Height}rem; 
 `;
 
 const DiamondLeft = styled.div`
-    width: ${DiamondSize}rem;
-    height: ${DiamondSize}rem;
+    transform: skewY(-${(props) => props.angle || Angle});
+
+    width: ${(props) => props.size || Width}rem;
+    height: ${(props) => props.size + 5 || Height}rem;
     overflow: hidden;
-    
     color: white;
-    
-    transform: skewY(-${DiamondAngle});
 `;
 
 const DiamondLeftDescription = styled.div`
-    transform: skewY(${DiamondAngle});
+    transform: skewY(${(props) => props.angle || Angle});
     
     display:inline-block;
     color: white;
@@ -32,13 +31,11 @@ const DiamondLeftDescription = styled.div`
 `;
 
 const DiamondLeftWithPhoto = styled.div`
-    width: ${DiamondSize}rem;
-    height: ${DiamondSize}rem;
+    transform: skewY(-${(props) => props.angle || Angle});
+    width: ${(props) => props.size || Width}rem;
+    height: ${(props) => props.size + 5 || Height}rem;
     overflow: hidden;
-    
     color: white;
-    
-    transform: skewY(-${DiamondAngle});
     
     &:after {
         opacity: 0.7;
@@ -49,13 +46,12 @@ const DiamondLeftWithPhoto = styled.div`
         display: block;
         height: 100%;
         width: 100%;
-        
         background-color: ${(props) => props.cover};
     }
 `;
 
 const DiamondLeftPhoto = styled.div`
-    transform: skewY(${DiamondAngle});
+    transform: skewY(${(props) => props.angle || Angle});
     
     background-size: cover;
     filter: grayscale(100%);
@@ -67,17 +63,16 @@ const DiamondLeftPhoto = styled.div`
 `;
 
 const DiamondRight = styled.div`
-    width: ${DiamondSize}rem;
-    height: ${DiamondSize}rem;
+    transform: skewY(${(props) => props.angle || Angle});
+    
+    width: ${(props) => props.size || Width}rem;
+    height: ${(props) => props.size + 5 || Height}rem;
     overflow: hidden;
-    
     color: white;
-    
-    transform: skewY(${DiamondAngle});
 `;
 
 const DiamondRightDescription = styled.div`
-    transform: skewY(-${DiamondAngle});
+    transform: skewY(-${(props) => props.angle || Angle});
     
     display:inline-block;
     color: white;
@@ -87,14 +82,13 @@ const DiamondRightDescription = styled.div`
 `;
 
 const DiamondRightWithPhoto = styled.div`
-    width: ${DiamondSize}rem;
-    height: ${DiamondSize}rem;
+    transform: skewY(${(props) => props.angle || Angle});
+    
+    width: ${(props) => props.size || Width}rem;
+    height: ${(props) => props.size + 5 || Height}rem;
     overflow: hidden;
-    
     color: white;
-    
-    transform: skewY(${DiamondAngle});
-    
+
     &:after {
         opacity: 0.7;
         content: "";
@@ -110,7 +104,7 @@ const DiamondRightWithPhoto = styled.div`
 `;
 
 const DiamondRightPhoto = styled.div`
-    transform: skewY(-${DiamondAngle}) translateY(-${DiamondBackShift}rem);
+    transform: skewY(-${(props) => props.angle || Angle}) translateY(-${ShiftPhoto}rem);
     
     background-size: cover;
     filter: grayscale(100%);
@@ -126,36 +120,35 @@ const Diamond = ({ isEmpty, angle, size, isTurnLeft, photoSrc, photoPosition, co
         <EmptyDiamond size={size} />
     ) ||
     isTurnLeft && !photoSrc && !hasShadow && (
-        <DiamondLeft style={{ backgroundColor: color }}>
+        <DiamondLeft angle={angle} size={size} style={{ backgroundColor: color }}>
             {text && (
-                <DiamondLeftDescription>{text}</DiamondLeftDescription>
+                <DiamondLeftDescription angle={angle}>{text}</DiamondLeftDescription>
             )}
         </DiamondLeft>
     ) ||
     isTurnLeft && photoSrc && !hasShadow && (
-        <DiamondLeftWithPhoto cover={color}>
-            <DiamondLeftPhoto src={photoSrc} position={photoPosition} />
+        <DiamondLeftWithPhoto angle={angle} size={size} cover={color}>
+            <DiamondLeftPhoto angle={angle} src={photoSrc} position={photoPosition} />
             {text && (
-                <DiamondLeftDescription>{text}</DiamondLeftDescription>
+                <DiamondLeftDescription angle={angle}>{text}</DiamondLeftDescription>
             )}
         </DiamondLeftWithPhoto>
     ) ||
     !isTurnLeft && !photoSrc && !hasShadow && (
-        <DiamondRight style={{ backgroundColor: color }}>
+        <DiamondRight angle={angle} size={size} style={{ backgroundColor: color }}>
             {text && (
-                <DiamondRightDescription>{text}</DiamondRightDescription>
+                <DiamondRightDescription angle={angle}>{text}</DiamondRightDescription>
             )}
         </DiamondRight>
     ) ||
     !isTurnLeft && photoSrc && !hasShadow && (
-        <DiamondRightWithPhoto cover={color}>
-            <DiamondRightPhoto src={photoSrc} position={photoPosition} />
+        <DiamondRightWithPhoto angle={angle} size={size} cover={color}>
+            <DiamondRightPhoto angle={angle} src={photoSrc} position={photoPosition} />
             {text && (
-                <DiamondRightDescription>{text}</DiamondRightDescription>
+                <DiamondRightDescription angle={angle}>{text}</DiamondRightDescription>
             )}
         </DiamondRightWithPhoto>
     )
-
 );
 
 export default Diamond;

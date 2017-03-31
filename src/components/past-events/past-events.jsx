@@ -23,7 +23,8 @@ const DiamondsColumn = styled.div`
 export default withTheme(({ theme }) => (
     <PastEventsContainer>
         <BlockHeader>Passed events</BlockHeader>
-        <DiamondsRow style={{ marginTop: '8rem' }}>
+        <DiamondsRow style={{ marginTop: '16rem' }}>
+            { /* Left part */}
             <div>
                 <DiamondsRow>
                     <Diamond
@@ -31,7 +32,10 @@ export default withTheme(({ theme }) => (
                         photoSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
                         photoPosition="120% 0%"
                         text="Compatible Inkjet Cartridge Which One Will You Choose" />
-                    <Diamond isTurnLeft="true" color={theme.lipstick} text="The Right Way to Bundle Your Assets for Faster Sites over HTTP/2" />
+                    <Diamond
+                        isTurnLeft="true"
+                        color={theme.lipstick}
+                        text="The Right Way to Bundle Your Assets for Faster Sites over HTTP/2" />
                 </DiamondsRow>
                 <DiamondsRow>
                     <Diamond color={theme.cerise} text="Functional TypeScript" />
@@ -47,8 +51,9 @@ export default withTheme(({ theme }) => (
                         text="Things you probably didn’t know you could do with Chrome’s Developer Console" />
                 </DiamondsRow>
             </div>
+            { /* Right part */}
             <DiamondsRow>
-                <DiamondsRow style={{ paddingTop: '8rem' }}>
+                <DiamondsRow style={{ paddingTop: '18.5rem' }}>
                     <Diamond
                         isTurnLeft="true"
                         color={theme.grape}
@@ -56,7 +61,7 @@ export default withTheme(({ theme }) => (
                         photoPosition="120% 0%"
                         text="10 Tips for Better Redux Architecture – JavaScript Scene" />
                 </DiamondsRow>
-                <DiamondsColumn style={{ paddingTop: '.36rem' }}>
+                <DiamondsColumn>
                     <Diamond isTurnLeft="true" color={theme.vividPurple} text="Redux side effects and you – JavaScript and Opinions" />
                     <Diamond isTurnLeft="true" color={theme.warmPurple} text="How To Scale React Applications" />
                 </DiamondsColumn>
