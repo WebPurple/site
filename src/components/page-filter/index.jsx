@@ -47,7 +47,7 @@ export const FilterTab = styled(NavLink)`
 const SearchWrapper = styled.label`
     position: relative;
     padding-right: 4rem;
-    max-width: 24rem;
+    max-width: 27rem;
 `;
 
 const SearchInput = styled.input`
