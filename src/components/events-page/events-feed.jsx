@@ -123,7 +123,7 @@ const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTag
                     <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                 ))}
             </FlexRow>
-            <Search />
+            <Search placeholder="Keyword..." />
         </FilterBlock>
 
         {(tags.length > 0 || !selectedTags.isEmpty()) && (
