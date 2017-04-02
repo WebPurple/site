@@ -85,7 +85,7 @@ const TalkSpeaker = styled.div`
 
 const Footer = styled.div`
     margin-top: 1rem;
-`
+`;
 
 const UpcomingEvents = withTheme(({ theme, event }) => (
     <Wrapper>
@@ -94,11 +94,11 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
         <EventBlock>
             <EventInfo>
                 <EventInfoRow>
-                    <LocationIcon color={theme.lipstick} opaque/>
+                    <LocationIcon color={theme.lipstick} opaque />
                     <EventText>{event.location}</EventText>
                 </EventInfoRow>
                 <EventInfoRow>
-                    <ClockIcon color={theme.lipstick} opaque/>
+                    <ClockIcon color={theme.lipstick} opaque />
                     <EventText>{event.date}</EventText>
                 </EventInfoRow>
             </EventInfo>
@@ -116,7 +116,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
         <Footer>
             <ArrowButton>See details</ArrowButton>
         </Footer>
-    </Wrapper>  
+    </Wrapper>
 ));
 
 export default UpcomingEvents;
