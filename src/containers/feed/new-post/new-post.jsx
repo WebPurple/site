@@ -40,7 +40,7 @@ NewPostContainer.propTypes = {
     closeDialog: React.PropTypes.func,
     closeErrorDialog: React.PropTypes.func,
     submitPostForm: React.PropTypes.func,
-    suggest: React.PropTypes.bool
+    suggest: React.PropTypes.bool,
 };
 
 function title(suggest) {

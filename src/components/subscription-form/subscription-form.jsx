@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
+import Button from '../common/button';
 
-const SubscriptionForm = styled.section`
+const SubscriptionFormContainer = styled.section`
     background-image: url(subscribtion-form-bg.jpg);
     background-size: cover;
     color: #fff;
@@ -19,7 +20,7 @@ const Header = styled.h2`
     text-align: center;
     margin: 0;
     margin-bottom: .615rem; /* 16px */
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bold;
     color: #fff;
     font-size: 2.6em;
@@ -65,33 +66,16 @@ const Input = styled.input`
     `}
 `;
 
-const SubscribeButton = styled.button`
-    border: solid 3px #fff;
-    background: transparent;
-    font-family: 'Rubik', sans-serif;
-    text-transform: uppercase;
-    font-size: 2.4em;
-    padding: .83em 1.25em;
-    font-weight: bold;
-    color: #fff;
-    transition: all 0.2s ease-in-out;
-    
-    &:hover,
-    &:focus {
-        background: #fff;
-        color: ${props => props.theme.vividPurple};
-    }
-`;
+const SubscriptionForm = withTheme(({ theme }) => (
+    <SubscriptionFormContainer>
+        <Header>Be informed about the coolest meetups</Header>
+        <SubHeader>Get Webpurples latest news straight to your inbox. Enter your email address below:</SubHeader>
+        <FormWrapper>
+            <Input type="text" placeholder="Enter your email" />
+            <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>Subscribe</Button>
+        </FormWrapper>
+    </SubscriptionFormContainer>
+));
 
-export default function () {
-    return (
-        <SubscriptionForm>
-            <Header>Be informed about the coolest meetups</Header>
-            <SubHeader>Get Webpurples latest news straight to your inbox. Enter your email address below:</SubHeader>
-            <FormWrapper>
-                <Input type="text" placeholder="Enter your email" />
-                <SubscribeButton>Subscribe</SubscribeButton>
-            </FormWrapper>
-        </SubscriptionForm>
-    );
-}
+export default SubscriptionForm;
+

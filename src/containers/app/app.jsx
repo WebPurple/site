@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from '../header'
+
+import { renderRoutes } from 'react-router-config';
 
 import { media } from '../../utils/css-utils';
 
@@ -22,12 +25,13 @@ const Footer = styled.footer`
     background-color: ${props => props.theme.grape};
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
     color: white;
-    font-family: Rubik, sans-serif;
+    font-family: 'Rubik', sans-serif;
 `;
 
 const theme = {
     grape: '#432867',
     warmGrey: '#a1a1a1',
+    greyishBrown: '#545454',
     lipstick: '#e62270',
     vividPurple: '#9012fe',
     vividPurpleTwo: '#9013fe',
@@ -36,16 +40,20 @@ const theme = {
     rouge: '#b21d3d',
 };
 
-const AppContainer = ({ children }) => (
+const AppContainer = ({ route }) => (
     <ThemeProvider theme={theme}>
         <Container>
             <Header />
             <main>
-                {children}
+                {renderRoutes(route.routes)}
             </main>
             <Footer>Footer is supposed to be here</Footer>
         </Container>
     </ThemeProvider>
 );
+
+AppContainer.propTypes = {
+    route: React.PropTypes.object.isRequired,
+};
 
 export default AppContainer;

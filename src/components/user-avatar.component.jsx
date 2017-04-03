@@ -8,19 +8,23 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 
 const UserAvatar = ({ user, style }) => (
-      <IconMenu
-          style={{marginRight: '2px'}}
-          iconButtonElement={
-              <IconButton style={{padding: '0px'}}>{
-                  user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl} style={style} /> :
-                  <Avatar icon={<SocialPerson />} style={style} />}
-              </IconButton>}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'middle', vertical: 'top'}}
-          >
-          <MenuItem primaryText='Settings' containerElement={<Link to='/settings' />}/>
-          <MenuItem primaryText='Sign out' href='/logout'/>
-      </IconMenu>
+    <IconMenu
+        style={{ marginRight: '2px' }}
+        iconButtonElement={
+            <IconButton style={{ padding: '0px' }}>{
+              user.vkPhotoUrl ? <Avatar src={user.vkPhotoUrl} style={style} /> :
+              <Avatar icon={<SocialPerson />} style={style} />}
+            </IconButton>}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+        targetOrigin={{ horizontal: 'middle', vertical: 'top' }}>
+        <MenuItem primaryText="Settings" containerElement={<Link to="/settings" />} />
+        <MenuItem primaryText="Sign out" href="/logout" />
+    </IconMenu>
 );
+
+UserAvatar.propTypes = {
+    user: React.PropTypes.object,
+    style: React.PropTypes.object,
+};
 
 export default UserAvatar;
