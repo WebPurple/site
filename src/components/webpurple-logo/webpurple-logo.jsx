@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { WebpurpleIcon } from '../icons/header';
 
@@ -24,9 +24,11 @@ const StyledWebpurpleIcon = styled(WebpurpleIcon)`
     height: 3.5em;
 `;
 
-export default withTheme(({ theme }) => (
-        <Logo>
-          <StyledWebpurpleIcon />
-          <Title>Webpurple</Title>
-        </Logo>
-));
+const WebpurpleLogo = () => (
+    <Logo>
+        <StyledWebpurpleIcon />
+        <Title>Webpurple</Title>
+    </Logo>
+);
+
+export default WebpurpleLogo;

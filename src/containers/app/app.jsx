@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import Header from '../header'
-
 import { renderRoutes } from 'react-router-config';
 
+import Header from '../header';
 import { media } from '../../utils/css-utils';
 
 const Container = styled.div`
