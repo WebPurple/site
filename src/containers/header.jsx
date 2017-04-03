@@ -12,17 +12,22 @@ import { MenuIcon } from '../components/icons/header';
 
 const Header = styled.header`
     display: flex;
-    ${media.phone`margin: 0em 0em;`};
-    ${media.desktop`margin: 3em 8em;`};
-
+    align-items: center;
+    justify-content: space-between;
+    ${media.phone`margin: 3em 8em`};
+    margin: 1em 0em;
 `;
 
 const MenuButton = styled(MenuIcon)`
-    display: none;
+    display: flex;
+    margin: 0em 1em;
+    ${media.phone`display: none;`};
+
 `;
 
 const Menu = styled.div`
-    display: flex;
+    display: none;
+    ${media.phone`display: flex;`};
     align-items: center;
     flex-grow: 2;
 `;

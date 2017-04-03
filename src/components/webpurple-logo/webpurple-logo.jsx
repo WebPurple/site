@@ -6,7 +6,6 @@ import { WebpurpleIcon } from '../icons/header';
 const Logo = styled.div`
     display: flex;
     align-items: center;
-
 `;
 
 const Title = styled.h1`
