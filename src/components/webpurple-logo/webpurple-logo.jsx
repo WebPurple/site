@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import { WebpurpleIcon } from '../icons/header';
 
-const Logo = styled.div`
+const Logo = styled(NavLink)`
     display: flex;
     align-items: center;
+    text-decoration: none;
 `;
 
 const Title = styled.h1`
@@ -24,7 +26,7 @@ const StyledWebpurpleIcon = styled(WebpurpleIcon)`
 `;
 
 const WebpurpleLogo = () => (
-    <Logo>
+    <Logo to="/home">
         <StyledWebpurpleIcon />
         <Title>Webpurple</Title>
     </Logo>
