@@ -14,15 +14,13 @@ const Wrapper = styled.header`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    height:100%;
-    align-items: left;
+    width: 100vm;
+    height:100vh;
     flex-direction: row;
     background-color: white;
     align-items: center;
     justify-content: space-between;
-    margin: 1em 0em;
-    ${media.desktop`
+    ${media.tablet`
         display: flex;
         width: auto;
         height: auto;
@@ -30,17 +28,18 @@ const Wrapper = styled.header`
         flex-wrap: nowrap;
         flex-grow: 2;
         justify-content: flex-start;
+        margin: 3em 0;
     `};
 `;
 
 const MenuButton = styled(MenuIcon)`
     display: flex;
     margin: 0em 1em;
-    ${media.desktop`display: none;`};
+    ${media.tablet`display: none;`};
 `;
 
 const NavigationBar = styled.ul`
-    ${media.desktop`
+    ${media.tablet`
         margin: 0;
         flex-grow: 2;
         align-items: center;
@@ -58,15 +57,15 @@ const MenuItem = styled.li`
     list-style: none;
     display: inline-flex;
     box-sizing: border-box;
-    transition: border-color 1s ease-out;
     padding: 1.3em 0 1em 0;
-    border-bottom: solid 0.3em transparent;
-    margin: 0 2.5em 0 4em;
+    margin: 0 2.5em 2em 4em;
     &:hover {
         border-bottom-color: ${props => props.theme.lipstick};
     }
-    ${media.desktop`
+    ${media.tablet`
         margin: 0 2.5em 0 0;
+        transition: border-color 1s ease-out;
+        border-bottom: solid 0.3em transparent;
     `};
 `;
 
@@ -74,14 +73,18 @@ const NavigationLink = styled(NavLink)`
     text-decoration: none;
     text-transform: uppercase;
     font-family: Rubik, sans-serif;
-    font-size: 1.6em;
+    font-size: 2.3em;
     font-weight: 500;
     color: ${props => props.theme.warmGrey};
+    ${media.tablet`
+        font-size: 1.6em;
+    `};
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`
     margin: 0 0 0 4em;
-    ${media.desktop`
+    
+    ${media.tablet`
         margin: auto;
     `};
 `;
