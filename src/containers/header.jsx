@@ -11,15 +11,16 @@ import WebpurpleLogo from '../components/webpurple-logo/webpurple-logo';
 import { MenuIcon } from '../components/icons/header';
 
 const Wrapper = styled.header`
+    box-sizing: border-box; 
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     width: 100vm;
     height:100vh;
     flex-direction: row;
     background-color: white;
-    align-items: center;
     justify-content: space-between;
+    align-content: space-between;
+    padding: 2.6em 2em;
     ${media.tablet`
         display: flex;
         width: auto;
@@ -28,6 +29,8 @@ const Wrapper = styled.header`
         flex-wrap: nowrap;
         flex-grow: 2;
         justify-content: flex-start;
+        align-content: stretch;
+        padding: 0;
         margin: 3em 0;
     `};
 `;
@@ -35,6 +38,7 @@ const Wrapper = styled.header`
 const MenuButton = styled(MenuIcon)`
     display: flex;
     margin: 0em 1em;
+    align-self: center;
     ${media.tablet`display: none;`};
 `;
 
