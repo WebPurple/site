@@ -20,6 +20,8 @@ const DiamondsColumn = styled.div`
     justify-content: flex-start;
 `;
 
+const middleDiamondTopShift = '18.5rem';
+
 export default withTheme(({ theme }) => (
     <PastEventsContainer>
         <BlockHeader>Passed events</BlockHeader>
@@ -53,7 +55,7 @@ export default withTheme(({ theme }) => (
             </div>
             { /* Right part */}
             <DiamondsRow>
-                <DiamondsRow style={{ paddingTop: '18.5rem' }}>
+                <DiamondsRow style={{ paddingTop: middleDiamondTopShift }}>
                     <Diamond
                         isTurnLeft="true"
                         color={theme.grape}

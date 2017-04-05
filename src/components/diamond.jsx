@@ -1,27 +1,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Angle = '30deg';
-const Width = 32;
-const Height = Width + 5;
-const ShiftPhoto = Height / 2;
+const angle = '30deg';
+const width = 32;
+const height = width / Math.sin((60 / 180) * Math.PI);
+const shiftPhoto = height / 2;
 
 const EmptyDiamond = styled.div`
-    width: ${(props) => props.size || Width}rem; 
-    height: ${(props) => props.size + 5 || Height}rem; 
+    width: ${(props) => props.size || width}rem; 
+    height: ${(props) => props.size + 5 || height}rem; 
 `;
 
 const DiamondLeft = styled.div`
-    transform: skewY(-${(props) => props.angle || Angle});
+    transform: skewY(-${(props) => props.angle || angle});
 
-    width: ${(props) => props.size || Width}rem;
-    height: ${(props) => props.size + 5 || Height}rem;
+    width: ${(props) => props.size || width}rem;
+    height: ${(props) => props.size + 5 || height}rem;
     overflow: hidden;
     color: white;
 `;
 
 const DiamondLeftDescription = styled.div`
-    transform: skewY(${(props) => props.angle || Angle});
+    transform: skewY(${(props) => props.angle || angle});
     
     display:inline-block;
     color: white;
@@ -31,9 +31,9 @@ const DiamondLeftDescription = styled.div`
 `;
 
 const DiamondLeftWithPhoto = styled.div`
-    transform: skewY(-${(props) => props.angle || Angle});
-    width: ${(props) => props.size || Width}rem;
-    height: ${(props) => props.size + 5 || Height}rem;
+    transform: skewY(-${(props) => props.angle || angle});
+    width: ${(props) => props.size || width}rem;
+    height: ${(props) => props.size + 5 || height}rem;
     overflow: hidden;
     color: white;
     
@@ -51,7 +51,7 @@ const DiamondLeftWithPhoto = styled.div`
 `;
 
 const DiamondLeftPhoto = styled.div`
-    transform: skewY(${(props) => props.angle || Angle});
+    transform: skewY(${(props) => props.angle || angle});
     
     background-size: cover;
     filter: grayscale(100%);
@@ -63,16 +63,16 @@ const DiamondLeftPhoto = styled.div`
 `;
 
 const DiamondRight = styled.div`
-    transform: skewY(${(props) => props.angle || Angle});
+    transform: skewY(${(props) => props.angle || angle});
     
-    width: ${(props) => props.size || Width}rem;
-    height: ${(props) => props.size + 5 || Height}rem;
+    width: ${(props) => props.size || width}rem;
+    height: ${(props) => props.size + 5 || height}rem;
     overflow: hidden;
     color: white;
 `;
 
 const DiamondRightDescription = styled.div`
-    transform: skewY(-${(props) => props.angle || Angle});
+    transform: skewY(-${(props) => props.angle || angle});
     
     display:inline-block;
     color: white;
@@ -82,10 +82,10 @@ const DiamondRightDescription = styled.div`
 `;
 
 const DiamondRightWithPhoto = styled.div`
-    transform: skewY(${(props) => props.angle || Angle});
+    transform: skewY(${(props) => props.angle || angle});
     
-    width: ${(props) => props.size || Width}rem;
-    height: ${(props) => props.size + 5 || Height}rem;
+    width: ${(props) => props.size || width}rem;
+    height: ${(props) => props.size + 5 || height}rem;
     overflow: hidden;
     color: white;
 
@@ -104,7 +104,7 @@ const DiamondRightWithPhoto = styled.div`
 `;
 
 const DiamondRightPhoto = styled.div`
-    transform: skewY(-${(props) => props.angle || Angle}) translateY(-${ShiftPhoto}rem);
+    transform: skewY(-${(props) => props.angle || angle}) translateY(-${shiftPhoto}rem);
     
     background-size: cover;
     filter: grayscale(100%);
