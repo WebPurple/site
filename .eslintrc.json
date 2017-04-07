@@ -16,7 +16,8 @@
         }
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "jest": true
     },
     "globals": {
         "fetch": true
@@ -66,6 +67,7 @@
         ],
         "react/prop-types": [
             "warn"
-        ]
+        ],
+        "padded-blocks": "off"
     }
 }

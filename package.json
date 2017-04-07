@@ -54,6 +54,7 @@
     }
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
@@ -65,7 +66,11 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     },
-    "testRegex": "/test/.*\\.(js|jsx)$"
+    "testRegex": "test.(js|jsx)$",
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ]
   },
   "dependencies": {
     "body-parser": "^1.15.0",
@@ -136,6 +141,8 @@
     "html-webpack-plugin": "^2.22.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
+    "jest-enzyme": "^3.0.0",
+    "react-addons-test-utils": "^15.4.2",
     "redux-mock-store": "^1.2.1",
     "sinon": "^1.17.3",
     "webpack-dev-middleware": "^1.10.0"
