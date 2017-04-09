@@ -31,16 +31,27 @@ export default withTheme(({ theme }) => (
                 <DiamondsRow>
                     <Diamond
                         color={theme.rouge}
-                        photoSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-                        photoPosition="120% 0%"
-                        text="Compatible Inkjet Cartridge Which One Will You Choose" />
+                        backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
+                        backPosition="120% 0%"
+                        header="webpurple meetup #14"
+                        text="Не вебом единым. Чего еще коснулась благодать Javascript'a"
+                        speakerPhoto="speakers-small/pasha.jpg"
+                        speakerName="Павел Смирнов" />
                     <Diamond
                         isTurnLeft="true"
                         color={theme.lipstick}
-                        text="The Right Way to Bundle Your Assets for Faster Sites over HTTP/2" />
+                        header="webpurple meetup #14"
+                        text="Scrum In Action"
+                        speakerPhoto="speakers-small/yana.jpg"
+                        speakerName="Яна Бобровская" />
                 </DiamondsRow>
                 <DiamondsRow>
-                    <Diamond color={theme.cerise} text="Functional TypeScript" />
+                    <Diamond
+                        color={theme.cerise}
+                        header="webpurple meetup #14"
+                        text="Не вебом единым. Чего еще коснулась благодать Javascript'a"
+                        speakerPhoto="speakers-small/pasha.jpg"
+                        speakerName="Павел Смирнов" />
                     <Diamond isEmpty="true" />
                 </DiamondsRow>
                 <DiamondsRow>
@@ -48,9 +59,12 @@ export default withTheme(({ theme }) => (
                     <Diamond
                         isTurnLeft="true"
                         color={theme.vividPurpleTwo}
-                        photoSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
-                        photoPosition="40% 20%"
-                        text="Things you probably didn’t know you could do with Chrome’s Developer Console" />
+                        backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
+                        backPosition="40% 20%"
+                        header="webpurple meetup #14"
+                        text="Things you probably didn’t know you could do with Chrome’s Developer Console"
+                        speakerPhoto="speakers-small/pasha.jpg"
+                        speakerName="Дима Кабардинов" />
                 </DiamondsRow>
             </div>
             { /* Right part */}
@@ -59,13 +73,28 @@ export default withTheme(({ theme }) => (
                     <Diamond
                         isTurnLeft="true"
                         color={theme.grape}
-                        photoSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-                        photoPosition="120% 0%"
-                        text="10 Tips for Better Redux Architecture – JavaScript Scene" />
+                        backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
+                        backPosition="120% 0%"
+                        header="webpurple meetup #15"
+                        text="What is react native"
+                        speakerPhoto="speakers-small/andrey.jpg"
+                        speakerName="Андрей Семин" />
                 </DiamondsRow>
                 <DiamondsColumn>
-                    <Diamond isTurnLeft="true" color={theme.vividPurple} text="Redux side effects and you – JavaScript and Opinions" />
-                    <Diamond isTurnLeft="true" color={theme.warmPurple} text="How To Scale React Applications" />
+                    <Diamond
+                        isTurnLeft="true"
+                        color={theme.vividPurple}
+                        header="webpurple meetup #13"
+                        text="Redux-talk@1.0.0"
+                        speakerPhoto="speakers-small/nik.jpg"
+                        speakerName="Никита Кирсанов" />
+                    <Diamond
+                        isTurnLeft="true"
+                        color={theme.warmPurple}
+                        header="webpurple meetup #11"
+                        text="Vue.js"
+                        speakerPhoto="speakers-small/sasha.jpg"
+                        speakerName="Саша Зайцев" />
                 </DiamondsColumn>
             </DiamondsRow>
         </DiamondsRow>
