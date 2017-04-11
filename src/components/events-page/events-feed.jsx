@@ -1,10 +1,9 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { List, Set } from 'immutable';
 
 import {
-    media,
     isPhone,
     isTablet,
 } from '../../utils/css-utils';
@@ -17,85 +16,7 @@ import {
     FilterTab,
     Search,
 } from '../page-filter';
-import {
-    ClockIcon,
-    PlaceholderIcon,
-} from '../icons';
-
-const EventList = styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 3.6rem 0 0;
-    ${media.desktop`margin-top: 10rem;`}
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-`;
-
-const EventSnippet = styled.li`
-    position: relative;
-    width: 100%;
-    ${media.tablet`width: 30rem;`}
-    ${media.hd`width: 35rem;`}
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    ${media.desktop`margin-bottom: 7rem;`}
-    box-sizing: border-box;
-    overflow: hidden;
-    box-shadow: 0 0 8px 1px #bbb;
-`;
-
-const BackgroundShape = styled.div`
-    position: absolute;
-    top: 0;
-    left: -60%;
-    width: 230%;
-    height: 100%;
-    transform: skew(-60deg, 0);
-    overflow: hidden;
-    z-index: -1;
-`;
-
-const BackgroundImage = styled.div`
-    width: 100%;
-    height: 100%;
-    filter: grayscale(100);
-    opacity: .15;
-    background: url(${props => props.url});
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: skew(60deg, 0);
-`;
-
-const Title = styled.a`
-    margin: 2.4rem 0;
-    font-family: 'Rubik', sans-serif;
-    font-size: 3.6rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: ${props => props.color || props.theme.vividPurpleTwo};
-`;
-
-const Info = styled.span`
-    display: flex;
-    margin-bottom: 1.6rem;
-    font-size: 1.6em;
-    font-family: 'Oxygen', sans-serif;
-    color: ${props => props.theme.greyishBrown};
-    vertical-align: middle;
-`;
-
-const TalkList = styled.ul`
-    list-style: disc;
-    font-family: 'Oxygen', sans-serif;
-    font-size: 1.6rem;
-    margin: 2.4rem 0;
-    color: #4a4a4a;
-`;
-
-const Talk = styled.li`
-    margin: 1.6rem 0;
-`;
+import EventList from './event-list';
 
 const FlexRow = styled.div`
     display: flex;
@@ -149,7 +70,7 @@ class EventsFeed extends React.Component {
     }
 
     render() {
-        const { events, tags, selectedTags, isFetching, show, theme, onTagClick } = this.props;
+        const { events, tags, selectedTags, isFetching, show, onTagClick } = this.props;
         const { showSearch, searchQuery } = this.state;
 
         return (
@@ -176,34 +97,10 @@ class EventsFeed extends React.Component {
                 )}
 
                 {isFetching ? <StyledLoader size="80" border="8" />
-                    : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
-                        : (
-                            <EventList>
-                                {events.filter(e => !searchQuery || JSON.stringify(e).indexOf(searchQuery) !== -1)
-                                    .map((event, eventIndex) => (
-                                        <EventSnippet key={event._id}>
-                                            <BackgroundShape>
-                                                <BackgroundImage url={event.image} />
-                                            </BackgroundShape>
-                                            <header>
-                                                <Info>
-                                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
-                                                    <time>{new Date(event.date).toLocaleDateString()}</time>
-                                                </Info>
-                                                <Info>
-                                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-                                                    <span>{event.location}</span>
-                                                </Info>
-                                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
-                                            </header>
-                                            <TalkList>
-                                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
-                                            </TalkList>
-                                            <TagList tags={event.tags} />
-                                        </EventSnippet>
-                                ))}
-                            </EventList>
-                        )}
+                    : events.size === 0
+                        ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
+                        : <EventList events={events.filter(e => !searchQuery || JSON.stringify(e).indexOf(searchQuery) !== -1)} />
+                }
             </MainContainer>
         );
     }
@@ -218,4 +115,4 @@ EventsFeed.propTypes = {
     isFetching: React.PropTypes.bool,
 };
 
-export default withTheme(EventsFeed);
+export default EventsFeed;
