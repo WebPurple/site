@@ -3,7 +3,11 @@ import styled, { withTheme } from 'styled-components';
 
 import { List, Set } from 'immutable';
 
-import { media } from '../../utils/css-utils';
+import {
+    media,
+    isPhone,
+    isTablet,
+} from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import { TagList } from '../common/tag';
 import Loader from '../common/loader';
@@ -114,52 +118,101 @@ const NoEventsBlock = styled.div`
     color: ${props => props.theme.warmPurple};
 `;
 
-const EventsFeed = ({ events, tags, selectedTags, isFetching, show, theme, onTagClick }) => (
-    <Container>
-        <BlockHeader>Events</BlockHeader>
-        <FilterBlock>
-            <FlexRow>
-                {['All', 'Upcoming', 'Past'].map(filter => (
-                    <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
-                ))}
-            </FlexRow>
-            <Search placeholder="Keyword..." />
-        </FilterBlock>
+class EventsFeed extends React.Component {
 
-        {(tags.length > 0 || !selectedTags.isEmpty()) && (
-            <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
-        )}
+    constructor(props) {
+        super(props);
+        this.state = { showSearch: false };
 
-        {isFetching ? <StyledLoader size="80" border="8" />
-            : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
-            : (
-                <EventList>
-                    {events.map((event, eventIndex) => (
-                        <EventSnippet key={event._id}>
-                            <BackgroundShape>
-                                <BackgroundImage url={event.image} />
-                            </BackgroundShape>
-                            <header>
-                                <Info>
-                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
-                                    <time>{new Date(event.date).toLocaleDateString()}</time>
-                                </Info>
-                                <Info>
-                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-                                    <span>{event.location}</span>
-                                </Info>
-                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
-                            </header>
-                            <TalkList>
-                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
-                            </TalkList>
-                            <TagList tags={event.tags} />
-                        </EventSnippet>
-                    ))}
-                </EventList>
-            )}
-    </Container>
-);
+        this.toggleSearch = this.toggleSearch.bind(this);
+        this.handleSearchFocus = this.handleSearchFocus.bind(this);
+        this.handleSearchBlur = this.handleSearchBlur.bind(this);
+    }
+
+    toggleSearch(showSearch) {
+        this.setState({ showSearch });
+    }
+
+    shouldExpandSearch() {
+        return isPhone() || isTablet();
+    }
+
+    handleSearchFocus() {
+        if (this.shouldExpandSearch()) {
+            this.toggleSearch(true);
+        }
+    }
+
+    handleSearchBlur() {
+        if (this.shouldExpandSearch()) {
+            this.toggleSearch(false);
+        }
+    }
+
+    search(searchQuery) {
+        this.setState({ searchQuery });
+    }
+
+    render() {
+        const { events, tags, selectedTags, isFetching, show, theme, onTagClick } = this.props;
+        const { showSearch, searchQuery } = this.state;
+
+        return (
+            <Container>
+                <BlockHeader>Events</BlockHeader>
+                <FilterBlock>
+                    {!showSearch && (/* TODO: animate */
+                        <FlexRow>
+                            {['All', 'Upcoming', 'Past'].map(filter => (
+                                <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
+                            ))}
+                        </FlexRow>
+                    )}
+                    <Search
+                        placeholder="Keyword..."
+                        onChange={event => this.search(event.target.value)}
+                        onFocus={this.handleSearchFocus}
+                        onBlur={this.handleSearchBlur} />
+                </FilterBlock>
+
+                {/* TODO: tags are not filtered */}
+                {(tags.length > 0 || !selectedTags.isEmpty()) && (
+                    <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
+                )}
+
+                {isFetching ? <StyledLoader size="80" border="8" />
+                    : events.size === 0 ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
+                        : (
+                            <EventList>
+                                {events.filter(e => !searchQuery || JSON.stringify(e).indexOf(searchQuery) !== -1)
+                                    .map((event, eventIndex) => (
+                                        <EventSnippet key={event._id}>
+                                            <BackgroundShape>
+                                                <BackgroundImage url={event.image} />
+                                            </BackgroundShape>
+                                            <header>
+                                                <Info>
+                                                    <ClockIcon style={{ marginRight: '1.6rem' }} />
+                                                    <time>{new Date(event.date).toLocaleDateString()}</time>
+                                                </Info>
+                                                <Info>
+                                                    <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
+                                                    <span>{event.location}</span>
+                                                </Info>
+                                                <Title color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick} href={`#${event.title}`}>{event.title}</Title>
+                                            </header>
+                                            <TalkList>
+                                                {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
+                                            </TalkList>
+                                            <TagList tags={event.tags} />
+                                        </EventSnippet>
+                                ))}
+                            </EventList>
+                        )}
+            </Container>
+        );
+    }
+}
 
 EventsFeed.propTypes = {
     events: React.PropTypes.instanceOf(List).isRequired,
@@ -167,6 +220,7 @@ EventsFeed.propTypes = {
     selectedTags: React.PropTypes.instanceOf(Set),
     show: React.PropTypes.string,
     onTagClick: React.PropTypes.func,
+    isFetching: React.PropTypes.bool,
 };
 
 export default withTheme(EventsFeed);
