@@ -9,6 +9,7 @@ import {
     isTablet,
 } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
+import MainContainer from '../common/main-container';
 import { TagList } from '../common/tag';
 import Loader from '../common/loader';
 import {
@@ -20,12 +21,6 @@ import {
     ClockIcon,
     PlaceholderIcon,
 } from '../icons';
-
-const Container = styled.section`
-    padding: 6rem 2rem;
-    ${media.desktop`padding: 10rem;`}
-    ${media.hd`padding: 12rem;`}
-`;
 
 const EventList = styled.ul`
     list-style: none;
@@ -158,7 +153,7 @@ class EventsFeed extends React.Component {
         const { showSearch, searchQuery } = this.state;
 
         return (
-            <Container>
+            <MainContainer>
                 <BlockHeader>Events</BlockHeader>
                 <FilterBlock>
                     {!showSearch && (/* TODO: animate */
@@ -209,7 +204,7 @@ class EventsFeed extends React.Component {
                                 ))}
                             </EventList>
                         )}
-            </Container>
+            </MainContainer>
         );
     }
 }
