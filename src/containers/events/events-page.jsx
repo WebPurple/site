@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { reduxForm } from 'redux-form';
 
 import SubscriptionForm from '../../components/subscription-form/subscription-form';
 import {
@@ -11,6 +12,8 @@ import {
     eventTagsSelector,
     selectedTagsSelector,
     toggleTag,
+    FORM_KEY,
+    search,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
 
@@ -45,11 +48,15 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
     onTagClick: toggleTag,
+    onSearch: search,
 }, dispatch);
 
+
 export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(EventsPageContainer)
+    reduxForm({ form: FORM_KEY })(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )(EventsPageContainer)
+    )
 );

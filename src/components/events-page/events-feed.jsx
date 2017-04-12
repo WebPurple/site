@@ -65,13 +65,9 @@ class EventsFeed extends React.Component {
         }
     }
 
-    search(searchQuery) {
-        this.setState({ searchQuery });
-    }
-
     render() {
-        const { events, tags, selectedTags, isFetching, show, onTagClick } = this.props;
-        const { showSearch, searchQuery } = this.state;
+        const { events, tags, selectedTags, isFetching, show, onTagClick, onSearch } = this.props;
+        const { showSearch } = this.state;
 
         return (
             <MainContainer>
@@ -86,12 +82,11 @@ class EventsFeed extends React.Component {
                     )}
                     <Search
                         placeholder="Keyword..."
-                        onChange={event => this.search(event.target.value)}
+                        onChange={event => onSearch(event.target.value)}
                         onFocus={this.handleSearchFocus}
                         onBlur={this.handleSearchBlur} />
                 </FilterBlock>
 
-                {/* TODO: tags are not filtered */}
                 {(tags.length > 0 || !selectedTags.isEmpty()) && (
                     <TagList label="Events tags" tags={tags.length > 0 ? tags : selectedTags.toList()} selectedTags={selectedTags} onTagClick={onTagClick} />
                 )}
@@ -99,7 +94,7 @@ class EventsFeed extends React.Component {
                 {isFetching ? <StyledLoader size="80" border="8" />
                     : events.size === 0
                         ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
-                        : <EventList events={events.filter(e => !searchQuery || JSON.stringify(e).indexOf(searchQuery) !== -1)} />
+                        : <EventList events={events} />
                 }
             </MainContainer>
         );

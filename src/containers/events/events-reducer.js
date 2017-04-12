@@ -1,5 +1,6 @@
 import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
+import { getFormValues, change } from 'redux-form';
 import unionWith from 'lodash.unionwith';
 
 import { getJson, mapQueryStringToObject } from '../../utils/ajax';
@@ -8,6 +9,9 @@ const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
 
 const TOGGLE_TAG = 'events/toggle-tag';
+
+export const FORM_KEY = 'events-page';
+const SEARCH_KEY = 'search';
 
 const initialState = fromJS({
     isFetching: false,
@@ -53,6 +57,8 @@ export function loadEvents() {
 
 export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
 
+export const search = searchValue => change(FORM_KEY, SEARCH_KEY, searchValue);
+
 // SELECTORS
 
 export const selectedTagsSelector = state => state.events.get('selectedTags');
@@ -61,16 +67,46 @@ export const allEventsSelector = state => state.events.get('eventList');
 
 export const showFilterSelector = (state, props) => mapQueryStringToObject(props.location.search).show || 'all';
 
-export const eventListSelector = createSelector(
-    [allEventsSelector, showFilterSelector, selectedTagsSelector],
+const formSelector = state => getFormValues(FORM_KEY)(state);
 
-    (events, show, selectedTags) => events.filter(event => {
+const searchSelector = createSelector(
+    formSelector,
+    form => form && form[SEARCH_KEY]
+);
+
+export const eventListSelector = createSelector(
+    allEventsSelector,
+    showFilterSelector,
+    selectedTagsSelector,
+    searchSelector,
+
+    (events, show, selectedTags, searchValue) => events.filter(event => {
         const date = new Date(event.date);
         const now = new Date();
 
         if ((show === 'upcoming' && date < now)
             || (show === 'past' && date > now)) {
             return false;
+        }
+
+        if (searchValue) {
+
+            searchValue = searchValue.toLowerCase(); // eslint-disable-line no-param-reassign
+
+            const doesAnyFieldContainSearchString = ['date', 'title', 'talks', 'location']
+                .map(fieldName => {
+
+                    if (fieldName === 'talks') {
+                        return event.talks.map(talk => talk.title).join(' ').toLowerCase();
+                    }
+
+                    return event[fieldName].toLowerCase();
+                })
+                .some(fieldValue => fieldValue.indexOf(searchValue) !== -1);
+
+            if (!doesAnyFieldContainSearchString) {
+                return false;
+            }
         }
 
         return selectedTags.isEmpty() || selectedTags.isSubset(event.tags);
