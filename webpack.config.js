@@ -82,7 +82,7 @@ const config = {
 
     plugins,
 
-    devtool: isProd ? 'source-map' : 'eval',
+    devtool: isProd ? 'source-map' : 'eval-source-map',
 };
 
 module.exports = config;
