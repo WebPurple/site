@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import TwitterIcon from '../icons/social/twitter-icon';
-import FacebookIcon from '../icons/social/facebook-icon';
+import FacebookIcon from '../icons/social/facebook-square-icon';
 import GithubIcon from '../icons/social/github-icon';
 
 const ContactsContainer = styled.div`

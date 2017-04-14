@@ -5,7 +5,7 @@ import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import {
     VkIcon,
-    FacebookIcon,
+    FacebookSquareIcon,
     YoutubeIcon,
     TwitterIcon,
     InstagramIcon,
@@ -39,7 +39,7 @@ const responsiveHeight = (component, mobile, tablet, desktop) => styled(componen
 `;
 
 const StyledVkIcon = responsiveHeight(VkIcon, 22, 42, 50);
-const StyledFacebookIcon = responsiveHeight(FacebookIcon, 30, 65, 80);
+const StyledFacebookIcon = responsiveHeight(FacebookSquareIcon, 30, 65, 80);
 const StyledYoutubeIcon = responsiveHeight(YoutubeIcon, 30, 60, 70);
 const StyledTwitterIcon = responsiveHeight(TwitterIcon, 30, 55, 65);
 const StyledInstagramIcon = responsiveHeight(InstagramIcon, 30, 65, 80);
