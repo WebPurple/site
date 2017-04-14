@@ -6,3 +6,5 @@ export { default as CloseIcon } from './close-icon';
 export { default as EmailIcon } from './email-icon';
 export { default as PadlockIcon } from './padlock-icon';
 export { default as WebpurpleLogoIcon } from './webpurple-logo-icon';
+export { default as WatchIcon } from './watch';
+export { default as DownloadIcon } from './download';
