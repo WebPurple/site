@@ -87,6 +87,7 @@
     "lodash.unionwith": "^4.6.0",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
+    "node-fetch": "^1.6.3",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-vkontakte": "^0.4.0",
