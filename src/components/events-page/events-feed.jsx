@@ -66,7 +66,16 @@ class EventsFeed extends React.Component {
     }
 
     render() {
-        const { events, tags, selectedTags, isFetching, show, onTagClick, onSearch } = this.props;
+        const {
+            events,
+            tags,
+            selectedTags,
+            isFetching,
+            show,
+            onTagClick,
+            onSearch,
+            onCreateEvent,
+        } = this.props;
         const { showSearch } = this.state;
 
         return (
@@ -78,6 +87,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
+                            <button onClick={onCreateEvent}>Add event</button>
                         </FlexRow>
                     )}
                     <Search
@@ -107,6 +117,7 @@ EventsFeed.propTypes = {
     selectedTags: React.PropTypes.instanceOf(Set),
     show: React.PropTypes.string,
     onTagClick: React.PropTypes.func,
+    onCreateEvent: React.PropTypes.func,
     isFetching: React.PropTypes.bool,
 };
 

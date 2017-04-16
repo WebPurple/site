@@ -9,6 +9,11 @@ function getEvents() {
         .exec();
 }
 
+function addEvent(event) {
+    return new Event(event).save();
+}
+
 module.exports = {
     getEvents,
+    addEvent,
 };

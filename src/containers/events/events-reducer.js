@@ -3,10 +3,11 @@ import { createSelector } from 'reselect';
 import { getFormValues, change } from 'redux-form';
 import unionWith from 'lodash.unionwith';
 
-import { getJson, mapQueryStringToObject } from '../../utils/ajax';
+import { getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
 
 const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
+const EVENT_ADDED = 'events/event-added';
 
 const TOGGLE_TAG = 'events/toggle-tag';
 
@@ -25,6 +26,8 @@ export default function reducer(state = initialState, action) {
             return state
                 .set('isFetching', false)
                 .set('eventList', new List(action.payload));
+        case EVENT_ADDED:
+            return state.update('eventList', eventList => eventList.unshift(action.payload)); // TODO: sort actions by date
         case TOGGLE_TAG:
             return state.update('selectedTags',
                 selectedTags => selectedTags.has(action.payload)
@@ -58,6 +61,11 @@ export function loadEvents() {
 export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
 
 export const search = searchValue => change(FORM_KEY, SEARCH_KEY, searchValue);
+
+const eventAdded = event => ({ type: EVENT_ADDED, payload: event });
+
+export const addEvent = event => dispatch => postJson('api/events', event)
+    .then(newEvent => dispatch(eventAdded(newEvent)));
 
 // SELECTORS
 
