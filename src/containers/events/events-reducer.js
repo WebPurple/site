@@ -118,10 +118,31 @@ export const eventTagsSelector = createSelector(
     events => unionWith(...events.map(event => event.tags), (a, b) => a === b)
 );
 
-export const pastTalksSelector = createSelector(
+const talksSelector = createSelector(
     allEventsSelector,
     events => events
-        .filter(event => new Date(event.date) < new Date())
         .map(event => event.talks.map(talk => ({ ...talk, event })))
-        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks))
+        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), [])
+);
+
+export const pastTalksSelector = createSelector(
+    talksSelector,
+    talks => talks.filter(talk => new Date(talk.event.date) < new Date())
+);
+
+export const speakersSelector = createSelector(
+    talksSelector,
+    searchSelector,
+    (talks, searchValue) => talks
+            .filter(({ speaker }) => searchValue ? (speaker.displayName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : true)
+            .reduce((result, talk) => {
+                const index = result.findIndex(speaker => speaker._id === talk.speaker._id);
+                if (index !== -1) {
+                    result[index].talks.push(talk.title);
+                } else {
+                    result.push(Object.assign(talk.speaker, { talks: [talk.title] }));
+                }
+
+                return result;
+            }, [])
 );
