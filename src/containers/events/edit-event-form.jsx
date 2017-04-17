@@ -48,7 +48,7 @@ const renderTalks = ({ fields: talks }) => (
         {talks.map((talk, i) => (
             <fieldset key={i}>
                 <legend>Talk {i + 1}</legend>
-                <Input name={`${talk}.title`} component="input" placeholder="Title" />
+                <Input name={`${talk}.title`} required component="input" placeholder="Title" />
                 <Input name={`${talk}.speaker`} component={SpeakerSelectField} />
             </fieldset>
         ))}
@@ -66,11 +66,11 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
 
             <fieldset>
                 <legend>Event</legend>
-                <Input name="title" component="input" placeholder="Title" />
-                <Input name="description" component="input" placeholder="Description" />
+                <Input name="title" required component="input" placeholder="Title" />
+                <Input name="description" required component="input" placeholder="Description" />
                 <Input name="image" component="input" placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
-                <Input name="location" component="input" placeholder="Location" />
+                <Input name="location" required component="input" placeholder="Location" />
                 <Input name="tags" tags={tags} component={TagsSelectField} />
             </fieldset>
 
