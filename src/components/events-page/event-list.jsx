@@ -3,6 +3,7 @@ import styled, { withTheme } from 'styled-components';
 import { List } from 'immutable';
 
 import Masonry from 'react-masonry-component';
+import moment from 'moment';
 
 import {
     media,
@@ -103,7 +104,7 @@ const EventList = ({ events, theme }) => (
                 <header>
                     <Info>
                         <ClockIcon style={{ marginRight: '1.6rem' }} />
-                        <time>{new Date(event.date).toLocaleDateString()}</time>
+                        <time>{moment(event.date).format('LLL')}</time>
                     </Info>
                     <Info>
                         <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
