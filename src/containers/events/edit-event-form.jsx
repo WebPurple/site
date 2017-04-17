@@ -14,17 +14,16 @@ const Input = styled(Field)`
     display: block;
 `;
 
-const preprocess = event => ({
-    ...event,
-    tags: event.tags && event.map(t => t.value),
-});
-
 const DatePickerField = ({ input: { value, onChange } }) => (
     <DatePicker selected={value} onChange={onChange} />
 );
 
-const SelectField = ({ input: { value, onChange } }) => (
+const TagsSelectField = ({ input: { value, onChange } }) => (
     <CreatableSelect multi placeholder="Enter tags..." value={value} onChange={onChange} />
+);
+
+const SpeakerSelectField = ({ input: { value, onChange } }) => (
+    <CreatableSelect value={value} onChange={onChange} placeholder="Speaker" />
 );
 
 const renderTalks = ({ fields: talks }) => (
@@ -33,7 +32,7 @@ const renderTalks = ({ fields: talks }) => (
             <fieldset key={i}>
                 <legend>Talk {i + 1}</legend>
                 <Input name={`${talk}.title`} component="input" placeholder="Title" />
-                <Input name={`${talk}.speaker`} component="input" placeholder="Speaker" />
+                <Input name={`${talk}.speaker`} component={SpeakerSelectField} />
             </fieldset>
         ))}
         <button type="button" onClick={() => talks.push({})}>Add talk</button>
@@ -42,7 +41,16 @@ const renderTalks = ({ fields: talks }) => (
 
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
     <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
-        <form onSubmit={handleSubmit(event => onSubmit(preprocess(event)))}>
+        <form
+            onSubmit={handleSubmit(event => onSubmit({
+                ...event,
+                tags: event.tags && event.map(t => t.value),
+                talks: event.talks.map(t => ({
+                    ...t,
+                    speaker: t.speaker && ({ displayName: t.speaker.value }),
+                })),
+            }))}>
+
             <fieldset>
                 <legend>Event</legend>
                 <Input name="title" component="input" placeholder="Title" />
@@ -50,11 +58,11 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
                 <Input name="image" component="input" placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
                 <Input name="location" component="input" placeholder="Location" />
-                <Input name="tags" component={SelectField} />
+                <Input name="tags" component={TagsSelectField} />
             </fieldset>
-            <FieldArray
-                name="talks"
-                component={renderTalks} />
+
+            <FieldArray name="talks" component={renderTalks} />
+
             <button type="submit">Add event</button>
         </form>
     </Popup>
