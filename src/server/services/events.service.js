@@ -7,6 +7,7 @@ function getEvents() {
     return Event.find()
         .sort('-date')
         .populate('talks.speaker')
+        .lean()
         .exec();
 }
 
