@@ -50,6 +50,7 @@ const SearchWrapper = styled.label`
     padding-right: 4rem;
     width: 100%;
     ${media.tablet`width: initial;`} /* TODO: not sure if it is ok */
+    /* how should it look when this element is one in the FilterBlock? (case: speakers page) */
 `;
 
 const SearchInput = styled.input`
