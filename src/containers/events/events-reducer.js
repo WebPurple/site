@@ -121,9 +121,16 @@ export const eventListSelector = createSelector(
     })
 );
 
+const extractTags = events => unionWith(...events.map(event => event.tags), (a, b) => a === b);
+
+export const allTagsSelector = createSelector(
+    allEventsSelector,
+    extractTags
+);
+
 export const eventTagsSelector = createSelector(
     eventListSelector,
-    events => unionWith(...events.map(event => event.tags), (a, b) => a === b)
+    extractTags
 );
 
 export const pastTalksSelector = createSelector(
