@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
+import { List } from 'immutable';
 
 import SubscriptionForm from '../../components/subscription-form/subscription-form';
 import {
@@ -24,7 +25,7 @@ class EventsPageContainer extends React.Component {
     static propTypes = {
         loadEvents: React.PropTypes.func.isRequired,
         onAddEvent: React.PropTypes.func.isRequired,
-        events: React.PropTypes.array.isRequired,
+        events: React.PropTypes.instanceOf(List).isRequired,
         tags: React.PropTypes.array.isRequired,
     };
 

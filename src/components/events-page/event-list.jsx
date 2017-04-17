@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled, { withTheme } from 'styled-components';
+import { List } from 'immutable';
 
 import Masonry from 'react-masonry-component';
 
@@ -122,7 +123,7 @@ const EventList = ({ events, theme }) => (
 );
 
 EventList.propTypes = {
-    events: PropTypes.array.isRequired,
+    events: PropTypes.instanceOf(List).isRequired,
     theme: PropTypes.object.isRequired,
 };
 
