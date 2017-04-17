@@ -8,9 +8,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-select/dist/react-select.css';
 
 import DatePicker from 'react-datepicker';
-import { Creatable as CreatableSelect } from 'react-select';
+import { Creatable as CreatableSelect, AsyncCreatable as AsyncCreatableSelect } from 'react-select';
 import Popup from '../../components/common/popup';
 import { allTagsSelector } from './events-reducer';
+import { getJson } from '../../utils/ajax';
 
 const Input = styled(Field)`
     display: block;
@@ -26,11 +27,20 @@ const TagsSelectField = ({ input: { value, onChange }, tags }) => (
         value={value}
         onChange={onChange}
         multi
+        promptTextCreator={tag => `Create tag "${tag}"`}
         placeholder="Enter tags..." />
 );
 
 const SpeakerSelectField = ({ input: { value, onChange } }) => (
-    <CreatableSelect value={value} onChange={onChange} placeholder="Speaker" />
+    <AsyncCreatableSelect
+        value={value}
+        onChange={onChange}
+        loadOptions={() => getJson('/api/users').then(options => ({ options }))/* TODO: prevent multiple requests */}
+        valueKey="_id"
+        labelKey="displayName"
+        promptTextCreator={userName => `Create user "${userName}"`}
+        newOptionCreator={({ label, labelKey, valueKey }) => ({ [labelKey]: label, [valueKey]: -1 })}
+        placeholder="Speaker" />
 );
 
 const renderTalks = ({ fields: talks }) => (
@@ -51,11 +61,7 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
         <form
             onSubmit={handleSubmit(event => onSubmit({
                 ...event,
-                tags: event.tags && event.map(t => t.value),
-                talks: event.talks.map(t => ({
-                    ...t,
-                    speaker: t.speaker && ({ displayName: t.speaker.value }),
-                })),
+                tags: event.tags && event.tags.map(t => t.value),
             }))}>
 
             <fieldset>

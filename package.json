@@ -84,7 +84,7 @@
     "history": "^4.6.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
-    "lodash.unionwith": "^4.6.0",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",

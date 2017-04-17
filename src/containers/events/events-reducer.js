@@ -1,7 +1,7 @@
 import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
 import { getFormValues, change } from 'redux-form';
-import unionWith from 'lodash.unionwith';
+import unionWith from 'lodash/unionWith';
 
 import { getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
 

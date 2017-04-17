@@ -11,7 +11,8 @@ function getEvents() {
 }
 
 function addEvent(event) {
-    return new Event(event).save();
+    return new Event(event).save()
+        .then(addedEvent => Event.populate(addedEvent, 'talks.speaker'));
 }
 
 module.exports = {
