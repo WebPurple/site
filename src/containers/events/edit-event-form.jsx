@@ -21,6 +21,19 @@ const DatePickerField = ({ input: { value, onChange } }) => (
     <DatePicker selected={value} onChange={onChange} />
 );
 
+const renderTalks = ({ fields: talks }) => (
+    <div>
+        {talks.map((talk, i) => (
+            <fieldset key={i}>
+                <legend>Talk {i + 1}</legend>
+                <Input name={`${talk}.title`} component="input" placeholder="Title" />
+                <Input name={`${talk}.speaker`} component="input" placeholder="Speaker" />
+            </fieldset>
+        ))}
+        <button type="button" onClick={() => talks.push({})}>Add talk</button>
+    </div>
+);
+
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
     <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
         <form onSubmit={handleSubmit(event => onSubmit(preprocess(event)))}>
@@ -35,18 +48,7 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
             </fieldset>
             <FieldArray
                 name="talks"
-                component={({ fields: talks }) => (
-                    <div>
-                        {talks.map((talk, i) => (
-                            <fieldset key={i}>
-                                <legend>Talk {i + 1}</legend>
-                                <Input name={`${talk}.title`} component="input" placeholder="Title" />
-                                <Input name={`${talk}.speaker`} component="input" placeholder="Speaker" />
-                            </fieldset>
-                        ))}
-                        <button type="button" onClick={() => talks.push({})}>Add talk</button>
-                    </div>
-                )} />
+                component={renderTalks} />
             <button type="submit">Add event</button>
         </form>
     </Popup>
