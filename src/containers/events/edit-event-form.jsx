@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import styled from 'styled-components';
+import moment from 'moment';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
+import DatePicker from 'react-datepicker';
 import Popup from '../../components/common/popup';
 
 const Input = styled(Field)`
@@ -11,8 +15,11 @@ const Input = styled(Field)`
 const preprocess = event => ({
     ...event,
     tags: event.tags && event.tags.split(',').map(t => t.trim()), // TODO: use react-select
-    date: new Date(), // TODO: use datepicker
 });
+
+const DatePickerField = ({ input: { value, onChange } }) => (
+    <DatePicker selected={value} onChange={onChange} />
+);
 
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
     <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
@@ -22,7 +29,7 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
                 <Input name="title" component="input" placeholder="Title" />
                 <Input name="description" component="input" placeholder="Description" />
                 <Input name="image" component="input" placeholder="Image url" />
-                <Input name="date" component="input" placeholder="Date" />
+                <Field name="date" component={DatePickerField} />
                 <Input name="location" component="input" placeholder="Location" />
                 <Input name="tags" component="input" placeholder="Tags" />
             </fieldset>
@@ -50,4 +57,9 @@ EditEventForm.propTypes = {
     onRequestClose: PropTypes.func,
 };
 
-export default reduxForm({ form: 'edit-event' })(EditEventForm);
+export default reduxForm({
+    form: 'edit-event',
+    initialValues: {
+        date: moment().day('Thursday'),
+    },
+})(EditEventForm);
