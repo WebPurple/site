@@ -24,7 +24,7 @@ const updateUser = (id, user) => User.findById(id).exec()
         }
         /* eslint-enable no-param-reassign */
         return userToUpdate.save();
-    })
+    });
 
 module.exports = {
     createUser,
