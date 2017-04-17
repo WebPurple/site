@@ -6,6 +6,8 @@ import { renderRoutes } from 'react-router-config';
 
 import { media } from '../../utils/css-utils';
 
+import LoginPopup from '../../components/login/login-popup';
+
 const Container = styled.div`
     margin: 0 auto;
     display: flex;
@@ -18,8 +20,12 @@ const Container = styled.div`
 
 const Header = styled.header`
     display: flex;
-    
     margin: 0 50px;
+    
+    & :last-child {
+        margin-left: auto;
+    }
+    
     ${media.hd`margin: 0 175px;`}
 `;
 
@@ -90,6 +96,7 @@ const AppContainer = ({ route }) => (
                     <li><NavigationLink to="/speakers">Speakers</NavigationLink></li>
                     <li><NavigationLink to="#feed">Feed</NavigationLink></li>
                 </NavigationBar>
+                <LoginPopup />
             </Header>
             <main>
                 {renderRoutes(route.routes)}

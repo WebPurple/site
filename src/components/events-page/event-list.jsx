@@ -1,21 +1,30 @@
 import React, { PropTypes } from 'react';
 import styled, { withTheme } from 'styled-components';
 
-import { media } from '../../utils/css-utils';
+import Masonry from 'react-masonry-component';
+
+import {
+    media,
+    isPhone,
+    isTablet,
+} from '../../utils/css-utils';
 import { TagList } from '../common/tag';
 import {
     ClockIcon,
     PlaceholderIcon,
 } from '../icons';
 
-const List = styled.ul`
+const gutter = isTablet() ? 30 : 75; // space between cards
+
+const Container = styled(({ children, className }) => (
+    isPhone()
+        ? <ul className={className}>{children}</ul>
+        : <Masonry className={className} elementType="ul" options={{ gutter, fitWidth: true }}>{children}</Masonry>
+))`
     list-style: none;
     padding: 0;
-    margin: 3.6rem 0 0;
+    margin: 3.6rem auto 0;
     ${media.desktop`margin-top: 10rem;`}
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 `;
 
 const EventSnippet = styled.li`
@@ -84,7 +93,7 @@ const Talk = styled.li`
 `;
 
 const EventList = ({ events, theme }) => (
-    <List>
+    <Container>
         {events.map((event, eventIndex) => (
             <EventSnippet key={event._id}>
                 <BackgroundShape>
@@ -109,11 +118,12 @@ const EventList = ({ events, theme }) => (
                 <TagList tags={event.tags} />
             </EventSnippet>
         ))}
-    </List>
+    </Container>
 );
 
 EventList.propTypes = {
     events: PropTypes.array.isRequired,
+    theme: PropTypes.object.isRequired,
 };
 
 export default withTheme(EventList);
