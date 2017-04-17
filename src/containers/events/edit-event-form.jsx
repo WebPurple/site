@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-select/dist/react-select.css';
 
 import DatePicker from 'react-datepicker';
+import { Creatable as CreatableSelect } from 'react-select';
 import Popup from '../../components/common/popup';
 
 const Input = styled(Field)`
@@ -14,11 +16,15 @@ const Input = styled(Field)`
 
 const preprocess = event => ({
     ...event,
-    tags: event.tags && event.tags.split(',').map(t => t.trim()), // TODO: use react-select
+    tags: event.tags && event.map(t => t.value),
 });
 
 const DatePickerField = ({ input: { value, onChange } }) => (
     <DatePicker selected={value} onChange={onChange} />
+);
+
+const SelectField = ({ input: { value, onChange } }) => (
+    <CreatableSelect multi placeholder="Enter tags..." value={value} onChange={onChange} />
 );
 
 const renderTalks = ({ fields: talks }) => (
@@ -44,7 +50,7 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose }) => (
                 <Input name="image" component="input" placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
                 <Input name="location" component="input" placeholder="Location" />
-                <Input name="tags" component="input" placeholder="Tags" />
+                <Input name="tags" component={SelectField} />
             </fieldset>
             <FieldArray
                 name="talks"
