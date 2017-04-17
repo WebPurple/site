@@ -1,7 +1,7 @@
 import App from './containers/app/app';
 import HomePage from './components/home-page/home-page';
 import EventsPage from './containers/events/events-page';
-import SpeakersPage from './components/speakers-page/speakers-page';
+import SpeakersPage from './containers/speakers/speakers-page';
 import ContributorsPage from './containers/contributors/contributors-page';
 
 export default [{
