@@ -9,6 +9,8 @@ import WebpurpleLogo from '../components/webpurple-logo/webpurple-logo';
 
 
 import { MenuIcon } from '../components/icons/header';
+import { CloseIcon } from '../components/icons/header';
+
 
 const Wrapper = styled.header`
     box-sizing: border-box; 
@@ -41,6 +43,12 @@ const MenuHeader = styled.div`
 `;
 
 const MenuButton = styled(MenuIcon)`
+    display: flex;
+    margin: 0em 1em;
+    ${media.tablet`display: none;`};
+`;
+
+const CloseButton = styled(CloseIcon)`
     display: flex;
     margin: 0em 1em;
     ${media.tablet`display: none;`};
@@ -110,22 +118,40 @@ const ArrowButtonStyled = styled(ArrowButton)`
     `};
 `;
 
-const Header = () => (
-    <Wrapper>
-        <MenuHeader>
-            <WebpurpleLogo />
-            <MenuButton />
-        </MenuHeader>
-        <MenuBar>
-            <NavigationBar>
-                <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
-                <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
-            </NavigationBar>
-            <ArrowButtonStyled>sign in</ArrowButtonStyled>
-        </MenuBar>
-    </Wrapper>
-);
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { showMenu: true };
+
+        this.toggleMenu = this.toggleMenu.bind(this);
+    }
+
+    toggleMenu() {
+        this.setState({ showMenu: !this.state.showMenu });
+    }
+
+    render() {
+        return(
+            <Wrapper>
+                <MenuHeader>
+                    <WebpurpleLogo />
+                    { this.state.showMenu ? <CloseButton onClick={ this.toggleMenu }/> :
+                <MenuButton onClick={ this.toggleMenu }/> }
+                </MenuHeader>
+                    { this.state.showMenu && 
+                        <MenuBar>
+                            <NavigationBar>
+                                <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
+                                <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
+                                <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
+                                <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
+                            </NavigationBar>
+                            <ArrowButtonStyled>sign in</ArrowButtonStyled>
+                        </MenuBar>
+                   }
+            </Wrapper>
+        );
+    }
+}
 
 export default Header;
