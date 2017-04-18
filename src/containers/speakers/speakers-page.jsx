@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import SubscriptionForm from '../../components/subscription-form/subscription-form';
 import SpeakersList from '../../components/speakers-list/speakers-list';
-import { loadEvents, search, speakersSelector } from '../events/events-reducer';
+import { loadEvents, searchSpeakers, speakersSelector } from '../events/events-reducer';
 
 class SpeakersPageContainer extends React.Component {
     componentDidMount() {
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
-    onSearch: search,
+    onSearch: searchSpeakers,
 }, dispatch);
 
 export default withRouter(
