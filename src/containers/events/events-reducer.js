@@ -12,7 +12,8 @@ const EVENT_ADDED = 'events/event-added';
 const TOGGLE_TAG = 'events/toggle-tag';
 
 export const FORM_KEY = 'events-page';
-const SEARCH_KEY = 'search';
+const SEARCH_EVENTS_KEY = 'search-events';
+const SEARCH_SPEAKERS_KEY = 'search-speakers';
 
 const initialState = fromJS({
     isFetching: false,
@@ -60,7 +61,8 @@ export function loadEvents() {
 
 export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
 
-export const search = searchValue => change(FORM_KEY, SEARCH_KEY, searchValue);
+export const searchEvents = searchValue => change(FORM_KEY, SEARCH_EVENTS_KEY, searchValue);
+export const searchSpeakers = searchValue => change(FORM_KEY, SEARCH_SPEAKERS_KEY, searchValue);
 
 const eventAdded = event => ({ type: EVENT_ADDED, payload: event });
 
@@ -77,16 +79,21 @@ export const showFilterSelector = (state, props) => mapQueryStringToObject(props
 
 const formSelector = state => getFormValues(FORM_KEY)(state);
 
-const searchSelector = createSelector(
+const searchEventsSelector = createSelector(
     formSelector,
-    form => form && form[SEARCH_KEY]
+    form => form && form[SEARCH_EVENTS_KEY]
+);
+
+const searchSpeakersSelector = createSelector(
+    formSelector,
+    form => form && form[SEARCH_SPEAKERS_KEY]
 );
 
 export const eventListSelector = createSelector(
     allEventsSelector,
     showFilterSelector,
     selectedTagsSelector,
-    searchSelector,
+    searchEventsSelector,
 
     (events, show, selectedTags, searchValue) => events.filter(event => {
         const date = new Date(event.date);
@@ -133,10 +140,31 @@ export const eventTagsSelector = createSelector(
     extractTags
 );
 
-export const pastTalksSelector = createSelector(
+const talksSelector = createSelector(
     allEventsSelector,
     events => events
-        .filter(event => new Date(event.date) < new Date())
         .map(event => event.talks.map(talk => ({ ...talk, event })))
-        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks))
+        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), [])
+);
+
+export const pastTalksSelector = createSelector(
+    talksSelector,
+    talks => talks.filter(talk => new Date(talk.event.date) < new Date())
+);
+
+export const speakersSelector = createSelector(
+    talksSelector,
+    searchSpeakersSelector,
+    (talks, searchValue) => talks
+            .filter(({ speaker }) => searchValue ? (speaker.displayName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : true)
+            .reduce((speakers, talk) => {
+                const speaker = speakers.find(_speaker => _speaker._id === talk.speaker._id);
+                if (speaker) {
+                    speaker.talks.push(talk.title);
+                } else {
+                    speakers.push({ ...talk.speaker, talks: [talk.title] });
+                }
+
+                return speakers;
+            }, [])
 );
