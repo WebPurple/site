@@ -71,7 +71,7 @@ app.use(expressSession({
 authApi(app);
 
 app.use('/api', postsApi());
-app.use('/api', eventsApi())
+app.use('/api', eventsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
