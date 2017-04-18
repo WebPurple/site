@@ -13,7 +13,6 @@ const dbConf = require('./conf/db');
 const authApi = require('./controllers/auth.controller');
 const postsApi = require('./controllers/posts.controller');
 const eventsApi = require('./controllers/events.controller');
-const speakesrApi = require('./controllers/speakers.controller');
 const userApi = require('./controllers/user.controller');
 const rssApi = require('./controllers/rss.controller');
 
@@ -72,8 +71,7 @@ app.use(expressSession({
 authApi(app);
 
 app.use('/api', postsApi());
-app.use('/api', eventsApi());
-app.use('/api', speakesrApi());
+app.use('/api', eventsApi())
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
