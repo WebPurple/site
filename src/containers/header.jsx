@@ -8,21 +8,17 @@ import ArrowButton from '../components/arrow-button/arrow-button.jsx';
 import WebpurpleLogo from '../components/webpurple-logo/webpurple-logo';
 
 
-import { MenuIcon } from '../components/icons/header';
-import { CloseIcon } from '../components/icons/header';
-
+import { MenuIcon, CloseIcon } from '../components/icons/header';
 
 const Wrapper = styled.header`
     box-sizing: border-box; 
     display: flex;
     flex-direction: column;
-    background-color: white;
     padding: 2.6em 2em;
     width: 100%;
     ${media.tablet`
         flex-direction: row;
         width: auto;
-        background-color: auto;
         padding: 0;
         margin: 3em 0;
     `};
@@ -64,7 +60,6 @@ const MenuBar = styled.div`
         justify-content: flex-start;
         padding: 0;
     `};
-
 `;
 
 const NavigationBar = styled.ul`
@@ -135,24 +130,24 @@ class Header extends React.Component {
     render() {
         const height = this.state.showMenu ? '100vh' : 'auto';
 
-        return(
-            <Wrapper style={{ height: height }}>
+        return (
+            <Wrapper style={{ height }}>
                 <MenuHeader>
                     <WebpurpleLogo />
-                    { this.state.showMenu ? <CloseButton onClick={ this.toggleMenu }/> :
-                <MenuButton onClick={ this.toggleMenu }/> }
+                    {this.state.showMenu ? <CloseButton onClick={this.toggleMenu} /> :
+                    <MenuButton onClick={this.toggleMenu} /> }
                 </MenuHeader>
-                    { this.state.showMenu && 
-                        <MenuBar>
-                            <NavigationBar>
-                                <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
-                                <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
-                                <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
-                                <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
-                            </NavigationBar>
-                            <ArrowButtonStyled>sign in</ArrowButtonStyled>
-                        </MenuBar>
-                   }
+                {this.state.showMenu &&
+                    <MenuBar>
+                        <NavigationBar>
+                            <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
+                            <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
+                            <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
+                            <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
+                        </NavigationBar>
+                        <ArrowButtonStyled>sign in</ArrowButtonStyled>
+                    </MenuBar>
+                }
             </Wrapper>
         );
     }
