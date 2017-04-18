@@ -13,7 +13,7 @@ import {
     selectedTagsSelector,
     toggleTag,
     FORM_KEY,
-    search,
+    searchEvents,
     addEvent,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
@@ -75,7 +75,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEvents,
     onTagClick: toggleTag,
-    onSearch: search,
+    onSearch: searchEvents,
     onAddEvent: addEvent,
 }, dispatch);
 
