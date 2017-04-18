@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { renderRoutes } from 'react-router-config';
 
 import Header from '../header';
 import { media } from '../../utils/css-utils';

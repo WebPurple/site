@@ -13,33 +13,50 @@ import { MenuIcon } from '../components/icons/header';
 const Wrapper = styled.header`
     box-sizing: border-box; 
     display: flex;
-    flex-wrap: wrap;
-    width: 100vm;
-    height:100vh;
-    flex-direction: row;
+    flex-direction: column;
     background-color: white;
-    justify-content: space-between;
-    align-content: space-between;
     padding: 2.6em 2em;
+    width: 100%;
+    height: 100vh;
     ${media.tablet`
-        display: flex;
+        flex-direction: row;
         width: auto;
         height: auto;
         background-color: auto;
-        flex-wrap: nowrap;
-        flex-grow: 2;
-        justify-content: flex-start;
-        align-content: stretch;
         padding: 0;
         margin: 3em 0;
     `};
 `;
 
+const MenuHeader = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    ${media.tablet`
+        width: auto;
+        align-items:auto;
+    `};
+
+`;
+
 const MenuButton = styled(MenuIcon)`
     display: flex;
     margin: 0em 1em;
-    align-self: center;
     ${media.tablet`display: none;`};
+`;
+
+const MenuBar = styled.div`
+    display: flex;
+    flex-grow: 2;
+    flex-direction: column;
+    justify-content: space-between;
+    ${media.tablet`
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    `};
+
 `;
 
 const NavigationBar = styled.ul`
@@ -95,17 +112,20 @@ const ArrowButtonStyled = styled(ArrowButton)`
 
 const Header = () => (
     <Wrapper>
-        <WebpurpleLogo />
-        <MenuButton />
-        <NavigationBar>
-            <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
-            <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
-        </NavigationBar>
-        <ArrowButtonStyled>sign in</ArrowButtonStyled>
+        <MenuHeader>
+            <WebpurpleLogo />
+            <MenuButton />
+        </MenuHeader>
+        <MenuBar>
+            <NavigationBar>
+                <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
+                <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
+                <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
+                <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
+            </NavigationBar>
+            <ArrowButtonStyled>sign in</ArrowButtonStyled>
+        </MenuBar>
     </Wrapper>
 );
-
 
 export default Header;
