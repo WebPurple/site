@@ -19,11 +19,9 @@ const Wrapper = styled.header`
     background-color: white;
     padding: 2.6em 2em;
     width: 100%;
-    height: 100vh;
     ${media.tablet`
         flex-direction: row;
         width: auto;
-        height: auto;
         background-color: auto;
         padding: 0;
         margin: 3em 0;
@@ -59,25 +57,29 @@ const MenuBar = styled.div`
     flex-grow: 2;
     flex-direction: column;
     justify-content: space-between;
+    padding: 2em 0;
     ${media.tablet`
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        padding: 0;
     `};
 
 `;
 
 const NavigationBar = styled.ul`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
     ${media.tablet`
         margin: 0;
         flex-grow: 2;
         align-items: center;
         flex-direction: row;
         width: auto;
+        padding: 0 0 0 4em;
     `};
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 `;
 
 // ToDo: animations
@@ -111,7 +113,7 @@ const NavigationLink = styled(NavLink)`
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`
-    margin: 0 0 0 4em;
+    margin: 0 0 0 2em;
     
     ${media.tablet`
         margin: auto;
@@ -131,8 +133,10 @@ class Header extends React.Component {
     }
 
     render() {
+        const height = this.state.showMenu ? '100vh' : 'auto';
+
         return(
-            <Wrapper>
+            <Wrapper style={{ height: height }}>
                 <MenuHeader>
                     <WebpurpleLogo />
                     { this.state.showMenu ? <CloseButton onClick={ this.toggleMenu }/> :
