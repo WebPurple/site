@@ -1,9 +1,11 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { renderRoutes } from 'react-router-config';
 
 import Header from '../header';
 import { media } from '../../utils/css-utils';
+
+import LoginPopup from '../../components/login/login-popup';
+import FooterComponent from '../../components/footer';
 
 const Container = styled.div`
     margin: 0 auto;
@@ -45,7 +47,7 @@ const AppContainer = ({ route }) => (
             <main>
                 {renderRoutes(route.routes)}
             </main>
-            <Footer>Footer is supposed to be here</Footer>
+            <FooterComponent />
         </Container>
     </ThemeProvider>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
-import PastEvents from '../past-events/past-events';
+import PastEvents from '../../containers/events/past-events';
 
 import SubscriptionForm from '../subscription-form/subscription-form';
 import SocialLinks from './social-links-block';
