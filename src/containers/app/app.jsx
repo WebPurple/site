@@ -6,6 +6,9 @@ import { renderRoutes } from 'react-router-config';
 
 import { media } from '../../utils/css-utils';
 
+import LoginPopup from '../../components/login/login-popup';
+import FooterComponent from '../../components/footer';
+
 const Container = styled.div`
     margin: 0 auto;
     display: flex;
@@ -18,8 +21,12 @@ const Container = styled.div`
 
 const Header = styled.header`
     display: flex;
-    
     margin: 0 50px;
+    
+    & :last-child {
+        margin-left: auto;
+    }
+    
     ${media.hd`margin: 0 175px;`}
 `;
 
@@ -56,17 +63,6 @@ const NavigationLink = styled(NavLink)`
     }
 `;
 
-const Footer = styled.footer`
-    padding: 40px;
-    ${media.tablet`padding: 40px 175px;`}
-    left: 0;
-    bottom: 0;
-    background-color: ${props => props.theme.grape};
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-    color: white;
-    font-family: 'Rubik', sans-serif;
-`;
-
 const theme = {
     grape: '#432867',
     warmGrey: '#a1a1a1',
@@ -90,11 +86,12 @@ const AppContainer = ({ route }) => (
                     <li><NavigationLink to="/speakers">Speakers</NavigationLink></li>
                     <li><NavigationLink to="#feed">Feed</NavigationLink></li>
                 </NavigationBar>
+                <LoginPopup />
             </Header>
             <main>
                 {renderRoutes(route.routes)}
             </main>
-            <Footer>Footer is supposed to be here</Footer>
+            <FooterComponent />
         </Container>
     </ThemeProvider>
 );

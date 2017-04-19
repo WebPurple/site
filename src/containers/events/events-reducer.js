@@ -1,13 +1,19 @@
 import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
-import unionWith from 'lodash.unionwith';
+import { getFormValues, change } from 'redux-form';
+import unionWith from 'lodash/unionWith';
 
-import { getJson, mapQueryStringToObject } from '../../utils/ajax';
+import { getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
 
 const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
+const EVENT_ADDED = 'events/event-added';
 
 const TOGGLE_TAG = 'events/toggle-tag';
+
+export const FORM_KEY = 'events-page';
+const SEARCH_EVENTS_KEY = 'search-events';
+const SEARCH_SPEAKERS_KEY = 'search-speakers';
 
 const initialState = fromJS({
     isFetching: false,
@@ -21,6 +27,8 @@ export default function reducer(state = initialState, action) {
             return state
                 .set('isFetching', false)
                 .set('eventList', new List(action.payload));
+        case EVENT_ADDED:
+            return state.update('eventList', eventList => eventList.unshift(action.payload)); // TODO: sort actions by date
         case TOGGLE_TAG:
             return state.update('selectedTags',
                 selectedTags => selectedTags.has(action.payload)
@@ -53,6 +61,14 @@ export function loadEvents() {
 
 export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
 
+export const searchEvents = searchValue => change(FORM_KEY, SEARCH_EVENTS_KEY, searchValue);
+export const searchSpeakers = searchValue => change(FORM_KEY, SEARCH_SPEAKERS_KEY, searchValue);
+
+const eventAdded = event => ({ type: EVENT_ADDED, payload: event });
+
+export const addEvent = event => dispatch => postJson('api/events', event)
+    .then(newEvent => dispatch(eventAdded(newEvent)));
+
 // SELECTORS
 
 export const selectedTagsSelector = state => state.events.get('selectedTags');
@@ -61,10 +77,25 @@ export const allEventsSelector = state => state.events.get('eventList');
 
 export const showFilterSelector = (state, props) => mapQueryStringToObject(props.location.search).show || 'all';
 
-export const eventListSelector = createSelector(
-    [allEventsSelector, showFilterSelector, selectedTagsSelector],
+const formSelector = state => getFormValues(FORM_KEY)(state);
 
-    (events, show, selectedTags) => events.filter(event => {
+const searchEventsSelector = createSelector(
+    formSelector,
+    form => form && form[SEARCH_EVENTS_KEY]
+);
+
+const searchSpeakersSelector = createSelector(
+    formSelector,
+    form => form && form[SEARCH_SPEAKERS_KEY]
+);
+
+export const eventListSelector = createSelector(
+    allEventsSelector,
+    showFilterSelector,
+    selectedTagsSelector,
+    searchEventsSelector,
+
+    (events, show, selectedTags, searchValue) => events.filter(event => {
         const date = new Date(event.date);
         const now = new Date();
 
@@ -73,11 +104,67 @@ export const eventListSelector = createSelector(
             return false;
         }
 
+        if (searchValue) {
+
+            searchValue = searchValue.toLowerCase(); // eslint-disable-line no-param-reassign
+
+            const doesAnyFieldContainSearchString = ['date', 'title', 'talks', 'location']
+                .map(fieldName => {
+
+                    if (fieldName === 'talks') {
+                        return event.talks.map(talk => talk.title).join(' ').toLowerCase();
+                    }
+
+                    return event[fieldName].toLowerCase();
+                })
+                .some(fieldValue => fieldValue.indexOf(searchValue) !== -1);
+
+            if (!doesAnyFieldContainSearchString) {
+                return false;
+            }
+        }
+
         return selectedTags.isEmpty() || selectedTags.isSubset(event.tags);
     })
 );
 
+const extractTags = events => unionWith(...events.map(event => event.tags), (a, b) => a === b);
+
+export const allTagsSelector = createSelector(
+    allEventsSelector,
+    extractTags
+);
+
 export const eventTagsSelector = createSelector(
     eventListSelector,
-    events => unionWith(...events.map(event => event.tags), (a, b) => a === b)
+    extractTags
+);
+
+const talksSelector = createSelector(
+    allEventsSelector,
+    events => events
+        .map(event => event.talks.map(talk => ({ ...talk, event })))
+        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), [])
+);
+
+export const pastTalksSelector = createSelector(
+    talksSelector,
+    talks => talks.filter(talk => new Date(talk.event.date) < new Date())
+);
+
+export const speakersSelector = createSelector(
+    talksSelector,
+    searchSpeakersSelector,
+    (talks, searchValue) => talks
+            .filter(({ speaker }) => searchValue ? (speaker.displayName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : true)
+            .reduce((speakers, talk) => {
+                const speaker = speakers.find(_speaker => _speaker._id === talk.speaker._id);
+                if (speaker) {
+                    speaker.talks.push(talk.title);
+                } else {
+                    speakers.push({ ...talk.speaker, talks: [talk.title] });
+                }
+
+                return speakers;
+            }, [])
 );
