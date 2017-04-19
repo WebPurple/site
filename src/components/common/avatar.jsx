@@ -27,8 +27,9 @@ const avatarContainer = `
 
 const AvatarContainer = styled.div`
     ${avatarContainer}
-    background: url(${props => props.avatarUrl}) center top no-repeat;
+    background: url(${props => props.avatar}) center top no-repeat;
     transform: skewY(30deg) translateY(-3.2rem);
+    ${props => props.stretch ? 'background-size: cover;' : null}
 `;
 
 const NoAvatarIconElement = styled.div`
@@ -43,10 +44,15 @@ const NoAvatarContainer = () => (
     </NoAvatarIconElement>
 );
 
-const Avatar = ({ avatar }) => (
+const Avatar = ({ avatar, stretch }) => (
     <SpeakerAvatar>
-        {avatar ? <AvatarContainer /> : <NoAvatarContainer />}
+        {avatar ? <AvatarContainer avatar={avatar} stretch={stretch} /> : <NoAvatarContainer />}
     </SpeakerAvatar>
 );
+
+Avatar.propTypes = {
+    avatar: React.PropTypes.string,
+    stretch: React.PropTypes.bool,
+};
 
 export default Avatar;
