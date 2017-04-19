@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { media } from '../utils/css-utils';
+import {
+    media,
+    isPhone,
+} from '../utils/css-utils';
 
 import ArrowButton from '../components/arrow-button/arrow-button.jsx';
 import WebpurpleLogo from '../components/webpurple-logo/webpurple-logo';
@@ -118,7 +121,7 @@ const ArrowButtonStyled = styled(ArrowButton)`
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showMenu: true };
+        this.state = { showMenu: !isPhone() };
 
         this.toggleMenu = this.toggleMenu.bind(this);
     }
@@ -128,7 +131,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const height = this.state.showMenu ? '100vh' : 'auto';
+        const height = this.state.showMenu && isPhone() ? '100vh' : 'auto';
 
         return (
             <Wrapper style={{ height }}>
