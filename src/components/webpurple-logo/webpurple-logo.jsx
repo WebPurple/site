@@ -11,7 +11,7 @@ const Logo = styled(NavLink)`
 `;
 
 const Title = styled.h1`
-    font-size: 2.6em;
+    font-size: 2.6rem;
     margin: 0;
     text-transform: uppercase;
     font-family: Rubik, sans-serif;
@@ -20,9 +20,9 @@ const Title = styled.h1`
 `;
 
 const StyledWebpurpleIcon = styled(WebpurpleIcon)`
-    margin: 0 2em;
-    width: 3.5em;
-    height: 3.5em;
+    margin: 0 2rem 0 0;
+    width: 3.5rem;
+    height: 3.5rem;
 `;
 
 const WebpurpleLogo = () => (
