@@ -51,7 +51,7 @@ const Popup = props => (
         {...props}
         style={{ ...customStyles, content: { ...customStyles.content, width: props.width } }}>
         <ModalHeader>
-            <IconButton onClick={props.handleCloseModal}>
+            <IconButton onClick={props.onRequestClose}>
                 <CloseIcon />
             </IconButton>
         </ModalHeader>

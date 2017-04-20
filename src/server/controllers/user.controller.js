@@ -1,12 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
-const userSchema = require('./../schemas/user.schema');
+const userService = require('./../services/user.service');
 
 const securityUtils = require('./../utils/security-utils');
 const commonUtils = require('./../../utils/common-utils');
-
-const User = mongoose.model('users', userSchema);
 
 module.exports = () => {
     const router = express.Router(); // eslint-disable-line new-cap
@@ -17,37 +14,29 @@ module.exports = () => {
 
     router.route('/users')
         // get all users
-        .get((request, response) => User.find().lean().exec()
+        .get((request, response) => userService.getUsers()
             .then(users => response.send(users)));
 
     router.route('/users/:user_id')
         // get user by id
-        .get((request, response) => User.findById(request.params.user_id).lean().exec()
+        .get((request, response) => userService.getUser(request.params.user_id)
             .then(user => response.send(user))
             .catch(err => response.send(err)))
         // update user
         .put(securityUtils.checkPermissions(),
-        (request, response) => {
-            User.findById(request.params.user_id).exec()
-                .then(userToUpdate => {
-                    const { user } = request;
-                    const { displayName, email, roles } = request.body;
-                    /* eslint-disable no-param-reassign */
-                    if (displayName) {
-                        userToUpdate.displayName = request.body.displayName;
-                    }
-                    if (email) {
-                        userToUpdate.email = email;
-                    }
-                    if (commonUtils.isAdmin(user) && roles) {
-                        userToUpdate.roles = roles;
-                    }
-                    /* eslint-enable no-param-reassign */
-                    return userToUpdate.save();
-                })
-                .then(user => response.send(user))
-                .catch(err => response.send(err));
-        });
+            (request, response) => {
+                const { user: loggedUser } = request;
+                const userToUpdateId = request.params.user_id;
+
+                // admin can edit any profile, any other user - only his one
+                ((commonUtils.isAdmin(loggedUser) || loggedUser._id === userToUpdateId)
+                    ? Promise.resolve()
+                    : Promise.reject({ message: 'You can\'t edit this profile.' }))
+
+                    .then(() => userService.updateUser(userToUpdateId, request.body)
+                        .then(user => response.send(user))
+                        .catch(err => response.send(err)));
+            });
 
     router.route('/roles')
         .get((request, response) => response.send(['admin', 'editor']));

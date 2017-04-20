@@ -17,7 +17,7 @@ const EmptyDiamond = styled.div`
 `;
 
 const DiamondLeft = styled.div`
-    transform: skewY(-${defaultAngle + 'deg'});
+    transform: skewY(-${defaultAngle}deg);
 
     width: ${(props) => props.size || width}rem;
     height: ${(props) => props.size / sinusAngle || height}rem;
@@ -26,7 +26,7 @@ const DiamondLeft = styled.div`
 `;
 
 const DiamondLeftWithPhoto = styled.div`
-    transform: skewY(-${defaultAngle + 'deg'});
+    transform: skewY(-${defaultAngle}deg);
     width: ${(props) => props.size || width}rem;
     height: ${(props) => props.size / sinusAngle || height}rem;
     overflow: hidden;
@@ -47,7 +47,7 @@ const DiamondLeftWithPhoto = styled.div`
 `;
 
 const DiamondLeftPhoto = styled.div`
-    transform: skewY(${defaultAngle + 'deg'});
+    transform: skewY(${defaultAngle}deg);
     
     position: absolute;
     top: 0;
@@ -62,7 +62,7 @@ const DiamondLeftPhoto = styled.div`
 `;
 
 const DiamondRight = styled.div`
-    transform: skewY(${defaultAngle + 'deg'});
+    transform: skewY(${defaultAngle}deg);
     
     width: ${(props) => props.size || width}rem;
     height: ${(props) => props.size / sinusAngle || height}rem;
@@ -71,7 +71,7 @@ const DiamondRight = styled.div`
 `;
 
 const DiamondRightDescription = styled.div`
-    transform: skewY(-${defaultAngle + 'deg'});
+    transform: skewY(-${defaultAngle}deg);
     
     font-family: 'Rubik', sans-serif;
     padding: 0 3rem;
@@ -82,7 +82,7 @@ const DiamondRightDescription = styled.div`
 `;
 
 const DiamondLeftDescription = styled.div`
-    transform: skewY(${defaultAngle + 'deg'});
+    transform: skewY(${defaultAngle}deg);
     
     font-family: 'Rubik', sans-serif;
     padding: 0 3rem;
@@ -93,7 +93,7 @@ const DiamondLeftDescription = styled.div`
 `;
 
 const DiamondRightWithPhoto = styled.div`
-    transform: skewY(${defaultAngle + 'deg'});
+    transform: skewY(${defaultAngle}deg);
     
     width: ${(props) => props.size || width}rem;
     height: ${(props) => props.size / sinusAngle || height}rem;
@@ -116,7 +116,7 @@ const DiamondRightWithPhoto = styled.div`
 `;
 
 const DiamondRightPhoto = styled.div`
-    transform: skewY(-${defaultAngle + 'deg'}) translateY(-${shiftPhoto}rem);
+    transform: skewY(-${defaultAngle}deg) translateY(-${shiftPhoto}rem);
     
     position: absolute;
     top: 0;

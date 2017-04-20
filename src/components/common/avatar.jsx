@@ -25,11 +25,12 @@ const avatarContainer = `
     transform: skewY(30deg) translateY(-3.2rem);
 `;
 
+// TODO: solve the issue with size of avatars (background-size: cover;)
 const AvatarContainer = styled.div`
     ${avatarContainer}
-    background: url(${props => props.avatar}) center top no-repeat;
+    background: url(${props => props.avatar}) center center no-repeat;
     transform: skewY(30deg) translateY(-3.2rem);
-    ${props => props.stretch ? 'background-size: cover;' : null}
+    background-size: cover;
 `;
 
 const NoAvatarIconElement = styled.div`
@@ -44,15 +45,14 @@ const NoAvatarContainer = () => (
     </NoAvatarIconElement>
 );
 
-const Avatar = ({ avatar, stretch }) => (
+const Avatar = ({ avatar }) => (
     <SpeakerAvatar>
-        {avatar ? <AvatarContainer avatar={avatar} stretch={stretch} /> : <NoAvatarContainer />}
+        {avatar ? <AvatarContainer avatar={avatar} /> : <NoAvatarContainer />}
     </SpeakerAvatar>
 );
 
 Avatar.propTypes = {
     avatar: React.PropTypes.string,
-    stretch: React.PropTypes.bool,
 };
 
 export default Avatar;

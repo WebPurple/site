@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const talkFormat = {
-    title: { type: String, default: null },
+    title: { type: String, required: true },
     speaker: { type: Schema.Types.ObjectId, ref: 'user', default: null },
     description: { type: String, default: null },
     links: {
@@ -13,11 +13,11 @@ const talkFormat = {
 };
 
 const eventSchema = Schema({ // eslint-disable-line new-cap
-    title: { type: String, default: null },
-    description: { type: String, default: null },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
     image: { type: String, default: null },
-    date: { type: Date, default: Date.now() },
-    location: { type: String, default: null },
+    date: { type: Date, required: true },
+    location: { type: String, required: true },
     talks: { type: [talkFormat], default: [] },
     tags: { type: [String], default: [] },
     attendees: { type: [{ type: Schema.Types.ObjectId, ref: 'user' }], default: [] },

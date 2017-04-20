@@ -22,11 +22,13 @@ const FlexRow = styled.div`
     display: flex;
 `;
 
-const StyledLoader = styled(Loader)`
+// TODO: move to the common components if it needs (it is used the pages of events and speakers)
+export const StyledLoader = styled(Loader)`
     margin: 15rem auto;
 `;
 
-const NoEventsBlock = styled.div`
+// TODO: move to the common components if it needs (it is used the pages of events and speakers)
+export const NoEventsBlock = styled.div`
     margin: 10rem 0;
     text-align: center;
     font-family: 'Oxygen', sans-serif;
@@ -66,7 +68,16 @@ class EventsFeed extends React.Component {
     }
 
     render() {
-        const { events, tags, selectedTags, isFetching, show, onTagClick, onSearch } = this.props;
+        const {
+            events,
+            tags,
+            selectedTags,
+            isFetching,
+            show,
+            onTagClick,
+            onSearch,
+            onCreateEvent,
+        } = this.props;
         const { showSearch } = this.state;
 
         return (
@@ -78,6 +89,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
+                            <button onClick={onCreateEvent}>Add event</button>
                         </FlexRow>
                     )}
                     <Search
@@ -93,7 +105,7 @@ class EventsFeed extends React.Component {
 
                 {isFetching ? <StyledLoader size="80" border="8" />
                     : events.size === 0
-                        ? <NoEventsBlock>There is no events satisfying your query...</NoEventsBlock>
+                        ? <NoEventsBlock>There are no events satisfying your query...</NoEventsBlock>
                         : <EventList events={events} />
                 }
             </MainContainer>
@@ -107,6 +119,7 @@ EventsFeed.propTypes = {
     selectedTags: React.PropTypes.instanceOf(Set),
     show: React.PropTypes.string,
     onTagClick: React.PropTypes.func,
+    onCreateEvent: React.PropTypes.func,
     isFetching: React.PropTypes.bool,
 };
 

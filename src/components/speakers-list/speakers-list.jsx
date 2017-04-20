@@ -2,19 +2,20 @@ import React from 'react';
 
 import styled, { withTheme } from 'styled-components';
 
+import Button from '../common/button';
 import { media } from '../../utils/css-utils';
 import BlockHeader from '../common/block-header';
 import MainContainer from '../common/main-container';
 import { FilterBlock, Search } from '../page-filter';
+import { StyledLoader, NoEventsBlock } from '../events-page/events-feed';
 import SpeakerCard from '../../components/speaker-card/speaker-card';
-import Button from '../common/button';
 
 const SpeakerCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-     ${media.phone`
+     ${media.desktop`
         flex-flow: row wrap;  
         justify-content: flex-start;
     `}
@@ -25,22 +26,21 @@ const ButtonContainer = styled.div`
     justify-content: center;
 `;
 
-const speaker = {
-    initials: 'Christopher Douglas',
-    description: 'Freelancer, Javascript developer, Senior Front-end developer',
-    talksCount: 7,
-};
-
-const SpeakersList = withTheme(({ theme }) => (
+const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch }) => (
     <MainContainer>
         <BlockHeader>Speakers</BlockHeader>
         <FilterBlock>
-            <Search placeholder="Search for speaker…" />
+            <Search
+                placeholder="Search for speaker…"
+                onChange={event => onSearch(event.target.value)} />
         </FilterBlock>
         <SpeakerCardContainer>
-            <SpeakerCard speaker={speaker} />
-            <SpeakerCard speaker={speaker} />
-            <SpeakerCard speaker={speaker} />
+            {isFetching
+                ? <StyledLoader size="80" border="8" />
+                : speakersList.length
+                    ? speakersList.map((speaker, i) => (<SpeakerCard key={i} speaker={speaker} />))
+                    : <NoEventsBlock>There are no speakers satisfying your query...</NoEventsBlock>
+            }
         </SpeakerCardContainer>
         <ButtonContainer>
             <Button defaultSheme={theme.lipstick} hoverColor={'#fff'}>Load More</Button>

@@ -126,7 +126,6 @@ export default class LoginPopup extends React.Component {
                 <Popup
                     isOpen={this.state.dialogOpened}
                     contentLabel="Login"
-                    handleCloseModal={() => this.setState({ dialogOpened: false })}
                     onRequestClose={() => this.setState({ dialogOpened: false })}
                     width={400}>
                     <LoginHeader>
