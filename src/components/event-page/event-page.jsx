@@ -3,6 +3,7 @@ import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 
+import EventBG from './event-background';
 import BlockHeader from '../common/block-header';
 import { TagList } from '../common/tag';
 import Attendees from './attendees';
@@ -271,6 +272,7 @@ const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, imag
 
     return (
         <div>
+            <EventBG image={event.image} />
             <TagListWrapper><TagList tags={event.tags} /></TagListWrapper>
             <EventTitle>{event.title}</EventTitle>
             <BodyGrid>
