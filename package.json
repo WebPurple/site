@@ -105,6 +105,7 @@
     "react-router-redux": "next",
     "react-select": "^1.0.0-rc.3",
     "redux": "^3.3.1",
+    "redux-actions": "^2.0.2",
     "redux-form": "^6.6.3",
     "redux-thunk": "^2.0.1",
     "reselect": "^3.0.0",
