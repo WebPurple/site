@@ -68,6 +68,7 @@
         "react/prop-types": [
             "warn"
         ],
-        "padded-blocks": "off"
+        "padded-blocks": "off",
+        "arrow-parens": ["error", "as-needed"]
     }
 }
