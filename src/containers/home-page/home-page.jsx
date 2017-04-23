@@ -15,8 +15,9 @@ import SubscriptionForm from '../../components/subscription-form/subscription-fo
 class HomePage extends React.Component {
 
     static propTypes = {
-        loadEvents: React.PropTypes.func,
+        loadEvents: React.PropTypes.func.isRequired,
         pastTalks: React.PropTypes.array,
+        upcomingEvent: React.PropTypes.object,
     };
 
     componentDidMount() {
