@@ -65,9 +65,9 @@
             "warn",
             "after-props"
         ],
-        "react/prop-types": [
-            "warn"
-        ],
+        "react/prop-types": "warn",
+        "react/forbid-prop-types": ["warn", { "forbid": ["any"] }],
+        "react/require-default-props": "off",
         "padded-blocks": "off",
         "arrow-parens": ["error", "as-needed"]
     }

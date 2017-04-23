@@ -55,10 +55,12 @@ class EventsPageContainer extends React.Component {
     }
 
     render() {
+        const { events, tags } = this.props;
+
         return (
             <div>
                 <SubscriptionForm />
-                <EventsFeed {...this.props} onCreateEvent={this.handleCreateEvent} />
+                <EventsFeed events={events} tags={tags} onCreateEvent={this.handleCreateEvent} />
                 {this.state.editFormOpen && <EditEventForm onSubmit={this.onSubmitEvent} onRequestClose={this.handleCloseModal} />}
             </div>
         );
@@ -84,7 +86,7 @@ export default withRouter(
     reduxForm({ form: FORM_KEY })(
         connect(
             mapStateToProps,
-            mapDispatchToProps
-        )(EventsPageContainer)
-    )
+            mapDispatchToProps,
+        )(EventsPageContainer),
+    ),
 );

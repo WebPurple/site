@@ -46,17 +46,18 @@ const IconButton = styled.button`
     }
 `;
 
-const Popup = props => (
+const Popup = ({ width, children, onRequestClose, ...rest }) => (
     <Modal
-        {...props}
-        style={{ ...customStyles, content: { ...customStyles.content, width: props.width } }}>
+        {...rest}
+        onRequestClose={onRequestClose}
+        style={{ ...customStyles, content: { ...customStyles.content, width } }}>
         <ModalHeader>
-            <IconButton onClick={props.onRequestClose}>
+            <IconButton onClick={onRequestClose}>
                 <CloseIcon />
             </IconButton>
         </ModalHeader>
         <ModalContent>
-            {props.children}
+            {children}
         </ModalContent>
     </Modal>
 );
@@ -64,6 +65,6 @@ const Popup = props => (
 export default Popup;
 
 Popup.propTypes = {
-    handleCloseModal: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
     width: React.PropTypes.number,
 };

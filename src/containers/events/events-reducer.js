@@ -81,12 +81,12 @@ const formSelector = state => getFormValues(FORM_KEY)(state);
 
 const searchEventsSelector = createSelector(
     formSelector,
-    form => form && form[SEARCH_EVENTS_KEY]
+    form => form && form[SEARCH_EVENTS_KEY],
 );
 
 const searchSpeakersSelector = createSelector(
     formSelector,
-    form => form && form[SEARCH_SPEAKERS_KEY]
+    form => form && form[SEARCH_SPEAKERS_KEY],
 );
 
 export const eventListSelector = createSelector(
@@ -125,31 +125,31 @@ export const eventListSelector = createSelector(
         }
 
         return selectedTags.isEmpty() || selectedTags.isSubset(event.tags);
-    })
+    }),
 );
 
 const extractTags = events => unionWith(...events.map(event => event.tags), (a, b) => a === b);
 
 export const allTagsSelector = createSelector(
     allEventsSelector,
-    extractTags
+    extractTags,
 );
 
 export const eventTagsSelector = createSelector(
     eventListSelector,
-    extractTags
+    extractTags,
 );
 
 const talksSelector = createSelector(
     allEventsSelector,
     events => events
         .map(event => event.talks.map(talk => ({ ...talk, event })))
-        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), [])
+        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), []),
 );
 
 export const pastTalksSelector = createSelector(
     talksSelector,
-    talks => talks.filter(talk => new Date(talk.event.date) < new Date())
+    talks => talks.filter(talk => new Date(talk.event.date) < new Date()),
 );
 
 export const speakersSelector = createSelector(
@@ -166,5 +166,5 @@ export const speakersSelector = createSelector(
                 }
 
                 return speakers;
-            }, [])
+            }, []),
 );

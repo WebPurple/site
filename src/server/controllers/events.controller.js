@@ -27,7 +27,7 @@ module.exports = () => {
                     // otherwise create new user
                     : userService.createUser(omit(talk.speaker, '_id'))
                         // and fulfill talk with created user
-                        .then(speaker => Object.assign(talk, { speaker })))
+                        .then(speaker => Object.assign(talk, { speaker }))),
                 )
                 // when we ensured that all talks have speakers - update event object
                 .then(talks => Object.assign(event, { talks }))

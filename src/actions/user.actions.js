@@ -21,7 +21,7 @@ export function receiveUser(user) {
 }
 
 export function fetchUser() {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(requestUser());
         return getJson('/api/user')
             .then(user => dispatch(receiveUser(user)))
@@ -32,7 +32,7 @@ export function fetchUser() {
 export const SAVE_USER = 'save_user';
 
 export function saveUser(user) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({ type: SAVE_USER, payload: user });
         return putJson(`/api/users/${user._id}`, user)
             .then(updatedUser => dispatch(receiveUser(updatedUser)));
@@ -57,7 +57,7 @@ export function receiveAllUsers(users) {
 }
 
 export function fetchAllUsers() {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(requestAllUsers());
         return getJson('/api/users')
             .then(users => dispatch(receiveAllUsers(users)));

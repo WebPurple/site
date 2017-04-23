@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node src/server/server.js",
     "build": "webpack",
-    "lint": "./node_modules/.bin/eslint src/** test/**",
+    "lint": "./node_modules/.bin/eslint src/** test/** --quiet",
     "test": "jest",
     "test:cov": "jest --coverage",
     "precoveralls": "npm run test:cov",

@@ -30,7 +30,7 @@ module.exports = (app, passport) => {
                 return doc.save();
             })
             .then(user => done(null, user))
-            .catch(err => done(new Error('Something went wrong: ' + err))) // eslint-disable-line prefer-template
+            .catch(err => done(new Error('Something went wrong: ' + err))), // eslint-disable-line prefer-template
     ));
 
     app.get('/auth/fb', passport.authenticate('facebook', {

@@ -43,6 +43,7 @@ const SpeakerSelectField = ({ input: { value, onChange } }) => (
         placeholder="Speaker" />
 );
 
+/* eslint-disable react/no-array-index-key */
 const renderTalks = ({ fields: talks }) => (
     <div>
         {talks.map((talk, i) => (
@@ -93,6 +94,6 @@ export default reduxForm({
     },
 })(
     connect(
-        state => ({ tags: allTagsSelector(state) })
-    )(EditEventForm)
+        state => ({ tags: allTagsSelector(state) }),
+    )(EditEventForm),
 );

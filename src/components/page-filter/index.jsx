@@ -81,7 +81,7 @@ const StyledSearchIcon = styled(SearchIcon)`
     fill: #ccc;
 `;
 
-export const Search = (props) => (
+export const Search = props => (
     <SearchWrapper>
         <SearchInput type="text" {...props} />
         <StyledSearchIcon />

@@ -38,7 +38,7 @@ const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch }) =
             {isFetching
                 ? <StyledLoader size="80" border="8" />
                 : speakersList.length
-                    ? speakersList.map((speaker, i) => (<SpeakerCard key={i} speaker={speaker} />))
+                    ? speakersList.map(speaker => (<SpeakerCard key={speaker._id} speaker={speaker} />))
                     : <NoEventsBlock>There are no speakers satisfying your query...</NoEventsBlock>
             }
         </SpeakerCardContainer>

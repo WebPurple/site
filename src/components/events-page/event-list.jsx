@@ -115,7 +115,7 @@ const EventList = ({ events, theme }) => (
                         href={`#${event.title}`}>{event.title}</Title>
                 </header>
                 <TalkList>
-                    {event.talks.map((talk, i) => <Talk key={i}>{talk.title}</Talk>)}
+                    {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}
                 </TalkList>
                 <TagList tags={event.tags} />
             </EventSnippet>

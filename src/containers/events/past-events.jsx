@@ -141,6 +141,6 @@ const mapDispatchToProps = dispatch => ({
 export default withTheme(
     connect(
         mapStateToProps,
-        mapDispatchToProps
-    )(PastEvents)
+        mapDispatchToProps,
+    )(PastEvents),
 );

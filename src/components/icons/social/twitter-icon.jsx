@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TwitterIcon = (props) => (
+const TwitterIcon = props => (
     <svg {...props} viewBox="0 0 37 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <title>Twitter</title>
         <defs>

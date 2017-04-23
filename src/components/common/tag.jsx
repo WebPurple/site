@@ -51,7 +51,7 @@ export const TagList = withTheme(({ tags, selectedTags, label, theme, onTagClick
 
                 return (
                     <Tag
-                        key={i}
+                        key={tag}
                         color={selectedTags && selectedTags.has(tag) ? selectedOrHoverColor : fadeColor}
                         hoverColor={selectedOrHoverColor}
                         onClick={onTagClick && (() => onTagClick(tag))}>

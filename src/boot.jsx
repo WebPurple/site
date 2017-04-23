@@ -24,7 +24,7 @@ const renderApp = () => render(
     <AppContainer>
         <Root store={store} history={history} />
     </AppContainer>,
-    document.getElementById('main')
+    document.getElementById('main'),
 );
 
 renderApp();

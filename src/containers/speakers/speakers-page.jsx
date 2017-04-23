@@ -22,7 +22,7 @@ class SpeakersPageContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     isFetching: state.events.get('isFetching'),
     speakersList: speakersSelector(state),
 });
@@ -35,6 +35,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default withRouter(
     connect(
         mapStateToProps,
-        mapDispatchToProps
-    )(SpeakersPageContainer)
+        mapDispatchToProps,
+    )(SpeakersPageContainer),
 );

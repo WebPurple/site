@@ -8,7 +8,7 @@ const UserSchema = require('./../schemas/user.schema');
 
 const User = mongoose.model('users', UserSchema);
 
-module.exports = (app) => {
+module.exports = app => {
     passport.serializeUser((user, done) => done(null, user._id));
     passport.deserializeUser((id, done) => User.findById(id).lean().exec((error, user) => done(error, user)));
 
