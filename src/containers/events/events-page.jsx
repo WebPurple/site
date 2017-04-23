@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
-import { List } from 'immutable';
 
 import SubscriptionForm from '../../components/subscription-form/subscription-form';
 import {
