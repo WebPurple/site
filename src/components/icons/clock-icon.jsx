@@ -12,7 +12,7 @@ const ClockIcon = props => {
 };
 
 ClockIcon.propTypes = {
-    opaque: React.PropTypes.string,
+    opaque: React.PropTypes.bool,
     color: React.PropTypes.string,
 };
 

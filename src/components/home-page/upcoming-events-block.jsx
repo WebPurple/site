@@ -80,7 +80,7 @@ const EventText = styled.span`
     `}
 `;
 
-const TalksBlock = styled.div`
+const TalksBlock = styled.ul`
     top: 5rem;
     position: relative;
     display: flex;
@@ -97,7 +97,7 @@ const TalksBlock = styled.div`
     `}
 `;
 
-const TalkInfo = styled.div`
+const TalkInfo = styled.li`
     position: relative;
     &:first-child {
         margin-left: ${DIAMOND_PHONE_SIZE}rem;
@@ -183,7 +183,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
                 </EventInfo>
                 <TalksBlock>
                     {event.talks.map((talk, i) => (
-                        <TalkInfo>
+                        <TalkInfo key={talk.title}>
                             <DiamondWrapper>
                                 <Diamond
                                     color={i % 2 ? theme.rouge : theme.grape}
