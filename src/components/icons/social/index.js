@@ -6,3 +6,4 @@ export { default as VkIcon } from './vk-icon';
 export { default as VkWipIcon } from './vk-wip-icon';
 export { default as YoutubeIcon } from './youtube-icon';
 export { default as GooglePlusIcon } from './google-plus-icon';
+export { default as GithubIcon } from './github-icon';
