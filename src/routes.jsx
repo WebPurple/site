@@ -14,10 +14,6 @@ export default [{
             component: HomePage,
         },
         {
-            path: '/home',
-            component: HomePage,
-        },
-        {
             path: '/events',
             component: EventsPage,
         },

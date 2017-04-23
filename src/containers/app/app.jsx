@@ -81,7 +81,7 @@ const AppContainer = ({ route }) => (
             <Header>
                 <Logo>Webpurple</Logo>
                 <NavigationBar>
-                    <li><NavigationLink to="/home" activeClassName="active">Home</NavigationLink></li>
+                    <li><NavigationLink to="/" activeClassName="active">Home</NavigationLink></li>
                     <li><NavigationLink to="/events" activeClassName="active">Events</NavigationLink></li>
                     <li><NavigationLink to="/speakers">Speakers</NavigationLink></li>
                     <li><NavigationLink to="#feed">Feed</NavigationLink></li>
