@@ -3,7 +3,7 @@ import userReducer, {
     receiveUser,
     receiveRoles,
     SAVE_USER,
-} from './../../src/reducers/user.reducer';
+} from './user.reducer';
 
 describe('user.reducer', () => {
     const state = { account: {}, allRoles: [] };
