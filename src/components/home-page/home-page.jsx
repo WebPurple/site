@@ -1,25 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { media } from '../../utils/css-utils';
 import PastEvents from '../../containers/events/past-events';
 
 import SubscriptionForm from '../subscription-form/subscription-form';
 import SocialLinks from './social-links-block';
-
-const EmptyBlock = styled.section`
-    font-family: 'Rubik', sans-serif;
-    font-size: 4.8em;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 2em;
-    ${media.tablet`line-height: 4em;`}
-    ${media.hd`line-height: 6em;`}
-`;
+import UpcomingEvents from './upcoming-events-block';
 
 const HomePage = () => (
     <div>
-        <EmptyBlock>Upcoming events</EmptyBlock>
+        <UpcomingEvents
+            event={{
+                location: 'Karas` Bar, Pochtovaya str., 60',
+                date: '21 January 2017 at 19:00',
+                talks: [{ title: 'What is React Native', speaker: 'Andrey Semin' },
+                    { title: 'Level Up By Community Growth-Hacking', speaker: 'Lois Graham' },
+                ],
+            }} />
         <PastEvents />
         <SubscriptionForm />
         <SocialLinks />
