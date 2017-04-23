@@ -25,8 +25,6 @@ class EventsPageContainer extends React.Component {
     static propTypes = {
         loadEvents: React.PropTypes.func.isRequired,
         onAddEvent: React.PropTypes.func.isRequired,
-        events: React.PropTypes.instanceOf(List).isRequired,
-        tags: React.PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -55,12 +53,10 @@ class EventsPageContainer extends React.Component {
     }
 
     render() {
-        const { events, tags } = this.props;
-
         return (
             <div>
                 <SubscriptionForm />
-                <EventsFeed events={events} tags={tags} onCreateEvent={this.handleCreateEvent} />
+                <EventsFeed {...this.props} onCreateEvent={this.handleCreateEvent} />
                 {this.state.editFormOpen && <EditEventForm onSubmit={this.onSubmitEvent} onRequestClose={this.handleCloseModal} />}
             </div>
         );
