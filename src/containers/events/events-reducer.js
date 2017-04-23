@@ -85,6 +85,15 @@ const searchSpeakersSelector = createSelector(
     form => form && form[SEARCH_SPEAKERS_KEY],
 );
 
+export const upcomingEventSelector = createSelector(
+    allEventsSelector,
+    () => new Date(),
+
+    (events, now) => events
+        .filter(e => new Date(e.date) > now)
+        .maxBy(e => e.date),
+);
+
 export const eventListSelector = createSelector(
     allEventsSelector,
     showFilterSelector,

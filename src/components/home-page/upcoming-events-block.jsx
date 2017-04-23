@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled, { withTheme } from 'styled-components';
+import moment from 'moment';
+
 import { media, isPhone, isTablet } from '../../utils/css-utils';
 
 import ClockIcon from '../icons/clock-icon';
 import LocationIcon from '../icons/placeholder-icon';
-
 import ArrowButton from '../arrow-button/arrow-button';
 import Diamond from '../diamond';
 
@@ -168,7 +169,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
     return (
         <Wrapper>
             <Header>Upcoming event</Header>
-            <EventTitle>WebPurple Meetup #16</EventTitle>
+            <EventTitle>{event.title}</EventTitle>
             <EventBlock>
                 <EventInfo>
                     <EventInfoRow>
@@ -177,28 +178,24 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
                     </EventInfoRow>
                     <EventInfoRow>
                         <ClockIcon color={theme.lipstick} opaque />
-                        <EventText>{event.date}</EventText>
+                        <EventText>{moment(event.date).format('LLL')}</EventText>
                     </EventInfoRow>
                 </EventInfo>
                 <TalksBlock>
-                    <TalkInfo>
-                        <DiamondWrapper>
-                            <Diamond color={theme.grape} isTurnLeft="true" size={DIAMOND_SIZE} />
-                        </DiamondWrapper>
-                        <TalkDataWrapper>
-                            <TalkTitle>What is React Native</TalkTitle>
-                            <TalkSpeaker>Andrey Semin</TalkSpeaker>
-                        </TalkDataWrapper>
-                    </TalkInfo>
-                    <TalkInfo>
-                        <DiamondWrapper>
-                            <Diamond color={theme.rouge} isTurnLeft="true" size={DIAMOND_SIZE} />
-                        </DiamondWrapper>
-                        <TalkDataWrapper>
-                            <TalkTitle>Level Up By Community Growth-Hacking</TalkTitle>
-                            <TalkSpeaker>Lois Graham</TalkSpeaker>
-                        </TalkDataWrapper>
-                    </TalkInfo>
+                    {event.talks.map((talk, i) => (
+                        <TalkInfo>
+                            <DiamondWrapper>
+                                <Diamond
+                                    color={i % 2 ? theme.rouge : theme.grape}
+                                    backSrc={talk.speaker.vkPhotoUrl}
+                                    isTurnLeft size={DIAMOND_SIZE} />
+                            </DiamondWrapper>
+                            <TalkDataWrapper>
+                                <TalkTitle>{talk.title}</TalkTitle>
+                                <TalkSpeaker>{talk.speaker.displayName}</TalkSpeaker>
+                            </TalkDataWrapper>
+                        </TalkInfo>
+                    ))}
                 </TalksBlock>
             </EventBlock>
             <Footer>
