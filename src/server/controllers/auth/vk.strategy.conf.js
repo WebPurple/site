@@ -24,7 +24,7 @@ module.exports = (app, passport) => {
                 return doc;
             })
             .then(doc => done(null, doc))
-            .catch(err => done(new Error('Something went wrong: ' + err))), // eslint-disable-line prefer-template
+            .catch(err => done(new Error('Something went wrong: ' + err))) // eslint-disable-line prefer-template
     ));
 
     app.get('/auth/vk', passport.authenticate('vkontakte', {
