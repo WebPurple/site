@@ -1,5 +1,6 @@
 import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
+import { createAction } from 'redux-actions';
 import { getFormValues, change } from 'redux-form';
 import unionWith from 'lodash/unionWith';
 
@@ -43,13 +44,8 @@ export default function reducer(state = initialState, action) {
 
 // ACTION CREATORS
 
-function requestEvents() {
-    return { type: REQUEST_EVENTS };
-}
-
-function receiveEvents(events) {
-    return { type: RECEIVE_EVENTS, payload: events };
-}
+const requestEvents = createAction(REQUEST_EVENTS);
+const receiveEvents = createAction(RECEIVE_EVENTS);
 
 export function loadEvents() {
     return dispatch => {
@@ -59,12 +55,12 @@ export function loadEvents() {
     };
 }
 
-export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
+export const toggleTag = createAction(TOGGLE_TAG);
 
 export const searchEvents = searchValue => change(FORM_KEY, SEARCH_EVENTS_KEY, searchValue);
 export const searchSpeakers = searchValue => change(FORM_KEY, SEARCH_SPEAKERS_KEY, searchValue);
 
-const eventAdded = event => ({ type: EVENT_ADDED, payload: event });
+const eventAdded = createAction(EVENT_ADDED);
 
 export const addEvent = event => dispatch => postJson('api/events', event)
     .then(newEvent => dispatch(eventAdded(newEvent)));
