@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import {
     media,
     isPhone,
-} from '../utils/css-utils';
+} from '../../utils/css-utils';
 
-import ArrowButton from '../components/arrow-button/arrow-button.jsx';
-import WebpurpleLogo from '../components/webpurple-logo/webpurple-logo';
+import ArrowButton from '../../components/arrow-button/arrow-button';
+import WebpurpleLogo from '../../components/webpurple-logo/webpurple-logo';
 
 
-import { MenuIcon, CloseIcon } from '../components/icons/header';
+import { MenuIcon, CloseIcon } from '../../components/icons/header/index';
 
 const Wrapper = styled.header`
     box-sizing: border-box; 

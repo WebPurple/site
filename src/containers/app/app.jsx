@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 
 import { media } from '../../utils/css-utils';
 
-import Header from '../header';
+import Header from '../header/header';
 import LoginPopup from '../../components/login/login-popup';
 import FooterComponent from '../../components/footer';
 
