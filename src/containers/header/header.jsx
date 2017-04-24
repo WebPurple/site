@@ -149,7 +149,7 @@ class Header extends React.Component {
                 {this.state.showMenu &&
                     <MenuBar>
                         <NavigationBar>
-                            <MenuItem><NavigationLink to="/home">home</NavigationLink></MenuItem>
+                            <MenuItem><NavigationLink to="/">home</NavigationLink></MenuItem>
                             <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
                             <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
                             <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
