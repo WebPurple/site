@@ -1,9 +1,11 @@
 import React from 'react';
-
 import styled from 'styled-components';
-import TwitterIcon from '../icons/social/twitter-icon';
-import FacebookIcon from '../icons/social/facebook-square-icon';
-import GithubIcon from '../icons/social/github-icon';
+
+import {
+    TwitterIcon,
+    FacebookIcon,
+    GithubIcon,
+} from '../icons/social';
 
 const ContactsContainer = styled.div`
     display: flex;

@@ -22,6 +22,6 @@ export default function configureStore(history, preloadedState) {
     return createStore(
         rootReducer,
         preloadedState,
-        storeEnhancer
+        storeEnhancer,
     );
 }

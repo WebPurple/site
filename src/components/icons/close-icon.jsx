@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const CloseIcon = (props) => (
+const CloseIcon = props => (
     <svg
         width="18px"
         height="18px"
@@ -25,5 +25,9 @@ const CloseIcon = (props) => (
         </g>
     </svg>
 );
+
+CloseIcon.propTypes = {
+    color: React.PropTypes.string,
+};
 
 export default CloseIcon;

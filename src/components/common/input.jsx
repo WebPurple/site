@@ -38,8 +38,8 @@ export default Input;
 
 Input.propTypes = {
     style: React.PropTypes.object,
-    rightIcon: React.PropTypes.func,
-    leftIcon: React.PropTypes.func,
+    rightIcon: React.PropTypes.element,
+    leftIcon: React.PropTypes.element,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string,
     value: React.PropTypes.string || React.PropTypes.number,

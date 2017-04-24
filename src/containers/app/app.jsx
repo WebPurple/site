@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+
 import { renderRoutes } from 'react-router-config';
 
-import Header from '../header';
 import { media } from '../../utils/css-utils';
 
+import Header from '../header';
 import LoginPopup from '../../components/login/login-popup';
 import FooterComponent from '../../components/footer';
 
@@ -16,17 +17,6 @@ const Container = styled.div`
     width: 100%;
     ${media.desktop`width: 1280px;`}
     ${media.hd`width: 1440px;`}
-`;
-
-const Footer = styled.footer`
-    padding: 40px;
-    ${media.tablet`padding: 40px 175px;`}
-    left: 0;
-    bottom: 0;
-    background-color: ${props => props.theme.grape};
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-    color: white;
-    font-family: 'Rubik', sans-serif;
 `;
 
 const theme = {

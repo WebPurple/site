@@ -34,7 +34,7 @@ export function mapParamsObjectToQueryString(params) {
     const nonEmptyProps = Object.keys(params).filter(key => params[key] !== undefined);
     return nonEmptyProps.length
         ? '?' + nonEmptyProps // eslint-disable-line prefer-template
-        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
         .join('&')
         .replace(/%20/g, '+')
         : '';

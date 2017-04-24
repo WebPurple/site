@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import './polyfills';
 
-import { fetchUser } from './actions/user.actions';
+import { fetchUser } from './reducers/user.reducer';
 
 import configureStore from './configureStore';
 import Root from './components/root';
@@ -24,7 +24,7 @@ const renderApp = () => render(
     <AppContainer>
         <Root store={store} history={history} />
     </AppContainer>,
-    document.getElementById('main')
+    document.getElementById('main'),
 );
 
 renderApp();

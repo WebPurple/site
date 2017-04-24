@@ -82,9 +82,9 @@ export default class ContributorsPage extends React.Component {
                         </ContributorsList>
                     )}
                 <Note>
-                    * If you can't see yourself in this list, but you've contributed to this project,&nbsp;
+                    * If you can&apos;t find yourself in this list, but you&apos;ve contributed to this project,&nbsp;
                     <a href="https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/" target="_blank" rel="noopener noreferrer">this</a>
-                    &nbsp;might answer why.
+                    &nbsp;might be the answer.
                 </Note>
             </section>
         );

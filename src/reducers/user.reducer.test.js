@@ -1,10 +1,9 @@
-import userReducer from './../../src/reducers/user.reducer';
-import {
+import userReducer, {
     requestUser,
     receiveUser,
     receiveRoles,
     SAVE_USER,
-} from './../../src/actions/user.actions';
+} from './user.reducer';
 
 describe('user.reducer', () => {
     const state = { account: {}, allRoles: [] };

@@ -38,6 +38,10 @@ export const NoEventsBlock = styled.div`
 
 class EventsFeed extends React.Component {
 
+    static shouldExpandSearch() {
+        return isPhone() || isTablet();
+    }
+
     constructor(props) {
         super(props);
         this.state = { showSearch: false };
@@ -51,18 +55,14 @@ class EventsFeed extends React.Component {
         this.setState({ showSearch });
     }
 
-    shouldExpandSearch() {
-        return isPhone() || isTablet();
-    }
-
     handleSearchFocus() {
-        if (this.shouldExpandSearch()) {
+        if (EventsFeed.shouldExpandSearch()) {
             this.toggleSearch(true);
         }
     }
 
     handleSearchBlur() {
-        if (this.shouldExpandSearch()) {
+        if (EventsFeed.shouldExpandSearch()) {
             this.toggleSearch(false);
         }
     }
@@ -120,6 +120,7 @@ EventsFeed.propTypes = {
     show: React.PropTypes.string,
     onTagClick: React.PropTypes.func,
     onCreateEvent: React.PropTypes.func,
+    onSearch: React.PropTypes.func,
     isFetching: React.PropTypes.bool,
 };
 

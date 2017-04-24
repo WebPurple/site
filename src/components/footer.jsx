@@ -19,7 +19,7 @@ const Footer = styled.footer`
     ${media.desktop`padding: 4rem 10rem 3rem;`}
 `;
 
-const FooterElementsStyle = styled.p`
+const FooterElementsStyle = styled.span`
     margin: 0;
     color: #fff;
     font-family: 'Oxygen', sans-serif;

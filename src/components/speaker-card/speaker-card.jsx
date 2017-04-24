@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import styled from 'styled-components';
 
@@ -35,7 +35,7 @@ const SpeakerInfoContainer = styled.div`
     `}
 `;
 
-const speakerLinkHover = (color) => `
+const speakerLinkHover = color => `
     position: relative;
     display: inline-block;
     
@@ -104,7 +104,7 @@ const SpeakerCard = ({ speaker }) => (
             <Avatar avatar={speaker.vkPhotoUrl} />
         </SpeakerAvatarContainer>
         <SpeakerInfoContainer>
-            <SpeakerInitials href="#">{speaker.displayName}</SpeakerInitials>
+            <SpeakerInitials href="#">{speaker.displayNamedisplayName}</SpeakerInitials>
             <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
             <SpeakerAdditionalContainer>
                 <SpeakerContacts />
@@ -113,5 +113,14 @@ const SpeakerCard = ({ speaker }) => (
         </SpeakerInfoContainer>
     </Card>
 );
+
+SpeakerCard.propTypes = {
+    speaker: PropTypes.shape({
+        vkPhotoUrl: PropTypes.string,
+        displayNamedisplayName: PropTypes.string,
+        jobTitle: PropTypes.string,
+        talks: PropTypes.array,
+    }),
+};
 
 export default SpeakerCard;
