@@ -42,9 +42,7 @@ function getEventPhotos(eventId) {
             if (!event.vkId) {
                 return [];
             }
-            return fetch(`https://api.vk.com/method/photos.get?owner_id=${VkGroupId}&album_id=${event.vkId}&v=5.63`, {
-                method: 'GET',
-            })
+            return fetch(`https://api.vk.com/method/photos.get?owner_id=${VkGroupId}&album_id=${event.vkId}&v=5.63`)
                 .then(response => response.status === 200 ? response.json() : Promise.reject(response.statusText))
                 .then(data => data.response.items)
                 .then(images => images.map(imageObject => imageObject.photo_604))

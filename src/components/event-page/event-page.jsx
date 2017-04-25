@@ -13,21 +13,6 @@ import EventTalks from './talks/talks';
 import ImageList from './../image-list/image-list';
 import { PlaceholderIcon, ClockIcon } from './../icons';
 
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-
 const TagListWrapper = styled.div`
     margin-top: 6rem;
 `;

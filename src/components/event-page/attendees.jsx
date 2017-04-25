@@ -17,7 +17,15 @@ const Avatar = styled(RoundAvatar) `
     `}
 `;
 
-const AvatarWrapper = styled.span`
+const Wrapper = styled.ul`
+    padding: 0;
+`;
+
+const AvatarWrapper = styled.li`
+    display: inline;
+    list-style: none;
+    margin: 0;
+    
     & + & {
         margin-left: 1.2rem;
     }
@@ -37,7 +45,6 @@ const AdditionalAttendeesIcon = styled.button`
     vertical-align: top;
     text-align: center;
     line-height: 4rem;
-    margin-left: 1.2rem;
     cursor: pointer;
     outline: none;
 
@@ -74,7 +81,7 @@ class Attendees extends React.Component {
 
     render() {
         return (
-            <span>
+            <Wrapper>
                 {this.props.users.slice(0, maxAttendeesShow).map(attendee => (
                     <AvatarWrapper key={attendee._id}>
                         <Avatar url={attendee.vkPhotoUrl} />
@@ -83,12 +90,14 @@ class Attendees extends React.Component {
                 {
                     this.props.users.length - maxAttendeesShow <= 0 ?
                         null :
-                        <AdditionalAttendeesIcon onClick={this.openPopup}>
-                            +{this.props.users.length - maxAttendeesShow}
-                        </AdditionalAttendeesIcon>
+                        <AvatarWrapper>
+                            <AdditionalAttendeesIcon onClick={this.openPopup}>
+                                +{this.props.users.length - maxAttendeesShow}
+                            </AdditionalAttendeesIcon>
+                        </AvatarWrapper>
                 }
                 <UsersPopup users={this.props.users} isOpened={this.state.isPopupOpened} handleClose={this.closePopup} />
-            </span>
+            </Wrapper>
         );
     }
 }

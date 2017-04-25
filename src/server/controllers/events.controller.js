@@ -46,12 +46,12 @@ module.exports = () => {
     router.route('/event/:eventId/attendees')
         // add curret user as attendee to event
         .post(checkPermissions(), (request, response) => eventsService.addAttendeeToEvent(request.params.eventId, request.user._id)
-            .then((event) => response.send(event))
-            .catch((error) => response.send(error)))
+            .then(event => response.send(event))
+            .catch(error => response.send(error)))
         // remove current user as attendee from event
         .delete(checkPermissions(), (request, response) => eventsService.removeAttendeeFromEvent(request.params.eventId, request.user._id)
-            .then((event) => response.send(event))
-            .catch((error) => response.send(error)));
+            .then(event => response.send(event))
+            .catch(error => response.send(error)));
 
     router.route('/event/:eventId/photos')
         .get((request, response) => eventsService.getEventPhotos(request.params.eventId)
