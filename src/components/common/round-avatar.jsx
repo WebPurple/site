@@ -41,9 +41,7 @@ const RoundAvatar = ({ url, name, size }) => (
 RoundAvatar.propTypes = {
     url: React.PropTypes.string,
     name: React.PropTypes.string,
-    showName: React.PropTypes.bool,
     size: React.PropTypes.string,
-    theme: React.PropTypes.object,
 };
 
 export default RoundAvatar;

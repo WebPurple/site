@@ -75,6 +75,7 @@ class EventPageContainer extends React.Component {
         return (
             <EventPage
                 event={this.props.event}
+                attendees={this.props.attendees}
                 currentUser={this.props.currentUser}
                 images={this.props.photos}
                 becomeAttendee={this.becomeAttendee}
@@ -92,7 +93,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadEvent: (eventId) => {
+    loadEvent: eventId => {
         dispatch(requestEvent());
         return getJson(`/api/event/${eventId}`)
             .then(event => {
@@ -121,5 +122,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(EventPageContainer)
+    )(EventPageContainer),
 );

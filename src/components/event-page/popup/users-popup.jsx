@@ -60,7 +60,7 @@ const UsersPopup = ({ users, isOpened, handleClose }) => (
                         <AvatarWrapper key={user._id}>
                             <RoundAvatar name={user.displayName} url={user.vkPhotoUrl} size="6.4rem" key={user._id} />
                         </AvatarWrapper>
-                    )
+                    ),
                 )}
             </List>
         </Wrapper>

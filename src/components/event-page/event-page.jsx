@@ -244,8 +244,8 @@ const ImageListWapper = styled.div`
     `}
 `;
 
-const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
-    const isAttendee = (event.ettendees && event.ettendees.some((attendee) => attendee._id === currentUser._id));
+const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
+    const isAttendee = (event.ettendees && event.ettendees.some(attendee => attendee._id === currentUser._id));
 
     return (
         <div>
@@ -265,14 +265,14 @@ const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, imag
                         <IllBeThereBlock
                             checked={isAttendee}
                             onClick={() => isAttendee ? stopBeingAttendee(event) : becomeAttendee(event)}>
-                            I'll be there
+                            {'I\'ll be there'}
                         </IllBeThereBlock> :
                         <IllBeThereNoLoggedInBlock>Sign in to be able to become attendee</IllBeThereNoLoggedInBlock>
                     }
                 </IllBeThereBlockWrapper>
-                <AttendeesText>{event.attendees.length ? 'You will attend along with' : 'Become first attendee'}</AttendeesText>
+                <AttendeesText>{attendees.length ? 'You will attend along with' : 'Become first attendee'}</AttendeesText>
                 <LastLine>
-                    <Attendees users={event.attendees} />
+                    <Attendees users={attendees} />
                     <SocialIconsWrapper>
                         <SocialLinks />
                     </SocialIconsWrapper>
@@ -301,6 +301,7 @@ const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, imag
 EventPage.propTypes = {
     event: React.PropTypes.object,
     currentUser: React.PropTypes.object,
+    attendees: React.PropTypes.arrayOf(React.PropTypes.object),
     images: React.PropTypes.arrayOf(React.PropTypes.string),
     becomeAttendee: React.PropTypes.func.isRequired,
     stopBeingAttendee: React.PropTypes.func.isRequired,
