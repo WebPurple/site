@@ -18,7 +18,7 @@ const plugins = [
 
     new HappyPack({
         id: 'JavaScript',
-        threads: os.cpus().length,
+        threads: Math.min(os.cpus().length, 4),
         loaders: ['babel-loader'],
     }),
 
