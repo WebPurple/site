@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import RoundAvatar from './../common/round-avatar';
 import { media } from './../../utils/css-utils';
@@ -21,16 +21,16 @@ const AvatarWrapper = styled.span`
     & + & {
         margin-left: 1.2rem;
     }
-
 `;
 
-const AdditionalAttendeesIcon = styled.span`
+const AdditionalAttendeesIcon = styled.button`
     display: inline-block;
     width: 4rem;
     height: 4rem;
-    border-radius: 50rem;
+    border: none;
+    border-radius: 50%;
     background: ${props => props.theme.lipstick};
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
     color: #ffffff;
@@ -39,6 +39,7 @@ const AdditionalAttendeesIcon = styled.span`
     line-height: 4rem;
     margin-left: 1.2rem;
     cursor: pointer;
+    outline: none;
 
     ${media.phone`
         width: 3.6rem;
@@ -64,11 +65,11 @@ class Attendees extends React.Component {
     }
 
     openPopup() {
-        this.setState({ ...this.state, isPopupOpened: true });
+        this.setState({ isPopupOpened: true });
     }
 
     closePopup() {
-        this.setState({ ...this.state, isPopupOpened: false });
+        this.setState({ isPopupOpened: false });
     }
 
     render() {
@@ -76,22 +77,20 @@ class Attendees extends React.Component {
             <span>
                 {this.props.users.slice(0, maxAttendeesShow).map(attendee => (
                     <AvatarWrapper key={attendee._id}>
-                        <Avatar
-                            url={attendee.vkPhotoUrl}
-                            displayName={attendee.displayName} />
+                        <Avatar url={attendee.vkPhotoUrl} />
                     </AvatarWrapper>
                 ))}
                 {
                     this.props.users.length - maxAttendeesShow <= 0 ?
                         null :
-                        <AdditionalAttendeesIcon onClick={() => this.openPopup()}>
+                        <AdditionalAttendeesIcon onClick={this.openPopup}>
                             +{this.props.users.length - maxAttendeesShow}
                         </AdditionalAttendeesIcon>
                 }
-                <UsersPopup users={this.props.users} isOpened={this.state.isPopupOpened} onClose={() => this.closePopup()} />
+                <UsersPopup users={this.props.users} isOpened={this.state.isPopupOpened} handleClose={this.closePopup} />
             </span>
         );
     }
 }
 
-export default withTheme(Attendees);
+export default Attendees;

@@ -3,14 +3,7 @@ const omit = require('lodash/omit');
 
 const eventsService = require('../services/events.service');
 const userService = require('../services/user.service');
-
-function isAuthenticated(request, response, next) {
-    if (request.isAuthenticated()) {
-        next();
-    } else {
-        response.status(401).send('Not authorized');
-    }
-}
+const checkPermissions = require('./../utils/security-utils').checkPermissions;
 
 module.exports = () => {
     const router = express.Router(); // eslint-disable-line new-cap
@@ -52,11 +45,11 @@ module.exports = () => {
 
     router.route('/event/:eventId/attendees')
         // add curret user as attendee to event
-        .put(isAuthenticated, (request, response) => eventsService.addAttendeeToEvent(request.params.eventId, request.user._id)
+        .post(checkPermissions(), (request, response) => eventsService.addAttendeeToEvent(request.params.eventId, request.user._id)
             .then((event) => response.send(event))
             .catch((error) => response.send(error)))
         // remove current user as attendee from event
-        .delete(isAuthenticated, (request, response) => eventsService.removeAttendeeFromEvent(request.params.eventId, request.user._id)
+        .delete(checkPermissions(), (request, response) => eventsService.removeAttendeeFromEvent(request.params.eventId, request.user._id)
             .then((event) => response.send(event))
             .catch((error) => response.send(error)));
 

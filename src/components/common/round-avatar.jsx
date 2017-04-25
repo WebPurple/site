@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import NoAvatarIcon from './../icons/no-avatar-icon';
 
@@ -21,7 +21,7 @@ const NoAvatar = styled(NoAvatarIcon)`
 `;
 
 const Name = styled.div`
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.4rem;
     line-height: 1;
     color: ${props => props.theme.greyishBrown};
@@ -31,19 +31,19 @@ const Name = styled.div`
     white-space: nowrap;
 `;
 
-const RoundAvatar = ({ url, displayName, size, showName = false }) => (
+const RoundAvatar = ({ url, name, size }) => (
     <AvatarWrapper size={size}>
         { url ? <Avatar src={url} size={size} /> : <NoAvatar size={size} />}
-        { showName && displayName ? <Name>{displayName}</Name> : null }
+        { name ? <Name>{name}</Name> : null }
     </AvatarWrapper>
 );
 
 RoundAvatar.propTypes = {
     url: React.PropTypes.string,
-    displayName: React.PropTypes.string,
+    name: React.PropTypes.string,
     showName: React.PropTypes.bool,
     size: React.PropTypes.string,
     theme: React.PropTypes.object,
 };
 
-export default withTheme(RoundAvatar);
+export default RoundAvatar;

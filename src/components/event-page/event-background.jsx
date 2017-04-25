@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 const RenderingConfig = {
     anchor: {
@@ -74,4 +74,4 @@ EventBackground.propTypes = {
     image: React.PropTypes.string,
 };
 
-export default withTheme(EventBackground);
+export default EventBackground;

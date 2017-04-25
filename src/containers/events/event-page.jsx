@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getJson, putJson, deleteJson } from './../../utils/ajax';
+import { getJson, postJson, deleteJson } from './../../utils/ajax';
 
 import Loader from './../../components/common/loader';
 import NotFound from './../../components/common/not-found';
@@ -55,7 +55,7 @@ class EventPageContainer extends React.Component {
     }
 
     becomeAttendee(event) {
-        return putJson(`/api/event/${event._id}/attendees`);
+        return postJson(`/api/event/${event._id}/attendees`);
     }
 
     stopBeingAttendee(event) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Masonry from 'react-masonry-component';
 
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import {
     media,
@@ -13,13 +13,11 @@ import {
 
 const getGutterSpace = () => {
     let gutter = 20;
-    if (isHD) {
+    if (isHD()) {
         gutter = 12;
-    }
-    if (isDesktop) {
+    } else if (isDesktop()) {
         gutter = 16;
-    }
-    if (isTablet) {
+    } else if (isTablet()) {
         gutter = 8;
     }
     return gutter;
@@ -91,7 +89,7 @@ const MorePicsButton = styled.button`
     background: #FFFFFF;
     border: 0.3rem solid ${props => props.theme.lipstick};
     color: ${props => props.theme.lipstick};
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     font-size: 1.8rem;
     font-weight: bold;
     line-height: 6rem;
@@ -161,4 +159,4 @@ class ImageList extends React.Component {
     }
 }
 
-export default withTheme(ImageList);
+export default ImageList;

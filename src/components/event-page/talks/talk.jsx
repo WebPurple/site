@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Avatar from './../../common/avatar';
 import { media } from './../../../utils/css-utils';
@@ -36,7 +36,7 @@ const AvatarWrapper = styled.div`
 `;
 
 const Header = styled.h3`
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     font-size: 2.8rem;
     font-weight: 500;
     line-height: 1.29;
@@ -54,7 +54,7 @@ const Header = styled.h3`
 `;
 
 const SpeakerJobTitle = styled.div`
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.6rem;
     line-height: 1.13;
     color: ${props => props.theme.grape};
@@ -70,7 +70,7 @@ const SpeakerJobTitle = styled.div`
 `;
 
 const Description = styled.p`
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     color: ${props => props.theme.greyishBrown}
@@ -92,7 +92,7 @@ const LinksGrid = styled.div`
 `;
 
 const FileLink = styled.a`
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.6rem;
     line-height: 1;
     color: #909090;
@@ -150,4 +150,4 @@ EventTalk.propTypes = {
     talk: React.PropTypes.object,
 };
 
-export default withTheme(EventTalk);
+export default EventTalk;

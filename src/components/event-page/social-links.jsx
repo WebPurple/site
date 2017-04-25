@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import {
@@ -40,4 +40,4 @@ const EventSocialLinks = () => (
     </div>
 );
 
-export default withTheme(EventSocialLinks);
+export default EventSocialLinks;

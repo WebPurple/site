@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
+import moment from 'moment';
 
 import { media } from '../../utils/css-utils';
 
@@ -32,7 +33,7 @@ const TagListWrapper = styled.div`
 `;
 
 const EventTitle = styled.h1`
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     font-weight: 500;
     line-height: 1;
     color: ${props => props.theme.lipstick};
@@ -61,7 +62,7 @@ const BodyGrid = styled.div`
 
 const Description = styled.div`
     width: 100%;
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 2.4rem;
     line-height: 1.5;
     color: ${props => props.theme.greyishBrown};
@@ -95,13 +96,11 @@ const InfoGrid = styled.div`
         justify-content: flex-start;
         width: 56rem;
     `}
-    ${media.hd`
-    `}
 `;
 
 const InfoText = styled.div`
     margin-bottom: 2.5rem;
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-weight: bold;
     color: ${props => props.theme.greyishBrown};
     font-size: 1.6rem;
@@ -165,7 +164,7 @@ const IllBeThereBlockWrapper = styled.div`
 
 const IllBeThereNoLoggedInBlock = styled.span`
     position: relative;
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     font-size: 2.4rem;
     font-weight: 500;
     line-height: 1;
@@ -190,16 +189,12 @@ const IllBeThereBlock = styled(IllBeThereNoLoggedInBlock)`
 
     &:after {
         content: '🗸';
-        display: none;
+        display: ${props => props.checked ? 'block' : 'none'};
         font-size: 2rem;
         font-weight: 900;
         position: absolute;
         top: .6rem;
         left: 0;
-    }
-
-    &.checked:after {
-        display: block;
     }
 `;
 
@@ -207,7 +202,7 @@ const AttendeesText = styled.div`
     width: 100%;
     margin-top: 2.4rem;
     text-align: center;
-    font-family: Oxygen;
+    font-family: Oxygen, sans-serif;
     font-size: 1.6rem;
     line-height: 1.13;
     color: #424242;
@@ -265,9 +260,6 @@ const ImageListWapper = styled.div`
 `;
 
 const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
-    const eventDate = new Date(event.date);
-    const showTime = `${eventDate.getDate()} ${months[eventDate.getMonth()]}
-        ${eventDate.getFullYear()} at ${eventDate.getHours()}:${eventDate.getMinutes()}`;
     const isAttendee = (event.ettendees && event.ettendees.some((attendee) => attendee._id === currentUser._id));
 
     return (
@@ -279,14 +271,14 @@ const EventPage = ({ event, currentUser, becomeAttendee, stopBeingAttendee, imag
                 <Description>{event.description}</Description>
                 <InfoGrid>
                     <InfoText><PlaceholderIconStyled />{event.location}</InfoText>
-                    <InfoText><ClockIconStyled />{showTime}</InfoText>
+                    <InfoText><ClockIconStyled />{moment(event.date).format('D MMMM YYYY [at] HH:mm')}</InfoText>
                 </InfoGrid>
             </BodyGrid>
             <BodyFooter>
                 <IllBeThereBlockWrapper>
                     { currentUser ?
                         <IllBeThereBlock
-                            className={isAttendee ? 'checked' : ''}
+                            checked={isAttendee}
                             onClick={() => isAttendee ? stopBeingAttendee(event) : becomeAttendee(event)}>
                             I'll be there
                         </IllBeThereBlock> :
@@ -329,4 +321,4 @@ EventPage.propTypes = {
     stopBeingAttendee: React.PropTypes.func.isRequired,
 };
 
-export default withTheme(EventPage);
+export default EventPage;

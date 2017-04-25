@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import RoundAvatar from './../../common/round-avatar';
 import Popup from './../../common/popup';
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.h4`
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     font-size: 2.4rem;
     font-weight: 800;
     line-height: 1;
@@ -18,7 +18,7 @@ const Header = styled.h4`
     margin: 0;
 `;
 
-const List = styled.div`
+const List = styled.ul`
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
@@ -28,6 +28,7 @@ const List = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 60rem;
+    padding: 0;
 
     &::-webkit-scrollbar {
         width: 1.4rem;
@@ -40,16 +41,16 @@ const List = styled.div`
     }
 `;
 
-const AvatarWrapper = styled.span`
+const AvatarWrapper = styled.li`
     padding: 1.2rem;
+    list-style: none;
 `;
 
-const UsersPopup = ({ users, isOpened, onClose }) => (
+const UsersPopup = ({ users, isOpened, handleClose }) => (
     <Popup
         isOpen={isOpened}
         contentLabel="Attendees"
-        handleCloseModal={() => onClose()}
-        onRequestClose={() => onClose()}
+        onRequestClose={handleClose}
         width={600}>
         <Wrapper>
             <Header>{users.length} people are coming</Header>
@@ -57,7 +58,7 @@ const UsersPopup = ({ users, isOpened, onClose }) => (
                 {users.map(
                     user => (
                         <AvatarWrapper key={user._id}>
-                            <RoundAvatar displayName={user.displayName} url={user.vkPhotoUrl} size="6.4rem" showName />
+                            <RoundAvatar name={user.displayName} url={user.vkPhotoUrl} size="6.4rem" key={user._id} />
                         </AvatarWrapper>
                     )
                 )}
@@ -69,7 +70,7 @@ const UsersPopup = ({ users, isOpened, onClose }) => (
 UsersPopup.propTypes = {
     users: React.PropTypes.arrayOf(React.PropTypes.object),
     isOpened: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
+    handleClose: React.PropTypes.func,
 };
 
-export default withTheme(UsersPopup);
+export default UsersPopup;

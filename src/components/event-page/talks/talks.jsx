@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { media } from './../../../utils/css-utils';
 import EventTalk from './talk';
@@ -25,4 +25,4 @@ EventTalks.propTypes = {
     talks: React.PropTypes.array.isRequired,
 };
 
-export default withTheme(EventTalks);
+export default EventTalks;
