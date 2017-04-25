@@ -9,7 +9,7 @@ const Header = styled.h2`
     font-size: 2.6rem;
     ${media.tablet`font-size: 4.8rem;`}
     font-weight: bold;
-    color: ${(props) => props.theme.lipstick};
+    color: ${({ theme }) => theme.lipstick};
     text-align: center;
     vertical-align: middle;
     ${media.desktop`white-space: nowrap;`}

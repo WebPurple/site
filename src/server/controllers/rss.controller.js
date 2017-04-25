@@ -7,7 +7,7 @@ const Post = mongoose.model('posts', postSchema);
 
 const MAX_ITEM_COUNT = 20;
 
-module.exports = (app) => {
+module.exports = app => {
     app.get('/rss', (request, response) => Post.find()
         .sort('-date')
         .limit(MAX_ITEM_COUNT)

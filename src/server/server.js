@@ -88,7 +88,7 @@ app.use((err, req, res, next) => {
 
 mongoose.connect(dbConf.connectionUrl);
 mongoose.connection
-    .on('error', (err) => console.log(err))
+    .on('error', err => console.log(err))
     .once('open', () => {
         console.log('Connection to DB successful.');
         app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`));

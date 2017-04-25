@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VkIcon = (props) => (
+const VkIcon = props => (
     <svg {...props} viewBox="0 0 39 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <title>Vk</title>
         <defs>

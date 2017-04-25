@@ -2,10 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Color from 'color';
 
-import VkWipIcon from '../icons/social/vk-wip-icon';
-import FacebookIcon from '../icons/social/facebook-icon';
-import GooglePlusIcon from '../icons/social/google-plus-icon';
-import LogoIcon from '../icons/webpurple-logo-icon.jsx';
+import {
+    VkWipIcon,
+    FacebookIcon,
+    GooglePlusIcon,
+} from '../icons/social';
+import LogoIcon from '../icons/webpurple-logo-icon';
 import EmailIcon from '../icons/email-icon';
 import PadlockIcon from '../icons/padlock-icon';
 

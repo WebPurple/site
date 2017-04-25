@@ -1,5 +1,6 @@
 import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
+import { createAction } from 'redux-actions';
 import { getFormValues, change } from 'redux-form';
 import unionWith from 'lodash/unionWith';
 
@@ -43,13 +44,8 @@ export default function reducer(state = initialState, action) {
 
 // ACTION CREATORS
 
-function requestEvents() {
-    return { type: REQUEST_EVENTS };
-}
-
-function receiveEvents(events) {
-    return { type: RECEIVE_EVENTS, payload: events };
-}
+const requestEvents = createAction(REQUEST_EVENTS);
+const receiveEvents = createAction(RECEIVE_EVENTS);
 
 export function loadEvents() {
     return dispatch => {
@@ -59,12 +55,12 @@ export function loadEvents() {
     };
 }
 
-export const toggleTag = tag => ({ type: TOGGLE_TAG, payload: tag });
+export const toggleTag = createAction(TOGGLE_TAG);
 
 export const searchEvents = searchValue => change(FORM_KEY, SEARCH_EVENTS_KEY, searchValue);
 export const searchSpeakers = searchValue => change(FORM_KEY, SEARCH_SPEAKERS_KEY, searchValue);
 
-const eventAdded = event => ({ type: EVENT_ADDED, payload: event });
+const eventAdded = createAction(EVENT_ADDED);
 
 export const addEvent = event => dispatch => postJson('api/events', event)
     .then(newEvent => dispatch(eventAdded(newEvent)));
@@ -81,12 +77,21 @@ const formSelector = state => getFormValues(FORM_KEY)(state);
 
 const searchEventsSelector = createSelector(
     formSelector,
-    form => form && form[SEARCH_EVENTS_KEY]
+    form => form && form[SEARCH_EVENTS_KEY],
 );
 
 const searchSpeakersSelector = createSelector(
     formSelector,
-    form => form && form[SEARCH_SPEAKERS_KEY]
+    form => form && form[SEARCH_SPEAKERS_KEY],
+);
+
+export const upcomingEventSelector = createSelector(
+    allEventsSelector,
+    () => new Date(),
+
+    (events, now) => events
+        .filter(e => new Date(e.date) > now)
+        .maxBy(e => e.date),
 );
 
 export const eventListSelector = createSelector(
@@ -125,31 +130,31 @@ export const eventListSelector = createSelector(
         }
 
         return selectedTags.isEmpty() || selectedTags.isSubset(event.tags);
-    })
+    }),
 );
 
 const extractTags = events => unionWith(...events.map(event => event.tags), (a, b) => a === b);
 
 export const allTagsSelector = createSelector(
     allEventsSelector,
-    extractTags
+    extractTags,
 );
 
 export const eventTagsSelector = createSelector(
     eventListSelector,
-    extractTags
+    extractTags,
 );
 
 const talksSelector = createSelector(
     allEventsSelector,
     events => events
         .map(event => event.talks.map(talk => ({ ...talk, event })))
-        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), [])
+        .reduce((allTalks, eventTalks) => allTalks.concat(eventTalks), []),
 );
 
 export const pastTalksSelector = createSelector(
     talksSelector,
-    talks => talks.filter(talk => new Date(talk.event.date) < new Date())
+    talks => talks.filter(talk => new Date(talk.event.date) < new Date()),
 );
 
 export const speakersSelector = createSelector(
@@ -166,5 +171,5 @@ export const speakersSelector = createSelector(
                 }
 
                 return speakers;
-            }, [])
+            }, []),
 );

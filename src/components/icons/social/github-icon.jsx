@@ -1,7 +1,7 @@
 import React from 'react';
 
 // TODO change github icon
-const GithubIcon = (props) => (
+const GithubIcon = props => (
     <svg {...props} viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <title>Facebook</title>
         <defs>

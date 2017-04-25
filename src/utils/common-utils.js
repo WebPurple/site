@@ -8,7 +8,7 @@ function isFunction(func) {
 
 function hasRoles(user, ...roles) {
     const userRoles = user.roles;
-    return roles.every(role => userRoles && ~userRoles.indexOf(role));
+    return roles.every(role => userRoles && userRoles.indexOf(role) !== -1);
 }
 
 function isAdmin(user) {
