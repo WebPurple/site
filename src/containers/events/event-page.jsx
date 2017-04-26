@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-    setEvent,
-    setEventAttendees,
-    setEventPhotos,
-    clearEvent,
-    addAttendee,
-    removeAttendee,
-    requestEvent,
-} from './../../actions/event.action';
-
-import { getJson, postJson, deleteJson } from './../../utils/ajax';
+    loadEvent,
+    cleanEvent,
+    becomeAttendee,
+    stopBeingAttendee,
+} from './../../reducers/current-event.reducer';
 
 import Loader from './../../components/common/loader';
 import NotFound from './../../components/common/not-found';
@@ -32,7 +28,7 @@ class EventPageContainer extends React.Component {
         photos: React.PropTypes.arrayOf(React.PropTypes.string),
         isFetching: React.PropTypes.bool,
         currentUser: React.PropTypes.object,
-        match: React.PropTypes.any, // react-router filling this prop
+        match: React.PropTypes.object, // react-router filling this prop
         loadEvent: React.PropTypes.func,
         cleanEvent: React.PropTypes.func,
         becomeAttendee: React.PropTypes.func,
@@ -86,37 +82,18 @@ class EventPageContainer extends React.Component {
 
 const mapStateToProps = state => ({
     currentUser: state.user.account,
-    event: state.currentEvent.event,
-    attendees: state.currentEvent.attendees,
-    photos: state.currentEvent.photos,
-    isFetching: state.currentEvent.isFetching,
+    event: state.currentEvent.get('event'),
+    attendees: state.currentEvent.get('attendees'),
+    photos: state.currentEvent.get('photos'),
+    isFetching: state.currentEvent.get('isFetching'),
 });
 
-const mapDispatchToProps = dispatch => ({
-    loadEvent: eventId => {
-        dispatch(requestEvent());
-        return getJson(`/api/event/${eventId}`)
-            .then(event => {
-                dispatch(setEvent(event));
-                dispatch(setEventAttendees(event.attendees));
-                getJson(`/api/event/${eventId}/photos`)
-                    .catch(() => [])
-                    .then(photos => dispatch(setEventPhotos(photos)));
-            })
-            .catch(() => dispatch(clearEvent()));
-    },
-    cleanEvent: () => dispatch(clearEvent()),
-    becomeAttendee: (eventId, user) => (
-        postJson(`/api/event/${eventId}/attendees`)
-            .then(() => dispatch(addAttendee(user)))
-            .catch(() => {})
-    ),
-    stopBeingAttendee: (eventId, user) => (
-        deleteJson(`/api/event/${eventId}/attendees`)
-            .then(() => dispatch(removeAttendee(user)))
-            .catch(() => {})
-    ),
-});
+const mapDispatchToProps = dispatch => bindActionCreators({
+    loadEvent,
+    cleanEvent,
+    becomeAttendee,
+    stopBeingAttendee,
+}, dispatch);
 
 export default withRouter(
     connect(
