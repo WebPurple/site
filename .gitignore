@@ -3,3 +3,5 @@ typings
 coverage
 
 __build__
+
+.happypack

@@ -51,4 +51,8 @@ const Avatar = ({ avatar }) => (
     </SpeakerAvatar>
 );
 
+Avatar.propTypes = {
+    avatar: React.PropTypes.string,
+};
+
 export default Avatar;
