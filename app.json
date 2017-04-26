@@ -2,6 +2,7 @@
   "name": "web-purple",
   "description": "Site of front-end community - WebPurple",
   "scripts": {
+    "postdeploy": "npm run build"
   },
   "env": {
     "HOST": {
