@@ -1,16 +1,16 @@
 import {
     fromJS,
     List,
-    Map
+    Map,
 } from 'immutable';
 import {
-    createAction
+    createAction,
 } from 'redux-actions';
 
 import {
     getJson,
     postJson,
-    deleteJson
+    deleteJson,
 } from './../utils/ajax';
 
 export const SET_EVENT = 'current-event/set_event';
@@ -81,15 +81,15 @@ export const cleanEvent = () => dispatch => dispatch(clearEvent());
 export function becomeAttendee(eventId, user) {
     return dispatch => (
         postJson(`/api/event/${eventId}/attendees`)
-            .then(() => dispatch(addAttendee(user)))
-            .catch(() => {})
+        .then(() => dispatch(addAttendee(user)))
+        .catch(() => {})
     );
 }
 
 export function stopBeingAttendee(eventId, user) {
     return dispatch => (
         deleteJson(`/api/event/${eventId}/attendees`)
-            .then(() => dispatch(removeAttendee(user)))
-            .catch(() => {})
+        .then(() => dispatch(removeAttendee(user)))
+        .catch(() => {})
     );
 }
