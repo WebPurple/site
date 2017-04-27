@@ -3,6 +3,7 @@ import styled, { withTheme } from 'styled-components';
 
 import { media } from '../../utils/css-utils';
 import Diamond from '../../components/diamond';
+import EventDiamond from '../../components/event-diamond';
 import BlockHeader from '../../components/common/block-header';
 
 const PastEventsContainer = styled.section`
@@ -41,26 +42,33 @@ const PastEvents = ({ talks, theme }) => {
                         <Diamond
                             color={theme.rouge}
                             backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-                            backPosition="120% 0%"
-                            header={talk1.event.title}
-                            text={talk1.title}
-                            speakerPhoto={talk1.speaker.vkPhotoUrl}
-                            speakerName={talk1.speaker.displayName} />
+                            backPosition="120% 0%">
+                            <EventDiamond
+                              header={talk1.event.title}
+                              text={talk1.title}
+                              speakerPhoto={talk1.speaker.vkPhotoUrl}
+                              speakerName={talk1.speaker.displayName} />
+                        </Diamond>
                         <Diamond
                             isTurnLeft="true"
-                            color={theme.lipstick}
-                            header={talk2.event.title}
-                            text={talk2.title}
-                            speakerPhoto={talk2.speaker.vkPhotoUrl}
-                            speakerName={talk2.speaker.displayName} />
+                            color={theme.lipstick}>
+                            <EventDiamond
+                              isTurnLeft="true"
+                              header={talk2.event.title}
+                              text={talk2.title}
+                              speakerPhoto={talk2.speaker.vkPhotoUrl}
+                              speakerName={talk2.speaker.displayName} />
+                        </Diamond>
                     </DiamondsRow>
                     <DiamondsRow>
                         <Diamond
-                            color={theme.cerise}
-                            header={talk3.event.title}
-                            text={talk3.title}
-                            speakerPhoto={talk3.speaker.vkPhotoUrl}
-                            speakerName={talk3.speaker.displayName} />
+                            color={theme.cerise}>
+                            <EventDiamond
+                              header={talk3.event.title}
+                              text={talk3.title}
+                              speakerPhoto={talk3.speaker.vkPhotoUrl}
+                              speakerName={talk3.speaker.displayName} />
+                        </Diamond>
                         <Diamond isEmpty="true" />
                     </DiamondsRow>
                     <DiamondsRow>
@@ -69,11 +77,14 @@ const PastEvents = ({ talks, theme }) => {
                             isTurnLeft="true"
                             color={theme.vividPurpleTwo}
                             backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
-                            backPosition="40% 20%"
-                            header={talk4.event.title}
-                            text={talk4.title}
-                            speakerPhoto={talk4.speaker.vkPhotoUrl}
-                            speakerName={talk4.speaker.displayName} />
+                            backPosition="40% 20%">
+                            <EventDiamond
+                              isTurnLeft="true"
+                              header={talk4.event.title}
+                              text={talk4.title}
+                              speakerPhoto={talk4.speaker.vkPhotoUrl}
+                              speakerName={talk4.speaker.displayName} />
+                        </Diamond>
                     </DiamondsRow>
                 </div>
                 { /* Right part */}
@@ -83,27 +94,37 @@ const PastEvents = ({ talks, theme }) => {
                             isTurnLeft="true"
                             color={theme.grape}
                             backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-                            backPosition="120% 0%"
-                            header={talk5.event.title}
-                            text={talk5.title}
-                            speakerPhoto={talk5.speaker.vkPhotoUrl}
-                            speakerName={talk5.speaker.displayName} />
+                            backPosition="120% 0%">
+                            <EventDiamond
+                              isTurnLeft="true"
+                              header={talk5.event.title}
+                              text={talk5.title}
+                              speakerPhoto={talk5.speaker.vkPhotoUrl}
+                              speakerName={talk5.speaker.displayName} />
+                        </Diamond>
+
                     </DiamondsRow>
                     <DiamondsColumn>
                         <Diamond
                             isTurnLeft="true"
-                            color={theme.vividPurple}
-                            header={talk6.event.title}
-                            text={talk6.title}
-                            speakerPhoto={talk6.speaker.vkPhotoUrl}
-                            speakerName={talk6.speaker.displayName} />
+                            color={theme.vividPurple}>
+                            <EventDiamond
+                              isTurnLeft="true"
+                              header={talk6.event.title}
+                              text={talk6.title}
+                              speakerPhoto={talk6.speaker.vkPhotoUrl}
+                              speakerName={talk6.speaker.displayName} />
+                        </Diamond>
                         <Diamond
                             isTurnLeft="true"
-                            color={theme.warmPurple}
-                            header={talk7.event.title}
-                            text={talk7.title}
-                            speakerPhoto={talk7.speaker.vkPhotoUrl}
-                            speakerName={talk7.speaker.displayName} />
+                            color={theme.warmPurple}>
+                            <EventDiamond
+                              isTurnLeft="true"
+                              header={talk7.event.title}
+                              text={talk7.title}
+                              speakerPhoto={talk7.speaker.vkPhotoUrl}
+                              speakerName={talk7.speaker.displayName} />
+                        </Diamond>
                     </DiamondsColumn>
                 </DiamondsRow>
             </DiamondsRow>
