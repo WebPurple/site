@@ -1,7 +1,7 @@
 import React from 'react';
 
-const NoAvatarIcon = () => (
-    <svg width="45" height="40" viewBox="0 0 45 40" xmlns="http://www.w3.org/2000/svg"><title>
+const NoAvatarIcon = (props) => (
+    <svg {...props} viewBox="0 0 45 40" xmlns="http://www.w3.org/2000/svg"><title>
         0F083CBE-0337-45F3-9A6E-3C1905B0BE57</title>
         <g fill="#CDCDCD" fillRule="evenodd">
             <path

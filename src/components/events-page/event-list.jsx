@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { withTheme } from 'styled-components';
 import { List } from 'immutable';
 
@@ -64,7 +65,7 @@ const BackgroundImage = styled.div`
     transform: skew(60deg, 0);
 `;
 
-const Title = styled.a`
+const Title = styled(Link)`
     margin: 2.4rem 0;
     font-family: 'Rubik', sans-serif;
     font-size: 3.6rem;
@@ -112,7 +113,7 @@ const EventList = ({ events, theme }) => (
                     </Info>
                     <Title
                         color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick}
-                        href={`#${event.title}`}>{event.title}</Title>
+                        to={`/event/${event._id}`}>{event.title}</Title>
                 </header>
                 <TalkList>
                     {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}

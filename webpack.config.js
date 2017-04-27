@@ -1,7 +1,9 @@
+const os = require('os');
 const path = require('path');
 const webpack = require('webpack');
 const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HappyPack = require('happypack');
 
 if (process.env.NODE_ENV === 'travisci') {
     // if we set NODE_ENV === 'production' on Travis, it will not install devDependencies
@@ -13,6 +15,12 @@ if (process.env.NODE_ENV === 'travisci') {
 const isProd = process.env.NODE_ENV === 'production';
 
 const plugins = [
+
+    new HappyPack({
+        id: 'JavaScript',
+        threads: Math.min(os.cpus().length, 4),
+        loaders: ['babel-loader'],
+    }),
 
     new ForceCaseSensitivityPlugin(),
 
@@ -68,7 +76,7 @@ const config = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: ['happypack/loader?id=JavaScript'],
             },
             {
                 test: /\.css$/,

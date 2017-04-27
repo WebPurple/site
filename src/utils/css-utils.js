@@ -22,6 +22,10 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
     return accumulator;
 }, {});
 
-export const isPhone = () => window.innerWidth <= sizes.phone;
+export const isHD = () => (window.innerWidth >= sizes.hd);
 
-export const isTablet = () => window.innerWidth <= sizes.tablet && !isPhone();
+export const isDesktop = () => (window.innerWidth >= sizes.desktop && window.innerWidth < sizes.hd);
+
+export const isTablet = () => (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop);
+
+export const isPhone = () => (window.innerWidth >= sizes.phone && window.innerWidth < sizes.tablet);

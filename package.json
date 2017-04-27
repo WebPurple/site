@@ -139,6 +139,7 @@
     "eslint-plugin-react": "^6.10.3",
     "fetch-mock": "^5.5.0",
     "force-case-sensitivity-webpack-plugin": "^0.1.1",
+    "happypack": "^3.0.3",
     "html-webpack-plugin": "^2.22.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
