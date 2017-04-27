@@ -111,6 +111,8 @@
     "reselect": "^3.0.0",
     "rss": "^1.2.1",
     "styled-components": "^1.4.3",
+    "translit": "0.0.1",
+    "translit-russian": "0.0.2",
     "webpack": "^2.2.1",
     "webpack-hot-middleware": "^2.17.0"
   },

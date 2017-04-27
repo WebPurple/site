@@ -12,6 +12,7 @@ import SocialLinks from './social-links';
 import EventTalks from './talks/talks';
 import ImageList from './../image-list/image-list';
 import { PlaceholderIcon, ClockIcon } from './../icons';
+import EventMap from './event-map';
 
 const TagListWrapper = styled.div`
     margin-top: 6rem;
@@ -244,6 +245,17 @@ const ImageListWapper = styled.div`
     `}
 `;
 
+const MapWrapper = styled.div`
+    height: 50rem;
+    margin-top: 3.6rem;
+    margin-bottom: 6rem;
+
+    ${media.tablet`
+        margin-top: 6.4rem;
+        margin-bottom: 9.6rem;
+    `}
+`;
+
 const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
     const isAttendee = (event.ettendees && event.ettendees.some(attendee => attendee._id === currentUser._id));
 
@@ -292,6 +304,16 @@ const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAtt
                     <div>
                         <BlockHeader>Past event’s photo</BlockHeader>
                         <ImageListWapper><ImageList images={images} /></ImageListWapper>
+                    </div>
+            }
+            {
+                new Date(event.date) < new Date() ?
+                    null :
+                    <div>
+                        <BlockHeader>Location</BlockHeader>
+                        <MapWrapper>
+                            <EventMap location={event.location} />
+                        </MapWrapper>
                     </div>
             }
         </div>
