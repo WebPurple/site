@@ -245,7 +245,7 @@ const ImageListWapper = styled.div`
 `;
 
 const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
-    const isAttendee = (event.ettendees && event.ettendees.some(attendee => attendee._id === currentUser._id));
+    const isAttendee = (attendees && currentUser && attendees.some(attendee => attendee._id === currentUser._id));
 
     return (
         <div>

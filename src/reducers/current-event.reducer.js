@@ -18,8 +18,6 @@ export const SET_ATTENDEES = 'current-event/set_attendees';
 export const SET_PHOTOS = 'current-event/set_photos';
 export const REQUEST_EVENT = 'current-event/request_event';
 export const CLEAR_EVENT = 'current-event/clear_event';
-export const ADD_ATTENDEE = 'current-event/add_attendee';
-export const REMOVE_ATTENDEE = 'current-event/remove_attendee';
 
 const initialState = fromJS({
     event: null,
@@ -39,13 +37,9 @@ export default function currentEventReducer(state = initialState, action) {
         case CLEAR_EVENT:
             return initialState;
         case SET_PHOTOS:
-            return state.set('photos', action.payload);
+            return state.set('photos', new List(action.payload));
         case SET_ATTENDEES:
-            return state.set('attendees', action.payload);
-        case ADD_ATTENDEE:
-            return state.update('attendees', attedees => attedees.set(action.payload._id, action.payload));
-        case REMOVE_ATTENDEE:
-            return state.update('attendees', attedees => attedees.delete(action.payload._id));
+            return state.set('attendees', new Map(action.payload.map(attendee => [attendee._id, attendee])));
         default:
             return state;
     }
@@ -57,8 +51,6 @@ export const setEventAttendees = createAction(SET_ATTENDEES);
 export const setEventPhotos = createAction(SET_PHOTOS);
 export const requestEvent = createAction(REQUEST_EVENT);
 export const clearEvent = createAction(CLEAR_EVENT);
-export const addAttendee = createAction(ADD_ATTENDEE);
-export const removeAttendee = createAction(REMOVE_ATTENDEE);
 
 // ACTION HANDLERS
 export function loadEvent(eventId) {
@@ -78,18 +70,18 @@ export function loadEvent(eventId) {
 
 export const cleanEvent = () => dispatch => dispatch(clearEvent());
 
-export function becomeAttendee(eventId, user) {
+export function becomeAttendee(eventId) {
     return dispatch => (
         postJson(`/api/event/${eventId}/attendees`)
-        .then(() => dispatch(addAttendee(user)))
+        .then(({ attendees }) => dispatch(setEventAttendees(attendees)))
         .catch(() => {})
     );
 }
 
-export function stopBeingAttendee(eventId, user) {
+export function stopBeingAttendee(eventId) {
     return dispatch => (
         deleteJson(`/api/event/${eventId}/attendees`)
-        .then(() => dispatch(removeAttendee(user)))
+        .then(({ attendees }) => dispatch(setEventAttendees(attendees)))
         .catch(() => {})
     );
 }
