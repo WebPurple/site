@@ -29,6 +29,8 @@ const theme = {
     cerise: '#ee2a7b',
     warmPurple: '#662d91',
     rouge: '#b21d3d',
+    rosePink: '#f290b7',
+    liliac: '#c788fe',
 };
 
 const AppContainer = ({ route }) => (
