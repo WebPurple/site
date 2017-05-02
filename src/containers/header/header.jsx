@@ -7,9 +7,8 @@ import {
     isPhone,
 } from '../../utils/css-utils';
 
-import ArrowButton from '../../components/arrow-button/arrow-button';
+import SignIn from './../../components/login/login-popup';
 import WebpurpleLogo from '../../components/webpurple-logo/webpurple-logo';
-
 
 import { MenuIcon, CloseIcon } from '../../components/icons/header/index';
 
@@ -116,7 +115,7 @@ const NavigationLink = styled(NavLink)`
     `};
 `;
 
-const ArrowButtonStyled = styled(ArrowButton)`
+const SignInStyled = styled(SignIn)`
     margin: 0 0 0 2rem;
     
     ${media.tablet`
@@ -154,7 +153,7 @@ class Header extends React.Component {
                             <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
                             <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
                         </NavigationBar>
-                        <ArrowButtonStyled>sign in</ArrowButtonStyled>
+                        <SignInStyled />
                     </MenuBar>
                 }
             </Wrapper>

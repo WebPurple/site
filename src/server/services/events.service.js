@@ -27,11 +27,25 @@ function getEventWithAttendeesAndTalks(eventId) {
 }
 
 function addAttendeeToEvent(eventId, attendeeId) {
-    return Event.findById(eventId).attendees.push(new mongoose.Types.ObjectId(attendeeId)).exec();
+    return Event.findByIdAndUpdate(
+        eventId,
+        { $push: { attendees: new mongoose.Types.ObjectId(attendeeId) } },
+        { new: true, upsert: true }
+    )
+        .select({ attendees: 1 })
+        .populate('attendees', 'displayName vkPhotoUrl')
+        .exec();
 }
 
 function removeAttendeeFromEvent(eventId, attendeeId) {
-    return Event.findById(eventId).attendees.pull(new mongoose.Types.ObjectId(attendeeId)).exec();
+    return Event.findByIdAndUpdate(
+        eventId,
+        { $pull: { attendees: new mongoose.Types.ObjectId(attendeeId) } },
+        { new: true, upsert: true }
+    )
+        .select({ attendees: 1 })
+        .populate('attendees', 'displayName vkPhotoUrl')
+        .exec();
 }
 
 function getEventPhotos(eventId) {

@@ -83,8 +83,8 @@ class EventPageContainer extends React.Component {
 const mapStateToProps = state => ({
     currentUser: state.user.account,
     event: state.currentEvent.get('event'),
-    attendees: state.currentEvent.get('attendees'),
-    photos: state.currentEvent.get('photos'),
+    attendees: Array.from(state.currentEvent.get('attendees').values()),
+    photos: Array.from(state.currentEvent.get('photos')),
     isFetching: state.currentEvent.get('isFetching'),
 });
 
