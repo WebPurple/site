@@ -19,7 +19,7 @@ const InputField = styled.input`
     outline: none;
 `;
 
-const Input = ({ style, rightIcon, leftIcon, placeholder, type, value }) => (
+const Input = ({ style, rightIcon, leftIcon, placeholder, type, value, ...inputProps }) => (
     <InputGroup style={style}>
         {leftIcon}
         <InputField
@@ -29,7 +29,8 @@ const Input = ({ style, rightIcon, leftIcon, placeholder, type, value }) => (
             }}
             type={type}
             placeholder={placeholder}
-            value={value} />
+            value={value}
+            {...inputProps} />
         {rightIcon}
     </InputGroup>
 );
