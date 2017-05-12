@@ -1,3 +1,5 @@
+const md5 = require('md5');
+
 const appConf = require('./server');
 
 module.exports = {
@@ -14,5 +16,8 @@ module.exports = {
             clientSecret: process.env.FB_CLIENT_SECRET,
             callbackURL: process.env.FB_CALLBACK_URL || `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/fb/callback`,
         },
+        local: {
+            hashPassword: password => md5(password + process.env.SALT),
+        }
     },
 };

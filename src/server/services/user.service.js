@@ -5,11 +5,11 @@ const User = mongoose.model('users', userSchema);
 
 const createUser = user => (new User(user)).save();
 
-const getUser = id => User.findById(id).lean().exec();
+const getUser = id => User.findById(id).select('-password').lean().exec();
 
-const getUsers = () => User.find().lean().exec();
+const getUsers = () => User.find().select('-password').lean().exec();
 
-const updateUser = (id, user) => User.findById(id).exec()
+const updateUser = (id, user) => User.findById(id).select('-password').exec()
     .then(userToUpdate => {
         const { displayName, email, roles } = user;
         /* eslint-disable no-param-reassign */
