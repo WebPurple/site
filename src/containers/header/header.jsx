@@ -1,4 +1,5 @@
 import React from 'react';
+import { withState, compose, mapProps } from 'recompose';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -123,42 +124,43 @@ const SignInStyled = styled(SignIn)`
     `};
 `;
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { showMenu: !isPhone() };
+const Header = ({ isMenuOpen, showMenu, hideMenu, height }) => (
+    <Wrapper style={{ height }}>
+        <MenuHeader>
+            <WebpurpleLogo />
+            {isMenuOpen
+                ? <CloseButton onClick={hideMenu} />
+                : <MenuButton onClick={showMenu} />
+            }
+        </MenuHeader>
+        {isMenuOpen && (
+            <MenuBar>
+                <NavigationBar>
+                    <MenuItem><NavigationLink to="/">home</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
+                </NavigationBar>
+                <SignInStyled />
+            </MenuBar>
+        )}
+    </Wrapper>
+);
 
-        this.toggleMenu = this.toggleMenu.bind(this);
-    }
+Header.propTypes = {
+    isMenuOpen: React.PropTypes.bool,
+    showMenu: React.PropTypes.func,
+    hideMenu: React.PropTypes.func,
+    height: React.PropTypes.string,
+};
 
-    toggleMenu() {
-        this.setState({ showMenu: !this.state.showMenu });
-    }
+export default compose(
+    withState('isMenuOpen', 'toggleMenu', !isPhone()),
+    mapProps(({ isMenuOpen, toggleMenu }) => ({
+        isMenuOpen,
+        showMenu: () => toggleMenu(true),
+        hideMenu: () => toggleMenu(false),
 
-    render() {
-        const height = this.state.showMenu && isPhone() ? '100vh' : 'auto';
-
-        return (
-            <Wrapper style={{ height }}>
-                <MenuHeader>
-                    <WebpurpleLogo />
-                    {this.state.showMenu ? <CloseButton onClick={this.toggleMenu} /> :
-                    <MenuButton onClick={this.toggleMenu} /> }
-                </MenuHeader>
-                {this.state.showMenu &&
-                    <MenuBar>
-                        <NavigationBar>
-                            <MenuItem><NavigationLink to="/">home</NavigationLink></MenuItem>
-                            <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
-                            <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
-                            <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
-                        </NavigationBar>
-                        <SignInStyled />
-                    </MenuBar>
-                }
-            </Wrapper>
-        );
-    }
-}
-
-export default Header;
+        height: isMenuOpen && isPhone() ? '100vh' : 'auto',
+    })),
+)(Header);
