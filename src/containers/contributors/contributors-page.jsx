@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose, lifecycle, withState } from 'recompose';
 import styled from 'styled-components';
 
 import { getJson } from '../../utils/ajax';
@@ -50,43 +51,40 @@ const Note = styled.footer`
     text-align: center;
 `;
 
-export default class ContributorsPage extends React.Component {
+const ContributorsPage = ({ contributors }) => (
+    <section>
+        <Header>Contributors</Header>
+        {!contributors ? <StyledLoader size="80" border="8" />
+            : (
+                <ContributorsList>
+                    {contributors.map(c => (
+                        <li>
+                            <Contributor href={c.html_url} target="_blank" rel="noopener noreferrer">
+                                <Avatar src={c.avatar_url} alt={c.login} />
+                                <Name>{c.login}</Name>
+                            </Contributor>
+                        </li>
+                    ))}
+                </ContributorsList>
+            )}
+        <Note>
+            * If you can&apos;t find yourself in this list, but you&apos;ve contributed to this project,&nbsp;
+            <a href="https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/" target="_blank" rel="noopener noreferrer">this</a>
+            &nbsp;might be the answer.
+        </Note>
+    </section>
+);
 
-    constructor(props) {
-        super(props);
-        this.state = { isFetching: true };
-    }
+ContributorsPage.propTypes = {
+    contributors: React.PropTypes.array,
+};
 
-    componentWillMount() {
-        getJson('https://api.github.com/repos/kitos/web-purple/contributors')
-            .then(contributors => this.setState({ contributors, isFetching: false }));
-    }
-
-    render() {
-        const { contributors = [] } = this.state;
-
-        return (
-            <section>
-                <Header>Contributors</Header>
-                {this.state.isFetching ? <StyledLoader size="80" border="8" />
-                    : (
-                        <ContributorsList>
-                            {contributors.map(c => (
-                                <li>
-                                    <Contributor href={c.html_url} target="_blank" rel="noopener noreferrer">
-                                        <Avatar src={c.avatar_url} alt={c.login} />
-                                        <Name>{c.login}</Name>
-                                    </Contributor>
-                                </li>
-                            ))}
-                        </ContributorsList>
-                    )}
-                <Note>
-                    * If you can&apos;t find yourself in this list, but you&apos;ve contributed to this project,&nbsp;
-                    <a href="https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/" target="_blank" rel="noopener noreferrer">this</a>
-                    &nbsp;might be the answer.
-                </Note>
-            </section>
-        );
-    }
-}
+export default compose(
+    withState('contributors', 'setContributors'),
+    lifecycle({
+        componentDidMount() {
+            getJson('https://api.github.com/repos/kitos/web-purple/contributors')
+                .then(contributors => this.props.setContributors(contributors));
+        },
+    }),
+)(ContributorsPage);
