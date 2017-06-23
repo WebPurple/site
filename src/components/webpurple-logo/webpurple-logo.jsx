@@ -26,7 +26,7 @@ const StyledWebpurpleIcon = styled(WebpurpleIcon)`
 `;
 
 const WebpurpleLogo = () => (
-    <Logo to="/home">
+    <Logo to="/">
         <StyledWebpurpleIcon />
         <Title>Webpurple</Title>
     </Logo>
