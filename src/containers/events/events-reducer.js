@@ -2,7 +2,7 @@ import { fromJS, List, Set } from 'immutable';
 import { createSelector } from 'reselect';
 import { createAction } from 'redux-actions';
 import { getFormValues, change } from 'redux-form';
-import unionWith from 'lodash/unionWith';
+import { pipe, map, reduce, prop, union } from 'ramda';
 
 import { getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
 
@@ -133,7 +133,10 @@ export const eventListSelector = createSelector(
     }),
 );
 
-const extractTags = events => unionWith(...events.map(event => event.tags), (a, b) => a === b);
+const extractTags = pipe(
+    map(prop('tags')),
+    reduce(union, []),
+);
 
 export const allTagsSelector = createSelector(
     allEventsSelector,

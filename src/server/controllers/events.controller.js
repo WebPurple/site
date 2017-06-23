@@ -1,5 +1,5 @@
 const express = require('express');
-const omit = require('lodash/omit');
+const omit = require('ramda').omit;
 
 const eventsService = require('../services/events.service');
 const userService = require('../services/user.service');
@@ -26,7 +26,7 @@ module.exports = () => {
                     // just return talk as it is
                     ? Promise.resolve(talk)
                     // otherwise create new user
-                    : userService.createUser(omit(talk.speaker, '_id'))
+                    : userService.createUser(omit(['_id'], talk.speaker))
                         // and fulfill talk with created user
                         .then(speaker => Object.assign(talk, { speaker })))
                 )
