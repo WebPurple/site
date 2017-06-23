@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { mapProps, withState, compose } from 'recompose';
 import styled from 'styled-components';
 import Color from 'color';
 
@@ -114,37 +115,29 @@ const vkColorHover = vkColor.darken(0.1).string();
 // const gpColor = new Color('#f34a38');
 // const gpColorHover = gpColor.darken(0.1).string();
 
-export default class LoginPopup extends React.Component {
+const LoginPopup = ({ isDialogOpened, showDialog, hideDialog }) => (
+    <LoginContainer>
+        <ArrowButton onClick={showDialog}>Sign In</ArrowButton>
+        <Popup
+            isOpen={isDialogOpened}
+            contentLabel="Login"
+            onRequestClose={hideDialog}
+            width={400}>
+            <LoginHeader>
+                <Title><LogoIcon /> WebPurple</Title>
+                <Subtitle>Login to your account</Subtitle>
+            </LoginHeader>
 
-    constructor(props) {
-        super(props);
-        this.state = { dialogOpened: false };
-    }
+            <SocialButton bgColor={fbColor.string()} bgColorHover={fbColorHover} href="/auth/fb">
+                <FacebookIcon />
+                <SocialButtonText>Login with Facebook</SocialButtonText>
+            </SocialButton>
+            <SocialButton bgColor={vkColor.string()} bgColorHover={vkColorHover} href="/auth/vk">
+                <VkWipIcon />
+                <SocialButtonText>Login with VK</SocialButtonText>
+            </SocialButton>
 
-    render() {
-        return (
-            <LoginContainer>
-                <ArrowButton onClick={() => this.setState({ dialogOpened: true })}>Sign In</ArrowButton>
-                <Popup
-                    isOpen={this.state.dialogOpened}
-                    contentLabel="Login"
-                    onRequestClose={() => this.setState({ dialogOpened: false })}
-                    width={400}>
-                    <LoginHeader>
-                        <Title><LogoIcon /> WebPurple</Title>
-                        <Subtitle>Login to your account</Subtitle>
-                    </LoginHeader>
-
-                    <SocialButton bgColor={fbColor.string()} bgColorHover={fbColorHover} href="/auth/fb">
-                        <FacebookIcon />
-                        <SocialButtonText>Login with Facebook</SocialButtonText>
-                    </SocialButton>
-                    <SocialButton bgColor={vkColor.string()} bgColorHover={vkColorHover} href="/auth/vk">
-                        <VkWipIcon />
-                        <SocialButtonText>Login with VK</SocialButtonText>
-                    </SocialButton>
-
-                    {/*
+            {/*
                     <SocialButton bgColor={gpColor.string()} bgColorHover={gpColorHover}>
                         <GooglePlusIcon />
                         <SocialButtonText>Login with Google</SocialButtonText>
@@ -179,8 +172,15 @@ export default class LoginPopup extends React.Component {
                         <Link>Need support?</Link>
                     </LoginFooter>
                     */}
-                </Popup>
-            </LoginContainer>
-        );
-    }
-}
+        </Popup>
+    </LoginContainer>
+);
+
+export default compose(
+    withState('isDialogOpened', 'toggleDialog', false),
+    mapProps(({ isDialogOpened, toggleDialog }) => ({
+        isDialogOpened,
+        showDialog: () => toggleDialog(true),
+        hideDialog: () => toggleDialog(false),
+    })),
+)(LoginPopup);
