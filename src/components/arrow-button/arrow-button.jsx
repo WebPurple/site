@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default styled.button`
     align-items: center;
+    text-decoration: none;
     background-color: transparent;
     border: none;
     color: ${props => props.color || props.theme.lipstick};

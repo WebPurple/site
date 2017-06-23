@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled, { withTheme } from 'styled-components';
 import moment from 'moment';
+import { NavLink } from 'react-router-dom';
 
 import { media, isPhone, isTablet } from '../../utils/css-utils';
 
@@ -156,6 +157,8 @@ const TalkSpeaker = styled.div`
     color: ${props => props.theme.grape};
 `;
 
+const ArrowLink = ArrowButton.withComponent(NavLink);
+
 const Footer = styled.div`
     margin-top: 7rem;
     ${media.desktop`
@@ -199,7 +202,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
                 </TalksBlock>
             </EventBlock>
             <Footer>
-                <ArrowButton>See details</ArrowButton>
+                <ArrowLink to={`event/${event._id}`}>See details</ArrowLink>
             </Footer>
         </Wrapper>
     );
