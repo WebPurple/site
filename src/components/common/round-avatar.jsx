@@ -18,6 +18,7 @@ const NoAvatar = styled(NoAvatarIcon)`
     width: ${props => props.size ? props.size : '3.6rem'};
     height: ${props => props.size ? props.size : '3.6rem'};
     border-radius: 50%;
+    border: ${({ border }) => border ? `2px solid ${border}` : ''};
 `;
 
 const Name = styled.div`
@@ -31,10 +32,10 @@ const Name = styled.div`
     white-space: nowrap;
 `;
 
-const RoundAvatar = ({ url, name, size }) => (
+const RoundAvatar = ({ url, name, size, displayName = true, border }) => (
     <AvatarWrapper size={size}>
-        { url ? <Avatar src={url} size={size} /> : <NoAvatar size={size} />}
-        { name ? <Name>{name}</Name> : null }
+        { url ? <Avatar src={url} size={size} title={name} border={border} /> : <NoAvatar size={size} title={name} border={border} />}
+        { name && displayName ? <Name>{name}</Name> : null }
     </AvatarWrapper>
 );
 
@@ -42,6 +43,7 @@ RoundAvatar.propTypes = {
     url: React.PropTypes.string,
     name: React.PropTypes.string,
     size: React.PropTypes.string,
+    displayName: React.PropTypes.bool,
 };
 
 export default RoundAvatar;

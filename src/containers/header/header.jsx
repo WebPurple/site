@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withState, compose, mapProps } from 'recompose';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -12,6 +13,7 @@ import SignIn from './../../components/login/login-popup';
 import WebpurpleLogo from '../../components/webpurple-logo/webpurple-logo';
 
 import { MenuIcon, CloseIcon } from '../../components/icons/header/index';
+import RoundAvatar from '../../components/common/round-avatar';
 
 const Wrapper = styled.header`
     box-sizing: border-box; 
@@ -124,7 +126,7 @@ const SignInStyled = styled(SignIn)`
     `};
 `;
 
-const Header = ({ isMenuOpen, showMenu, hideMenu, height }) => (
+const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
     <Wrapper style={{ height }}>
         <MenuHeader>
             <WebpurpleLogo />
@@ -141,7 +143,9 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height }) => (
                     <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
                 </NavigationBar>
-                <SignInStyled />
+                {user && user.account
+                    ? <RoundAvatar url={user.account.vkPhotoUrl} name={user.account.displayName} displayName={false} border={theme.lipstick} />
+                    : <SignInStyled />}
             </MenuBar>
         )}
     </Wrapper>
@@ -152,6 +156,8 @@ Header.propTypes = {
     showMenu: React.PropTypes.func,
     hideMenu: React.PropTypes.func,
     height: React.PropTypes.string,
+    user: React.PropTypes.object,
+    theme: React.PropTypes.object,
 };
 
 export default compose(
@@ -163,4 +169,6 @@ export default compose(
 
         height: isMenuOpen && isPhone() ? '100vh' : 'auto',
     })),
+    connect(({ user }) => ({ user })),
+    withTheme,
 )(Header);
