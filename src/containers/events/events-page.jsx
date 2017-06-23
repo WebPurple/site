@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
@@ -77,11 +78,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     onAddEvent: addEvent,
 }, dispatch);
 
-export default withRouter(
-    reduxForm({ form: FORM_KEY })(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(EventsPageContainer),
+export default compose(
+    withRouter,
+    reduxForm({ form: FORM_KEY }),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
     ),
-);
+)(EventsPageContainer);
