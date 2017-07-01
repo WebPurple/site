@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { objOf, path, pipe } from 'ramda';
+import { compose } from 'recompose';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -13,8 +15,19 @@ import Popup from '../../components/common/popup';
 import { allTagsSelector } from './events-reducer';
 import { getJson } from '../../utils/ajax';
 
-const Input = styled(Field)`
+const FormInput = styled(Field)`
     display: block;
+    border: none;
+    border-bottom: 1px solid ${path(['theme', 'warmGrey'])};
+    font-family: Oxygen, sans-serif;
+    font-size: 1.8em;
+    padding: .5em;
+    margin: .5em;
+    outline: none;
+    
+    &:focus {
+        border-bottom-color: ${path(['theme', 'lipstick'])};
+    }
 `;
 
 const DatePickerField = ({ input: { value, onChange } }) => (
@@ -49,8 +62,8 @@ const renderTalks = ({ fields: talks }) => (
         {talks.map((talk, i) => (
             <fieldset key={i}>
                 <legend>Talk {i + 1}</legend>
-                <Input name={`${talk}.title`} required component="input" placeholder="Title" />
-                <Input name={`${talk}.speaker`} component={SpeakerSelectField} />
+                <FormInput name={`${talk}.title`} required component="input" placeholder="Title" />
+                <FormInput name={`${talk}.speaker`} component={SpeakerSelectField} />
             </fieldset>
         ))}
         <button type="button" onClick={() => talks.push({})}>Add talk</button>
@@ -67,12 +80,12 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
 
             <fieldset>
                 <legend>Event</legend>
-                <Input name="title" required component="input" placeholder="Title" />
-                <Input name="description" required component="input" placeholder="Description" />
-                <Input name="image" component="input" placeholder="Image url" />
+                <FormInput name="title" required component="input" placeholder="Title" />
+                <FormInput name="description" required component="input" placeholder="Description" />
+                <FormInput name="image" component="input" placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
-                <Input name="location" required component="input" placeholder="Location" />
-                <Input name="tags" tags={tags} component={TagsSelectField} />
+                <FormInput name="location" required component="input" placeholder="Location" />
+                <Field name="tags" tags={tags} component={TagsSelectField} />
             </fieldset>
 
             <FieldArray name="talks" component={renderTalks} />
@@ -87,13 +100,12 @@ EditEventForm.propTypes = {
     onRequestClose: PropTypes.func,
 };
 
-export default reduxForm({
-    form: 'edit-event',
-    initialValues: {
-        date: moment().day('Thursday'),
-    },
-})(
-    connect(
-        state => ({ tags: allTagsSelector(state) }),
-    )(EditEventForm),
-);
+export default compose(
+    reduxForm({
+        form: 'edit-event',
+        initialValues: {
+            date: moment().day('Thursday'),
+        },
+    }),
+    connect(pipe(allTagsSelector, objOf('tags'))),
+)(EditEventForm);
