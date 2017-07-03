@@ -89,6 +89,7 @@ const SpeakerSelectField = ({ input: { value, onChange } }) => (
 );
 
 const AddButton = styled.button`
+    padding: .2em;
     border: none;
     background-color: transparent;
     color: ${vividPurple};
@@ -112,9 +113,25 @@ const renderTalks = ({ fields: talks }) => (
     </div>
 );
 
+const SubmitButton = AddButton.extend`
+    color: ${lipstick};
+    border: 2px solid ${lipstick};
+    padding: .2em;
+    float: left;
+    
+    &:hover {
+        color: #fff;
+        background: ${lipstick};
+    }
+`;
+
+const Form = styled.form`
+    overflow: hidden;
+`;
+
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
     <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
-        <form
+        <Form
             onSubmit={handleSubmit(event => onSubmit({
                 ...event,
                 tags: event.tags && event.tags.map(t => t.value),
@@ -132,8 +149,8 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
 
             <FieldArray name="talks" component={renderTalks} />
 
-            <button type="submit">Submit event</button>
-        </form>
+            <SubmitButton type="submit">Submit event</SubmitButton>
+        </Form>
     </Popup>
 );
 
