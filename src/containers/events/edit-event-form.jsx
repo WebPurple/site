@@ -88,6 +88,16 @@ const SpeakerSelectField = ({ input: { value, onChange } }) => (
         placeholder="Speaker" />
 );
 
+const AddButton = styled.button`
+    border: none;
+    background-color: transparent;
+    color: ${vividPurple};
+    font-family: Rubik, sans-serif;
+    font-size: 2em;
+    float: right;
+    cursor: pointer;
+`;
+
 /* eslint-disable react/no-array-index-key */
 const renderTalks = ({ fields: talks }) => (
     <div>
@@ -98,7 +108,7 @@ const renderTalks = ({ fields: talks }) => (
                 <Field name={`${talk}.speaker`} component={SpeakerSelectField} />
             </TalkFieldset>
         ))}
-        <button type="button" onClick={() => talks.push({})}>Add talk</button>
+        <AddButton type="button" title="Add talk" onClick={() => talks.push({})}>+ Talk</AddButton>
     </div>
 );
 
@@ -122,7 +132,7 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
 
             <FieldArray name="talks" component={renderTalks} />
 
-            <button type="submit">Add event</button>
+            <button type="submit">Submit event</button>
         </form>
     </Popup>
 );
