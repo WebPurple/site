@@ -15,10 +15,14 @@ import Popup from '../../components/common/popup';
 import { allTagsSelector } from './events-reducer';
 import { getJson } from '../../utils/ajax';
 
-const FormInput = styled(Field)`
+const getThemeColor = color => path(['theme', color]);
+const lipstick = getThemeColor('lipstick');
+const vividPurple = getThemeColor('vividPurple');
+
+const FormInput = styled.input`
     display: block;
     border: none;
-    border-bottom: 1px solid ${path(['theme', 'warmGrey'])};
+    border-bottom: 1px solid ${getThemeColor('warmGrey')};
     font-family: Oxygen, sans-serif;
     font-size: 1.8em;
     padding: .5em;
@@ -26,8 +30,36 @@ const FormInput = styled(Field)`
     outline: none;
     
     &:focus {
-        border-bottom-color: ${path(['theme', 'lipstick'])};
+        border-bottom-color: ${lipstick};
     }
+`;
+
+const Fieldset = styled.fieldset`
+    border: 2px solid ${lipstick};
+    padding: 1em 2em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+`;
+
+const Legend = styled.legend`
+    font-size: 2em;
+    padding: 0 .5em;
+    font-family: Rubik, sans-serif;
+    color: ${lipstick};
+`;
+
+const TalkFormInput = FormInput.extend`
+    &:focus {
+        border-bottom-color: ${vividPurple};
+    }
+`;
+
+const TalkFieldset = Fieldset.extend`
+    border-color: ${vividPurple};
+`;
+
+const TalkLegend = Legend.extend`
+    color: ${vividPurple};
 `;
 
 const DatePickerField = ({ input: { value, onChange } }) => (
@@ -60,11 +92,11 @@ const SpeakerSelectField = ({ input: { value, onChange } }) => (
 const renderTalks = ({ fields: talks }) => (
     <div>
         {talks.map((talk, i) => (
-            <fieldset key={i}>
-                <legend>Talk {i + 1}</legend>
-                <FormInput name={`${talk}.title`} required component="input" placeholder="Title" />
-                <FormInput name={`${talk}.speaker`} component={SpeakerSelectField} />
-            </fieldset>
+            <TalkFieldset key={i}>
+                <TalkLegend>Talk {i + 1}</TalkLegend>
+                <Field name={`${talk}.title`} required component={TalkFormInput} placeholder="Title" />
+                <Field name={`${talk}.speaker`} component={SpeakerSelectField} />
+            </TalkFieldset>
         ))}
         <button type="button" onClick={() => talks.push({})}>Add talk</button>
     </div>
@@ -78,15 +110,15 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
                 tags: event.tags && event.tags.map(t => t.value),
             }))}>
 
-            <fieldset>
-                <legend>Event</legend>
-                <FormInput name="title" required component="input" placeholder="Title" />
-                <FormInput name="description" required component="input" placeholder="Description" />
-                <FormInput name="image" component="input" placeholder="Image url" />
+            <Fieldset>
+                <Legend>Event</Legend>
+                <Field name="title" required component={FormInput} placeholder="Title" />
+                <Field name="description" required component={FormInput} placeholder="Description" />
+                <Field name="image" component={FormInput} placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
-                <FormInput name="location" required component="input" placeholder="Location" />
+                <Field name="location" required component={FormInput} placeholder="Location" />
                 <Field name="tags" tags={tags} component={TagsSelectField} />
-            </fieldset>
+            </Fieldset>
 
             <FieldArray name="talks" component={renderTalks} />
 
