@@ -62,8 +62,10 @@ const TalkLegend = Legend.extend`
     color: ${vividPurple};
 `;
 
+const StyledDatePicker = FormInput.withComponent(DatePicker);
+
 const DatePickerField = ({ input: { value, onChange } }) => (
-    <DatePicker selected={value} onChange={onChange} />
+    <StyledDatePicker selected={value} onChange={onChange} />
 );
 
 const TagsSelectField = ({ input: { value, onChange }, tags }) => (
