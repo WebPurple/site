@@ -4,7 +4,7 @@ import { defineSupportCode } from 'cucumber'
 defineSupportCode(({ Given, Then, When }) => {
 
     Given(/^I open WebPurple's home page$/, () => client
-        .url('http://localhost:8080/')
+        .url('http://localhost:4200/')
         .waitForElementVisible('main', 1000))
 
     Then(/^I can see login button$/, () => client.assert.visible('.e2e-sing-in-button'))

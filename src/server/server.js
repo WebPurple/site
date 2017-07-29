@@ -24,14 +24,17 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConf = require('../../webpack.config');
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'travisci';
 
 // Use native promises
 mongoose.Promise = global.Promise;
 
 const app = express();
 
-app.use(morgan('dev'));
+if (!isProd) {
+    app.use(morgan('dev'));
+}
+
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
