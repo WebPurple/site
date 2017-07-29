@@ -117,13 +117,13 @@ const vkColorHover = vkColor.darken(0.1).string();
 
 const LoginPopup = ({ isDialogOpened, showDialog, hideDialog }) => (
     <LoginContainer>
-        <ArrowButton onClick={showDialog}>Sign In</ArrowButton>
+        <ArrowButton className="e2e-sing-in-button" onClick={showDialog}>Sign In</ArrowButton>
         <Popup
             isOpen={isDialogOpened}
             contentLabel="Login"
             onRequestClose={hideDialog}
             width={400}>
-            <LoginHeader>
+            <LoginHeader className="e2e-sing-in-dialog">
                 <Title><LogoIcon /> WebPurple</Title>
                 <Subtitle>Login to your account</Subtitle>
             </LoginHeader>
