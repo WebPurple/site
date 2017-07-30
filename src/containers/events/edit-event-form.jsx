@@ -19,7 +19,7 @@ const getThemeColor = color => path(['theme', color]);
 const lipstick = getThemeColor('lipstick');
 const vividPurple = getThemeColor('vividPurple');
 
-const FormInput = styled.input`
+const FormInput = styled(Field)`
     display: block;
     border: none;
     border-bottom: 1px solid ${getThemeColor('warmGrey')};
@@ -107,7 +107,7 @@ const renderTalks = ({ fields: talks }) => (
         {talks.map((talk, i) => (
             <TalkFieldset key={i}>
                 <TalkLegend>Talk {i + 1}</TalkLegend>
-                <Field name={`${talk}.title`} required component={TalkFormInput} placeholder="Title" />
+                <TalkFormInput name={`${talk}.title`} required component="input" placeholder="Title" />
                 <Field name={`${talk}.speaker`} component={SpeakerSelectField} />
             </TalkFieldset>
         ))}
@@ -141,11 +141,11 @@ const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
 
             <Fieldset>
                 <Legend>Event</Legend>
-                <Field name="title" required component={FormInput} placeholder="Title" />
-                <Field name="description" required component={FormInput} placeholder="Description" />
-                <Field name="image" component={FormInput} placeholder="Image url" />
+                <FormInput name="title" required component="input" placeholder="Title" />
+                <FormInput name="description" required component="input" placeholder="Description" />
+                <FormInput name="image" component="input" placeholder="Image url" />
                 <Field name="date" component={DatePickerField} />
-                <Field name="location" required component={FormInput} placeholder="Location" />
+                <FormInput name="location" required component="input" placeholder="Location" />
                 <Field name="tags" tags={tags} component={TagsSelectField} />
             </Fieldset>
 
