@@ -105,13 +105,13 @@ const AddButton = styled.button`
 const renderTalks = ({ fields: talks }) => (
     <div>
         {talks.map((talk, i) => (
-            <TalkFieldset key={i}>
+            <TalkFieldset className="e2e-talk-fieldset" key={i}>
                 <TalkLegend>Talk {i + 1}</TalkLegend>
                 <TalkFormInput name={`${talk}.title`} required component="input" placeholder="Title" />
                 <Field name={`${talk}.speaker`} component={SpeakerSelectField} />
             </TalkFieldset>
         ))}
-        <AddButton type="button" title="Add talk" onClick={() => talks.push({})}>+ Talk</AddButton>
+        <AddButton className="e2e-add-event-talk" type="button" title="Add talk" onClick={() => talks.push({})}>+ Talk</AddButton>
     </div>
 );
 
@@ -134,6 +134,7 @@ const Form = styled.form`
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
     <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
         <Form
+            className="e2e-add-event-form"
             onSubmit={handleSubmit(event => onSubmit({
                 ...event,
                 tags: event.tags && event.tags.map(t => t.value),

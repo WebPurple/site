@@ -89,7 +89,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
-                            <button onClick={onCreateEvent}>Add event</button>
+                            <button className="e2e-add-event-button" onClick={onCreateEvent}>Add event</button>
                         </FlexRow>
                     )}
                     <Search

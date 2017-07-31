@@ -1,12 +1,11 @@
 Feature: Login
 
-  Scenario: Find login button
+  Background:
+    Given I open WebPurple's "home" page
 
-    Given I open WebPurple's home page
+  Scenario: Find login button
     Then I can see login button
 
   Scenario: Open login modal
-
-    Given I open WebPurple's home page
     When I click login button
     Then login modal is opened

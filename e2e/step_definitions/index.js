@@ -1,3 +1,14 @@
+import { client } from 'nightwatch-cucumber'
 import { defineSupportCode } from 'cucumber'
 
-defineSupportCode(({ setDefaultTimeout }) => setDefaultTimeout(10 * 1000))
+import { appUrl } from './constants'
+
+defineSupportCode(({ Given, setDefaultTimeout }) => {
+
+    setDefaultTimeout(10 * 1000)
+
+    Given(/^I open WebPurple's "(.+)" page$/, page => client
+        .url(`${appUrl}/${page === 'home' ? '' : page}`)
+        .waitForElementVisible('main', 1000))
+
+})
