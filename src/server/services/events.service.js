@@ -18,6 +18,12 @@ function addEvent(event) {
         .then(addedEvent => Event.populate(addedEvent, 'talks.speaker'));
 }
 
+function deleteEvent(eventId) {
+    return Event.findById(eventId)
+        .remove()
+        .exec();
+}
+
 function getEventWithAttendeesAndTalks(eventId) {
     return Event.findById(eventId)
         .select({ vkId: 0 })
@@ -67,6 +73,7 @@ function getEventPhotos(eventId) {
 
 module.exports = {
     getEvents,
+    deleteEvent,
     addEvent,
     addAttendeeToEvent,
     removeAttendeeFromEvent,
