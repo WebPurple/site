@@ -1,24 +1,39 @@
-import * as React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-
 import App from './containers/app/app';
-import Feed from './containers/feed/feed';
-import SettingsPage from './containers/settings.page';
-import AboutPage from './components/about-page';
+import HomePage from './containers/home-page/home-page';
+import EventsPage from './containers/events/events-page';
+import SpeakersPage from './containers/speakers/speakers-page';
+import ContributorsPage from './containers/contributors/contributors-page';
+import EventPageContainer from './containers/events/event-page';
+import NotFoundPage from './components/common/not-found';
 
-export default function configureRoutes(store) {
-    // Create an enhanced history that syncs navigation events with the store
-    const history = syncHistoryWithStore(browserHistory, store);
+export default [{
+    component: App,
 
-    return () => (
-        <Router history={history}>
-            <Route path="/" component={App}>
-                <IndexRoute component={Feed} />
-                <Route path="feed" component={Feed} />
-                <Route path="about" component={AboutPage} />
-                <Route path="settings" component={SettingsPage} />
-            </Route>
-        </Router>
-    );
-}
+    routes: [
+        {
+            path: '/',
+            exact: true,
+            component: HomePage,
+        },
+        {
+            path: '/events',
+            component: EventsPage,
+        },
+        {
+            path: '/event/:eventId',
+            component: EventPageContainer,
+        },
+        {
+            path: '/speakers',
+            component: SpeakersPage,
+        },
+        {
+            path: '/contributors',
+            component: ContributorsPage,
+        },
+        {
+            path: '**',
+            component: NotFoundPage,
+        },
+    ],
+}];

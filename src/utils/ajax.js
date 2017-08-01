@@ -34,8 +34,22 @@ export function mapParamsObjectToQueryString(params) {
     const nonEmptyProps = Object.keys(params).filter(key => params[key] !== undefined);
     return nonEmptyProps.length
         ? '?' + nonEmptyProps // eslint-disable-line prefer-template
-        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key])) // eslint-disable-line prefer-template
         .join('&')
         .replace(/%20/g, '+')
         : '';
 }
+
+/**
+ * Converts '?show=all&cha=42' to { show: 'all', cha: '42' }
+ *
+ * @param query
+ */
+export const mapQueryStringToObject = query => query.substr(1).split('&')
+    .reduce((result, paramWithValue) => {
+        paramWithValue = paramWithValue.split('='); // eslint-disable-line no-param-reassign
+
+        result[paramWithValue[0]] = paramWithValue[1]; // eslint-disable-line no-param-reassign
+
+        return result;
+    }, {});

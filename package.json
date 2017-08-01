@@ -9,9 +9,10 @@
   "scripts": {
     "start": "node src/server/server.js",
     "build": "webpack",
-    "lint": "./node_modules/.bin/eslint src/** test/**",
+    "lint": "./node_modules/.bin/eslint src/** test/** --quiet",
     "test": "jest",
     "test:cov": "jest --coverage",
+    "e2e": "./node_modules/.bin/nightwatch",
     "precoveralls": "npm run test:cov",
     "coveralls": "coveralls < coverage/lcov.info || true",
     "clean": "rimraf node_modules coverage __build__"
@@ -22,7 +23,42 @@
   },
   "author": "Nikita_Kirsanov@epam.com, Ilya_Kuznetsov@epam.com",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "stage-2",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "react-hot-loader/babel",
+      "syntax-dynamic-import"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
+      },
+      "travisci": {
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
+      }
+    }
+  },
   "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "moduleFileExtensions": [
       "js",
       "jsx",
@@ -31,72 +67,96 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     },
-    "testRegex": "/test/.*\\.(js|jsx)$"
+    "testRegex": "test.(js|jsx)$",
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ]
   },
   "dependencies": {
     "body-parser": "^1.15.0",
     "cheerio": "^0.20.0",
-    "classnames": "^2.2.5",
+    "color": "^1.0.3",
     "compression": "^1.6.2",
     "connect-history-api-fallback": "^1.2.0",
     "core-js": "^2.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "history": "^4.6.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
-    "material-ui": "^0.15.4",
+    "moment": "^2.18.1",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-vkontakte": "^0.4.0",
-    "react": "^15.3.0",
+    "ramda": "^0.24.1",
+    "react": "^15.4.2",
     "react-addons-shallow-compare": "^15.3.2",
-    "react-dom": "^15.3.0",
-    "react-dotdotdot": "^1.0.16",
+    "react-datepicker": "^0.44.0",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "3.0.0-beta.6",
+    "react-masonry-component": "^5.0.4",
+    "react-modal": "^1.6.5",
     "react-redux": "^4.4.1",
-    "react-router": "^2.0.1",
-    "react-router-redux": "^4.0.1",
-    "react-tap-event-plugin": "^1.0.0",
-    "react-virtualized": "^8.4.1",
+    "react-router": "^4.1.1",
+    "react-router-config": "^1.0.0-beta.3",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "react-select": "^1.0.0-rc.3",
+    "recompose": "^0.23.4",
     "redux": "^3.3.1",
-    "redux-form": "^6.0.2",
-    "redux-form-material-ui": "^4.0.1",
+    "redux-actions": "^2.0.2",
+    "redux-form": "^6.6.3",
     "redux-thunk": "^2.0.1",
+    "reselect": "^3.0.0",
     "rss": "^1.2.1",
-    "scriptjs": "^2.5.8",
-    "webpack": "^1.12.14"
+    "styled-components": "^2.1.0",
+    "translit": "0.0.1",
+    "translit-russian": "0.0.2",
+    "webpack": "^2.2.1",
+    "webpack-hot-middleware": "^2.17.0"
   },
   "devDependencies": {
     "@types/jest": "^16.0.4",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.8.0",
+    "babel-eslint": "^7.2.1",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.4",
+    "babel-plugin-dynamic-import-node": "^1.0.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.11.6",
+    "chromedriver": "^2.31.0",
     "coveralls": "^2.11.12",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.28.0",
+    "cucumber": "^2.3.1",
     "deep-freeze": "0.0.1",
     "enzyme": "^2.7.0",
-    "eslint": "^3.3.0",
-    "eslint-config-airbnb": "^10.0.1",
-    "eslint-plugin-import": "^1.13.0",
-    "eslint-plugin-jsx-a11y": "^2.1.0",
-    "eslint-plugin-react": "^6.1.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "fetch-mock": "^5.5.0",
     "force-case-sensitivity-webpack-plugin": "^0.1.1",
+    "happypack": "^3.0.3",
     "html-webpack-plugin": "^2.22.0",
     "identity-obj-proxy": "^3.0.0",
-    "imports-loader": "^0.6.5",
-    "jest": "^18.1.0",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
+    "jest": "^19.0.2",
+    "jest-enzyme": "^3.0.0",
+    "nightwatch": "^0.9.16",
+    "nightwatch-cucumber": "^7.1.10",
+    "react-addons-test-utils": "^15.4.2",
     "redux-mock-store": "^1.2.1",
+    "selenium-server": "^3.4.0",
     "sinon": "^1.17.3",
-    "webpack-dev-middleware": "^1.7.0"
+    "style-loader": "^0.16.1",
+    "webpack-dev-middleware": "^1.10.0"
   }
 }

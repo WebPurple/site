@@ -5,16 +5,19 @@
         "jsx-a11y",
         "import"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
+        "allowImportExportEverywhere": true,
         "ecmaFeatures": {
             "jsx": true,
             "experimentalObjectRestSpread": true
         }
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "jest": true
     },
     "globals": {
         "fetch": true
@@ -62,8 +65,10 @@
             "warn",
             "after-props"
         ],
-        "react/prop-types": [
-            "warn"
-        ]
+        "react/prop-types": "warn",
+        "react/forbid-prop-types": ["warn", { "forbid": ["any"] }],
+        "react/require-default-props": "off",
+        "padded-blocks": "off",
+        "arrow-parens": ["error", "as-needed"]
     }
 }

@@ -11,6 +11,11 @@ const User = mongoose.model('users', UserSchema);
 module.exports = (app, passport) => {
     let longLiveAccessToken;
     const fbConf = passportConf.strategies.fb;
+
+    if (!fbConf.clientID) {
+        return;
+    }
+
     passport.use('facebook', new FbStrategy(fbConf,
         (accessToken, refreshToken, profile, done) => facebook.getLongLiveAccessToken(accessToken, fbConf.clientID, fbConf.clientSecret)
             .then(longLiveToken => {

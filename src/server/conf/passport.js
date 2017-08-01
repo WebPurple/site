@@ -6,6 +6,7 @@ module.exports = {
             clientID: '5360165',
             clientSecret: '765utMWmnVn9CS1kOuLB',
             callbackURL: process.env.VK_CALLBACK_URL || `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/vk/callback`,
+            groupId: '-94098151', // `-` used to describe to VK that this ID is group ID (not user ID)
         },
 
         fb: {

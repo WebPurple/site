@@ -12,6 +12,7 @@ const dbConf = require('./conf/db');
 
 const authApi = require('./controllers/auth.controller');
 const postsApi = require('./controllers/posts.controller');
+const eventsApi = require('./controllers/events.controller');
 const userApi = require('./controllers/user.controller');
 const rssApi = require('./controllers/rss.controller');
 
@@ -20,16 +21,20 @@ const pageInfoApi = require('./controllers/page-info.controller');
 const webpack = require('webpack');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConf = require('../../webpack.config');
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'travisci';
 
 // Use native promises
 mongoose.Promise = global.Promise;
 
 const app = express();
 
-app.use(morgan('dev'));
+if (!isProd) {
+    app.use(morgan('dev'));
+}
+
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,10 +52,15 @@ if (isProd) {
     app.use(express.static('__build__'));
 } else {
     const compiler = webpack(webpackConf);
-    app.use(webpackMiddleware(compiler, { publicPath: webpackConf.output.publicPath }));
+    app.use(webpackMiddleware(compiler, {
+        publicPath: webpackConf.output.publicPath,
+        hot: true,
+    }));
+    app.use(webpackHotMiddleware(compiler));
 }
 
 app.use(express.static('favicon'));
+app.use(express.static('public'));
 
 rssApi(app);
 
@@ -64,9 +74,11 @@ app.use(expressSession({
 authApi(app);
 
 app.use('/api', postsApi());
+app.use('/api', eventsApi());
 app.use('/api', userApi());
 app.use('/', pageInfoApi());
 
+// eslint-disable no-console
 app.use((err, req, res, next) => {
     console.error(err.stack);
     if (res.headersSent) {
@@ -79,7 +91,7 @@ app.use((err, req, res, next) => {
 
 mongoose.connect(dbConf.connectionUrl);
 mongoose.connection
-    .on('error', (err) => console.log(err))
+    .on('error', err => console.log(err))
     .once('open', () => {
         console.log('Connection to DB successful.');
         app.listen(serverConf.port, () => console.log(`Server is listening http://${serverConf.host}:${serverConf.port}.`));

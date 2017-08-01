@@ -1,46 +1,52 @@
 import * as React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 
-import { connect } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { purple500, purple700, purple100 } from 'material-ui/styles/colors';
+import { media } from '../../utils/css-utils';
 
-import classNames from 'classnames/bind';
+import Header from '../header/header';
+import LoginPopup from '../../components/login/login-popup';
+import FooterComponent from '../../components/footer';
 
-import AppHeader from '../../components/app.header';
-import NavigationBar from '../../containers/navigation/navigation-bar';
+const Container = styled.div`
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    ${media.desktop`width: 1280px;`}
+    ${media.hd`width: 1440px;`}
+`;
 
-import styles from './main.less';
+const theme = {
+    grape: '#432867',
+    warmGrey: '#a1a1a1',
+    greyishBrown: '#545454',
+    lipstick: '#e62270',
+    vividPurple: '#9012fe',
+    vividPurpleTwo: '#9013fe',
+    cerise: '#ee2a7b',
+    warmPurple: '#662d91',
+    rouge: '#b21d3d',
+    rosePink: '#f290b7',
+    liliac: '#c788fe',
+};
 
-const cx = classNames.bind(styles);
-
-const muiTheme = getMuiTheme({
-    palette: {
-        primary1Color: purple500,
-        primary2Color: purple700,
-        primary3Color: purple100,
-    },
-});
-
-const AppContainer = ({ leftNavOpen, children }) => (
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <div className={styles.page}>
-            <AppHeader />
-            <main
-                className={cx({
-                    container: true,
-                    'container--with-left-nav': leftNavOpen,
-                })}>
-                {children}
+const AppContainer = ({ route }) => (
+    <ThemeProvider theme={theme}>
+        <Container>
+            <Header />
+            <main>
+                {renderRoutes(route.routes)}
             </main>
-            <NavigationBar />
-        </div>
-    </MuiThemeProvider>
+            <FooterComponent />
+        </Container>
+    </ThemeProvider>
 );
 
 AppContainer.propTypes = {
-    leftNavOpen: React.PropTypes.bool
+    route: React.PropTypes.object.isRequired,
 };
 
-export default connect(state => state.leftNav)(AppContainer);
+export default AppContainer;
