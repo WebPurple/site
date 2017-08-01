@@ -3,7 +3,8 @@ const omit = require('ramda').omit;
 
 const eventsService = require('../services/events.service');
 const userService = require('../services/user.service');
-const checkPermissions = require('./../utils/security-utils').checkPermissions;
+const { isAdmin, isEditor } = require('../../utils/common-utils');
+const { checkPermissions } = require('./../utils/security-utils');
 
 module.exports = () => {
     const router = express.Router(); // eslint-disable-line new-cap
@@ -43,7 +44,7 @@ module.exports = () => {
             .then(event => response.send(event))
             .catch(err => response.code(500).send(err)))
 
-        .delete(({ params: { eventId } }, response) => eventsService.deleteEvent(eventId)
+        .delete(checkPermissions(isAdmin, isEditor), ({ params: { eventId } }, response) => eventsService.deleteEvent(eventId)
             .then(event => response.send(event))
             .catch(err => response.code(500).send(err)));
 
