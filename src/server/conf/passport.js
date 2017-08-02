@@ -1,6 +1,8 @@
-const md5 = require('md5');
+const bcrypt = require('bcrypt');
 
 const appConf = require('./server');
+
+const salt = bcrypt.genSalt(process.env.SALT_ROUNDS || 10); // It's a `Promise<__SALT__>`
 
 module.exports = {
     strategies: {
@@ -17,7 +19,7 @@ module.exports = {
             callbackURL: process.env.FB_CALLBACK_URL || `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/fb/callback`,
         },
         local: {
-            hashPassword: password => md5(password + process.env.SALT),
+            hashPassword: password => salt.then(saltString => bcrypt.hash(password, saltString)), // It's a Promise<_hash_>
         }
     },
 };

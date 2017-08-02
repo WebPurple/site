@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Color from 'color';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 
 import {
     VkWipIcon,
@@ -15,9 +14,6 @@ import PadlockIcon from './../../icons/padlock-icon';
 import ArrowButton from './../../arrow-button/arrow-button';
 import Separator from './../../common/separator';
 import Input from './../../common/input';
-
-import { postJson } from './../../../utils/ajax';
-import { fetchUser } from './../../../reducers/user.reducer';
 
 const FormFooter = styled.footer`
     align-items: center;
@@ -81,97 +77,74 @@ const vkColorHover = vkColor.darken(0.1).string();
 // const gpColor = new Color('#f34a38');
 // const gpColorHover = gpColor.darken(0.1).string();
 
-class LoginForm extends React.Component {
-    static propTypes = {
-        showRegisterForm: React.PropTypes.func,
-        fetchUser: React.PropTypes.func,
-    };
+const validators = {
+    email: value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+        'Invalid email address' : undefined,
+    maxLength: max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined,
+    minLength: min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined,
+    required: value => value ? undefined : 'Required',
+};
 
-    constructor(props) {
-        super(props);
-        this.state = { email: null, password: null };
+// eslint-disable-next-line react/prop-types
+const renderInput = ({ meta, input, ...props }) => <Input {...props} {...input} />;
 
-        this.onShowRegisterForm = this.onShowRegisterForm.bind(this);
-        this.onLoginRequest = this.onLoginRequest.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
+const preventDefault = action => event => {
+    event.preventDefault();
+    action();
+};
 
-    onShowRegisterForm(event) {
-        event.preventDefault();
-        this.props.showRegisterForm();
-    }
+const LoginForm = ({ onShowRegisterForm, handleSubmit, onSubmit }) => (
+    <div>
+        <SocialButton bgColor={fbColor.string()} bgColorHover={fbColorHover} href="/auth/fb">
+            <FacebookIcon />
+            <SocialButtonText>Login with Facebook</SocialButtonText>
+        </SocialButton>
+        <SocialButton bgColor={vkColor.string()} bgColorHover={vkColorHover} href="/auth/vk">
+            <VkWipIcon />
+            <SocialButtonText>Login with VK</SocialButtonText>
+        </SocialButton>
 
-    onLoginRequest(event) {
-        event.preventDefault();
-        postJson('/auth/login', {
-            email: this.state.email,
-            password: this.state.password,
-        })
-            .then(() => this.props.fetchUser());
-    }
+        {/*
+        <SocialButton bgColor={gpColor.string()} bgColorHover={gpColorHover}>
+            <GooglePlusIcon />
+            <SocialButtonText>Login with Google</SocialButtonText>
+        </SocialButton>
+        */}
 
-    handleInputChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
-    }
+        <Separator height="2" color="#cdcdcd" style={{ margin: '2.4rem 0' }} >
+            <SeparatorText>Or</SeparatorText>
+        </Separator>
 
-    render() {
-        return (
-            <div>
-                <SocialButton bgColor={fbColor.string()} bgColorHover={fbColorHover} href="/auth/fb">
-                    <FacebookIcon />
-                    <SocialButtonText>Login with Facebook</SocialButtonText>
-                </SocialButton>
-                <SocialButton bgColor={vkColor.string()} bgColorHover={vkColorHover} href="/auth/vk">
-                    <VkWipIcon />
-                    <SocialButtonText>Login with VK</SocialButtonText>
-                </SocialButton>
+        <form onSubmit={handleSubmit(event => onSubmit(event))}>
+            <Field
+                name="email"
+                type="email"
+                style={{ margin: '1.6rem 0' }}
+                leftIcon={<EmailIcon />}
+                placeholder="Email..."
+                validate={[validators.required, validators.email]}
+                component={renderInput} />
+            <Field
+                name="password"
+                type="password"
+                style={{ margin: '1.6rem 0' }}
+                leftIcon={<PadlockIcon />}
+                placeholder="Password..."
+                validate={[validators.required, validators.minLength(6)]}
+                warn={[validators.maxLength(72)]}
+                component={renderInput} />
+            <FormFooter>
+                <PopupLinkButton onClick={preventDefault(onShowRegisterForm)}>Create account</PopupLinkButton>
+                <ArrowButton type="submit">Login</ArrowButton>
+            </FormFooter>
+        </form>
+    </div>
+);
 
-                {/*
-                <SocialButton bgColor={gpColor.string()} bgColorHover={gpColorHover}>
-                    <GooglePlusIcon />
-                    <SocialButtonText>Login with Google</SocialButtonText>
-                </SocialButton>
-                */}
+LoginForm.propTypes = {
+    onSubmit: React.PropTypes.func.isRequired,
+    onShowRegisterForm: React.PropTypes.func,
+    handleSubmit: React.PropTypes.func,
+};
 
-                <Separator
-                    height="2"
-                    color="#cdcdcd"
-                    style={{ margin: '2.4rem 0' }} >
-                    <SeparatorText>Or</SeparatorText>
-                </Separator>
-
-                <form>
-                    <Input
-                        name="email"
-                        onChange={this.handleInputChange}
-                        style={{ margin: '1.6rem 0' }}
-                        type="email"
-                        leftIcon={<EmailIcon />}
-                        placeholder="Email..." />
-                    <Input
-                        name="password"
-                        onChange={this.handleInputChange}
-                        style={{ margin: '1.6rem 0' }}
-                        type="password"
-                        leftIcon={<PadlockIcon />}
-                        placeholder="Password..." />
-                    <FormFooter>
-                        <PopupLinkButton onClick={this.onShowRegisterForm}>Create account</PopupLinkButton>
-                        <ArrowButton onClick={this.onLoginRequest}>Login</ArrowButton>
-                    </FormFooter>
-                </form>
-            </div>
-        );
-    }
-}
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchUser,
-}, dispatch);
-
-export default connect(
-    null,
-    mapDispatchToProps,
-)(LoginForm);
+export default reduxForm({ form: 'login' })(LoginForm);

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { mapProps, withState, compose } from 'recompose';
 import styled from 'styled-components';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import ArrowButton from '../arrow-button/arrow-button';
 import Popup from '../common/popup';
@@ -8,6 +10,8 @@ import LogoIcon from '../icons/webpurple-logo-icon';
 
 import LoginForm from './forms/login-form';
 import RegisterForm from './forms/register-form';
+
+import { loginUser, registerUser } from './../../reducers/user.reducer';
 
 const LoginHeader = styled.header`
     text-align: center;
@@ -47,7 +51,8 @@ const Subtitle = styled.h3`
     margin: 0;
 `;
 
-const LoginPopup = ({ isDialogOpened, showDialog, hideDialog, isRegistration, showLogin, showRegistration }) => (
+// eslint-disable-next-line no-shadow
+const LoginPopup = ({ isDialogOpened, showDialog, hideDialog, isRegistration, showLogin, showRegistration, loginUser, registerUser }) => (
     <LoginContainer>
         <ArrowButton className="e2e-sing-in-button" onClick={showDialog}>Sign In</ArrowButton>
         <Popup
@@ -63,8 +68,8 @@ const LoginPopup = ({ isDialogOpened, showDialog, hideDialog, isRegistration, sh
             </LoginHeader>
             {
                 isRegistration ?
-                    <RegisterForm showLoginForm={showLogin} /> :
-                    <LoginForm showRegisterForm={showRegistration} />
+                    <RegisterForm showLoginForm={showLogin} onSubmit={registerUser} /> :
+                    <LoginForm onShowRegisterForm={showRegistration} onSubmit={loginUser} />
             }
             {/*
             <LoginFooter>
@@ -76,10 +81,30 @@ const LoginPopup = ({ isDialogOpened, showDialog, hideDialog, isRegistration, sh
     </LoginContainer>
 );
 
+LoginPopup.propTypes = {
+    isDialogOpened: React.PropTypes.bool,
+    isRegistration: React.PropTypes.bool,
+    loginUser: React.PropTypes.func,
+    registerUser: React.PropTypes.func,
+    showDialog: React.PropTypes.func,
+    hideDialog: React.PropTypes.func,
+    showRegistration: React.PropTypes.func,
+    showLogin: React.PropTypes.func,
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    loginUser,
+    registerUser,
+}, dispatch);
+
 export default compose(
     withState('isDialogOpened', 'toggleDialog', false),
     withState('isRegistration', 'toggleRegistrationShow', false),
-    mapProps(({ isDialogOpened, toggleDialog, isRegistration, toggleRegistrationShow }) => ({
+    connect(null, mapDispatchToProps),
+    // eslint-disable-next-line no-shadow
+    mapProps(({ isDialogOpened, toggleDialog, isRegistration, toggleRegistrationShow, loginUser, registerUser }) => ({
+        loginUser,
+        registerUser,
         isDialogOpened,
         showDialog: () => toggleDialog(true),
         hideDialog: () => {

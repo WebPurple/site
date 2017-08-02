@@ -22,7 +22,7 @@ module.exports = (app, passport) => {
                 .catch(error => done(error));
         }));
 
-    app.post('/auth/login', passport.authenticate('local'), (request, response) => response.json({ success: true }));
+    app.post('/auth/login', passport.authenticate('local'), (request, response) => response.json(request.user));
 
     app.post('/auth/register', (request, response) => {
         User.findOne({ email: request.body.email })
@@ -31,10 +31,10 @@ module.exports = (app, passport) => {
             .exec()
             .then(doc => {
                 if (doc) {
-                    return response.status(500).json({ message: 'This email is already taken' });
+                    throw new Error('This email is already taken');
                 }
-                const userData = Object.assign(request.body, { password: strategyConf.hashPassword(request.body.password) });
-                return new User(userData).save().then(() => response.json({ success: true }));
+                const userData = Object.assign({}, request.body, { password: strategyConf.hashPassword(request.body.password) });
+                return new User(userData).save().then((password, ...rest) => response.json(rest));
             })
             .catch(error => response.status(500).json(error));
     });
