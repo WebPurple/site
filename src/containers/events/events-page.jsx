@@ -16,6 +16,7 @@ import {
     FORM_KEY,
     searchEvents,
     addEvent,
+    removeEvent,
 } from './events-reducer';
 import EventsFeed from '../../components/events-page/events-feed';
 import EditEventForm from './edit-event-form';
@@ -76,6 +77,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     onTagClick: toggleTag,
     onSearch: searchEvents,
     onAddEvent: addEvent,
+    onDeleteEvent: removeEvent,
 }, dispatch);
 
 export default compose(

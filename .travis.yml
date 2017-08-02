@@ -1,15 +1,22 @@
 language: node_js
-node_js:
-- '6.2'
+node_js: '6.2'
+cache: yarn
 git:
   depth: 3
+dist: trusty
+sudo: false
+addons:
+  chrome: stable
 env:
   global:
     - NODE_ENV=travisci
+before_script:
+- yarn start &
 script:
 - yarn build
 - yarn lint
 - yarn coveralls
+- yarn e2e
 deploy:
   provider: heroku
   app:

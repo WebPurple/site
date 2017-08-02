@@ -77,6 +77,7 @@ class EventsFeed extends React.Component {
             onTagClick,
             onSearch,
             onCreateEvent,
+            onDeleteEvent,
         } = this.props;
         const { showSearch } = this.state;
 
@@ -89,7 +90,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
-                            <button onClick={onCreateEvent}>Add event</button>
+                            <button className="e2e-add-event-button" onClick={onCreateEvent}>Add event</button>
                         </FlexRow>
                     )}
                     <Search
@@ -106,7 +107,7 @@ class EventsFeed extends React.Component {
                 {isFetching ? <StyledLoader size="80" border="8" />
                     : events.size === 0
                         ? <NoEventsBlock>There are no events satisfying your query...</NoEventsBlock>
-                        : <EventList events={events} />
+                        : <EventList events={events} onDelete={onDeleteEvent} />
                 }
             </MainContainer>
         );
@@ -120,6 +121,7 @@ EventsFeed.propTypes = {
     show: React.PropTypes.string,
     onTagClick: React.PropTypes.func,
     onCreateEvent: React.PropTypes.func,
+    onDeleteEvent: React.PropTypes.func,
     onSearch: React.PropTypes.func,
     isFetching: React.PropTypes.bool,
 };

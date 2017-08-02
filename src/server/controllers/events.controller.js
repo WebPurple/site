@@ -41,6 +41,10 @@ module.exports = () => {
     router.route('/event/:eventId')
         .get((request, response) => eventsService.getEventWithAttendeesAndTalks(request.params.eventId)
             .then(event => response.send(event))
+            .catch(err => response.code(500).send(err)))
+
+        .delete(({ params: { eventId } }, response) => eventsService.deleteEvent(eventId)
+            .then(event => response.send(event))
             .catch(err => response.code(500).send(err)));
 
     router.route('/event/:eventId/attendees')

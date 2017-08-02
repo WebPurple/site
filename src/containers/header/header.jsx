@@ -91,18 +91,6 @@ const NavigationBar = styled.ul`
 const MenuItem = styled.li`
     list-style: none;
     display: inline-flex;
-    box-sizing: border-box;
-    padding: 1.3rem 0 1rem 0;
-    margin: 0 2.5rem 2rem 4rem;
-    &:hover {
-        border-bottom-color: ${props => props.theme.lipstick};
-    }
-
-    ${media.tablet`
-        margin: 0 2.5rem 0 0;
-        transition: border-color 1s ease-out;
-        border-bottom: solid 0.3rem transparent;
-    `};
 `;
 
 const NavigationLink = styled(NavLink)`
@@ -112,9 +100,21 @@ const NavigationLink = styled(NavLink)`
     font-size: 2.3rem;
     font-weight: 500;
     color: ${props => props.theme.warmGrey};
+    
+    box-sizing: border-box;
+    border-bottom: solid 0.3rem transparent;
+    padding: 1.3rem 0 1rem 0;
+    margin: 0 2.5rem 2rem 4rem;
+    transition: border-color 1s ease-out;
+    
+    &:hover, 
+    &.active {
+        border-bottom-color: ${props => props.theme.lipstick};
+    }
 
     ${media.tablet`
         font-size: 1.6rem;
+        margin: 0 2.5rem 0 0;
     `};
 `;
 
@@ -138,7 +138,7 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
         {isMenuOpen && (
             <MenuBar>
                 <NavigationBar>
-                    <MenuItem><NavigationLink to="/">home</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink to="/" exact>home</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>

@@ -4,11 +4,12 @@ import { createAction } from 'redux-actions';
 import { getFormValues, change } from 'redux-form';
 import { pipe, map, reduce, prop, union } from 'ramda';
 
-import { getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
+import { deleteJson, getJson, mapQueryStringToObject, postJson } from '../../utils/ajax';
 
 const REQUEST_EVENTS = 'events/request-events';
 const RECEIVE_EVENTS = 'events/receive-events';
 const EVENT_ADDED = 'events/event-added';
+const EVENT_REMOVED = 'events/event-removed';
 
 const TOGGLE_TAG = 'events/toggle-tag';
 
@@ -24,19 +25,27 @@ const initialState = fromJS({
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
+
         case RECEIVE_EVENTS:
             return state
                 .set('isFetching', false)
                 .set('eventList', new List(action.payload));
+
         case EVENT_ADDED:
             return state.update('eventList', eventList => eventList.unshift(action.payload)); // TODO: sort actions by date
+
+        case EVENT_REMOVED:
+            return state.update('eventList', eventList => eventList.filter(event => event._id !== action.payload._id));
+
         case TOGGLE_TAG:
             return state.update('selectedTags',
                 selectedTags => selectedTags.has(action.payload)
                     ? selectedTags.delete(action.payload)
                     : selectedTags.add(action.payload));
+
         case REQUEST_EVENTS:
             return state.set('isFetching', true);
+
         default:
             return state;
     }
@@ -64,6 +73,11 @@ const eventAdded = createAction(EVENT_ADDED);
 
 export const addEvent = event => dispatch => postJson('api/events', event)
     .then(newEvent => dispatch(eventAdded(newEvent)));
+
+const eventRemoved = createAction(EVENT_REMOVED);
+
+export const removeEvent = eventToRemove => dispatch => deleteJson(`api/event/${eventToRemove._id}`)
+    .then(() => dispatch(eventRemoved(eventToRemove)));
 
 // SELECTORS
 
