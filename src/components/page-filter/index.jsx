@@ -62,7 +62,7 @@ const SearchInput = styled.input`
     font-family: 'Oxygen', sans-serif;
     outline: none;
     
-    width: 0;
+    width: 25rem;
     &:focus {
         width: 100%; /* TODO: animate */
         ${media.tablet`width: 25rem;`}
