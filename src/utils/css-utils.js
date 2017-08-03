@@ -5,6 +5,7 @@ const sizes = {
     desktop: 1200,
     tablet: 768,
     phone: 599,
+    verySmall: 280,
 };
 
 export const media = Object.keys(sizes).reduce((accumulator, label) => {
@@ -28,4 +29,4 @@ export const isDesktop = () => (window.innerWidth >= sizes.desktop && window.inn
 
 export const isTablet = () => (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop);
 
-export const isPhone = () => (window.innerWidth < sizes.tablet);
+export const isPhone = () => (window.innerWidth >= sizes.verySmall && window.innerWidth < sizes.tablet);

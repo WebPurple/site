@@ -54,11 +54,11 @@ describe('CSS-utils', () => {
             () => [640, 599].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(true)));
 
         it('should return false in all other cases',
-            () => [1920, 1800, 1600, 1200, 1024, 768, 320].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(false)));
+            () => [1920, 1800, 1600, 1200, 1024, 768, 240].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(false)));
     });
 
     describe('very small screen size', () => {
-        it('should return false for all functions if `window.innerWidth < 599`',
-            () => [...enchFunctions].forEach(func => expect(func(320)).toBe(false)));
+        it('should return false for all functions if `window.innerWidth < 280`',
+            () => Object.keys(enchFunctions).forEach(func => expect(enchFunctions[func](240)).toBe(false)));
     });
 });
