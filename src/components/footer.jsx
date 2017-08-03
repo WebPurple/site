@@ -36,7 +36,7 @@ const FooterElementsStyle = styled.span`
 `;
 
 const BlockElem = styled.p`
-    margin: 1rem 0;
+    margin: 1rem 0.5rem;
     text-align: center;
     ${media.phone`text-align: left;`}
 `;
