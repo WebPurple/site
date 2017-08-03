@@ -86,7 +86,6 @@
     "history": "^4.6.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
-    "md5": "^2.2.1",
     "moment": "^2.18.1",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",

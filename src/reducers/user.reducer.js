@@ -49,9 +49,9 @@ export const loginUser = credentials => dispatch => {
         .catch(() => dispatch(receiveUser(null)));
 };
 
-export const registerUser = ({ email, password }) => dispatch => {
+export const registerUser = credentials => dispatch => {
     dispatch(requestUser());
-    return postJson('/auth/register', { email, password })
+    return postJson('/auth/register', credentials)
         .then(user => dispatch(receiveUser(user)))
         .catch(() => dispatch(receiveUser(null)));
 };
