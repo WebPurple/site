@@ -126,7 +126,7 @@ const SignInStyled = styled(SignIn)`
     `};
 `;
 
-const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
+const Header = ({ isMenuOpen, isPhoneResolution, showMenu, hideMenu, height, user, theme }) => (
     <Wrapper style={{ height }}>
         <MenuHeader>
             <WebpurpleLogo />
@@ -136,7 +136,7 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
             }
         </MenuHeader>
         {isMenuOpen && (
-            <MenuBar>
+            <MenuBar onClick={isPhoneResolution ? hideMenu : null}>
                 <NavigationBar>
                     <MenuItem><NavigationLink to="/" exact>home</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
@@ -153,6 +153,7 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
 
 Header.propTypes = {
     isMenuOpen: React.PropTypes.bool,
+    isPhoneResolution: React.PropTypes.bool,
     showMenu: React.PropTypes.func,
     hideMenu: React.PropTypes.func,
     height: React.PropTypes.string,
@@ -168,6 +169,7 @@ export default compose(
         hideMenu: () => toggleMenu(false),
 
         height: isMenuOpen && isPhone() ? '100vh' : 'auto',
+        isPhoneResolution: isPhone(),
     })),
     connect(({ user }) => ({ user })),
     withTheme,
