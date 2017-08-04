@@ -1,15 +1,24 @@
 const passportConf = require('./../../../src/server/conf/passport');
 
-const hashPassword = passportConf.strategies.local.hashPassword;
+const { hashPassword, checkPassword } = passportConf.strategies.local;
 
 describe('Passport configuration', () => {
+    const password = 'any password';
 
     describe('hash function', () => {
         it('should exist', () => expect(hashPassword).toBeDefined());
-        it('should return Promise instance', () => expect(hashPassword('any')).toBeInstanceOf(Promise));
-        it(
-            'should return Promise of string',
-            () => hashPassword('any').then(hash => expect(typeof hash).toEqual('string')),
-        );
+        it('should return string', () => expect(typeof hashPassword(password)).toEqual('string'));
+    });
+
+    describe('checkPassword function', () => {
+        const passwordHash = hashPassword(password);
+
+        it('should exist', () => expect(checkPassword).toBeDefined());
+        it('should return boolean', () => {
+            expect(typeof checkPassword(password, passwordHash)).toEqual('boolean');
+        });
+        it('should check generated password', () => {
+            expect(checkPassword(password, passwordHash)).toBeTruthy();
+        });
     });
 });
