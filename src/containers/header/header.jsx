@@ -136,8 +136,8 @@ const Header = ({ isMenuOpen, isPhoneResolution, showMenu, hideMenu, height, use
             }
         </MenuHeader>
         {isMenuOpen && (
-            <MenuBar onClick={isPhoneResolution ? hideMenu : null}>
-                <NavigationBar>
+            <MenuBar>
+                <NavigationBar onClick={({ target }) => isPhoneResolution && target.tagName.toLowerCase() === 'a' ? hideMenu() : null}>
                     <MenuItem><NavigationLink to="/" exact>home</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
                     <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>

@@ -50,15 +50,10 @@ describe('CSS-utils', () => {
     });
 
     describe('#isPhone', () => {
-        it('should return true if `599 <= window.innerWidth < 768`',
+        it('should return true if `window.innerWidth < 768`',
             () => [640, 599].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(true)));
 
         it('should return false in all other cases',
-            () => [1920, 1800, 1600, 1200, 1024, 768, 240].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(false)));
-    });
-
-    describe('very small screen size', () => {
-        it('should return false for all functions if `window.innerWidth < 280`',
-            () => Object.keys(enchFunctions).forEach(func => expect(enchFunctions[func](240)).toBe(false)));
+            () => [1920, 1800, 1600, 1200, 1024, 768].forEach(screenWidth => expect(enchFunctions.isPhone(screenWidth)).toBe(false)));
     });
 });
