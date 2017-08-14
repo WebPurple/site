@@ -1,6 +1,7 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
+import styled, { css } from 'styled-components';
 import { media } from '../utils/css-utils';
 
 import WebpurpleLogoIcon from './icons/webpurple-logo-icon';
@@ -26,6 +27,7 @@ const FooterElementsStyle = styled.span`
     font-size: 1.6rem;
     font-weight: bold;
     text-align: center;
+    flex-wrap: wrap;
     ${media.phone`
         display: flex;
         align-items: center;
@@ -55,13 +57,33 @@ const Contacts = styled(FooterElementsStyle)`
     ${media.tablet`margin-left: auto;`}
 `;
 
-const MailInfo = styled.a`
+const FooterLink = css`
     color: ${props => props.theme.lipstick};
     text-decoration: none;
     padding-left: 0.5rem;
-    
+
     &:hover {
         text-decoration: underline;
+    }
+`;
+
+const ContactLink = styled.a`
+    ${FooterLink}
+`;
+
+const ContributorsLink = styled(NavLink) `
+    ${FooterLink}
+    color: #fff;
+    display: block;
+
+    &:after {
+        content: '❤';
+        color: ${props => props.theme.lipstick};
+        margin-left: 5px;
+        margin-right: 5px;
+        font-weight: 900;
+        display: inline-block;
+        text-decoration: none;
     }
 `;
 
@@ -72,7 +94,10 @@ const FooterComponent = () => (
                 <WebpurpleLogoIcon color={'#b3a8c1'} />
             </LogoContainer><BlockElem>&#169; 2013 - {new Date().getFullYear()} Webpurple.</BlockElem><BlockElem>All rights reserved.</BlockElem>
         </Copyrights>
-        <Contacts>Contact us <MailInfo href="mailto:info@webpurle.com">info@webpurle.com</MailInfo></Contacts>
+        <Contacts>
+            <BlockElem><ContributorsLink to="/contributors">Our contributors</ContributorsLink></BlockElem>
+            <BlockElem>Contact us <ContactLink href="mailto:info@webpurle.com">info@webpurle.com</ContactLink></BlockElem>
+        </Contacts>
     </Footer>
 );
 
