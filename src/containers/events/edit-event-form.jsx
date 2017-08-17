@@ -6,11 +6,10 @@ import { Field, FieldArray, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import 'react-select/dist/react-select.css';
-
-import DatePicker from 'react-datepicker';
 import { Creatable as CreatableSelect, AsyncCreatable as AsyncCreatableSelect } from 'react-select';
+
+import DatePicker from '../../components/datepicker/datepicker';
 import Popup from '../../components/common/popup';
 import { allTagsSelector } from './events-reducer';
 import { getJson } from '../../utils/ajax';
