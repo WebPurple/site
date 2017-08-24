@@ -138,10 +138,10 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
         {isMenuOpen && (
             <MenuBar>
                 <NavigationBar>
-                    <MenuItem><NavigationLink to="/" exact>home</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink to="/events">events</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink to="/speakers">speakers</NavigationLink></MenuItem>
-                    <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink onClick={hideMenu} to="/" exact>home</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink onClick={hideMenu} to="/events">events</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink onClick={hideMenu} to="/speakers">speakers</NavigationLink></MenuItem>
+                    <MenuItem><NavigationLink onClick={hideMenu} to="/feed">feed</NavigationLink></MenuItem>
                 </NavigationBar>
                 {user && user.account
                     ? <RoundAvatar url={user.account.vkPhotoUrl} name={user.account.displayName} displayName={false} border={theme.lipstick} />
