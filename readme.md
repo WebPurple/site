@@ -35,6 +35,17 @@ fb: {
     ...
 ```
 
+## Flow
+```javascript
+flow-typed install
+npm run flow
+```
+If the errors occures with the external libraty you could create a stub with: 
+```javascript
+flow-typed create-stub my-package
+```
+You probably want to upgrade your editor/IDE with any Flow plug-in to see errors reported by Flow in the editor.
+
 ## How to contribute?
 We are open to, and grateful for, any contributions made by the community.
 
