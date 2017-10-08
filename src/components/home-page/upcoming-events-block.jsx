@@ -36,7 +36,7 @@ const Header = styled.h4`
 `;
 
 const EventBlock = styled.div`
-    margin-top: 2rem;  
+    margin-top: 2rem;
 `;
 
 const EventTitle = styled.h1`
@@ -146,7 +146,7 @@ const TalkTitle = styled.h3`
     font-weight: 700;
     color: ${props => props.theme.greyishBrown};
     ${media.tablet`
-        font-size: 3rem;  
+        font-size: 3rem;
     `}
 `;
 
@@ -160,7 +160,7 @@ const TalkSpeaker = styled.div`
 const ArrowLink = ArrowButton.withComponent(NavLink);
 
 const Footer = styled.div`
-    margin-top: 7rem;
+    margin-top: 15rem;
     ${media.desktop`
         margin-top: 5rem;
     `}
