@@ -258,6 +258,7 @@ const MapWrapper = styled.div`
 
 const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAttendee, images }) => {
     const isAttendee = (attendees && currentUser && attendees.some(attendee => attendee._id === currentUser._id));
+    const eventIsPast = moment().diff(event.date, 'days') > 0;
 
     return (
         <div>
@@ -277,7 +278,7 @@ const EventPage = ({ event, attendees, currentUser, becomeAttendee, stopBeingAtt
                         <IllBeThereBlock
                             checked={isAttendee}
                             onClick={() => isAttendee ? stopBeingAttendee(event) : becomeAttendee(event)}>
-                            {'I\'ll be there'}
+                            {eventIsPast ? 'I Attended' : 'I\'ll be there'}
                         </IllBeThereBlock> :
                         <IllBeThereNoLoggedInBlock>Sign in to be able to become attendee</IllBeThereNoLoggedInBlock>
                     }
