@@ -13,6 +13,7 @@ import { TagList } from '../common/tag';
 import Loader from '../common/loader';
 import {
     FilterBlock,
+    FilterMenuLink,
     FilterTab,
     Search,
 } from '../page-filter';
@@ -21,6 +22,8 @@ import EventList from './event-list';
 const FlexRow = styled.div`
     display: flex;
 `;
+
+const AddEventButton = FilterMenuLink.extend``;
 
 // TODO: move to the common components if it needs (it is used the pages of events and speakers)
 export const StyledLoader = styled(Loader)`
@@ -90,7 +93,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
-                            <button className="e2e-add-event-button" onClick={onCreateEvent}>Add event</button>
+                            <AddEventButton to="#" className="e2e-add-event-button" onClick={onCreateEvent}>+ Add event</AddEventButton>
                         </FlexRow>
                     )}
                     <Search
