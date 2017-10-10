@@ -96,7 +96,7 @@ const FooterComponent = () => (
         </Copyrights>
         <Contacts>
             <BlockElem><ContributorsLink to="/contributors">Our contributors</ContributorsLink></BlockElem>
-            <BlockElem>Contact us <ContactLink href="mailto:info@webpurle.com">info@webpurle.com</ContactLink></BlockElem>
+            <BlockElem>Contact us <ContactLink href="mailto:info@webpurple.com">info@webpurple.com</ContactLink></BlockElem>
         </Contacts>
     </Footer>
 );
