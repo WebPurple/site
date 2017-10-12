@@ -24,6 +24,7 @@ const FlexRow = styled.div`
 `;
 
 const AddEventButton = FilterMenuLink.withComponent('button').extend`
+  color: ${props => props.theme.greyishBrown};
   cursor: pointer;
   background-color: transparent;
   border: 0px;
@@ -97,7 +98,7 @@ class EventsFeed extends React.Component {
                             {['All', 'Upcoming', 'Past'].map(filter => (
                                 <FilterTab key={filter} to={`/events?show=${filter.toLowerCase()}`} data-active={show === filter.toLowerCase()}>{filter}</FilterTab>
                             ))}
-                            <AddEventButton to="#" className="e2e-add-event-button" onClick={onCreateEvent}>+ Add event</AddEventButton>
+                            <AddEventButton className="e2e-add-event-button" onClick={onCreateEvent}>+ Add event</AddEventButton>
                         </FlexRow>
                     )}
                     <Search
