@@ -21,7 +21,7 @@ export const FilterMenuLink = styled(NavLink)`
     margin: 0 2.5rem 0 0;
     ${media.desktop`margin: 0 4.8rem 0 0;`}
     text-decoration: none;
-    color: ${props => props.theme.greyishBrown}
+    color: ${props => props.theme.greyishBrown};
     font-size: 1.8rem;
     ${media.desktop`font-size: 2.4rem;`}
     font-weight: bold;
