@@ -23,7 +23,11 @@ const FlexRow = styled.div`
     display: flex;
 `;
 
-const AddEventButton = FilterMenuLink.extend``;
+const AddEventButton = FilterMenuLink.withComponent('button').extend`
+  cursor: pointer;
+  background-color: transparent;
+  border: 0px;
+`;
 
 // TODO: move to the common components if it needs (it is used the pages of events and speakers)
 export const StyledLoader = styled(Loader)`
