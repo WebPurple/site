@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavWrapper = styled.div`
@@ -13,7 +12,7 @@ const NavButton = styled.button`
     display: block;
 `;
 
-const DropdownLink = styled(NavLink)`
+const DropdownLink = styled.a`
     position: relative;
     display: block;
     box-sizing: border-box;
@@ -53,7 +52,7 @@ class UserNavigation extends React.Component {
             <NavWrapper>
                 <NavButton type="button" onClick={() => { this.toggleOpen(); }}>{this.props.children}</NavButton>
                 <NavDropdown>
-                    <li><DropdownLink to="/logout">Logout</DropdownLink></li>
+                    <li><DropdownLink href="/logout">Logout</DropdownLink></li>
                 </NavDropdown>
             </NavWrapper>
         );
