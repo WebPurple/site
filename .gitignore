@@ -2,7 +2,6 @@ node_modules
 typings
 flow-typed
 coverage
-.idea
 
 __build__
 
