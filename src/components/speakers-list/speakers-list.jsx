@@ -9,6 +9,7 @@ import MainContainer from '../common/main-container';
 import { FilterBlock, Search } from '../page-filter';
 import { StyledLoader, NoEventsBlock } from '../events-page/events-feed';
 import SpeakerCard from '../../components/speaker-card/speaker-card';
+import SpeakerModal from '../../components/speaker-modal/speaker-modal';
 
 const SpeakerCardContainer = styled.div`
     display: flex;
@@ -45,6 +46,9 @@ const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch }) =
         <ButtonContainer>
             <Button defaultSheme={theme.lipstick} hoverColor={'#fff'}>Load More</Button>
         </ButtonContainer>
+
+        <SpeakerModal>
+        </SpeakerModal>
     </MainContainer>
 ));
 
