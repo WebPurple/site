@@ -1,9 +1,10 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled, {withTheme} from 'styled-components';
 
 import Popup from '../common/popup';
 import SpeakerContacts from '../common/speaker-contacts';
 import Talk from './talk';
+import Avatar from '../common/avatar';
 
 const SpeakerDetailsContainer = styled.div`
 `;
@@ -65,41 +66,37 @@ const Description = styled.div`
     color: #545454;
 `;
 
-const SpeakerModal = () =>
-  <Popup isOpen={false}
-    contentLabel="Speaker"
-    width={1000}>
+const SpeakerModal = ({onRequestClose, isOpen}) =>
+    <Popup isOpen={isOpen} contentLabel="Speaker Info" onRequestClose={onRequestClose}
+           width={1000}>
 
-    <SpeakerDetailsContainer>
-      <PersonalInfoContainer>
-        <Photo />
+        <SpeakerDetailsContainer>
+            <PersonalInfoContainer>
+                <Avatar />
 
-        <PersonalInfoTextContainer>
-          <Name> Chad Fitzgerald </Name>
-          <Rank> Senior Javascript Developer, EvilDinamics </Rank>
-          <Description>
-            Rack mount LCD monitors can save you a lot of space and help you form a convenient
-                         and efficient desktop for your work or home study. The rack mount is set up so that
-                         the keyboard and LCD monitor are on a sliding rack that lest you move them out from
-                         your desk or over it. Once you decide to invest in the rack mount LCD monitor,
-                         you will have to install the rack and the monitor. Here, then, are steps in
-                         installing rack mount LCD monitors.
+                <PersonalInfoTextContainer>
+                    <Name> Chad Fitzgerald </Name>
+                    <Rank> Senior Javascript Developer, EvilDinamics </Rank>
+                    <Description>
+                        Rack mount LCD monitors can save you a lot of space and help you form a convenient
+                        and efficient desktop for your work or home study. The rack mount is set up so that
+                        the keyboard and LCD monitor are on a sliding rack that lest you move them out from
+                        your desk or over it. Once you decide to invest in the rack mount LCD monitor,
+                        you will have to install the rack and the monitor. Here, then, are steps in
+                        installing rack mount LCD monitors.
                     </Description>
-        </PersonalInfoTextContainer>
+                </PersonalInfoTextContainer>
+            </PersonalInfoContainer>
 
-      </PersonalInfoContainer>
-
-      <LinksContainer>
-        <SocialLinks>
-          <SpeakerContacts />
-        </SocialLinks>
-        <TalksContainer>
-          <Talk title={'Do Responsive Sites Have to Be So Tall on Mobile?'}/>
-        </TalksContainer>
-      </LinksContainer>
-
-
-    </SpeakerDetailsContainer>
-  </Popup>
+            <LinksContainer>
+                <SocialLinks>
+                    <SpeakerContacts/>
+                </SocialLinks>
+                <TalksContainer>
+                    <Talk title={'Do Responsive Sites Have to Be So Tall on Mobile?'}/>
+                </TalksContainer>
+            </LinksContainer>
+        </SpeakerDetailsContainer>
+    </Popup>
 
 export default SpeakerModal;

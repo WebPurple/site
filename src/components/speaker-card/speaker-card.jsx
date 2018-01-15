@@ -12,6 +12,7 @@ const Card = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
     ${media.desktop`
         width: 50%;
         padding: 3.5rem 0;
@@ -99,7 +100,7 @@ const CountOFTalks = styled.a`
 // TODO: add field "contacts" into the speakers' object for SpeakerContacts
 // TODO: implement the link to speaker information
 const SpeakerCard = ({ speaker }) => (
-    <Card>
+    <Card onClick={ () => console.log(speaker)}>
         <SpeakerAvatarContainer>
             <Avatar avatar={speaker.vkPhotoUrl} />
         </SpeakerAvatarContainer>

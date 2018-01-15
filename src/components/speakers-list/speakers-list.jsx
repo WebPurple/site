@@ -27,7 +27,7 @@ const ButtonContainer = styled.div`
     justify-content: center;
 `;
 
-const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch }) => (
+const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch, speakerModalIsOpen }) => (
     <MainContainer>
         <BlockHeader>Speakers</BlockHeader>
         <FilterBlock>
@@ -47,8 +47,7 @@ const SpeakersList = withTheme(({ theme, speakersList, isFetching, onSearch }) =
             <Button defaultSheme={theme.lipstick} hoverColor={'#fff'}>Load More</Button>
         </ButtonContainer>
 
-        <SpeakerModal>
-        </SpeakerModal>
+        <SpeakerModal isOpen={speakerModalIsOpen} onRequestClose={this.handleCloseModal} />
     </MainContainer>
 ));
 

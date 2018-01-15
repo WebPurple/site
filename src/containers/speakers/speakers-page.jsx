@@ -9,14 +9,27 @@ import SpeakersList from '../../components/speakers-list/speakers-list';
 import { loadEvents, searchSpeakers, speakersSelector } from '../events/events-reducer';
 
 class SpeakersPageContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = { speakerModalIsOpen: true };
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+    }
+
+    handleCloseModal() {
+        this.setState({ speakerModalIsOpen: !this.state.speakerModalIsOpen });
+    }
+
     componentDidMount() {
         this.props.loadEvents();
     }
+
     render() {
         return (
             <div>
+                <button onClick = { this.handleCloseModal }>ЧАсло</button>
                 <SubscriptionForm />
                 <SpeakersList {...this.props} />
+
             </div>
         );
     }
