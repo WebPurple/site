@@ -16,7 +16,6 @@ script:
 - yarn build
 - yarn lint
 - yarn coveralls
-- yarn e2e
 deploy:
   provider: heroku
   app:
