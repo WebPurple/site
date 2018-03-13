@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 if (process.env.NODE_ENV === 'travisci') {
     // if we set NODE_ENV === 'production' on Travis, it will not install devDependencies
@@ -46,6 +47,11 @@ const plugins = [
         title: 'WebPurple',
         template: path.resolve(__dirname, 'src', 'index.html'),
     }),
+
+		new ExtractTextPlugin({
+			filename: 'styles.css',
+			allChunks: true
+		})
 ];
 
 if (isProd) {
@@ -85,6 +91,13 @@ const config = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: ['happypack/loader?id=JavaScript'],
+            },
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader']
+                })
             },
             {
                 test: /\.css$/,
