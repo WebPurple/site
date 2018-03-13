@@ -9,7 +9,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-select/dist/react-select.css';
 
-import DatePicker from 'react-datepicker';
+import DatePicker from '../../components/datepicker/datepicker';
 import { Creatable as CreatableSelect, AsyncCreatable as AsyncCreatableSelect } from 'react-select';
 import Popup from '../../components/common/popup';
 import { allTagsSelector } from './events-reducer';
