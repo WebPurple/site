@@ -14,6 +14,8 @@ const userSchema = mongoose.Schema({ // eslint-disable-line new-cap
     /* Facebook */
     fbUserId: String, // id
     longLiveAccessToken: String,
+    /* Basic Auth */
+    password: { type: String },
 });
 
 module.exports = userSchema;

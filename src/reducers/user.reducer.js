@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions';
 import {
     getJson,
     putJson,
+    postJson,
 } from '../utils/ajax';
 
 export const REQUEST_USER = 'request_user';
@@ -40,6 +41,20 @@ export function fetchUser() {
             .catch(() => dispatch(receiveUser(null)));
     };
 }
+
+export const loginUser = credentials => dispatch => {
+    dispatch(requestUser());
+    return postJson('/auth/login', credentials)
+        .then(user => dispatch(receiveUser(user)))
+        .catch(() => dispatch(receiveUser(null)));
+};
+
+export const registerUser = credentials => dispatch => {
+    dispatch(requestUser());
+    return postJson('/auth/register', credentials)
+        .then(user => dispatch(receiveUser(user)))
+        .catch(() => dispatch(receiveUser(null)));
+};
 
 export function saveUser(user) {
     return dispatch => {

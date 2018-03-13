@@ -34,7 +34,7 @@ Feature: Event CRUD
     Then Event form is closed
     And 1 event is "e2e event"
 
-  Scenario: Delete event
-    Given 1 event is "e2e event"
-    When I remove 1 event
-    Then 1 event is not "e2e event"
+#  Scenario: Delete event
+#    Given 1 event is "e2e event"
+#    When I remove 1 event
+#    Then 1 event is not "e2e event"

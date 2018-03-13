@@ -1,4 +1,8 @@
+const bcrypt = require('bcrypt');
+
 const appConf = require('./server');
+
+const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
 
 module.exports = {
     strategies: {
@@ -14,5 +18,9 @@ module.exports = {
             clientSecret: process.env.FB_CLIENT_SECRET,
             callbackURL: process.env.FB_CALLBACK_URL || `${appConf.protocol}://${appConf.host}:${appConf.port}/auth/fb/callback`,
         },
+        local: {
+            hashPassword: password => bcrypt.hashSync(password, saltRounds),
+            checkPassword: (password, hash) => bcrypt.compareSync(password, hash),
+        }
     },
 };

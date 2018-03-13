@@ -12,7 +12,7 @@ export const FilterBlock = styled.div`
     border-bottom: 2px solid #ededed;
 `;
 
-export const FilterTab = styled(NavLink)`
+export const FilterMenuLink = styled(NavLink)`
     position: relative;
     display: block;
     box-sizing: border-box;
@@ -21,12 +21,12 @@ export const FilterTab = styled(NavLink)`
     margin: 0 2.5rem 0 0;
     ${media.desktop`margin: 0 4.8rem 0 0;`}
     text-decoration: none;
-    color: ${props => props.theme.greyishBrown}
+    color: ${props => props.theme.greyishBrown};
     font-size: 1.8rem;
     ${media.desktop`font-size: 2.4rem;`}
     font-weight: bold;
     font-family: 'Rubik', sans-serif;
-    
+
     &:after {
         /* this might should be done via activeClassName https://github.com/styled-components/styled-components/issues/184 */
         content: ${props => props['data-active'] ? '""' : 'none'};
@@ -36,14 +36,16 @@ export const FilterTab = styled(NavLink)`
         bottom: -2px;
         border-bottom: 4px solid ${props => props.theme.lipstick};
     }
-    
+
     &:hover {
-    
+
         &:after {
             content: '';
         }
     }
 `;
+
+export const FilterTab = FilterMenuLink.extend``;
 
 const SearchWrapper = styled.label`
     position: relative;
@@ -61,8 +63,8 @@ const SearchInput = styled.input`
     line-height: 2.8rem;
     font-family: 'Oxygen', sans-serif;
     outline: none;
-    
-    width: 25rem;
+
+    width: 0;
     &:focus {
         width: 100%; /* TODO: animate */
         ${media.tablet`width: 25rem;`}

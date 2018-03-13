@@ -15,12 +15,16 @@ if (process.env.NODE_ENV === 'travisci') {
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const babelLoader = {
+    loader: 'babel-loader',
+};
+
 const plugins = [
 
     new HappyPack({
         id: 'JavaScript',
         threads: Math.min(os.cpus().length, 4),
-        loaders: ['babel-loader'],
+        loaders: [babelLoader],
     }),
 
     new ForceCaseSensitivityPlugin(),
@@ -58,6 +62,10 @@ if (isProd) {
         }),
         new webpack.optimize.UglifyJsPlugin()
     );
+} else {
+    babelLoader.query = {
+        plugins: ['styled-components'],
+    };
 }
 
 const config = {

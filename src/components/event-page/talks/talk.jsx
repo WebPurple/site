@@ -128,7 +128,11 @@ const EventTalk = ({ talk }) => (
         <AvatarWrapper><Avatar avatar={talk.speaker.vkPhotoUrl} stretch /></AvatarWrapper>
         <div>
             <Header>{talk.title}</Header>
-            <SpeakerJobTitle>{talk.speaker.displayName}, {talk.speaker.jobTitle}</SpeakerJobTitle>
+            {
+                talk.speaker.jobTitle ? 
+                    <SpeakerJobTitle>{talk.speaker.displayName}, {talk.speaker.jobTitle}</SpeakerJobTitle> : 
+                    <SpeakerJobTitle>{talk.speaker.displayName}</SpeakerJobTitle>
+            }
             { talk.description ? <Description>{talk.description}</Description> : null }
             { talk.links ? <LinksGrid>
                 {
