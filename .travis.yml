@@ -1,5 +1,5 @@
 language: node_js
-node_js: '6.2'
+node_js: '6.2.0'
 cache: yarn
 git:
   depth: 3
@@ -16,7 +16,6 @@ script:
 - yarn build
 - yarn lint
 - yarn coveralls
-- yarn e2e
 deploy:
   provider: heroku
   app:
