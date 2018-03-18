@@ -28,4 +28,4 @@ export const isDesktop = () => (window.innerWidth >= sizes.desktop && window.inn
 
 export const isTablet = () => (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop);
 
-export const isPhone = () => (window.innerWidth >= sizes.phone && window.innerWidth < sizes.tablet);
+export const isPhone = () => (window.innerWidth < sizes.tablet);
