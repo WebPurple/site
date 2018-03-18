@@ -14,6 +14,7 @@ import WebpurpleLogo from '../../components/webpurple-logo/webpurple-logo';
 
 import { MenuIcon, CloseIcon } from '../../components/icons/header/index';
 import RoundAvatar from '../../components/common/round-avatar';
+import UserNavigation from './user-navigation';
 
 const Wrapper = styled.header`
     box-sizing: border-box; 
@@ -144,7 +145,7 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
                     <MenuItem><NavigationLink to="/feed">feed</NavigationLink></MenuItem>
                 </NavigationBar>
                 {user && user.account
-                    ? <RoundAvatar url={user.account.vkPhotoUrl} name={user.account.displayName} displayName={false} border={theme.lipstick} />
+                    ? <UserNavigation><RoundAvatar url={user.account.vkPhotoUrl} name={user.account.displayName} displayName={false} border={theme.lipstick} /></UserNavigation>
                     : <SignInStyled />}
             </MenuBar>
         )}
