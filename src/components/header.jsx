@@ -2,12 +2,12 @@ import React from 'react'
 import styled, { withTheme } from 'styled-components'
 import Link from 'gatsby-link'
 
-import { media, isPhone } from '../../utils/css-utils'
+import { media, isPhone } from '../utils/css-utils'
 
-import WebpurpleLogo from '../../components/webpurple-logo/webpurple-logo'
+import WebpurpleLogo from './webpurple-logo/webpurple-logo'
 
-import { MenuIcon, CloseIcon } from '../../components/icons/header/index'
-import RoundAvatar from '../../components/common/round-avatar'
+import { MenuIcon, CloseIcon } from './icons/header/index'
+import RoundAvatar from './common/round-avatar'
 
 const Wrapper = styled.header`
   box-sizing: border-box;
@@ -107,14 +107,6 @@ const NavigationLink = styled(Link)`
   ${media.tablet`
         font-size: 1.6rem;
         margin: 0 2.5rem 0 0;
-    `};
-`
-
-const SignInStyled = styled(SignIn)`
-  margin: 0 0 0 2rem;
-
-  ${media.tablet`
-        margin: auto;
     `};
 `
 
