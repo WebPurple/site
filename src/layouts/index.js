@@ -11,15 +11,31 @@ const Container = styled.div`
   flex-direction: column;
 
   width: 100%;
-  ${media.desktop`width: 1280px;`} ${media.hd`width: 1440px;`};
+  ${media.desktop`width: 1280px;`} ${media.hd`width: 1440px;`}
+
+  const theme = {
+    grape: '#432867',
+    warmGrey: '#a1a1a1',
+    greyishBrown: '#545454',
+    lipstick: '#e62270',
+    vividPurple: '#9012fe',
+    vividPurpleTwo: '#9013fe',
+    cerise: '#ee2a7b',
+    warmPurple: '#662d91',
+    rouge: '#b21d3d',
+    rosePink: '#f290b7',
+    liliac: '#c788fe',
+}
 `
 
 const TemplateWrapper = ({ children }) => (
-  <Container>
-    <Helmet title="WebPurple" />
-    <Header />
-    <main>{children()}</main>
-  </Container>
+  <ThemeProvider theme={theme}>
+    <Container>
+      <Helmet title="WebPurple" />
+      <Header />
+      <main>{children()}</main>
+    </Container>
+  </ThemeProvider>
 )
 
 TemplateWrapper.propTypes = {

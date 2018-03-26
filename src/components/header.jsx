@@ -1,8 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { withState, compose, mapProps } from 'recompose'
 import styled, { withTheme } from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import Link from 'gatsby-link'
 
 import { media, isPhone } from '../../utils/css-utils'
 
@@ -87,7 +85,7 @@ const MenuItem = styled.li`
   display: inline-flex;
 `
 
-const NavigationLink = styled(NavLink)`
+const NavigationLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
   font-family: Rubik, sans-serif;
@@ -120,7 +118,7 @@ const SignInStyled = styled(SignIn)`
     `};
 `
 
-const Header = ({ isMenuOpen, showMenu, hideMenu, height, user, theme }) => (
+const Header = ({ isMenuOpen, showMenu, hideMenu, height, theme }) => (
   <Wrapper style={{ height }}>
     <MenuHeader>
       <WebpurpleLogo />
@@ -158,7 +156,6 @@ Header.propTypes = {
   showMenu: React.PropTypes.func,
   hideMenu: React.PropTypes.func,
   height: React.PropTypes.string,
-  user: React.PropTypes.object,
   theme: React.PropTypes.object,
 }
 
@@ -171,6 +168,5 @@ export default compose(
 
     height: isMenuOpen && isPhone() ? '100vh' : 'auto',
   })),
-  connect(({ user }) => ({ user })),
   withTheme,
 )(Header)
