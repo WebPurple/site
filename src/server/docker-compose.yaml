@@ -1,0 +1,19 @@
+
+version: "3"
+services:
+  web:
+    image: kitos/webpurple
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 500M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+networks:
+  webnet:
