@@ -1,6 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 import Link from 'gatsby-link'
+import { compose, withState, mapProps } from 'recompose'
 
 import { media, isPhone } from '../utils/css-utils'
 
@@ -144,11 +146,11 @@ const Header = ({ isMenuOpen, showMenu, hideMenu, height, theme }) => (
 )
 
 Header.propTypes = {
-  isMenuOpen: React.PropTypes.bool,
-  showMenu: React.PropTypes.func,
-  hideMenu: React.PropTypes.func,
-  height: React.PropTypes.string,
-  theme: React.PropTypes.object,
+  isMenuOpen: PropTypes.bool,
+  showMenu: PropTypes.func,
+  hideMenu: PropTypes.func,
+  height: PropTypes.string,
+  theme: PropTypes.object,
 }
 
 export default compose(
