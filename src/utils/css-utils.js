@@ -1,31 +1,36 @@
-import { css } from 'styled-components';
+import { css } from 'styled-components'
 
 const sizes = {
-    hd: 1800,
-    desktop: 1200,
-    tablet: 768,
-    phone: 599,
-};
+  hd: 1800,
+  desktop: 1200,
+  tablet: 768,
+  phone: 599,
+}
 
 export const media = Object.keys(sizes).reduce((accumulator, label) => {
-    // use em in breakpoints to work properly cross-browser and support users
-    // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-    const emSize = sizes[label] / 16;
+  // use em in breakpoints to work properly cross-browser and support users
+  // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
+  const emSize = sizes[label] / 16
 
-    // eslint-disable-next-line no-param-reassign
-    accumulator[label] = (...args) => css`
+  // eslint-disable-next-line no-param-reassign
+  accumulator[label] = (...args) => css`
     @media (min-width: ${emSize}em) {
-      ${css(...args)}
+      ${css(...args)};
     }
-    `;
+  `
 
-    return accumulator;
-}, {});
+  return accumulator
+}, {})
 
-export const isHD = () => (window.innerWidth >= sizes.hd);
+export const isHD = () => window && window.innerWidth >= sizes.hd
 
-export const isDesktop = () => (window.innerWidth >= sizes.desktop && window.innerWidth < sizes.hd);
+export const isDesktop = () =>
+  window && (window.innerWidth >= sizes.desktop && window.innerWidth < sizes.hd)
 
-export const isTablet = () => (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop);
+export const isTablet = () =>
+  window &&
+  (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop)
 
-export const isPhone = () => (window.innerWidth >= sizes.phone && window.innerWidth < sizes.tablet);
+export const isPhone = () =>
+  window &&
+  (window.innerWidth >= sizes.phone && window.innerWidth < sizes.tablet)
