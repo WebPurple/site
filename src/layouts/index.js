@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from 'styled-components'
 
 import { media } from '../utils/css-utils'
 import Header from '../components/header'
+import Footer from '../components/footer'
 
 const Container = styled.div`
   margin: 0 auto;
@@ -35,6 +36,7 @@ const TemplateWrapper = ({ children }) => (
       <Helmet title="WebPurple" />
       <Header />
       <main>{children()}</main>
+      <Footer />
     </Container>
   </ThemeProvider>
 )
