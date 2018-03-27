@@ -35,8 +35,12 @@ collections:
     slug: "{{slug}}"
     fields:
       - label: "Fullname"
-        name: "fullname"
+        name: "title"
         widget: "string"
+
+      - label: "Avatar"
+        name: "avatar"
+        widget: "image"
 
   - name: "blog"
     label: "Blog"
