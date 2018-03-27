@@ -38,10 +38,6 @@ collections:
         name: "fullname"
         widget: "string"
 
-      - label: "Avatar"
-        name: "avatar"
-        widget: "image"
-
   - name: "blog"
     label: "Blog"
     folder: "src/pages/blog"
