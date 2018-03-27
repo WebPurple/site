@@ -26,8 +26,8 @@ collections:
         name: "speaker"
         widget: "relation"
         collections: "speaker"
-        searchFields: ["fullname"]
-        valueField: "fullname"
+        searchFields: ["title"]
+        valueField: "title"
 
   - name: "speaker"
     label: "Speaker"
