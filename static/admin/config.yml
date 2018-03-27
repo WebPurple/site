@@ -10,6 +10,7 @@ collections:
   - name: "event"
     label: "Event"
     folder: "src/pages/event"
+    extension: "yaml"
     create: true
     slug: "{{slug}}"
     fields:
@@ -31,6 +32,7 @@ collections:
   - name: "speaker"
     label: "Speaker"
     folder: "src/pages/speaker"
+    extension: "yaml"
     create: true
     slug: "{{slug}}"
     fields:
