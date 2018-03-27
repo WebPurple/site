@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter',
+    title: 'WebPurple',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-filesystem',
