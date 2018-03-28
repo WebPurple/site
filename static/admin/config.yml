@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: kitos/web-purple
-  branch: gatsby
+  branch: master
 
 media_folder: static/img
 public_folder: /img
