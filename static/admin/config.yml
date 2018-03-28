@@ -64,7 +64,7 @@ collections:
         widget: "string"
 
       - label: "Job position (title)"
-        name: "jobPosition"
+        name: "jobTitle"
         widget: "string"
 
       - label: "Social networks"
