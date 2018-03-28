@@ -212,7 +212,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
 
 UpcomingEvents.propTypes = {
   event: PropTypes.shape({
-    location: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     talks: PropTypes.array.isRequired,
   }),

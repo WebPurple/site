@@ -96,7 +96,7 @@ const Talk = styled.li`
 const EventList = ({ events, theme }) => (
   <Container>
     {events.map((event, eventIndex) => (
-      <EventSnippet className="e2e-event-card" key={event._id}>
+      <EventSnippet className="e2e-event-card" key={event.title}>
         <BackgroundShape>
           <BackgroundImage url={event.image} />
         </BackgroundShape>
