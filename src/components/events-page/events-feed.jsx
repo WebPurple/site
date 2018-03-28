@@ -2,30 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { List, Set } from 'immutable'
-
 import { isPhone, isTablet } from '../../utils/css-utils'
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'
 import { TagList } from '../common/tag'
-import Loader from '../common/loader'
-import { FilterBlock, FilterMenuLink, FilterTab, Search } from '../page-filter'
+import { FilterBlock, FilterTab, Search } from '../page-filter'
 import EventList from './event-list'
 
 const FlexRow = styled.div`
   display: flex;
-`
-
-const AddEventButton = FilterMenuLink.withComponent('button').extend`
-  color: ${props => props.theme.greyishBrown};
-  cursor: pointer;
-  background-color: transparent;
-  border: 0px;
-`
-
-// TODO: move to the common components if it needs (it is used the pages of events and speakers)
-export const StyledLoader = styled(Loader)`
-  margin: 15rem auto;
 `
 
 // TODO: move to the common components if it needs (it is used the pages of events and speakers)
@@ -127,10 +112,7 @@ EventsFeed.propTypes = {
   selectedTags: PropTypes.instanceOf(Set),
   show: PropTypes.string,
   onTagClick: PropTypes.func,
-  onCreateEvent: PropTypes.func,
-  onDeleteEvent: PropTypes.func,
   onSearch: PropTypes.func,
-  isFetching: PropTypes.bool,
 }
 
 export default EventsFeed

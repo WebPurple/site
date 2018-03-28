@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled, { withTheme } from 'styled-components'
-import { List } from 'immutable'
 
 import Masonry from 'react-masonry-component'
 import moment from 'moment'
 
 import { media, isPhone, isTablet } from '../../utils/css-utils'
 import { TagList } from '../common/tag'
-import { ClockIcon, CloseIcon, PlaceholderIcon } from '../icons'
+import { ClockIcon, PlaceholderIcon } from '../icons'
 
 const gutter = isTablet() ? 30 : 75 // space between cards
 
@@ -73,26 +72,6 @@ const Title = styled(Link)`
   color: ${props => props.color || props.theme.vividPurpleTwo};
 `
 
-const ActionButtons = styled.ul`
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex;
-  list-style: none;
-`
-
-const DeleteButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
-
-  &:hover #closeIcon {
-    stroke: ${props => props.theme.lipstick};
-  }
-`
-
 const Info = styled.span`
   display: flex;
   margin-bottom: 1.6rem;
@@ -114,7 +93,7 @@ const Talk = styled.li`
   margin: 1.6rem 0;
 `
 
-const EventList = ({ events, theme, onDelete }) => (
+const EventList = ({ events, theme }) => (
   <Container>
     {events.map((event, eventIndex) => (
       <EventSnippet className="e2e-event-card" key={event._id}>
@@ -122,16 +101,6 @@ const EventList = ({ events, theme, onDelete }) => (
           <BackgroundImage url={event.image} />
         </BackgroundShape>
         <header>
-          <ActionButtons>
-            <li>
-              <DeleteButton
-                title="Delete event"
-                className="e2e-delete-event"
-                onClick={() => onDelete(event)}>
-                <CloseIcon />
-              </DeleteButton>
-            </li>
-          </ActionButtons>
           <Info>
             <ClockIcon style={{ marginRight: '1.6rem' }} />
             <time>{moment(event.date).format('LLL')}</time>
@@ -157,9 +126,8 @@ const EventList = ({ events, theme, onDelete }) => (
 )
 
 EventList.propTypes = {
-  events: PropTypes.instanceOf(List).isRequired,
+  events: PropTypes.arrayOf(Object).isRequired,
   theme: PropTypes.object.isRequired,
-  onDelete: PropTypes.func,
 }
 
 export default withTheme(EventList)
