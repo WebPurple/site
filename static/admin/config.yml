@@ -73,7 +73,8 @@ collections:
         fields:
           - label: "Type"
             name: "type"
-            widget: ["vk", "fb", "twitter", "site"]
+            widget: "select"
+            options: ["vk", "fb", "twitter", "site"]
 
           - label: "Link"
             name: "link"
