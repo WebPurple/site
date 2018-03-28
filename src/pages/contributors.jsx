@@ -2,10 +2,8 @@ import React from 'react';
 import { compose, lifecycle, withState } from 'recompose';
 import styled from 'styled-components';
 
-import { getJson } from '../../utils/ajax';
-
-import Header from '../../components/common/block-header';
-import Loader from '../../components/common/loader';
+import Header from '../components/common/block-header';
+import Loader from '../components/common/loader';
 
 const ContributorsList = styled.ul`
     list-style: none;
@@ -54,6 +52,7 @@ const Note = styled.footer`
 const ContributorsPage = ({ contributors }) => (
     <section>
         <Header>Contributors</Header>
+      {console.log(contributors)}
         {!contributors ? <StyledLoader size="80" border="8" />
             : (
                 <ContributorsList>
@@ -75,15 +74,12 @@ const ContributorsPage = ({ contributors }) => (
     </section>
 );
 
-ContributorsPage.propTypes = {
-    contributors: React.PropTypes.array,
-};
-
 export default compose(
     withState('contributors', 'setContributors'),
     lifecycle({
         componentDidMount() {
-            getJson('https://api.github.com/repos/kitos/web-purple/contributors')
+            fetch('https://api.github.com/repos/kitos/web-purple/contributors')
+              .then(r => r.json())
                 .then(contributors => this.props.setContributors(contributors));
         },
     }),
