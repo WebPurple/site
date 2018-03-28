@@ -57,7 +57,7 @@ export default mapProps(
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allEventYaml {
+    allEventYaml(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           title

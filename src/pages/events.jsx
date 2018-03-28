@@ -14,7 +14,7 @@ export default EventsPage
 
 export const pageQuery = graphql`
   query AllEvents {
-    allEventYaml {
+    allEventYaml(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           title
