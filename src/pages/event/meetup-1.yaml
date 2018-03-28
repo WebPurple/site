@@ -1,7 +1,10 @@
 title: 'Meetup #1'
-description: Some description
-date: 2018-03-28T19:29:01.269Z
-address: Ryazan
+description: >-
+  Яша расскажет о том: - почему, на его взгляд, будущее за строго-типизированные
+  диалектами JS - куда катится React и веб-разработка в целом - просто поделится
+  опытом и всякими фишечками.
+date: 2015-06-03T22:29:01+03:00
+address: 'Ryazan, Горького, 102 "НеКафе"'
 talks:
-  - speaker: Nikita Kirsanov
-    title: React composition
+  - speaker: Яков Жмуров
+    title: 'React.JS, TypeScript, и прочее такое'
