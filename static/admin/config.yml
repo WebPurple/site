@@ -10,7 +10,9 @@ collections:
   - name: "event"
     label: "Event"
     folder: "src/pages/event"
+    extension: "yaml"
     create: true
+    delete: false
     slug: "{{slug}}"
     fields:
       - label: "Title"
@@ -23,18 +25,29 @@ collections:
       
       - label: "Date"
         name: "date"
-        widget: "date"
+        widget: "datetime"
 
-      - label: "Speaker"
-        name: "speaker"
-        widget: "relation"
-        collection: "speaker"
-        searchFields: ["title"]
-        valueField: "title"
+      - label: "Address"
+        name: "address"
+
+      - label: "Talks"
+        name: "talks"
+        widget: "list"
+        fields:
+          - label: "Title"
+            name: "title"
+
+          - label: "Speaker"
+            name: "speaker"
+            widget: "relation"
+            collection: "speaker"
+            searchFields: ["title"]
+            valueField: "title"
 
   - name: "speaker"
     label: "Speaker"
     folder: "src/pages/speaker"
+    extension: "yaml"
     create: true
     slug: "{{slug}}"
     fields:
@@ -45,3 +58,23 @@ collections:
       - label: "Avatar"
         name: "avatar"
         widget: "image"
+
+      - label: "Organization"
+        name: "organization"
+        widget: "string"
+
+      - label: "Job position (title)"
+        name: "jobPosition"
+        widget: "string"
+
+      - label: "Social networks"
+        name: "socialNetworks"
+        widget: "list"
+        fields:
+          - label: "Type"
+            name: "type"
+            widget: ["vk", "fb", "twitter", "site"]
+
+          - label: "Link"
+            name: "link"
+            type: "string"
