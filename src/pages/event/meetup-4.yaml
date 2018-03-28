@@ -1,0 +1,7 @@
+title: 'Meetup #4'
+description: История развития модулей и script-loader'ов
+date: 2015-09-24T01:21:02+03:00
+address: Библиотека им. Горького
+talks:
+  - speaker: Nikita Kirsanov
+    title: JS modules and loaders
