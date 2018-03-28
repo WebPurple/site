@@ -1,11 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
-import { lifecycle } from 'recompose'
 
-const IndexPage = ({ data: { allMarkdownRemark: { edges: events } } }) => (
+const IndexPage = props => (
   <div>
-    <ul>{events.map(e => <li>{JSON.stringify(e)}</li>)}</ul>
+    <ul>{JSON.stringify(props)}</ul>
   </div>
 )
 
@@ -13,12 +10,15 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    allEventYaml {
       edges {
         node {
-          frontmatter {
+          title
+          description
+          date
+          talks {
             title
-            date
+            speaker
           }
         }
       }

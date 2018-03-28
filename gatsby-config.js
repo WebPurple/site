@@ -27,6 +27,7 @@ module.exports = {
         plugins: [],
       },
     },
+    `gatsby-transformer-yaml`,
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {

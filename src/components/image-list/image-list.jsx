@@ -1,38 +1,46 @@
-import React from 'react';
-import Masonry from 'react-masonry-component';
+import React from 'react'
+import Masonry from 'react-masonry-component'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import {
-    media,
-    isPhone,
-    isDesktop,
-    isHD,
-    isTablet,
-} from '../../utils/css-utils';
+  media,
+  isPhone,
+  isDesktop,
+  isHD,
+  isTablet,
+} from '../../utils/css-utils'
 
 const getGutterSpace = () => {
-    let gutter = 20;
-    if (isHD()) {
-        gutter = 12;
-    } else if (isDesktop()) {
-        gutter = 16;
-    } else if (isTablet()) {
-        gutter = 8;
-    }
-    return gutter;
-};
+  let gutter = 20
+  if (isHD()) {
+    gutter = 12
+  } else if (isDesktop()) {
+    gutter = 16
+  } else if (isTablet()) {
+    gutter = 8
+  }
+  return gutter
+}
 
-const ImagesWrapper = styled(({ children, className }) => (
-    isPhone()
-        ? <ul className={className}>{children}</ul>
-        : <Masonry className={className} elementType="ul" options={{ gutter: getGutterSpace(), fitWidth: true }}>{children}</Masonry>
-))`
-    list-style: none;
-    padding: 0;
-    margin: 3.6rem auto 0;
-    ${media.desktop`margin-top: 10rem;`}
-`;
+const ImagesWrapper = styled(
+  ({ children, className }) =>
+    isPhone() ? (
+      <ul className={className}>{children}</ul>
+    ) : (
+      <Masonry
+        className={className}
+        elementType="ul"
+        options={{ gutter: getGutterSpace(), fitWidth: true }}>
+        {children}
+      </Masonry>
+    ),
+)`
+  list-style: none;
+  padding: 0;
+  margin: 3.6rem auto 0;
+  ${media.desktop`margin-top: 10rem;`};
+`
 
 const ImageWrapper = styled.li`
     position: relative;
@@ -68,21 +76,21 @@ const ImageWrapper = styled.li`
     &:hover {
         background-size: 110% 110%;
     }
-`;
+`
 
 const ImageStyled = styled.img`
-    max-width: 100%;
-    visibility: hidden;
-`;
+  max-width: 100%;
+  visibility: hidden;
+`
 
 const Footer = styled.div`
-    margin-top: 3.6rem;
-    text-align: center;
+  margin-top: 3.6rem;
+  text-align: center;
 
-    ${media.tablet`
+  ${media.tablet`
         margin-top: 6.4rem;
-    `}
-`;
+    `};
+`
 
 const MorePicsButton = styled.button`
     width: 100%;
@@ -112,51 +120,49 @@ const MorePicsButton = styled.button`
     ${media.hd`
         width: 22.4rem;
     `}
-`;
+`
 
 class ImageList extends React.Component {
+  static defaultImagesPerPage = 10
 
-    static defaultImagesPerPage = 10;
+  static propTypes = {
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    imagesPerPage: PropTypes.number,
+  }
 
-    static propTypes = {
-        images: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-        imagesPerPage: React.PropTypes.number,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      count: this.props.imagesPerPage || ImageList.defaultImagesPerPage,
     }
 
-    constructor(props) {
-        super(props);
+    this.showMore = this.showMore.bind(this)
+  }
 
-        this.state = {
-            count: this.props.imagesPerPage || ImageList.defaultImagesPerPage,
-        };
+  showMore() {
+    const delta = this.props.imagesPerPage || ImageList.defaultImagesPerPage
+    this.setState({ count: this.state.count + delta })
+  }
 
-        this.showMore = this.showMore.bind(this);
-    }
-
-    showMore() {
-        const delta = this.props.imagesPerPage || ImageList.defaultImagesPerPage;
-        this.setState({ count: this.state.count + delta });
-    }
-
-    render() {
-        return (
-            <div>
-                <ImagesWrapper>
-                    {
-                        this.props.images.slice(0, this.state.count)
-                            .map(url => <ImageWrapper image={url} key={url}><ImageStyled src={url} role="presentation" /></ImageWrapper>)
-                    }
-                </ImagesWrapper>
-                {
-                    this.props.images.length > this.state.count ?
-                        <Footer>
-                            <MorePicsButton onClick={this.showMore}>More Pics</MorePicsButton>
-                        </Footer> :
-                        null
-                }
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <ImagesWrapper>
+          {this.props.images.slice(0, this.state.count).map(url => (
+            <ImageWrapper image={url} key={url}>
+              <ImageStyled src={url} role="presentation" />
+            </ImageWrapper>
+          ))}
+        </ImagesWrapper>
+        {this.props.images.length > this.state.count ? (
+          <Footer>
+            <MorePicsButton onClick={this.showMore}>More Pics</MorePicsButton>
+          </Footer>
+        ) : null}
+      </div>
+    )
+  }
 }
 
-export default ImageList;
+export default ImageList

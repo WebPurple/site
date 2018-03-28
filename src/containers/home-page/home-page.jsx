@@ -1,53 +1,49 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 import {
-    loadEvents,
-    pastTalksSelector,
-    upcomingEventSelector,
-} from '../events/events-reducer';
+  loadEvents,
+  pastTalksSelector,
+  upcomingEventSelector,
+} from '../events/events-reducer'
 
-import PastEvents from '../../components/home-page/past-events';
-import UpcomingEvents from '../../components/home-page/upcoming-events-block';
-import SocialLinks from '../../components/home-page/social-links-block';
-import SubscriptionForm from '../../components/subscription-form/subscription-form';
+import PastEvents from '../../components/home-page/past-events'
+import UpcomingEvents from '../../components/home-page/upcoming-events-block'
+import SocialLinks from '../../components/home-page/social-links-block'
+import SubscriptionForm from '../../components/subscription-form/subscription-form'
 
 class HomePage extends React.Component {
+  static propTypes = {
+    loadEvents: PropTypes.func.isRequired,
+    pastTalks: PropTypes.array,
+    upcomingEvent: PropTypes.object,
+  }
 
-    static propTypes = {
-        loadEvents: React.PropTypes.func.isRequired,
-        pastTalks: React.PropTypes.array,
-        upcomingEvent: React.PropTypes.object,
-    };
+  componentDidMount() {
+    this.props.loadEvents()
+  }
 
-    componentDidMount() {
-        this.props.loadEvents();
-    }
+  render() {
+    const { pastTalks, upcomingEvent } = this.props
 
-    render() {
-        const { pastTalks, upcomingEvent } = this.props;
-
-        return (
-            <div>
-                {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
-                <PastEvents talks={pastTalks} />
-                <SubscriptionForm />
-                <SocialLinks />
-            </div>
-        );
-    }
+    return (
+      <div>
+        {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
+        <PastEvents talks={pastTalks} />
+        <SubscriptionForm />
+        <SocialLinks />
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
-    pastTalks: pastTalksSelector(state),
-    upcomingEvent: upcomingEventSelector(state),
-});
+  pastTalks: pastTalksSelector(state),
+  upcomingEvent: upcomingEventSelector(state),
+})
 
 const mapDispatchToProps = dispatch => ({
-    loadEvents: () => dispatch(loadEvents()),
-});
+  loadEvents: () => dispatch(loadEvents()),
+})
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

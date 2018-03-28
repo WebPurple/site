@@ -1,30 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const RenderingConfig = {
-    anchor: {
-        x: 0,
-        y: 0,
-    },
-    renderSize: {
-        width: 1600,
-        height: 900,
-    },
-    imageSize: {
-        width: 1600,
-        height: 900,
-    },
-};
+  anchor: {
+    x: 0,
+    y: 0,
+  },
+  renderSize: {
+    width: 1600,
+    height: 900,
+  },
+  imageSize: {
+    width: 1600,
+    height: 900,
+  },
+}
 
 const StyledSVG = styled.svg`
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 120%;
-    filter: grayscale(1);
-    z-index: -1;
-    opacity: 0.1;
-`;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120%;
+  filter: grayscale(1);
+  z-index: -1;
+  opacity: 0.1;
+`
 
 /*
     About SVG pattern.
@@ -46,32 +46,34 @@ const StyledSVG = styled.svg`
 */
 
 const EventBackground = ({ image }) => (
-    <StyledSVG
-        viewBox="0 0 2059 719"
-        xmlns="http://www.w3.org/2000/svg">
-        <defs xmlns="http://www.w3.org/2000/svg">
-            <pattern
-                id="TEX_event_bg"
-                patternUnits="userSpaceOnUse"
-                width={RenderingConfig.renderSize.width}
-                height={RenderingConfig.renderSize.height}
-                patternTransform="translate(0, 0) scale(1, 1)">
-                <image
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlnsXlink="http://www.w3.org/1999/xlink"
-                    xlinkHref={image}
-                    x={RenderingConfig.anchor.x}
-                    y={RenderingConfig.anchor.y}
-                    width={RenderingConfig.imageSize.width}
-                    height={RenderingConfig.imageSize.height} />
-            </pattern>
-        </defs>
-        <path d="M 0 0 L 503 0 L 863 287 L 1343 0 L 2059 0 L 863 719 z" fill="url(#TEX_event_bg)" />
-    </StyledSVG>
-);
+  <StyledSVG viewBox="0 0 2059 719" xmlns="http://www.w3.org/2000/svg">
+    <defs xmlns="http://www.w3.org/2000/svg">
+      <pattern
+        id="TEX_event_bg"
+        patternUnits="userSpaceOnUse"
+        width={RenderingConfig.renderSize.width}
+        height={RenderingConfig.renderSize.height}
+        patternTransform="translate(0, 0) scale(1, 1)">
+        <image
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          xlinkHref={image}
+          x={RenderingConfig.anchor.x}
+          y={RenderingConfig.anchor.y}
+          width={RenderingConfig.imageSize.width}
+          height={RenderingConfig.imageSize.height}
+        />
+      </pattern>
+    </defs>
+    <path
+      d="M 0 0 L 503 0 L 863 287 L 1343 0 L 2059 0 L 863 719 z"
+      fill="url(#TEX_event_bg)"
+    />
+  </StyledSVG>
+)
 
 EventBackground.propTypes = {
-    image: React.PropTypes.string,
-};
+  image: PropTypes.string,
+}
 
-export default EventBackground;
+export default EventBackground
