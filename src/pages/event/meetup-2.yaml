@@ -1,6 +1,9 @@
 title: 'Meetup #2'
-description: '123'
-date: 2018-03-28T19:51:41.333Z
-address: asdfas
+description: >-
+  web components и очередное светлое будущее веба Polymer или взгляд Google на
+  это дело пора ли и надо ли вообще?
+date: 2015-07-07T19:00:41+03:00
+address: 'Библиотека имени Горького, малый конференц-зал'
 talks:
-  - {}
+  - speaker: Pavel Smirnov
+    title: Polymer
