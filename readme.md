@@ -6,45 +6,9 @@
 
 ## How to start the project?
 ```
-[configure database](#database)
 npm install
 npm run start
 ```
-
-## Database
-[MongoDB](https://www.mongodb.com/) is used in this app (hosted on [mLab](https://mlab.com/welcome/)).
-
-To change the connection configuration, see *src/server/conf/db.js*
-
-For development purposes, you can either use the following db:
-```javascript
-const connectionUrl = 'mongodb://admin:123123@ds064718.mlab.com:64718/webpurple';
-```
-or set up your own db (500MB for free in [mLab](https://mlab.com/welcome/))
-
-## Facebook
-In-app authorization can be done via Facebook.
-Facebook app credentials should be passed to *src/server/conf/passport.js*
-
-For development purposes, you can use the following credentials:
-
-```javascript
-fb: {
-    clientID: '1208431049220025',
-    clientSecret: '39bf839eeb8805fd32f77dd70fac3604',
-    ...
-```
-
-## Flow
-```javascript
-flow-typed install
-npm run flow
-```
-If you encounter any errors with the external library, you can create a stub with:
-```javascript
-flow-typed create-stub my-package
-```
-You probably want to upgrade your editor/IDE with a Flow plugin to see errors reported by Flow in the editor.
 
 ## How to contribute?
 We are open to, and grateful for, any contributions made by the community.
