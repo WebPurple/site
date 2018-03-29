@@ -44,6 +44,10 @@ collections:
             searchFields: ["title"]
             valueField: "title"
 
+          - label: "Tags"
+            name: "tags"
+            widget: "list"
+
   - name: "speaker"
     label: "Speaker"
     folder: "src/pages/speaker"
