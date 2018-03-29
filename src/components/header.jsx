@@ -2,14 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 import Link from 'gatsby-link'
-import { compose, withState, mapProps } from 'recompose'
+import { compose, mapProps, withState } from 'recompose'
 
-import { media, isPhone } from '../utils/css-utils'
-
+import { isPhone, media } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
-
-import { MenuIcon, CloseIcon } from './icons/header/index'
-import RoundAvatar from './common/round-avatar'
+import { CloseIcon, MenuIcon } from './icons/header/index'
 
 const Wrapper = styled.header`
   box-sizing: border-box;
@@ -19,11 +16,11 @@ const Wrapper = styled.header`
   width: 100%;
 
   ${media.tablet`
-        flex-direction: row;
-        width: auto;
-        padding: 0;
-        margin: 3rem 0;
-    `};
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+    margin: 3rem 0;
+  `};
   ${media.desktop`padding: 0 10rem;`} ${media.hd`padding: 0 12rem;`};
 `
 
@@ -34,20 +31,18 @@ const MenuHeader = styled.div`
   justify-content: space-between;
 
   ${media.tablet`
-        width: auto;
-        align-items:auto;
-    `};
+    width: auto;
+    align-items:auto;
+  `};
 `
 
 const MenuButton = styled(MenuIcon)`
   display: flex;
-
   ${media.tablet`display: none;`};
 `
 
 const CloseButton = styled(CloseIcon)`
   display: flex;
-
   ${media.tablet`display: none;`};
 `
 
@@ -59,11 +54,11 @@ const MenuBar = styled.div`
   padding: 2rem 0;
 
   ${media.tablet`
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: 0;
-    `};
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+  `};
 `
 
 const NavigationBar = styled.ul`
@@ -73,13 +68,13 @@ const NavigationBar = styled.ul`
   padding: 0;
 
   ${media.tablet`
-        margin: 0;
-        flex-grow: 2;
-        align-items: center;
-        flex-direction: row;
-        width: auto;
-        padding: 0 0 0 4rem;
-    `};
+    margin: 0;
+    flex-grow: 2;
+    align-items: center;
+    flex-direction: row;
+    width: auto;
+    padding: 0 0 0 4rem;
+  `};
 `
 
 const MenuItem = styled.li`
@@ -87,7 +82,9 @@ const MenuItem = styled.li`
   display: inline-flex;
 `
 
-const NavigationLink = styled(Link)`
+const NavigationLink = styled(Link).attrs({
+  activeClassName: 'active'
+})`
   text-decoration: none;
   text-transform: uppercase;
   font-family: Rubik, sans-serif;
@@ -107,9 +104,9 @@ const NavigationLink = styled(Link)`
   }
 
   ${media.tablet`
-        font-size: 1.6rem;
-        margin: 0 2.5rem 0 0;
-    `};
+    font-size: 1.6rem;
+    margin: 0 2.5rem 0 0;
+  `};
 `
 
 const Header = ({ isMenuOpen, showMenu, hideMenu, height, theme }) => (
