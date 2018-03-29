@@ -47,7 +47,10 @@ const EventSocialLinks = () => (
     <SocialIconLink>
       <TwitterIcon height={'100%'} />
     </SocialIconLink>
-    <SocialIconLink>
+    <SocialIconLink
+      href="https://www.instagram.com/webpurple"
+      target="_blank"
+      rel="noopener noreferrer">
       <InstagramIcon height={'100%'} />
     </SocialIconLink>
   </div>

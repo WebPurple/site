@@ -5,7 +5,7 @@ import { mapProps } from 'recompose'
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import UpcomingEvents from '../components/home-page/upcoming-events-block'
 import PastEvents from '../components/home-page/past-events'
-import SocialLinks from '../components/event-page/social-links'
+import SocialLinksBlock from '../components/social-links-block'
 
 injectGlobal`
   html {
@@ -18,7 +18,7 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
     {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
     <PastEvents talks={pastTalks} />
     <SubscriptionForm />
-    <SocialLinks />
+    <SocialLinksBlock />
   </React.Fragment>
 )
 
