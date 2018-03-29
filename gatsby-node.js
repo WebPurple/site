@@ -32,13 +32,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           reject(result.errors)
         }
 
-        result.data.allEventYaml.edges.forEach(({ node }) => {
+        result.data.allEventYaml.edges.forEach(({ node }, i) => {
           const title = node.title
 
-          console.log(title)
-
           createPage({
-            path: `/events/${title}`,
+            path: `/events/${i}`,
             component: eventTemplate,
             // layout: `blog-layout`,
             context: {
