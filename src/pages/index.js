@@ -11,6 +11,10 @@ injectGlobal`
   html {
     font-size: .625em; /* 10px; */
   }
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
 `
 
 const IndexPage = ({ upcomingEvent, pastTalks }) => (
