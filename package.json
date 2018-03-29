@@ -20,6 +20,7 @@
     "lodash": "^4.17.5",
     "lodash-webpack-plugin": "^0.11.4",
     "prop-types": "^15.6.0",
+    "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-masonry-component": "^6.0.2",
