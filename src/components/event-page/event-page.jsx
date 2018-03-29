@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import moment from 'moment'
 
@@ -19,20 +20,20 @@ const TagListWrapper = styled.div`
 `
 
 const EventTitle = styled.h1`
-    font-family: Rubik, sans-serif;
-    font-weight: 500;
-    line-height: 1;
-    color: ${props => props.theme.lipstick};
-    font-size: 2.6rem;
-    ${media.phone`
-        font-size: 3.6rem;
-    `}
-    ${media.tablet`
-        font-size: 6.2rem;
-    `}
-    ${media.desktop`
-        font-size: 7.8rem;
-    `}
+  font-family: Rubik, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  color: ${props => props.theme.lipstick};
+  font-size: 2.6rem;
+  ${media.phone`
+      font-size: 3.6rem;
+  `}
+  ${media.tablet`
+      font-size: 6.2rem;
+  `}
+  ${media.desktop`
+      font-size: 7.8rem;
+  `}
 `
 
 const BodyGrid = styled.div`
@@ -73,14 +74,14 @@ const InfoGrid = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   ${media.phone`
-        flex-direction: row;
-        justify-content: space-between;
-    `} ${media.desktop`
-        width: 38.2rem;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 56rem;
-    `};
+    flex-direction: row;
+    justify-content: space-between;
+  `} ${media.desktop`
+    width: 38.2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 56rem;
+  `};
 `
 
 const InfoText = styled.div`
@@ -91,9 +92,9 @@ const InfoText = styled.div`
   font-size: 1.6rem;
   line-height: 1;
   ${media.tablet`
-        font-size: 2.4rem;
-        line-height: 1.17;
-    `};
+    font-size: 2.4rem;
+    line-height: 1.17;
+  `};
 `
 
 const IconStyleMixin = `
@@ -104,47 +105,47 @@ const IconStyleMixin = `
 `
 
 const PlaceholderIconStyled = styled(PlaceholderIcon)`
-    ${IconStyleMixin}
+  ${IconStyleMixin}
 
-    ${media.phone`
-        margin-right: 1.2rem;
-    `}
-    ${media.tablet`
-        margin-right: 1.6rem;
-        width: 2.8rem;
-        height: 2.8rem;
-    `}
+  ${media.phone`
+    margin-right: 1.2rem;
+  `}
+  ${media.tablet`
+    margin-right: 1.6rem;
+    width: 2.8rem;
+    height: 2.8rem;
+  `}
 
-    & path {
-        fill: ${props => props.theme.lipstick};
-        opacity: 1;
-    }
+  & path {
+    fill: ${props => props.theme.lipstick};
+    opacity: 1;
+  }
 `
 
 const ClockIconStyled = styled(ClockIcon)`
-    ${IconStyleMixin}
+  ${IconStyleMixin}
 
-    ${media.phone`
-        margin-right: 1.2rem;
-    `}
-    ${media.tablet`
-        margin-right: 1.6rem;
-        width: 2.8rem;
-        height: 2.8rem;
-    `}
+  ${media.phone`
+    margin-right: 1.2rem;
+  `}
+  ${media.tablet`
+    margin-right: 1.6rem;
+    width: 2.8rem;
+    height: 2.8rem;
+  `}
 
-    & path {
-        fill: ${props => props.theme.lipstick};
-        opacity: 1;
-    }
+  & path {
+    fill: ${props => props.theme.lipstick};
+    opacity: 1;
+  }
 `
 
 const IllBeThereBlockWrapper = styled.div`
   text-align: center;
   width: 100%;
   ${media.phone`
-        text-align: left;
-    `};
+    text-align: left;
+  `};
 `
 
 const IllBeThereNoLoggedInBlock = styled.span`
@@ -192,10 +193,10 @@ const AttendeesText = styled.div`
   line-height: 1.13;
   color: #424242;
   ${media.phone`
-        text-align: left;
-    `} ${media.tablet`
-        font-size: 1.8rem;
-    `};
+    text-align: left;
+  `} ${media.tablet`
+    font-size: 1.8rem;
+  `};
 `
 
 const BodyFooter = styled.div`
@@ -207,9 +208,9 @@ const BodyFooter = styled.div`
   align-items: flex-start;
 
   ${media.tablet`
-        margin-top: 6.4rem;    
-        margin-bottom: 9.6rem;
-    `};
+    margin-top: 6.4rem;    
+    margin-bottom: 9.6rem;
+  `};
 `
 
 const LastLine = styled.div`
@@ -221,16 +222,16 @@ const LastLine = styled.div`
   margin-top: 1.2rem;
 
   ${media.phone`
-        flex-direction: row;
-    `};
+    flex-direction: row;
+  `};
 `
 
 const SocialIconsWrapper = styled.span`
   margin-top: 3.6rem;
 
   ${media.phone`
-        margin-top: 0;    
-    `};
+    margin-top: 0;    
+  `};
 `
 
 const ImageListWapper = styled.div`
@@ -238,9 +239,9 @@ const ImageListWapper = styled.div`
   margin-bottom: 6rem;
 
   ${media.tablet`
-        margin-top: 6.4rem;
-        margin-bottom: 9.6rem;
-    `};
+    margin-top: 6.4rem;
+    margin-bottom: 9.6rem;
+  `};
 `
 
 const MapWrapper = styled.div`
@@ -249,9 +250,9 @@ const MapWrapper = styled.div`
   margin-bottom: 6rem;
 
   ${media.tablet`
-        margin-top: 6.4rem;
-        margin-bottom: 9.6rem;
-    `};
+    margin-top: 6.4rem;
+    margin-bottom: 9.6rem;
+  `};
 `
 
 const EventPage = ({
@@ -279,7 +280,7 @@ const EventPage = ({
         <InfoGrid>
           <InfoText>
             <PlaceholderIconStyled />
-            {event.location}
+            {event.address}
           </InfoText>
           <InfoText>
             <ClockIconStyled />
@@ -303,30 +304,11 @@ const EventPage = ({
             </IllBeThereNoLoggedInBlock>
           )}
         </IllBeThereBlockWrapper>
-        <AttendeesText>
-          {attendees.length
-            ? 'You will attend along with'
-            : 'Become first attendee'}
-        </AttendeesText>
-        <LastLine>
-          <Attendees users={attendees} />
-          <SocialIconsWrapper>
-            <SocialLinks />
-          </SocialIconsWrapper>
-        </LastLine>
       </BodyFooter>
       {event.talks.length === 0 ? null : (
         <div>
           <BlockHeader>Speakers</BlockHeader>
           <EventTalks talks={event.talks} />
-        </div>
-      )}
-      {images.length === 0 ? null : (
-        <div>
-          <BlockHeader>Past event’s photo</BlockHeader>
-          <ImageListWapper>
-            <ImageList images={images} />
-          </ImageListWapper>
         </div>
       )}
       {new Date(event.date) < new Date() ? null : (

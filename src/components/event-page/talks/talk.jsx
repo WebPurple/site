@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Avatar from './../../common/avatar'
@@ -117,7 +118,7 @@ const DownloadIconStyled = styled(DownloadIcon)`
 const EventTalk = ({ talk }) => (
   <TalkGrid>
     <AvatarWrapper>
-      <Avatar avatar={talk.speaker.vkPhotoUrl} stretch />
+      <Avatar avatar={talk.speaker} stretch />
     </AvatarWrapper>
     <div>
       <Header>{talk.title}</Header>
@@ -126,7 +127,7 @@ const EventTalk = ({ talk }) => (
           {talk.speaker.displayName}, {talk.speaker.jobTitle}
         </SpeakerJobTitle>
       ) : (
-        <SpeakerJobTitle>{talk.speaker.displayName}</SpeakerJobTitle>
+        <SpeakerJobTitle>{talk.speaker}</SpeakerJobTitle>
       )}
       {talk.description ? <Description>{talk.description}</Description> : null}
       {talk.links ? (

@@ -10307,6 +10307,14 @@ traceur@0.0.105:
     semver "^4.3.3"
     source-map-support "~0.2.8"
 
+translit-russian@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/translit-russian/-/translit-russian-0.0.2.tgz#afa79c14830735e361447871b155cd9ee6ae494a"
+
+translit@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/translit/-/translit-0.1.0.tgz#696c381c89ec04e474797e6fb5e17ae6f366a1cb"
+
 trim-lines@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/trim-lines/-/trim-lines-1.1.0.tgz#9926d03ede13ba18f7d42222631fb04c79ff26fe"

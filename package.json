@@ -23,7 +23,9 @@
     "react-helmet": "^5.2.0",
     "react-masonry-component": "^6.0.2",
     "recompose": "^0.26.0",
-    "styled-components": "^3.2.3"
+    "styled-components": "^3.2.3",
+    "translit": "^0.1.0",
+    "translit-russian": "0.0.2"
   },
   "keywords": ["gatsby", "netlify", "react", "frontend"],
   "license": "MIT",
