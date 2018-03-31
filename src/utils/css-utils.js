@@ -1,16 +1,25 @@
+import * as React from 'react'
 import { css } from 'styled-components'
+import Responsive from 'react-responsive'
 
-const sizes = {
-  hd: 1800,
-  desktop: 1200,
-  tablet: 768,
+export let sizes = {
   phone: 599,
+  tablet: 768,
+  desktop: 1200,
+  hd: 1800,
 }
 
-export const media = Object.keys(sizes).reduce((accumulator, label) => {
+export let Media = {
+  MobileOnly: props => <Responsive {...props} maxWidth={sizes.tablet} />,
+  TabletPlus: props => <Responsive {...props} minWidth={sizes.tablet} />,
+  DesktopPlus: props => <Responsive {...props} minWidth={sizes.desktop} />,
+  WidePlus: props => <Responsive {...props} minWidth={sizes.hd} />,
+}
+
+export let media = Object.keys(sizes).reduce((accumulator, label) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-  const emSize = sizes[label] / 16
+  let emSize = sizes[label] / 16
 
   // eslint-disable-next-line no-param-reassign
   accumulator[label] = (...args) => css`
@@ -22,17 +31,22 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
   return accumulator
 }, {})
 
-export const isHD = () =>
+export let isHD = () =>
   typeof window !== 'undefined' && window.innerWidth >= sizes.hd
 
-export const isDesktop = () =>
+export let isDesktop = () =>
   typeof window !== 'undefined' &&
   (window.innerWidth >= sizes.desktop && window.innerWidth < sizes.hd)
 
-export const isTablet = () =>
+export let isTablet = () =>
   typeof window !== 'undefined' &&
   (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop)
 
-export const isPhone = () =>
-  typeof window !== 'undefined' &&
-  (window.innerWidth >= sizes.phone && window.innerWidth < sizes.tablet)
+export let isPhone = () => {
+  return typeof window !== 'undefined' && window.innerWidth < sizes.tablet
+}
+
+export let Z_INDEXES = {
+  LOGO: 1,
+  SIDEBAR_BUTTON: 1,
+}

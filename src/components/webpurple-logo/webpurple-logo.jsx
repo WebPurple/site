@@ -1,35 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import styled from 'styled-components'
+import Link from 'gatsby-link'
 
-import { WebpurpleIcon } from '../icons/header';
+import { WebpurpleIcon } from '../icons/header'
+import { Z_INDEXES } from '../../utils/css-utils'
 
-const Logo = styled(NavLink)`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-`;
+let Logo = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: ${Z_INDEXES.LOGO};
+`
 
-const Title = styled.h1`
-    font-size: 2.6rem;
-    margin: 0;
-    text-transform: uppercase;
-    font-family: Rubik, sans-serif;
-    font-weight: bold;
-    color: ${props => props.theme.lipstick};
-`;
+let Title = styled.h1`
+  font-size: 2.6rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: Rubik, sans-serif;
+  font-weight: bold;
+  color: ${props => props.theme.lipstick};
+`
 
-const StyledWebpurpleIcon = styled(WebpurpleIcon)`
-    margin: 0 2rem 0 0;
-    width: 3.5rem;
-    height: 3.5rem;
-`;
+let StyledWebpurpleIcon = styled(WebpurpleIcon)`
+  margin-right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+`
 
-const WebpurpleLogo = () => (
-    <Logo to="/">
-        <StyledWebpurpleIcon />
-        <Title>Webpurple</Title>
-    </Logo>
-);
+let WebpurpleLogo = () => (
+  <Logo to="/">
+    <StyledWebpurpleIcon />
+    <Title>Webpurple</Title>
+  </Logo>
+)
 
-export default WebpurpleLogo;
+export default WebpurpleLogo

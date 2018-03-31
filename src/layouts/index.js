@@ -1,20 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import styled, { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+import { Flex } from 'grid-styled'
 
-import { media } from '../utils/css-utils'
+import { sizes } from '../utils/css-utils'
 import Header from '../components/header'
 import Footer from '../components/footer'
-
-const Container = styled.div`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  ${media.desktop`width: 1280px;`} ${media.hd`width: 1440px;`};
-`
 
 const theme = {
   grape: '#432867',
@@ -28,16 +20,18 @@ const theme = {
   rouge: '#b21d3d',
   rosePink: '#f290b7',
   liliac: '#c788fe',
+
+  breakpoints: Object.values(sizes).slice(1).map(s => `${s / 16}em`),
 }
 
 const TemplateWrapper = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <Container>
+    <Flex flexDirection="column">
       <Helmet title="WebPurple" />
       <Header />
       <main>{children()}</main>
       <Footer />
-    </Container>
+    </Flex>
   </ThemeProvider>
 )
 

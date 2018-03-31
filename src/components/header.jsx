@@ -1,89 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { withTheme } from 'styled-components'
+import styled from 'styled-components'
 import Link from 'gatsby-link'
-import { compose, mapProps, withState } from 'recompose'
+import { compose, withStateHandlers } from 'recompose'
 
-import { isPhone, media } from '../utils/css-utils'
+import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
 import { CloseIcon, MenuIcon } from './icons/header/index'
+import { Flex } from 'grid-styled'
+import { Portal } from 'react-portal'
 
-const Wrapper = styled.header`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: 2.6rem 1.5rem;
-  width: 100%;
-
-  ${media.tablet`
-    flex-direction: row;
-    width: auto;
-    padding: 0;
-    margin: 3rem 0;
-  `};
-  ${media.desktop`padding: 0 10rem;`} ${media.hd`padding: 0 12rem;`};
-`
-
-const MenuHeader = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-
-  ${media.tablet`
-    width: auto;
-    align-items:auto;
-  `};
-`
-
-const MenuButton = styled(MenuIcon)`
-  display: flex;
-  ${media.tablet`display: none;`};
-`
-
-const CloseButton = styled(CloseIcon)`
-  display: flex;
-  ${media.tablet`display: none;`};
-`
-
-const MenuBar = styled.div`
-  display: flex;
-  flex-grow: 2;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem 0;
-
-  ${media.tablet`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 0;
-  `};
-`
-
-const NavigationBar = styled.ul`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0;
-
-  ${media.tablet`
-    margin: 0;
-    flex-grow: 2;
-    align-items: center;
-    flex-direction: row;
-    width: auto;
-    padding: 0 0 0 4rem;
-  `};
-`
-
-const MenuItem = styled.li`
-  list-style: none;
-  display: inline-flex;
-`
-
-const NavigationLink = styled(Link).attrs({
-  activeClassName: 'active'
+let NavigationLink = styled(Link).attrs({
+  activeClassName: 'active',
 })`
   text-decoration: none;
   text-transform: uppercase;
@@ -91,73 +19,111 @@ const NavigationLink = styled(Link).attrs({
   font-size: 2.3rem;
   font-weight: 500;
   color: ${props => props.theme.warmGrey};
-
-  box-sizing: border-box;
+  ${media.tablet`
+    font-size: 1.8rem;
+  `};
+  display: inline-block;
+  padding: 1.2rem 0;
   border-bottom: solid 0.3rem transparent;
-  padding: 1.3rem 0 1rem 0;
-  margin: 0 2.5rem 2rem 4rem;
   transition: border-color 1s ease-out;
 
   &:hover,
   &.active {
     border-bottom-color: ${props => props.theme.lipstick};
   }
-
-  ${media.tablet`
-    font-size: 1.6rem;
-    margin: 0 2.5rem 0 0;
-  `};
 `
 
-const Header = ({ isMenuOpen, showMenu, hideMenu, height, theme }) => (
-  <Wrapper style={{ height }}>
-    <MenuHeader>
+let MobileSidebar = styled.nav`
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  left: 100%;
+  transform: ${({ isOpen }) => (isOpen ? 'translateX(-100%)' : '')};
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  background: #fff;
+`
+
+let NavbarItem = styled.li`
+  list-style: none;
+  margin-bottom: 2.5rem;
+  ${media.tablet`margin: 0 2rem`};
+`
+
+let Navbar = () => (
+  <nav>
+    <Flex
+      is="ul"
+      flexDirection={['column', 'row']}
+      p={0}
+      m={0}
+      mt={['10rem', 0]}
+      mx={['7.5rem', '4rem']}>
+      <NavbarItem>
+        <NavigationLink to="/" exact>
+          home
+        </NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/events">events</NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/speakers">speakers</NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/feed">feed</NavigationLink>
+      </NavbarItem>
+    </Flex>
+  </nav>
+)
+
+let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
+  <Flex
+    is="header"
+    flexDirection={['column', 'row']}
+    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+    <Flex justifyContent="space-between">
       <WebpurpleLogo />
-      {isMenuOpen ? (
-        <CloseButton onClick={hideMenu} />
-      ) : (
-        <MenuButton onClick={showMenu} />
-      )}
-    </MenuHeader>
-    {isMenuOpen && (
-      <MenuBar>
-        <NavigationBar>
-          <MenuItem>
-            <NavigationLink to="/" exact>
-              home
-            </NavigationLink>
-          </MenuItem>
-          <MenuItem>
-            <NavigationLink to="/events">events</NavigationLink>
-          </MenuItem>
-          <MenuItem>
-            <NavigationLink to="/speakers">speakers</NavigationLink>
-          </MenuItem>
-          <MenuItem>
-            <NavigationLink to="/feed">feed</NavigationLink>
-          </MenuItem>
-        </NavigationBar>
-      </MenuBar>
-    )}
-  </Wrapper>
+      <Media.MobileOnly>
+        {isMenuOpen ? (
+          <CloseIcon
+            onClick={hideMenu}
+            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
+          />
+        ) : (
+          <MenuIcon
+            onClick={showMenu}
+            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
+          />
+        )}
+        <Portal isOpened={isMenuOpen}>
+          <MobileSidebar isOpen={isMenuOpen} onClick={hideMenu}>
+            <Navbar />
+          </MobileSidebar>
+        </Portal>
+      </Media.MobileOnly>
+    </Flex>
+    <Media.TabletPlus>
+      <Navbar />
+    </Media.TabletPlus>
+  </Flex>
 )
 
 Header.propTypes = {
   isMenuOpen: PropTypes.bool,
   showMenu: PropTypes.func,
   hideMenu: PropTypes.func,
-  height: PropTypes.string,
-  theme: PropTypes.object,
 }
 
 export default compose(
-  withState('isMenuOpen', 'toggleMenu', !isPhone()),
-  mapProps(({ isMenuOpen, toggleMenu }) => ({
-    isMenuOpen,
-    showMenu: () => toggleMenu(true),
-    hideMenu: () => toggleMenu(false),
-
-    height: isMenuOpen && isPhone() ? '100vh' : 'auto',
-  })),
-  withTheme,
+  withStateHandlers(
+    () => ({
+      isMenuOpen: false,
+    }),
+    {
+      showMenu: () => () => ({ isMenuOpen: true }),
+      hideMenu: () => () => ({ isMenuOpen: false }),
+    },
+  ),
 )(Header)
