@@ -93,12 +93,22 @@ const Talk = styled.li`
   margin: 1.6rem 0;
 `
 
+let images = [
+  'https://sun9-6.userapi.com/c824603/v824603288/e07fe/WSzen0Cronk.jpg',
+  'https://sun1-10.userapi.com/c824603/v824603288/e0718/6exBJ9HUQQI.jpg',
+  'https://sun9-6.userapi.com/c824603/v824603288/e0862/yj5e-5Zvq7Q.jpg',
+  'https://sun9-1.userapi.com/c824603/v824603288/e066e/X8PCs6ZJUn4.jpg',
+  'https://sun9-2.userapi.com/c834401/v834401468/693f3/dXg-41jBFgQ.jpg'
+]
+
 const EventList = ({ events, theme }) => (
   <Container>
     {events.map((event, eventIndex) => (
       <EventSnippet className="e2e-event-card" key={event.title}>
         <BackgroundShape>
-          <BackgroundImage url={event.image} />
+          <BackgroundImage
+            url={images[Math.floor(images.length * Math.random())]}
+          />
         </BackgroundShape>
         <header>
           <Info>
