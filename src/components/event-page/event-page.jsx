@@ -93,7 +93,7 @@ let StyledFbIcon = styled(FacebookIcon)`
   ${height};
 `
 
-let EventSocialNetworks = ({ event }) => (
+let EventSocialNetworks = ({ socialNetworks }) => (
   <Flex
     is="ul"
     style={{ listStyle: 'none' }}
@@ -101,7 +101,7 @@ let EventSocialNetworks = ({ event }) => (
     p={0}
     mt="3.6rem"
     justifyContent="flex-end">
-    {event.socialNetworks.map(sn => (
+    {socialNetworks.map(sn => (
       <li key={sn.link}>
         <a
           href={sn.link}
@@ -153,7 +153,7 @@ const EventPage = ({ event }) => (
           </InfoText>
         </Flex>
       </Flex>
-      <EventSocialNetworks event={event} />
+      {event.socialNetworks && <EventSocialNetworks socialNetworks={event.socialNetworks} />}
     </Flex>
     <BlockHeader>Talks</BlockHeader>
     <EventTalks talks={event.talks} />
