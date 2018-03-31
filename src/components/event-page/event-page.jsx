@@ -2,17 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import moment from 'moment'
+import { Box } from 'grid-styled'
 
 import { media } from '../../utils/css-utils'
 
 import EventBG from './event-background'
 import BlockHeader from '../common/block-header'
 import { TagList } from '../common/tag'
-import Attendees from './attendees'
-import SocialLinks from './social-links'
 import EventTalks from './talks/talks'
-import ImageList from './../image-list/image-list'
-import { PlaceholderIcon, ClockIcon } from './../icons'
+import { ClockIcon, PlaceholderIcon } from './../icons'
 import EventMap from './event-map'
 
 const TagListWrapper = styled.div`
@@ -39,7 +37,6 @@ const EventTitle = styled.h1`
 const BodyGrid = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: space-betweeen;
   flex-flow: column-reverse wrap;
 
   ${media.desktop`
@@ -50,11 +47,9 @@ const BodyGrid = styled.div`
 const Description = styled.div`
     width: 100%;
     font-family: Oxygen, sans-serif;
-    font-size: 2.4rem;
     line-height: 1.5;
     color: ${props => props.theme.greyishBrown};
     font-size: 1.6rem;
-    line-height: 1.5;
     ${media.tablet`
         font-size: 2.4rem;
     `}
@@ -69,7 +64,6 @@ const Description = styled.div`
 const InfoGrid = styled.div`
   display: flex;
   width: 100%;
-  align-items: flex-end;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
@@ -140,14 +134,6 @@ const ClockIconStyled = styled(ClockIcon)`
   }
 `
 
-const IllBeThereBlockWrapper = styled.div`
-  text-align: center;
-  width: 100%;
-  ${media.phone`
-    text-align: left;
-  `};
-`
-
 const IllBeThereNoLoggedInBlock = styled.span`
   position: relative;
   font-family: Rubik, sans-serif;
@@ -155,48 +141,6 @@ const IllBeThereNoLoggedInBlock = styled.span`
   font-weight: 500;
   line-height: 1;
   color: ${props => props.theme.lipstick};
-`
-
-const IllBeThereBlock = styled(IllBeThereNoLoggedInBlock)`
-  cursor: pointer;
-
-  &:before {
-    content: '';
-    display: inline-block;
-    width: 1.4rem;
-    height: 1.4rem;
-    border: 0.1rem solid ${props => props.theme.lipstick};
-    margin-right: 1.2rem;
-    font-size: 3rem;
-    vertical-align: baseline;
-    line-height: 2.4rem;
-    font-weight: 900;
-  }
-
-  &:after {
-    content: '🗸';
-    display: ${props => (props.checked ? 'block' : 'none')};
-    font-size: 2rem;
-    font-weight: 900;
-    position: absolute;
-    top: 0.6rem;
-    left: 0;
-  }
-`
-
-const AttendeesText = styled.div`
-  width: 100%;
-  margin-top: 2.4rem;
-  text-align: center;
-  font-family: Oxygen, sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.13;
-  color: #424242;
-  ${media.phone`
-    text-align: left;
-  `} ${media.tablet`
-    font-size: 1.8rem;
-  `};
 `
 
 const BodyFooter = styled.div`
@@ -213,37 +157,6 @@ const BodyFooter = styled.div`
   `};
 `
 
-const LastLine = styled.div`
-  display: flex;
-  width: 100%;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.2rem;
-
-  ${media.phone`
-    flex-direction: row;
-  `};
-`
-
-const SocialIconsWrapper = styled.span`
-  margin-top: 3.6rem;
-
-  ${media.phone`
-    margin-top: 0;    
-  `};
-`
-
-const ImageListWapper = styled.div`
-  margin-top: 3.6rem;
-  margin-bottom: 6rem;
-
-  ${media.tablet`
-    margin-top: 6.4rem;
-    margin-bottom: 9.6rem;
-  `};
-`
-
 const MapWrapper = styled.div`
   height: 50rem;
   margin-top: 3.6rem;
@@ -255,81 +168,44 @@ const MapWrapper = styled.div`
   `};
 `
 
-const EventPage = ({
-  event,
-  attendees,
-  currentUser,
-  becomeAttendee,
-  stopBeingAttendee,
-  images,
-}) => {
-  const isAttendee =
-    attendees &&
-    currentUser &&
-    attendees.some(attendee => attendee._id === currentUser._id)
-
-  return (
-    <div>
-      <EventBG image={event.image} />
-      <TagListWrapper>
-        <TagList tags={event.tags} />
-      </TagListWrapper>
-      <EventTitle>{event.title}</EventTitle>
-      <BodyGrid>
-        <Description>{event.description}</Description>
-        <InfoGrid>
-          <InfoText>
-            <PlaceholderIconStyled />
-            {event.address}
-          </InfoText>
-          <InfoText>
-            <ClockIconStyled />
-            {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
-          </InfoText>
-        </InfoGrid>
-      </BodyGrid>
-      <BodyFooter>
-        <IllBeThereBlockWrapper>
-          {currentUser ? (
-            <IllBeThereBlock
-              checked={isAttendee}
-              onClick={() =>
-                isAttendee ? stopBeingAttendee(event) : becomeAttendee(event)
-              }>
-              {"I'll be there"}
-            </IllBeThereBlock>
-          ) : (
-            <IllBeThereNoLoggedInBlock>
-              Sign in to be able to become attendee
-            </IllBeThereNoLoggedInBlock>
-          )}
-        </IllBeThereBlockWrapper>
-      </BodyFooter>
-      {event.talks.length === 0 ? null : (
-        <div>
-          <BlockHeader>Speakers</BlockHeader>
-          <EventTalks talks={event.talks} />
-        </div>
-      )}
-      {new Date(event.date) < new Date() ? null : (
-        <div>
-          <BlockHeader>Location</BlockHeader>
-          <MapWrapper>
-            <EventMap location={event.location} />
-          </MapWrapper>
-        </div>
-      )}
-    </div>
-  )
-}
+const EventPage = ({ event }) => (
+  <Box m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+    <EventBG image="https://sun1-8.userapi.com/c824603/v824603288/e06c8/JefKSzWFhOA.jpg" />
+    <TagListWrapper>
+      <TagList tags={event.tags} />
+    </TagListWrapper>
+    <EventTitle>{event.title}</EventTitle>
+    <BodyGrid>
+      <Description>{event.description}</Description>
+      <InfoGrid>
+        <InfoText>
+          <PlaceholderIconStyled />
+          {event.address}
+        </InfoText>
+        <InfoText>
+          <ClockIconStyled />
+          {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
+        </InfoText>
+      </InfoGrid>
+    </BodyGrid>
+    <BodyFooter />
+    <BlockHeader>Talks</BlockHeader>
+    <EventTalks talks={event.talks} />
+    {new Date(event.date) < new Date() ? null : (
+      <div>
+        <BlockHeader>Location</BlockHeader>
+        <MapWrapper>
+          <EventMap location={event.address} />
+        </MapWrapper>
+      </div>
+    )}
+  </Box>
+)
 
 EventPage.propTypes = {
-  event: PropTypes.object,
-  currentUser: PropTypes.object,
-  attendees: PropTypes.arrayOf(PropTypes.object),
-  images: PropTypes.arrayOf(PropTypes.string),
-  becomeAttendee: PropTypes.func.isRequired,
-  stopBeingAttendee: PropTypes.func.isRequired,
+  event: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default EventPage
