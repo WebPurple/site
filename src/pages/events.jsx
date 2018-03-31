@@ -12,11 +12,14 @@ let EventsPage = ({ data: { allEventYaml: { edges: events } } }) => (
 
 export default EventsPage
 
-export const pageQuery = graphql`
+export let pageQuery = graphql`
   query AllEvents {
     allEventYaml(sort: { fields: [date], order: DESC }) {
       edges {
         node {
+          fields {
+            slug
+          }
           title
           description
           date

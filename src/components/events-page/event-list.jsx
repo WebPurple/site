@@ -112,7 +112,7 @@ const EventList = ({ events, theme }) => (
           <Title
             className="e2e-event-card-title"
             color={eventIndex % 2 ? theme.vividPurpleTwo : theme.lipstick}
-            to={`/events/${1}`}>
+            to={event.fields.slug}>
             {event.title}
           </Title>
         </header>

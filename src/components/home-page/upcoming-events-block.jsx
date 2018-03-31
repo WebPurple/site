@@ -204,7 +204,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
         </TalksBlock>
       </EventBlock>
       <Footer>
-        <ArrowLink to={`events/${1}`}>See details</ArrowLink>
+        <ArrowLink to={event.fields.slug}>See details</ArrowLink>
       </Footer>
     </Wrapper>
   )

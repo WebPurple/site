@@ -64,6 +64,9 @@ export const pageQuery = graphql`
     allEventYaml(sort: { fields: [date], order: DESC }) {
       edges {
         node {
+          fields {
+            slug
+          }
           title
           description
           date

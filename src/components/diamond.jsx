@@ -1,24 +1,24 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const defaultAngle = 30;
-const sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI);
-const width = 32;
-const height = width / sinusAngle;
-const shiftPhoto = height / 2;
+let defaultAngle = 30;
+let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI);
+let width = 32;
+let height = width / sinusAngle;
+let shiftPhoto = height / 2;
 
-const EmptyDiamond = styled.div`
+let EmptyDiamond = styled.div`
     width: ${(props) => props.size || width}rem; 
     height: ${(props) => props.size / sinusAngle || height}rem; 
 `;
 
-const DiamondBlock = styled(EmptyDiamond)`
+let DiamondBlock = styled(EmptyDiamond)`
     transform: skewY(${props => props.isTurnLeft ? -defaultAngle : defaultAngle}deg);
     overflow: hidden;
     color: white;
 `;
 
-const DiamondWithPhoto = styled(DiamondBlock)`
+let DiamondWithPhoto = styled(DiamondBlock)`
     position: relative;
     
     &:after {
@@ -34,7 +34,7 @@ const DiamondWithPhoto = styled(DiamondBlock)`
     }
 `;
 
-const DiamondPhoto = styled.div`
+let DiamondPhoto = styled.div`
     transform: ${props => props.isTurnLeft
         ? 'skewY(' + defaultAngle + 'deg)'
         : 'skewY(' + -defaultAngle + 'deg) translateY(' + -shiftPhoto + 'rem)'};
@@ -51,16 +51,16 @@ const DiamondPhoto = styled.div`
     background-position: ${(props) => props.position};
 `;
 
-const DiamondWithShadow = styled(DiamondWithPhoto)`
+let DiamondWithShadow = styled(DiamondWithPhoto)`
     box-shadow: 1.2rem 1.4rem ${(props) => props.color}
 `;
 
-const SpeakerPhoto = styled(DiamondPhoto)`
+let SpeakerPhoto = styled(DiamondPhoto)`
     width: 150%;
     height: 150%;
 `;
 
-const Diamond = ({ isEmpty, size, isTurnLeft, backSrc, backPosition, color, hasShadow, children }) => (
+let Diamond = ({ isEmpty, size, isTurnLeft, backSrc, backPosition, color, hasShadow, children }) => (
     isEmpty && (
         <EmptyDiamond size={size} />
     ) ||

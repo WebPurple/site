@@ -1,9 +1,8 @@
-const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators
+  let { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
     let eventTemplate = path.resolve(`src/templates/event.js`)
@@ -14,6 +13,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             allEventYaml(sort: { fields: [date], order: DESC }) {
               edges {
                 node {
+                id
+                  fields {
+                    slug
+                  }
                   title
                   description
                   date
@@ -32,15 +35,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           reject(result.errors)
         }
 
-        result.data.allEventYaml.edges.forEach(({ node }, i) => {
-          const title = node.title
-
+        result.data.allEventYaml.edges.forEach(({ node }) => {
           createPage({
-            path: `/events/${i}`,
+            path: node.fields.slug,
             component: eventTemplate,
             // layout: `blog-layout`,
             context: {
-              title,
+              id: node.id,
             },
           })
         })
@@ -49,4 +50,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   })
 }
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {}
+exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+  let { createNodeField } = boundActionCreators
+
+  if (/MarkdownRemark|EventYaml|SpeakerYaml/.test(node.internal.type)) {
+    let value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+}

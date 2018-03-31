@@ -5,9 +5,9 @@ let Event = ({ data: { eventYaml } }) => <EventPage event={eventYaml} />
 
 export default Event
 
-export const pageQuery = graphql`
-  query Event {
-    eventYaml(title: { eq: "Meetup #1" }) {
+export let pageQuery = graphql`
+  query Event($id: String) {
+    eventYaml(id: { eq: $id }) {
       title
       description
       date
