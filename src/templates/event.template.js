@@ -1,9 +1,20 @@
 import React from 'react'
+import { mapProps } from 'recompose'
 import EventPage from '../components/event-page/event-page'
 
-let EventTemplate = ({ data: { eventYaml } }) => <EventPage event={eventYaml} />
-
-export default EventTemplate
+export default mapProps(
+  ({ data: { eventYaml: event, allSpeakerYaml: { edges: allSpeakers } } }) => {
+    return {
+      event: {
+        ...event,
+        talks: event.talks.map(talk => ({
+          ...talk,
+          speaker: allSpeakers.find(s => s.node.title === talk.speaker).node,
+        })),
+      },
+    }
+  },
+)(EventPage)
 
 export let pageQuery = graphql`
   query Event($id: String) {
@@ -21,6 +32,16 @@ export let pageQuery = graphql`
         description
         speaker
         tags
+      }
+    }
+
+    allSpeakerYaml {
+      edges {
+        node {
+          title
+          avatar
+          jobTitle
+        }
       }
     }
   }

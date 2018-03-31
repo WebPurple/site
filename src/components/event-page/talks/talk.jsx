@@ -118,17 +118,13 @@ const DownloadIconStyled = styled(DownloadIcon)`
 const EventTalk = ({ talk }) => (
   <TalkGrid>
     <AvatarWrapper>
-      <Avatar avatar={talk.speaker} stretch />
+      <Avatar avatar={talk.speaker.avatar} stretch />
     </AvatarWrapper>
     <div>
       <Header>{talk.title}</Header>
-      {talk.speaker.jobTitle ? (
-        <SpeakerJobTitle>
-          {talk.speaker.displayName}, {talk.speaker.jobTitle}
-        </SpeakerJobTitle>
-      ) : (
-        <SpeakerJobTitle>{talk.speaker}</SpeakerJobTitle>
-      )}
+      <SpeakerJobTitle>
+        {talk.speaker.title}, {talk.speaker.jobTitle}
+      </SpeakerJobTitle>
       {talk.description ? <Description>{talk.description}</Description> : null}
       {talk.links ? (
         <LinksGrid>
