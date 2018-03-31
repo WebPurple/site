@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 import Color from 'color'
 
-import { Set } from 'immutable'
-
 export const Tag = styled.li`
   font-family: 'Oxygen', sans-serif;
   font-size: 1.6rem;
@@ -42,7 +40,7 @@ export const TagList = withTheme(
       {label && <TagListLabel>{label}</TagListLabel>}
 
       <Tags>
-        {tags &&
+        {tags && tags.length > 0 &&
           tags.map((tag, i) => {
             const selectedOrHoverColor = theme[tagColors[i % tagColors.length]]
             const fadeColor = new Color(selectedOrHoverColor).fade(0.5).string()

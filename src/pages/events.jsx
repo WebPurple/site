@@ -26,7 +26,9 @@ export let pageQuery = graphql`
           address
           talks {
             title
+            description
             speaker
+            tags
           }
         }
       }

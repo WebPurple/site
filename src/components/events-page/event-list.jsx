@@ -98,7 +98,7 @@ let images = [
   'https://sun1-10.userapi.com/c824603/v824603288/e0718/6exBJ9HUQQI.jpg',
   'https://sun9-6.userapi.com/c824603/v824603288/e0862/yj5e-5Zvq7Q.jpg',
   'https://sun9-1.userapi.com/c824603/v824603288/e066e/X8PCs6ZJUn4.jpg',
-  'https://sun9-2.userapi.com/c834401/v834401468/693f3/dXg-41jBFgQ.jpg'
+  'https://sun9-2.userapi.com/c834401/v834401468/693f3/dXg-41jBFgQ.jpg',
 ]
 
 const EventList = ({ events, theme }) => (
@@ -129,7 +129,12 @@ const EventList = ({ events, theme }) => (
         <TalkList>
           {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}
         </TalkList>
-        <TagList tags={event.tags} />
+        <TagList
+          tags={event.talks.reduce(
+            (allTags, talk) => talk.tags ? allTags.concat(talk.tags) : allTags,
+            [],
+          )}
+        />
       </EventSnippet>
     ))}
   </Container>
