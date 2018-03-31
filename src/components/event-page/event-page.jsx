@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import moment from 'moment'
-import { Box } from 'grid-styled'
+import { height, fontSize } from 'styled-system'
+import { Box, Flex } from 'grid-styled'
 
 import { media } from '../../utils/css-utils'
 
@@ -13,66 +14,19 @@ import EventTalks from './talks/talks'
 import { ClockIcon, PlaceholderIcon } from './../icons'
 import EventMap from './event-map'
 import { eventTags } from '../../utils/selectors'
+import { VkIcon, FacebookIcon } from '../icons/social'
+import { HiddenText } from '../../utils/accessibility'
 
 const EventTitle = styled.h1`
+  ${fontSize};
   font-family: Rubik, sans-serif;
-  font-weight: 500;
-  line-height: 1;
+  font-weight: bold;
   color: ${props => props.theme.lipstick};
-  font-size: 2.6rem;
-  ${media.phone`
-      font-size: 3.6rem;
-  `}
-  ${media.tablet`
-      font-size: 6.2rem;
-  `}
-  ${media.desktop`
-      font-size: 7.8rem;
-  `}
-`
-
-const BodyGrid = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-flow: column-reverse wrap;
-
-  ${media.desktop`
-        flex-direction: row;
-    `};
 `
 
 const Description = styled.div`
-    width: 100%;
-    font-family: Oxygen, sans-serif;
-    line-height: 1.5;
-    color: ${props => props.theme.greyishBrown};
-    font-size: 1.6rem;
-    ${media.tablet`
-        font-size: 2.4rem;
-    `}
-    ${media.desktop`
-        width: 63.2rem;
-    `}
-    ${media.hd`
-        width: 71.4rem;
-    `}
-`
-
-const InfoGrid = styled.div`
-  display: flex;
-  width: 100%;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  ${media.phone`
-    flex-direction: row;
-    justify-content: space-between;
-  `} ${media.desktop`
-    width: 38.2rem;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 56rem;
-  `};
+  font-family: Oxygen, sans-serif;
+  color: ${props => props.theme.greyishBrown};
 `
 
 const InfoText = styled.div`
@@ -89,10 +43,10 @@ const InfoText = styled.div`
 `
 
 const IconStyleMixin = `
-    width: 2rem;
-    height: 2rem;
-    vertical-align: top;
-    margin-right: 1.3rem;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: top;
+  margin-right: 1.3rem;
 `
 
 const PlaceholderIconStyled = styled(PlaceholderIcon)`
@@ -131,68 +85,88 @@ const ClockIconStyled = styled(ClockIcon)`
   }
 `
 
-const IllBeThereNoLoggedInBlock = styled.span`
-  position: relative;
-  font-family: Rubik, sans-serif;
-  font-size: 2.4rem;
-  font-weight: 500;
-  line-height: 1;
-  color: ${props => props.theme.lipstick};
+let StyledVkIcon = styled(VkIcon)`
+  ${height};
 `
 
-const BodyFooter = styled.div`
-  margin-top: 3.6rem;
-  margin-bottom: 6rem;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  ${media.tablet`
-    margin-top: 6.4rem;    
-    margin-bottom: 9.6rem;
-  `};
+let StyledFbIcon = styled(FacebookIcon)`
+  ${height};
 `
 
-const MapWrapper = styled.div`
-  height: 50rem;
-  margin-top: 3.6rem;
-  margin-bottom: 6rem;
-
-  ${media.tablet`
-    margin-top: 6.4rem;
-    margin-bottom: 9.6rem;
-  `};
-`
+let EventSocialNetworks = ({ event }) => (
+  <Flex
+    is="ul"
+    style={{ listStyle: 'none' }}
+    m={0}
+    p={0}
+    mt="3.6rem"
+    justifyContent="flex-end">
+    {event.socialNetworks.map(sn => (
+      <li key={sn.link}>
+        <a
+          href={sn.link}
+          title="Event in vkontakte"
+          target="_blank"
+          rel="noopener noreferrer">
+          {sn.type === 'vk' ? (
+            <React.Fragment>
+              <HiddenText>Event in vkontakte</HiddenText>
+              <StyledVkIcon height={['3rem', '3.6rem']} />
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <HiddenText>Event in Facebook</HiddenText>
+              <StyledFbIcon height={['3rem', '3.6rem']} />
+            </React.Fragment>
+          )}
+        </a>
+      </li>
+    ))}
+  </Flex>
+)
 
 const EventPage = ({ event }) => (
   <Box m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-    <EventBG image="https://sun1-8.userapi.com/c824603/v824603288/e06c8/JefKSzWFhOA.jpg" />
+    <EventBG image="https://sun1-7.userapi.com/c834401/v834401468/692ef/4vlq71le-Vk.jpg" />
     <TagList tags={eventTags(event)} />
-    <EventTitle>{event.title}</EventTitle>
-    <BodyGrid>
-      <Description>{event.description}</Description>
-      <InfoGrid>
-        <InfoText>
-          <PlaceholderIconStyled />
-          {event.address}
-        </InfoText>
-        <InfoText>
-          <ClockIconStyled />
-          {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
-        </InfoText>
-      </InfoGrid>
-    </BodyGrid>
-    <BodyFooter />
+    <EventTitle fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}>
+      {event.title}
+    </EventTitle>
+    <Flex mb={['3.2rem', '3.2rem', '6.4rem']} flexDirection="column">
+      <Flex flexDirection={['column', 'column', 'row']}>
+        <Box
+          is={Description}
+          flex={4}
+          order={[1, 1, 0]}
+          fontSize={['1.6rem', '2.4rem']}
+          mr={['0', '4.5rem']}>
+          {event.description}
+        </Box>
+        <Flex flexDirection="column" flex={3}>
+          <InfoText>
+            <PlaceholderIconStyled />
+            {event.address}
+          </InfoText>
+          <InfoText>
+            <ClockIconStyled />
+            {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
+          </InfoText>
+        </Flex>
+      </Flex>
+      <EventSocialNetworks event={event} />
+    </Flex>
     <BlockHeader>Talks</BlockHeader>
     <EventTalks talks={event.talks} />
     {new Date(event.date) < new Date() ? null : (
-      <div>
+      <React.Fragment>
         <BlockHeader>Location</BlockHeader>
-        <MapWrapper>
+        <Box
+          style={{ height: '50rem' }}
+          mt={['3.6rem', '6.4rem']}
+          mb={['6rem', '9.6rem']}>
           <EventMap location={event.address} />
-        </MapWrapper>
-      </div>
+        </Box>
+      </React.Fragment>
     )}
   </Box>
 )

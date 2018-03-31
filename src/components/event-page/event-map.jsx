@@ -13,9 +13,10 @@ const MapFrame = styled.iframe`
   height: 100%;
 `
 
-const EventMap = ({ location }) => (
+const EventMap = ({ location, className }) => (
   <MapFrame
     frameBorder="0"
+    className={className}
     src={`${googleMapURL}?key=${googleAPIKey}&q=${encodeURI(
       translitRU(location),
     )}`}
@@ -25,6 +26,7 @@ const EventMap = ({ location }) => (
 
 EventMap.propTypes = {
   location: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default EventMap

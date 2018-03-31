@@ -10,6 +10,7 @@ import {
   TwitterIcon,
   InstagramIcon,
 } from './icons/social/index'
+import { HiddenText } from '../utils/accessibility'
 
 const SocialLinksContainer = styled.section`
   padding: 6rem 2rem;
@@ -24,11 +25,6 @@ const LinksWrapper = styled.ul`
   align-items: center;
   margin: 5rem 0 0 0;
   ${media.desktop`margin: 10rem 0 0 0;`};
-`
-
-const HiddenText = styled.span`
-  clip: rect(0 0 0 0);
-  position: absolute;
 `
 
 const responsiveHeight = (component, mobile, tablet, desktop) => styled(

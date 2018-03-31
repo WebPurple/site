@@ -12,6 +12,10 @@ export let pageQuery = graphql`
       description
       date
       address
+      socialNetworks {
+        type
+        link
+      }
       talks {
         title
         description

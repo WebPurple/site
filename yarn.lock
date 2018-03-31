@@ -6479,6 +6479,10 @@ moment@2.x.x, moment@^2.11.2, moment@^2.16.0:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
+moment@^2.22.0:
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
+
 mri@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mri/-/mri-1.1.0.tgz#5c0a3f29c8ccffbbb1ec941dcec09d71fa32f36a"
@@ -10055,7 +10059,7 @@ style-loader@^0.13.0:
     stylis-rule-sheet "^0.0.10"
     supports-color "^3.2.3"
 
-"styled-system@>=1.1 || >=2.0", styled-system@>=2.0.2:
+"styled-system@>=1.1 || >=2.0", styled-system@>=2.0.2, styled-system@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-2.2.1.tgz#2b0a486917037934dd7451eebe2e7fd5d1a1c58f"
   dependencies:

@@ -20,6 +20,7 @@
     "grid-styled": "^3.2.1",
     "lodash": "^4.17.5",
     "lodash-webpack-plugin": "^0.11.4",
+    "moment": "^2.22.0",
     "prop-types": "^15.6.0",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
@@ -29,6 +30,7 @@
     "react-responsive": "^4.1.0",
     "recompose": "^0.26.0",
     "styled-components": "^3.2.3",
+    "styled-system": "^2.2.1",
     "translit": "^0.1.0",
     "translit-russian": "0.0.2"
   },
