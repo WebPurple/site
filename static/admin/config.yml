@@ -21,7 +21,7 @@ collections:
 
       - label: "Description"
         name: "description"
-        widget: "string"
+        widget: "text"
       
       - label: "Date"
         name: "date"
@@ -37,6 +37,10 @@ collections:
           - label: "Title"
             name: "title"
 
+          - label: "Description"
+            name: "description"
+            widget: "text"
+
           - label: "Speaker"
             name: "speaker"
             widget: "relation"
@@ -47,6 +51,27 @@ collections:
           - label: "Tags"
             name: "tags"
             widget: "list"
+
+          - label: "Link to presentation"
+            name: "presentation"
+            widget: "string"
+
+      - label: "Social networks"
+        name: "social"
+        widget: "socialNetworks"
+        fields:
+          - label: "Type"
+            name: "type"
+            widget: "select"
+            options: ["vk", "fb"]
+
+          - label: "Link"
+            name: "link"
+            type: "string"
+
+      - label: "Link to video"
+        name: "video"
+        widget: "string"
 
   - name: "speaker"
     label: "Speaker"
