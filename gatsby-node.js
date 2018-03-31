@@ -5,7 +5,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   let { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    let eventTemplate = path.resolve(`src/templates/event.js`)
+    let eventTemplate = path.resolve(`src/templates/event.template.js`)
     resolve(
       graphql(
         `

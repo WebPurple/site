@@ -55,7 +55,7 @@ export const TagList = withTheme(
                 }
                 hoverColor={selectedOrHoverColor}
                 onClick={onTagClick && (() => onTagClick(tag))}>
-                {tag}
+                #{tag}
               </Tag>
             )
           })}

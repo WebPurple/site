@@ -9,6 +9,7 @@ import moment from 'moment'
 import { media, isPhone, isTablet } from '../../utils/css-utils'
 import { TagList } from '../common/tag'
 import { ClockIcon, PlaceholderIcon } from '../icons'
+import { eventTags } from '../../utils/selectors'
 
 const gutter = isTablet() ? 30 : 75 // space between cards
 
@@ -130,10 +131,7 @@ const EventList = ({ events, theme }) => (
           {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}
         </TalkList>
         <TagList
-          tags={event.talks.reduce(
-            (allTags, talk) => talk.tags ? allTags.concat(talk.tags) : allTags,
-            [],
-          )}
+          tags={eventTags(event)}
         />
       </EventSnippet>
     ))}

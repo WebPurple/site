@@ -12,10 +12,7 @@ import { TagList } from '../common/tag'
 import EventTalks from './talks/talks'
 import { ClockIcon, PlaceholderIcon } from './../icons'
 import EventMap from './event-map'
-
-const TagListWrapper = styled.div`
-  margin-top: 6rem;
-`
+import { eventTags } from '../../utils/selectors'
 
 const EventTitle = styled.h1`
   font-family: Rubik, sans-serif;
@@ -171,9 +168,7 @@ const MapWrapper = styled.div`
 const EventPage = ({ event }) => (
   <Box m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
     <EventBG image="https://sun1-8.userapi.com/c824603/v824603288/e06c8/JefKSzWFhOA.jpg" />
-    <TagListWrapper>
-      <TagList tags={event.tags} />
-    </TagListWrapper>
+    <TagList tags={eventTags(event)} />
     <EventTitle>{event.title}</EventTitle>
     <BodyGrid>
       <Description>{event.description}</Description>

@@ -1,9 +1,9 @@
 import React from 'react'
 import EventPage from '../components/event-page/event-page'
 
-let Event = ({ data: { eventYaml } }) => <EventPage event={eventYaml} />
+let EventTemplate = ({ data: { eventYaml } }) => <EventPage event={eventYaml} />
 
-export default Event
+export default EventTemplate
 
 export let pageQuery = graphql`
   query Event($id: String) {
@@ -14,7 +14,9 @@ export let pageQuery = graphql`
       address
       talks {
         title
+        description
         speaker
+        tags
       }
     }
   }
