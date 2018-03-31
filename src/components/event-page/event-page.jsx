@@ -153,7 +153,9 @@ const EventPage = ({ event }) => (
           </InfoText>
         </Flex>
       </Flex>
-      {event.socialNetworks && <EventSocialNetworks socialNetworks={event.socialNetworks} />}
+      {event.socialNetworks && (
+        <EventSocialNetworks socialNetworks={event.socialNetworks} />
+      )}
     </Flex>
     <BlockHeader>Talks</BlockHeader>
     <EventTalks talks={event.talks} />
@@ -174,6 +176,14 @@ const EventPage = ({ event }) => (
 EventPage.propTypes = {
   event: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    address: PropTypes.string,
+    date: PropTypes.string,
+    talks: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+    ),
   }).isRequired,
 }
 
