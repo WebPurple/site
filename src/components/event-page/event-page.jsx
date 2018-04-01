@@ -13,7 +13,7 @@ import { TagList } from '../common/tag'
 import EventTalks from './talks/talks'
 import { ClockIcon, PlaceholderIcon } from './../icons'
 import EventMap from './event-map'
-import { eventTags } from '../../utils/selectors'
+import { eventBigBackground, eventTags } from '../../utils/selectors'
 import { VkIcon, FacebookIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 
@@ -127,7 +127,7 @@ let EventSocialNetworks = ({ socialNetworks }) => (
 
 const EventPage = ({ event }) => (
   <Box m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-    <EventBG image="https://sun1-7.userapi.com/c834401/v834401468/692ef/4vlq71le-Vk.jpg" />
+    <EventBG image={eventBigBackground()} />
     <TagList tags={eventTags(event)} />
     <EventTitle fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}>
       {event.title}

@@ -10,6 +10,8 @@ import ClockIcon from '../icons/clock-icon'
 import LocationIcon from '../icons/placeholder-icon'
 import ArrowButton from '../arrow-button/arrow-button'
 import Diamond from '../diamond'
+import EventBackground from '../event-page/event-background'
+import { eventBigBackground } from '../../utils/selectors'
 
 const DIAMOND_DESKTOP_SIZE = 11
 const DIAMOND_TABLET_SIZE = 9
@@ -171,17 +173,20 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
 
   return (
     <Wrapper>
+      <EventBackground image={eventBigBackground()} />
       <Header>Upcoming event</Header>
       <EventTitle>{event.title}</EventTitle>
       <EventBlock>
         <EventInfo>
           <EventInfoRow>
             <LocationIcon color={theme.lipstick} opaque />
-            <EventText>{event.address}</EventText>
+            <EventText>{event.address || 'Уточняется'}</EventText>
           </EventInfoRow>
           <EventInfoRow>
             <ClockIcon color={theme.lipstick} opaque />
-            <EventText>{moment(event.date).format('LLL')}</EventText>
+            <EventText>
+              {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+            </EventText>
           </EventInfoRow>
         </EventInfo>
         <TalksBlock>
@@ -197,7 +202,9 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
               </DiamondWrapper>
               <TalkDataWrapper>
                 <TalkTitle>{talk.title}</TalkTitle>
-                <TalkSpeaker>{talk.speaker && talk.speaker.displayName}</TalkSpeaker>
+                <TalkSpeaker>
+                  {talk.speaker && talk.speaker.displayName}
+                </TalkSpeaker>
               </TalkDataWrapper>
             </TalkInfo>
           ))}

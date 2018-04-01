@@ -34,7 +34,14 @@ export default mapProps(
     },
   }) => {
     let allEvents = allEventNodes.map(e => e.node)
-    let upcomingEvent = allEvents.find(e => new Date(e.date) > new Date())
+
+    let upcomingEvent = allEvents
+      .filter(e => !e.date || new Date(e.date) > new Date())
+      .reduce(
+        (nearestEvent, event) =>
+          nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,
+        null,
+      )
     let pastEvents = allEvents.filter(e => new Date(e.date) < new Date())
     let speakerByTitleMap = allSpeakers.reduce(
       (map, speaker) => map.set(speaker.node.title, speaker.node),
