@@ -38,20 +38,24 @@ export default mapProps(
       (map, speaker) => map.set(speaker.node.title, speaker.node),
       new Map(),
     )
+
+    let extendTalk = event => talk => ({
+      ...talk,
+      event: event,
+      speaker: speakerByTitleMap.get(talk.speaker),
+    })
+
     let pastTalks = selectPastEvents(allEventNodes).reduce(
-      (arr, event) => [
-        ...arr,
-        ...event.talks.map(talk => ({
-          ...talk,
-          event,
-          speaker: speakerByTitleMap.get(talk.speaker),
-        })),
-      ],
+      (arr, event) => [...arr, ...event.talks.map(extendTalk(event))],
       [],
     )
 
+    let upcomingEvent = selectNearestEvent(allEventNodes)
     return {
-      upcomingEvent: selectNearestEvent(allEventNodes),
+      upcomingEvent: {
+        ...upcomingEvent,
+        talks: upcomingEvent.talks.map(extendTalk(upcomingEvent)),
+      },
       pastTalks,
     }
   },

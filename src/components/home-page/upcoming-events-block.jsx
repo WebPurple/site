@@ -195,7 +195,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
               <DiamondWrapper>
                 <Diamond
                   color={i % 2 ? theme.rouge : theme.grape}
-                  backSrc={talk.speaker && talk.speaker.vkPhotoUrl}
+                  backSrc={talk.speaker.avatar}
                   isTurnLeft
                   size={DIAMOND_SIZE}
                 />
@@ -203,7 +203,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
               <TalkDataWrapper>
                 <TalkTitle>{talk.title}</TalkTitle>
                 <TalkSpeaker>
-                  {talk.speaker && talk.speaker.displayName}
+                  {talk.speaker.title}
                 </TalkSpeaker>
               </TalkDataWrapper>
             </TalkInfo>
@@ -219,8 +219,8 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
 
 UpcomingEvents.propTypes = {
   event: PropTypes.shape({
-    address: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    address: PropTypes.string,
+    date: PropTypes.string,
     talks: PropTypes.array.isRequired,
   }),
 }
