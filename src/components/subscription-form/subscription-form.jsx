@@ -3,10 +3,9 @@ import styled, { withTheme } from 'styled-components'
 
 import { media } from '../../utils/css-utils'
 import Button from '../common/button'
+import { subscibtionBackground } from '../../utils/selectors'
 
 const SubscriptionFormContainer = styled.section`
-  background-image: url(subscribtion-form-bg.jpg);
-  background-size: cover;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,11 @@ const SubscriptionFormContainer = styled.section`
   justify-content: center;
   padding: 6em 2em;
   ${media.desktop`padding: 10em 2em;`};
+  
+  background-size: cover;
+  background-image: url(${subscibtionBackground()});
+  background-color: #9300ef;
+  background-blend-mode: soft-light;
 `
 
 const Header = styled.h2`

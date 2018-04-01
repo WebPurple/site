@@ -38,3 +38,7 @@ export let eventSmallBackground = randomElement([
   'https://sun9-1.userapi.com/c824603/v824603288/e066e/X8PCs6ZJUn4.jpg',
   'https://sun9-2.userapi.com/c834401/v834401468/693f3/dXg-41jBFgQ.jpg',
 ])
+
+export let subscibtionBackground = randomElement([
+  'https://sun1-7.userapi.com/c824603/v824603288/e077c/FpVDSB47t3g.jpg',
+])
