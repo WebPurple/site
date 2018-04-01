@@ -1,0 +1,18 @@
+title: 'Meetup #26'
+description: >-
+  В этот раз у нас будет 2 технических доклада: Руслан Абрамов расскажет о
+  различных подходах к управлению состоянием в приложениях, а Никита Кирсанов
+  придёт с холиварчиком по поводу использования let и const.
+date: '01/20/2004 6:00AM'
+talks:
+  - title: const vs let
+    description: >-
+      Никита поделится своим видением того, когда всё-таки следует использовать 
+      const,  а когда let в javascipt
+    speaker: Nikita Kirsanov
+    tags:
+      - javascript
+      - es6
+      - linters
+      - styleguides
+video: '-'
