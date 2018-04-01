@@ -4,6 +4,21 @@ export let eventTags = event =>
     [],
   )
 
+let getEventNode = event => event.node
+
+export let selectPastEvents = events =>
+  events.map(getEventNode).filter(e => new Date(e.date) < new Date())
+
+export let selectUpcomingEvents = events =>
+  events.map(getEventNode).filter(e => !e.date || new Date(e.date) > new Date())
+
+export let selectNearestEvent = events =>
+  selectUpcomingEvents(events).reduce(
+    (nearestEvent, event) =>
+      nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,
+    null,
+  )
+
 let randomElement = arr => () => arr[Math.floor(arr.length * Math.random())]
 
 export let eventBigBackground = randomElement([

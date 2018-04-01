@@ -6,6 +6,7 @@ import SubscriptionForm from '../components/subscription-form/subscription-form'
 import UpcomingEvents from '../components/home-page/upcoming-events-block'
 import PastEvents from '../components/home-page/past-events'
 import SocialLinksBlock from '../components/social-links-block'
+import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
 
 injectGlobal`
   html {
@@ -33,21 +34,11 @@ export default mapProps(
       allSpeakerYaml: { edges: allSpeakers },
     },
   }) => {
-    let allEvents = allEventNodes.map(e => e.node)
-
-    let upcomingEvent = allEvents
-      .filter(e => !e.date || new Date(e.date) > new Date())
-      .reduce(
-        (nearestEvent, event) =>
-          nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,
-        null,
-      )
-    let pastEvents = allEvents.filter(e => new Date(e.date) < new Date())
     let speakerByTitleMap = allSpeakers.reduce(
       (map, speaker) => map.set(speaker.node.title, speaker.node),
       new Map(),
     )
-    let pastTalks = pastEvents.reduce(
+    let pastTalks = selectPastEvents(allEventNodes).reduce(
       (arr, event) => [
         ...arr,
         ...event.talks.map(talk => ({
@@ -60,7 +51,7 @@ export default mapProps(
     )
 
     return {
-      upcomingEvent,
+      upcomingEvent: selectNearestEvent(allEventNodes),
       pastTalks,
     }
   },
