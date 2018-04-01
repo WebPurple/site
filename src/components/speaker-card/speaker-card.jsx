@@ -87,14 +87,51 @@ const SpeakerAdditionalContainer = styled.div`
   ${media.desktop`justify-content: flex-start;`};
 `
 
-const CountOFTalks = styled.a`
+const TalksWrapper = styled.div`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 1rem);
+  left: 0;
+  transition: opacity 0.3s;
+`
+
+const CountOfTalks = styled.span`
+  position: relative;
   margin-left: 1.5rem;
   text-decoration: none;
   font-family: Oxygen, 'sans-serif';
   font-size: 2.2rem;
   font-weight: bold;
+  cursor: pointer;
   color: ${props => props.theme.lipstick};
   ${props => speakerLinkHover(props.theme.lipstick)};
+
+  &:hover {
+    ${TalksWrapper} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+`
+
+const Talks = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Oxygen', sans-serif;
+  font-weight: normal;
+  font-size: 1.6rem;
+  color: ${props => props.theme.greyishBrown};
+`
+
+let Talk = styled.li`
+  white-space: nowrap;
+  margin: .5rem 0;
 `
 
 const SpeakerCard = ({ speaker }) => (
@@ -107,7 +144,16 @@ const SpeakerCard = ({ speaker }) => (
       <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
       <SpeakerAdditionalContainer>
         <SpeakerContacts speaker={speaker} />
-        <CountOFTalks href="#">{speaker.talks.length} talks</CountOFTalks>
+        <CountOfTalks>
+          {speaker.talks.length} talks
+          <TalksWrapper>
+            <Talks>
+              {speaker.talks.map(talk => (
+                <Talk key={talk.title}>— {talk.title}</Talk>
+              ))}
+            </Talks>
+          </TalksWrapper>
+        </CountOfTalks>
       </SpeakerAdditionalContainer>
     </SpeakerInfoContainer>
   </Card>
