@@ -107,7 +107,7 @@ const SpeakerCard = ({ speaker }) => (
       <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
       <SpeakerAdditionalContainer>
         <SpeakerContacts speaker={speaker} />
-        {/*<CountOFTalks href="#">{speaker.talks.length} talks</CountOFTalks>*/}
+        <CountOFTalks href="#">{speaker.talks.length} talks</CountOFTalks>
       </SpeakerAdditionalContainer>
     </SpeakerInfoContainer>
   </Card>

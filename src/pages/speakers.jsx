@@ -1,5 +1,6 @@
 import React from 'react'
 import { mapProps } from 'recompose'
+import { chain, comparator, groupBy, path, pipe, prop } from 'ramda'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import SpeakersList from '../components/speakers-list/speakers-list'
@@ -18,13 +19,19 @@ export default mapProps(
       allSpeakerYaml: { edges: allUsers },
     },
   }) => {
-    const speakerNames = allEvents.reduce(
-      (arr, event) => [...arr, ...event.node.talks.map(talk => talk.speaker)],
-      [],
-    )
-    const speakerNamesSet = new Set(speakerNames)
+    let talksBySpeaker = pipe(
+      chain(path(['node', 'talks'])),
+      groupBy(prop('speaker')),
+    )(allEvents)
 
-    let speakers = allUsers.map(s => s.node).filter(s => speakerNamesSet.has(s.title))
+    let speakers = allUsers
+      .filter(s => talksBySpeaker.hasOwnProperty(s.node.title))
+      .map(s => ({
+        ...s.node,
+        talks: talksBySpeaker[s.node.title],
+      }))
+      .sort(comparator((s1, s2) => s1.talks.length > s2.talks.length))
+
     return { speakers }
   },
 )(SpeakersPage)
@@ -35,6 +42,7 @@ export const pageQuery = graphql`
       edges {
         node {
           talks {
+            title
             speaker
           }
         }
