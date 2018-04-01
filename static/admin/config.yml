@@ -26,9 +26,11 @@ collections:
       - label: "Date"
         name: "date"
         widget: "datetime"
+        required: false
 
       - label: "Address"
         name: "address"
+        required: false
 
       - label: "Talks"
         name: "talks"
@@ -55,9 +57,11 @@ collections:
           - label: "Link to presentation"
             name: "presentation"
             widget: "string"
+            required: false
 
       - label: "Social networks"
         name: "socialNetworks"
+        required: false
         widget: "list"
         fields:
           - label: "Type"
@@ -91,13 +95,16 @@ collections:
       - label: "Organization"
         name: "organization"
         widget: "string"
+        required: false
 
       - label: "Job position (title)"
         name: "jobTitle"
         widget: "string"
+        required: false
 
       - label: "Social networks"
         name: "socialNetworks"
+        required: false
         widget: "list"
         fields:
           - label: "Type"
