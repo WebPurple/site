@@ -8,6 +8,12 @@ let randomElement = arr => () => arr[Math.floor(arr.length * Math.random())]
 
 export let eventBigBackground = randomElement([
   'https://sun1-7.userapi.com/c834401/v834401468/692ef/4vlq71le-Vk.jpg',
+  'https://sun1-8.userapi.com/c834401/v834401468/69213/lDIlIw-LrEk.jpg',
+  'https://sun9-8.userapi.com/c834401/v834401468/693b7/qRaQDsaR6kk.jpg',
+  'https://sun1-6.userapi.com/c834401/v834401468/692e5/utx6tzthHvw.jpg',
+  'https://sun1-12.userapi.com/c834401/v834401468/69227/3URhGuxDhow.jpg',
+  'https://sun9-5.userapi.com/c834203/v834203543/1dc7b/4xuCrTlb_N0.jpg',
+  'https://sun9-7.userapi.com/c834203/v834203543/1dba9/MEpcnTB5VbQ.jpg',
 ])
 
 export let eventSmallBackground = randomElement([
