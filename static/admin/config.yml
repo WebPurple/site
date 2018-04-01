@@ -111,7 +111,7 @@ collections:
           - label: "Type"
             name: "type"
             widget: "select"
-            options: ["vk", "fb", "twitter", "site"]
+            options: ["vk", "fb", "twitter", "github", "site"]
 
           - label: "Link"
             name: "link"

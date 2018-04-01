@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const VkIcon = ({ className }) => (
+const VkIcon = ({ className, height = '2.4rem'}) => (
   <svg
     className={className}
+    height={height}
     viewBox="0 0 39 22"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +52,8 @@ const VkIcon = ({ className }) => (
 
 VkIcon.propTypes = {
   className: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string,
 }
 
 export default VkIcon

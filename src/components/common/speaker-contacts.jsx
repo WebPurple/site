@@ -1,42 +1,67 @@
 import React from 'react'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { Flex, Box } from 'grid-styled'
+import { height } from 'styled-system'
 
-import { TwitterIcon, FacebookIcon, GithubIcon } from '../icons/social'
+import {
+  TwitterIcon,
+  FacebookSquareIcon,
+  GithubIcon,
+  VkIcon,
+} from '../icons/social'
+import { HiddenText } from '../../utils/accessibility'
 
-const ContactsContainer = styled.div`
-  display: flex;
-`
+let socialNetworksNames = {
+  vk: 'vkontakte',
+  fb: 'facebook',
+  twitter: 'twitter',
+  github: 'github',
+  site: 'his own website',
+}
 
-const ICON_SIZE = 2.8
+let socialNetworkHosts = {
+  vk: 'https://vk.com/',
+  fb: 'https://www.facebook.com/',
+  twitter: 'https://twitter.com/',
+  github: 'https://github.com/',
+  site: '',
+}
 
-const Icon = styled.a`
-  display: block;
-  width: ${ICON_SIZE}rem;
-  height: ${ICON_SIZE}rem;
-  margin-right: 1.5rem;
-`
+let buildSocialLink = ({ type, link }) => socialNetworkHosts[type] + link
 
-const styledSize = (component, size) => styled(component)`
-  height: ${size}rem;
-  width: ${size}rem;
-`
+const SpeakerContacts = ({ speaker }) =>
+  speaker.socialNetworks && (
+    <Flex is="ul" style={{ listStyle: 'none' }} p={0} m={0}>
+      {speaker.socialNetworks.map(sn => (
+        <Box is="li" key={sn.type} mr="1rem">
+          <a href={buildSocialLink(sn)}>
+            <HiddenText>
+              {speaker.title} in {socialNetworksNames[sn.type]}
+            </HiddenText>
+            {sn.type === 'vk' ? (
+              <VkIcon />
+            ) : sn.type === 'fb' ? (
+              <FacebookSquareIcon />
+            ) : sn.type === 'twitter' ? (
+              <TwitterIcon />
+            ) : sn.type === 'github' ? (
+              <GithubIcon />
+            ) : null}
+          </a>
+        </Box>
+      ))}
+    </Flex>
+  )
 
-const StyledGithubIcon = styledSize(GithubIcon, ICON_SIZE)
-const StyledTwitterIcon = styledSize(TwitterIcon, ICON_SIZE)
-const StyledFacebookIcon = styledSize(FacebookIcon, ICON_SIZE)
-
-const SpeakerContacts = () => (
-  <ContactsContainer>
-    <Icon href="#">
-      <StyledGithubIcon />
-    </Icon>
-    <Icon href="#">
-      <StyledFacebookIcon />
-    </Icon>
-    <Icon href="#">
-      <StyledTwitterIcon />
-    </Icon>
-  </ContactsContainer>
-)
+SpeakerContacts.propTypes = {
+  speaker: PropTypes.shape({
+    socialNetworks: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
+}
 
 export default SpeakerContacts

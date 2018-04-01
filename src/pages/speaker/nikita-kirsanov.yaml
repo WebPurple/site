@@ -7,3 +7,7 @@ socialNetworks:
     type: vk
   - link: kitos.kirsanov
     type: fb
+  - link: kitos_kirsanov
+    type: twitter
+  - link: kitos
+    type: github

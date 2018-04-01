@@ -105,12 +105,10 @@ const SpeakerCard = ({ speaker }) => (
       <Avatar avatar={speaker.avatar} />
     </SpeakerAvatarContainer>
     <SpeakerInfoContainer>
-      <SpeakerInitials href="#">
-        {speaker.title}
-      </SpeakerInitials>
+      <SpeakerInitials href="#">{speaker.title}</SpeakerInitials>
       <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
       <SpeakerAdditionalContainer>
-        <SpeakerContacts />
+        <SpeakerContacts speaker={speaker} />
         {/*<CountOFTalks href="#">{speaker.talks.length} talks</CountOFTalks>*/}
       </SpeakerAdditionalContainer>
     </SpeakerInfoContainer>
@@ -119,8 +117,8 @@ const SpeakerCard = ({ speaker }) => (
 
 SpeakerCard.propTypes = {
   speaker: PropTypes.shape({
-    vkPhotoUrl: PropTypes.string,
-    displayNamedisplayName: PropTypes.string,
+    avatart: PropTypes.string,
+    title: PropTypes.string,
     jobTitle: PropTypes.string,
     talks: PropTypes.array,
   }),
