@@ -132,7 +132,7 @@ const EventPage = ({ event }) => (
     itemScope
     itemType="http://schema.org/Event">
     <Helmet>
-      <title>{event.title}</title>
+      <title>WebPurple | {event.title}</title>
       <meta property="og:title" content={event.title} />
       <meta property="og:description" content={event.description} />
       <meta property="og:type" content="event" />

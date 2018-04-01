@@ -39,6 +39,10 @@ const TemplateWrapper = ({ children }) => (
     <Flex flexDirection="column">
       <Helmet>
         <title>WebPurple</title>
+        <link
+          href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
+          rel="stylesheet"
+        />
         <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
         <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
         <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
