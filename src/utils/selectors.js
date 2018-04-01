@@ -7,7 +7,7 @@ export let eventTags = event =>
 let getEventNode = event => event.node
 
 export let selectPastEvents = events =>
-  events.map(getEventNode).filter(e => new Date(e.date) < new Date())
+  events.map(getEventNode).filter(e => e.date && new Date(e.date) < new Date())
 
 export let selectUpcomingEvents = events =>
   events.map(getEventNode).filter(e => !e.date || new Date(e.date) > new Date())
