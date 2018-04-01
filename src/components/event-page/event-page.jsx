@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 import { height, fontSize } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
+import Helmet from 'react-helmet'
 
 import { media } from '../../utils/css-utils'
 
@@ -126,10 +127,23 @@ let EventSocialNetworks = ({ socialNetworks }) => (
 )
 
 const EventPage = ({ event }) => (
-  <Box m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+  <Box
+    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
+    itemscope
+    itemtype="http://schema.org/Event">
+    <Helmet>
+      <title>{event.title}</title>
+      <meta property="og:title" content={event.title} />
+      <meta property="og:description" content={event.description} />
+      <meta property="og:type" content="event" />
+      <meta property="og:image" content={eventBigBackground()} />
+    </Helmet>
+
     <EventBG image={eventBigBackground()} />
     <TagList tags={eventTags(event)} />
-    <EventTitle fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}>
+    <EventTitle
+      fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}
+      itemprop="name">
       {event.title}
     </EventTitle>
     <Flex mb={['3.2rem', '3.2rem', '6.4rem']} flexDirection="column">
@@ -139,15 +153,16 @@ const EventPage = ({ event }) => (
           flex={4}
           order={[1, 1, 0]}
           fontSize={['1.6rem', '2.4rem']}
-          mr={['0', '4.5rem']}>
+          mr={['0', '4.5rem']}
+          itemprop="description">
           {event.description}
         </Box>
         <Flex flexDirection="column" flex={3}>
-          <InfoText>
+          <InfoText itemprop="location">
             <PlaceholderIconStyled />
             {event.address}
           </InfoText>
-          <InfoText>
+          <InfoText itemprop="startDate">
             <ClockIconStyled />
             {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
           </InfoText>
