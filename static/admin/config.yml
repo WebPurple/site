@@ -92,6 +92,7 @@ collections:
       - label: "Avatar"
         name: "avatar"
         widget: "image"
+        required: false
 
       - label: "Organization"
         name: "organization"
