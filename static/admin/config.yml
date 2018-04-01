@@ -76,6 +76,7 @@ collections:
       - label: "Link to video"
         name: "video"
         widget: "string"
+        required: false
 
   - name: "speaker"
     label: "Speaker"
