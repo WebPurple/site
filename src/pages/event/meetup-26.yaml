@@ -15,4 +15,13 @@ talks:
       - es6
       - linters
       - styleguides
+  - title: approaches to state managment
+    description: >-
+      Руслан расскажет жив ли redux, чего ждать от react в направлении
+      управления состоянием приложений и других подходах к этой задаче.
+    speaker: Руслан Абрамов
+    tags:
+      - redux
+      - statemanagment
+      - react
 video: '-'
