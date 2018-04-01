@@ -97,8 +97,6 @@ const CountOFTalks = styled.a`
   ${props => speakerLinkHover(props.theme.lipstick)};
 `
 
-// TODO: add field "contacts" into the speakers' object for SpeakerContacts
-// TODO: implement the link to speaker information
 const SpeakerCard = ({ speaker }) => (
   <Card>
     <SpeakerAvatarContainer>
@@ -117,7 +115,7 @@ const SpeakerCard = ({ speaker }) => (
 
 SpeakerCard.propTypes = {
   speaker: PropTypes.shape({
-    avatart: PropTypes.string,
+    avatar: PropTypes.string,
     title: PropTypes.string,
     jobTitle: PropTypes.string,
     talks: PropTypes.array,

@@ -18,7 +18,7 @@ import { eventBigBackground, eventTags } from '../../utils/selectors'
 import { VkIcon, FacebookIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 
-const EventTitle = styled.h1`
+const EventTitle = styled.h2`
   ${fontSize};
   font-family: Rubik, sans-serif;
   font-weight: bold;
@@ -129,8 +129,8 @@ let EventSocialNetworks = ({ socialNetworks }) => (
 const EventPage = ({ event }) => (
   <Box
     m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
-    itemscope
-    itemtype="http://schema.org/Event">
+    itemScope
+    itemType="http://schema.org/Event">
     <Helmet>
       <title>{event.title}</title>
       <meta property="og:title" content={event.title} />
@@ -143,7 +143,7 @@ const EventPage = ({ event }) => (
     <TagList tags={eventTags(event)} />
     <EventTitle
       fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}
-      itemprop="name">
+      itemProp="name">
       {event.title}
     </EventTitle>
     <Flex mb={['3.2rem', '3.2rem', '6.4rem']} flexDirection="column">
@@ -154,17 +154,19 @@ const EventPage = ({ event }) => (
           order={[1, 1, 0]}
           fontSize={['1.6rem', '2.4rem']}
           mr={['0', '4.5rem']}
-          itemprop="description">
+          itemProp="description">
           {event.description}
         </Box>
         <Flex flexDirection="column" flex={3}>
-          <InfoText itemprop="location">
+          <InfoText itemProp="location">
             <PlaceholderIconStyled />
-            {event.address}
+            {event.address || 'Уточняется'}
           </InfoText>
-          <InfoText itemprop="startDate">
+          <InfoText itemProp="startDate">
             <ClockIconStyled />
-            {moment(event.date).format('D MMMM YYYY [at] HH:mm')}
+            {event.date
+              ? moment(event.date).format('D MMMM YYYY [at] HH:mm')
+              : 'Уточняется'}
           </InfoText>
         </Flex>
       </Flex>

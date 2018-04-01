@@ -121,7 +121,7 @@ const EventTalk = ({ talk }) => (
       <Avatar avatar={talk.speaker.avatar} stretch />
     </AvatarWrapper>
     <div>
-      <Header itemprop="actor">{talk.title}</Header>
+      <Header itemProp="actor">{talk.title}</Header>
       <SpeakerJobTitle>
         {talk.speaker.title}, {talk.speaker.jobTitle}
       </SpeakerJobTitle>
