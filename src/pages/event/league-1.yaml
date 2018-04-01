@@ -1,7 +1,17 @@
 title: 'League #1'
-description: Game of JavaScript
+description: >-
+  В этот раз у нас новый формат митапа - игра на знание JavaScript! Обязательно обсудим правильные ответы и наградим победителей.
+  Приходите, будет интересно!
 date: 2018-03-29T16:30:48.000Z
-address: Бар Карась
+address: бар Карась, Почтовая ул., 60, Рязань
 talks:
   - speaker: Dmitry Krilov
-    title: Game of JavaScript
+    title: Geekjs
+    tags:
+      - javascript
+      - league
+socialNetworks:
+  - link: 'https://vk.com/webpurple_league'
+    type: vk
+  - link: 'https://www.facebook.com/events/2081582828795709/'
+    type: fb
