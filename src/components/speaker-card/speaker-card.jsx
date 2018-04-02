@@ -131,7 +131,7 @@ const Talks = styled.ul`
 
 let Talk = styled.li`
   white-space: nowrap;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 `
 
 const SpeakerCard = ({ speaker }) => (

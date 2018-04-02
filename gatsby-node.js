@@ -13,7 +13,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             allEventYaml(sort: { fields: [date], order: DESC }) {
               edges {
                 node {
-                id
+                  id
                   fields {
                     slug
                   }

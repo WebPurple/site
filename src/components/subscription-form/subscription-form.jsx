@@ -13,10 +13,9 @@ const SubscriptionFormContainer = styled.section`
   justify-content: center;
   padding: 6em 2em;
   ${media.desktop`padding: 10em 2em;`};
-  
+
   background-size: cover;
-  background-image: url(${subscibtionBackground()});
-  background-color: #9300ef;
+  background: #9300ef url(${subscibtionBackground()});
   background-blend-mode: soft-light;
 `
 

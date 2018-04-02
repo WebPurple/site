@@ -99,9 +99,7 @@ const EventList = ({ events, theme }) => (
     {events.map((event, eventIndex) => (
       <EventSnippet className="e2e-event-card" key={event.title}>
         <BackgroundShape>
-          <BackgroundImage
-            url={eventSmallBackground()}
-          />
+          <BackgroundImage url={eventSmallBackground()} />
         </BackgroundShape>
         <header>
           <Info>
@@ -122,9 +120,7 @@ const EventList = ({ events, theme }) => (
         <TalkList>
           {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}
         </TalkList>
-        <TagList
-          tags={eventTags(event)}
-        />
+        <TagList tags={eventTags(event)} />
       </EventSnippet>
     ))}
   </Container>

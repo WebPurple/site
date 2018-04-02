@@ -202,9 +202,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => {
               </DiamondWrapper>
               <TalkDataWrapper>
                 <TalkTitle>{talk.title}</TalkTitle>
-                <TalkSpeaker>
-                  {talk.speaker.title}
-                </TalkSpeaker>
+                <TalkSpeaker>{talk.speaker.title}</TalkSpeaker>
               </TalkDataWrapper>
             </TalkInfo>
           ))}

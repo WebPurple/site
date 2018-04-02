@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const VkIcon = ({ className, height = '2.4rem'}) => (
+const VkIcon = ({ className, height = '2.4rem' }) => (
   <svg
     className={className}
     height={height}
