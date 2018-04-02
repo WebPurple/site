@@ -8,8 +8,6 @@ sudo: false
 env:
   global:
     - NODE_ENV=travisci
-before_script:
-- yarn start &
 script:
 - yarn build
 - yarn prettier-ci
