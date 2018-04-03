@@ -17,6 +17,7 @@ import EventMap from './event-map'
 import { eventBigBackground, eventTags } from '../../utils/selectors'
 import { VkIcon, FacebookIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
+import EventTalk from './talks/talk'
 
 const EventTitle = styled.h2`
   ${fontSize};
@@ -140,12 +141,15 @@ const EventPage = ({ event }) => (
     </Helmet>
 
     <EventBG image={eventBigBackground()} />
+
     <TagList tags={eventTags(event)} />
+
     <EventTitle
       fontSize={['2.6rem', '3.6rem', '6.2rem', '7.8rem']}
       itemProp="name">
       {event.title}
     </EventTitle>
+
     <Flex mb={['3.2rem', '3.2rem', '6.4rem']} flexDirection="column">
       <Flex flexDirection={['column', 'column', 'row']}>
         <Box
@@ -174,8 +178,16 @@ const EventPage = ({ event }) => (
         <EventSocialNetworks socialNetworks={event.socialNetworks} />
       )}
     </Flex>
+
     <BlockHeader>Talks</BlockHeader>
-    <EventTalks talks={event.talks} />
+    <Flex flexWrap="wrap" mt="6.4rem" mx="-1rem">
+      {event.talks.map(talk => (
+        <Box width={[1, 1, 1 / 2]} p="1rem">
+          <EventTalk key={talk.title} talk={talk} />
+        </Box>
+      ))}
+    </Flex>
+
     {new Date(event.date) < new Date() ? null : (
       <React.Fragment>
         <BlockHeader>Location</BlockHeader>
