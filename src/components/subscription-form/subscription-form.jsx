@@ -76,8 +76,8 @@ const SubscriptionForm = withTheme(({ theme }) => (
       Get Webpurples latest news straight to your inbox. Enter your email
       address below:
     </SubHeader>
-    <FormWrapper>
-      <Input type="text" placeholder="Enter your email" />
+    <FormWrapper data-netlify="true">
+      <Input type="text" placeholder="Enter your email" name="email" />
       <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
         Subscribe
       </Button>
