@@ -3,7 +3,7 @@ description: >-
   Мы снова проводим митап в формате блиц-докладов, и этот раз мы решили
   ремножечко хайпануть и по-этому митап будет немного ориентирован на 
   blockchain
-date: 2018-02-27T19:30:11+03:00
+date: 2018-02-27T16:30:11.000Z
 address: 'отель Амакс, Первомайский пр., 54, Рязань'
 talks:
   - title: Как и зачем перейти от эффективности к продуктивности
@@ -44,6 +44,10 @@ talks:
       - javascript
       - img
       - performance
+  - speaker: Игорь Федюкин
+    tags:
+      - blockchain
+    title: Blockchain
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup25'
     type: vk
