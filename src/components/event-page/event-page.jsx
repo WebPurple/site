@@ -5,6 +5,7 @@ import moment from 'moment'
 import { height, fontSize } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
+import { VK, Like } from 'react-vk'
 
 import { media } from '../../utils/css-utils'
 
@@ -95,13 +96,7 @@ let StyledFbIcon = styled(FacebookIcon)`
 `
 
 let EventSocialNetworks = ({ socialNetworks }) => (
-  <Flex
-    is="ul"
-    style={{ listStyle: 'none' }}
-    m={0}
-    p={0}
-    mt="3.6rem"
-    justifyContent="flex-end">
+  <Flex is="ul" style={{ listStyle: 'none' }} m={0} p={0}>
     {socialNetworks.map(sn => (
       <li key={sn.link}>
         <a
@@ -173,9 +168,16 @@ const EventPage = ({ event }) => (
           </InfoText>
         </Flex>
       </Flex>
-      {event.socialNetworks && (
-        <EventSocialNetworks socialNetworks={event.socialNetworks} />
-      )}
+
+      <Flex mt="3.6rem" justifyContent="space-between" alignItems="flex-end">
+        <VK apiId={5360165} options={{ version: 152 }}>
+          <Like options={{ type: 'mini', height: 30 }} />
+        </VK>
+
+        {event.socialNetworks && (
+          <EventSocialNetworks socialNetworks={event.socialNetworks} />
+        )}
+      </Flex>
     </Flex>
 
     <BlockHeader>Talks</BlockHeader>
