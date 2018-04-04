@@ -1,8 +1,9 @@
 title: 'Meetup #26'
 description: >-
   В этот раз у нас будет 2 технических доклада: Руслан Абрамов расскажет о
-  различных подходах к управлению состоянием в приложениях, а Никита Кирсанов
-  придёт с холиварчиком по поводу использования let и const.
+  типизированной разработке React приложений (спойлер: не typescript и не flow),
+  а Никита Кирсанов придёт с холиварчиком по поводу использования let и const.
+date: ''
 talks:
   - title: const vs let
     description: >-
@@ -14,13 +15,11 @@ talks:
       - es6
       - linters
       - styleguides
-  - title: approaches to state managment
+  - title: Reasonable react development
     description: >-
-      Руслан расскажет жив ли redux, чего ждать от react в направлении
-      управления состоянием приложений и других подходах к этой задаче.
+      Руслан расскажет об очередном способе создания "бронебойного"
+      веб-приложения, и о том как получить плюс в карму от facebook.
     speaker: Руслан Абрамов
     tags:
-      - redux
-      - statemanagment
       - react
 video: '-'
