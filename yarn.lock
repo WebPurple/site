@@ -8431,9 +8431,9 @@ react-transition-group@^2.2.1:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react-vk@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/react-vk/-/react-vk-1.1.6.tgz#a21ff8c58e096c4da94c6d69315d64c956feb86f"
+react-vk@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/react-vk/-/react-vk-1.1.8.tgz#7ebec324aba6da3b225444467f03f41286ccfb7d"
 
 react-waypoint@^7.1.0:
   version "7.3.4"
