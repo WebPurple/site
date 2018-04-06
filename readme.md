@@ -10,6 +10,11 @@ npm install
 npm run start
 ```
 
+In some cases you need install the project like this:
+```
+npm install --unsafe-perm
+```
+
 ## How to contribute?
 We are open to, and grateful for, any contributions made by the community.
 
