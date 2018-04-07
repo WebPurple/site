@@ -48,6 +48,9 @@ talks:
     tags:
       - blockchain
     title: Blockchain
+    description: >-
+      Расскажу о блоках в блокчейне и перспективах его применения в
+      криптографии, распределенных вычислениях и хранении данных
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup25'
     type: vk
