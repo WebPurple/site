@@ -2,17 +2,18 @@ title: 'Meetup #24'
 description: |-
   В этот раз мы сменили площадку и проводим митап в отеле Амакс, зал Рязань.
   В программе семь блиц-докладов по 5-10 минут.
-date: 2017-12-20T19:30:37+03:00
+date: 2017-12-20T16:30:37.000Z
 address: 'Отель Амакс, зал Рязань, Первомайский пр., 54, Рязань'
 talks:
-  - title: Open source
-    description: >-
-      Игорь Федюкин расскажет о пользе Hacktoberfest и Open Source, и о том, как
-      их можно использовать в своих целях.
-    speaker: Игорь Федюкин
+  - speaker: Игорь Федюкин
     tags:
       - hacktoberfest
       - opensource
+    title: Open source
+    description: >-
+      Игорь Федюкин расскажет о пользе Hacktoberfest и Open Source, и о том, как
+      их можно использовать в своих целях.
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk
+video: 'https://youtu.be/amkV3KRyw28'
