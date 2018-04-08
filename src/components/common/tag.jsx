@@ -41,7 +41,7 @@ export const TagList = withTheme(
 
       <Tags>
         {tags &&
-          tags.length > 0 &&
+          !!tags.length &&
           tags.map((tag, i) => {
             const selectedOrHoverColor = theme[tagColors[i % tagColors.length]]
             const fadeColor = new Color(selectedOrHoverColor).fade(0.5).string()

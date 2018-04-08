@@ -104,11 +104,13 @@ const EventList = ({ events, theme }) => (
         <header>
           <Info>
             <ClockIcon style={{ marginRight: '1.6rem' }} />
-            <time>{moment(event.date).format('LLL')}</time>
+            <time>
+              {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+            </time>
           </Info>
           <Info>
             <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-            <span>{event.address}</span>
+            <span>{event.address || 'Уточняется'}</span>
           </Info>
           <Title
             className="e2e-event-card-title"

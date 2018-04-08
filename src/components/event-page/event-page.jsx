@@ -171,7 +171,7 @@ const EventPage = ({ event }) => (
 
       <Flex mt="3.6rem" justifyContent="space-between" alignItems="flex-end">
         <VK apiId={5360165} options={{ version: 152 }}>
-          <Like options={{ type: 'mini', height: 30 }} />
+          <Like options={{ type: 'mini', height: 30 }} pageId={event.title}/>
         </VK>
 
         {event.socialNetworks && (
