@@ -37,6 +37,12 @@ talks:
       - arrays
       - functional_programming
     title: Ленивые массивы в JavaScript.
+  - title: Treemap
+    description: Расскажу о своём опыте визуализации данных с помощью метода treemap
+    speaker: Andrey Smolko
+    tags:
+      - javascript
+      - treemap
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk
