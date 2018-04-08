@@ -1,7 +1,11 @@
 export let eventTags = event =>
-  event.talks.reduce(
-    (allTags, talk) => (talk.tags ? allTags.concat(talk.tags) : allTags),
-    [],
+  Array.from(
+    new Set(
+      event.talks.reduce(
+        (allTags, talk) => (talk.tags ? allTags.concat(talk.tags) : allTags),
+        [],
+      ),
+    ),
   )
 
 let getEventNode = event => event.node
