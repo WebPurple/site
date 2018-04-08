@@ -48,6 +48,13 @@ talks:
       Подведу итоги 2,5 лет существования WebPurple и поделюсь идеями и планами
       на следующий год
     speaker: Margarita Kurduymova
+  - title: ' Блокчейн'
+    description: >-
+      Расскажу о том, что такое блокчейн, зачем он нужен и в каких сферах его
+      можно применить
+    speaker: Ярослав Перегуда
+    tags:
+      - blockchain
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk
