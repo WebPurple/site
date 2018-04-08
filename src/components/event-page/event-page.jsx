@@ -183,8 +183,8 @@ const EventPage = ({ event }) => (
     <BlockHeader>Talks</BlockHeader>
     <Flex flexWrap="wrap" mt="6.4rem" mx="-1rem">
       {event.talks.map(talk => (
-        <Box width={[1, 1, 1 / 2]} p="1rem">
-          <EventTalk key={talk.title} talk={talk} />
+        <Box width={[1, 1, 1 / 2]} p="1rem" key={talk.title}>
+          <EventTalk talk={talk} />
         </Box>
       ))}
     </Flex>
