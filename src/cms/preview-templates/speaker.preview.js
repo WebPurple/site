@@ -1,9 +1,4 @@
 import * as React from 'react'
-import Avatar from '../../components/common/avatar'
+import SpeakerCard from '../../components/speaker-card/speaker-card'
 
-export default ({ entry }) => (
-  <div>
-    {JSON.stringify(entry.toJS())}
-    <Avatar avatar={entry.getIn(['data', 'avatar'])} />
-  </div>
-)
+export default ({ entry }) => <SpeakerCard speaker={entry.toJS().data} />
