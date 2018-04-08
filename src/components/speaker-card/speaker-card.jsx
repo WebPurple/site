@@ -144,16 +144,19 @@ const SpeakerCard = ({ speaker }) => (
       <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
       <SpeakerAdditionalContainer>
         <SpeakerContacts speaker={speaker} />
-        <CountOfTalks>
-          {speaker.talks.length} talks
-          <TalksWrapper>
-            <Talks>
-              {speaker.talks.map(talk => (
-                <Talk key={talk.title}>— {talk.title}</Talk>
-              ))}
-            </Talks>
-          </TalksWrapper>
-        </CountOfTalks>
+        {speaker.talks &&
+          speaker.talks.length > 0 && (
+            <CountOfTalks>
+              {speaker.talks.length} talks
+              <TalksWrapper>
+                <Talks>
+                  {speaker.talks.map(talk => (
+                    <Talk key={talk.title}>— {talk.title}</Talk>
+                  ))}
+                </Talks>
+              </TalksWrapper>
+            </CountOfTalks>
+          )}
       </SpeakerAdditionalContainer>
     </SpeakerInfoContainer>
   </Card>
