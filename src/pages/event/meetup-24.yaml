@@ -43,6 +43,11 @@ talks:
     tags:
       - javascript
       - treemap
+  - title: ' WebPurple Retrospective'
+    description: >-
+      Подведу итоги 2,5 лет существования WebPurple и поделюсь идеями и планами
+      на следующий год
+    speaker: Margarita Kurduymova
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk
