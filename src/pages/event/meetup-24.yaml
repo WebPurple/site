@@ -5,14 +5,23 @@ description: |-
 date: 2017-12-20T16:30:37.000Z
 address: 'Отель Амакс, зал Рязань, Первомайский пр., 54, Рязань'
 talks:
-  - speaker: Игорь Федюкин
-    tags:
-      - hacktoberfest
-      - opensource
-    title: Open source
+  - title: Open source
     description: >-
       Игорь Федюкин расскажет о пользе Hacktoberfest и Open Source, и о том, как
       их можно использовать в своих целях.
+    speaker: Игорь Федюкин
+    tags:
+      - hacktoberfest
+      - opensource
+  - title: Плагин для Vue.js и Yandex.Карт
+    description: >-
+      Расскажу свою историю разработки плагина для Vue.js и Yandex.Карт и
+      поделюсь идеями, как начать контрибьютить в Open Source
+    speaker: Павел Галкин
+    tags:
+      - vuejs
+      - yandexmaps
+      - opensource
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk
