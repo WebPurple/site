@@ -3,7 +3,20 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 import { withStateHandlers } from 'recompose'
-import { when, always } from 'ramda'
+import {
+  always,
+  both,
+  complement,
+  difference,
+  either,
+  flatten,
+  isEmpty,
+  map,
+  pipe,
+  uniq,
+  when,
+  without,
+} from 'ramda'
 
 import { isPhone, isTablet } from '../../utils/css-utils'
 import BlockHeader from '../common/block-header'
@@ -12,6 +25,7 @@ import { TagList } from '../common/tag'
 import { FilterBlock, FilterTab, Search } from '../page-filter'
 import EventList from './event-list'
 import { elasticSearch } from '../../utils/search'
+import { eventTags } from '../../utils/selectors'
 
 const NoEventsBlock = styled.div`
   margin: 10rem 0;
@@ -31,11 +45,20 @@ let EventsFeed = ({
   showSearch,
   handleSearchFocus,
   handleSearchBlur,
+  selectedTags,
+  toggleTag,
 }) => {
-  let tags = []
-  let selectedTags = []
+  let filteredEvents = events.filter(
+    both(
+      eventElasticSearch(query),
+      either(
+        () => isEmpty(selectedTags),
+        pipe(eventTags, difference(selectedTags), isEmpty),
+      ),
+    ),
+  )
+  let allEventsTags = pipe(map(eventTags), flatten, uniq)(filteredEvents)
   let show = ''
-  let onTagClick = () => void 0
 
   return (
     <MainContainer>
@@ -61,12 +84,12 @@ let EventsFeed = ({
         />
       </FilterBlock>
 
-      {(tags.length > 0 || !selectedTags.length) && (
+      {(allEventsTags.length > 0 || !selectedTags.length) && (
         <TagList
           label="Events tags"
-          tags={tags.length > 0 ? tags : selectedTags}
+          tags={allEventsTags.length > 0 ? allEventsTags : selectedTags}
           selectedTags={selectedTags}
-          onTagClick={onTagClick}
+          onTagClick={toggleTag}
         />
       )}
 
@@ -75,7 +98,7 @@ let EventsFeed = ({
           There are no events satisfying your query...
         </NoEventsBlock>
       ) : (
-        <EventList events={events.filter(eventElasticSearch(query))} />
+        <EventList events={filteredEvents} />
       )}
     </MainContainer>
   )
@@ -94,6 +117,7 @@ export default withStateHandlers(
   () => ({
     query: '',
     showSearch: false,
+    selectedTags: [],
   }),
   {
     onSearch: () => query => ({ query }),
@@ -101,5 +125,11 @@ export default withStateHandlers(
       when(shouldExpandSearch, always({ showSearch: true })),
     handleSearchBlur: () => () =>
       when(shouldExpandSearch, always({ showSearch: false })),
+
+    toggleTag: ({ selectedTags }) => tag => ({
+      selectedTags: selectedTags.includes(tag)
+        ? selectedTags.filter(t => t !== tag)
+        : [...selectedTags, tag],
+    }),
   },
 )(EventsFeed)

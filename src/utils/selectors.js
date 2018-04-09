@@ -1,12 +1,6 @@
-export let eventTags = event =>
-  Array.from(
-    new Set(
-      event.talks.reduce(
-        (allTags, talk) => (talk.tags ? allTags.concat(talk.tags) : allTags),
-        [],
-      ),
-    ),
-  )
+import { flatten, map, pipe, prop, reduce, uniq } from 'ramda'
+
+export let eventTags = pipe(prop('talks'), map(prop('tags')), flatten, uniq)
 
 let getEventNode = event => event.node
 

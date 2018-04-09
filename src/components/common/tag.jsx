@@ -50,7 +50,7 @@ export const TagList = withTheme(
               <Tag
                 key={tag}
                 color={
-                  selectedTags && selectedTags.has(tag)
+                  selectedTags && selectedTags.includes(tag)
                     ? selectedOrHoverColor
                     : fadeColor
                 }
@@ -67,7 +67,7 @@ export const TagList = withTheme(
 
 TagList.propTypes = {
   tags: PropTypes.arrayOf(String).isRequired,
-  selectedTags: PropTypes.instanceOf(Set),
+  selectedTags: PropTypes.arrayOf(PropTypes.string),
   label: PropTypes.string,
   onTagClick: PropTypes.func,
 }
