@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { css } from 'styled-components'
 import Responsive from 'react-responsive'
+import canUseDom from 'can-use-dom'
 
 export let sizes = {
   phone: 599,
@@ -8,6 +9,8 @@ export let sizes = {
   desktop: 1200,
   hd: 1800,
 }
+
+export let BrowserOnly = ({ children }) => (canUseDom ? children : null)
 
 export let Media = {
   MobileOnly: props => <Responsive {...props} maxWidth={sizes.tablet} />,
