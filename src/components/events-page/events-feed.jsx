@@ -98,7 +98,11 @@ let EventsFeed = ({
           There are no events satisfying your query...
         </NoEventsBlock>
       ) : (
-        <EventList events={filteredEvents} />
+        <EventList
+          events={filteredEvents}
+          onTagClick={toggleTag}
+          selectedTags={selectedTags}
+        />
       )}
     </MainContainer>
   )
