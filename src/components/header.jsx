@@ -72,7 +72,7 @@ let Navbar = () => (
         <NavigationLink to="/speakers">speakers</NavigationLink>
       </NavbarItem>
       <NavbarItem>
-        <NavigationLink to="/feed">feed</NavigationLink>
+        <NavigationLink to="/blog">blog</NavigationLink>
       </NavbarItem>
     </Flex>
   </nav>
