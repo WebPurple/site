@@ -6,6 +6,7 @@ import { height, fontSize } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
 import { VK, Like } from 'react-vk'
+import FacebookProvider, { Like as FbLike } from 'react-facebook'
 
 import { media } from '../../utils/css-utils'
 
@@ -170,9 +171,21 @@ const EventPage = ({ event }) => (
       </Flex>
 
       <Flex mt="3.6rem" justifyContent="space-between" alignItems="flex-end">
-        <VK apiId={5360165} options={{ version: 152 }}>
-          <Like options={{ type: 'mini', height: 30 }} pageId={event.title} />
-        </VK>
+        <Flex>
+          <VK apiId={5360165} options={{ version: 152 }}>
+            <Like
+              options={{ type: 'mini', height: 30 }}
+              pageId={event.fields.slug}
+            />
+          </VK>
+
+          <FacebookProvider appId="1094823327247465">
+            <FbLike
+              layout="button_count"
+              share
+            />
+          </FacebookProvider>
+        </Flex>
 
         {event.socialNetworks && (
           <EventSocialNetworks socialNetworks={event.socialNetworks} />
@@ -205,6 +218,9 @@ const EventPage = ({ event }) => (
 
 EventPage.propTypes = {
   event: PropTypes.shape({
+    fields: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     address: PropTypes.string,

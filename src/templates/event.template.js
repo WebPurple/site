@@ -19,6 +19,10 @@ export default mapProps(
 export let pageQuery = graphql`
   query Event($id: String) {
     eventYaml(id: { eq: $id }) {
+      fields {
+        slug
+      }
+      
       title
       description
       date
