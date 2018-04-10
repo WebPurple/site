@@ -78,7 +78,12 @@ const SubscriptionForm = withTheme(({ theme }) => (
         address below:
       </SubHeader>
       <FormWrapper data-netlify="true">
-        <Input type="text" placeholder="Enter your email" name="email" />
+        <Input
+          type="email"
+          required
+          placeholder="Enter your email"
+          name="email"
+        />
         <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
           Subscribe
         </Button>
