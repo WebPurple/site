@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { withTheme } from 'styled-components'
+import ym from 'react-yandex-metrika'
 
 import { BrowserOnly, media } from '../../utils/css-utils'
 import Button from '../common/button'
@@ -84,7 +85,12 @@ const SubscriptionForm = withTheme(({ theme }) => (
           placeholder="Enter your email"
           name="email"
         />
-        <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
+        <Button
+          defaultSheme={'#fff'}
+          hoverColor={theme.vividPurple}
+          onClick={() => {
+            ym('reachGoal', 'email-subscription')
+          }}>
           Subscribe
         </Button>
       </FormWrapper>
