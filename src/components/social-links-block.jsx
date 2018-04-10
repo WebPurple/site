@@ -34,61 +34,46 @@ const responsiveHeight = (component, mobile, tablet, desktop) => styled(
   ${media.tablet`height: ${tablet}px;`} ${media.desktop`height: ${desktop}px;`};
 `
 
-const StyledVkIcon = responsiveHeight(VkIcon, 22, 42, 50)
-const StyledFacebookIcon = responsiveHeight(FacebookSquareIcon, 30, 65, 80)
-const StyledYoutubeIcon = responsiveHeight(YoutubeIcon, 30, 60, 70)
-const StyledTelegramIcon = responsiveHeight(TelegramIcon, 30, 55, 65)
-const StyledInstagramIcon = responsiveHeight(InstagramIcon, 30, 65, 80)
+let socialNetworks = [
+  {
+    link: 'https://vk.com/webpurple',
+    description: 'We are in Vkontakte',
+    icon: responsiveHeight(VkIcon, 22, 42, 50),
+  },
+  {
+    link: 'https://www.facebook.com/WebPurple',
+    description: 'We are in Facebook',
+    icon: responsiveHeight(FacebookSquareIcon, 30, 65, 80),
+  },
+  {
+    link: 'https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA',
+    description: 'Our youtube channel',
+    icon: responsiveHeight(YoutubeIcon, 30, 60, 70),
+  },
+  {
+    link: 'https://t.me/WebPurple',
+    description: 'We are in telegram',
+    icon: responsiveHeight(TelegramIcon, 30, 55, 65),
+  },
+  {
+    link: 'https://www.instagram.com/webpurple',
+    description: 'We are in instagram',
+    icon: responsiveHeight(InstagramIcon, 30, 65, 80),
+  },
+]
 
 export default () => (
   <SocialLinksContainer>
     <BlockHeader>Join&nbsp;us&nbsp;in&nbsp;social networks!</BlockHeader>
     <LinksWrapper>
-      <li>
-        <a
-          href="https://vk.com/webpurple"
-          target="_blank"
-          rel="noopener noreferrer">
-          <HiddenText>We are in VK</HiddenText>
-          <StyledVkIcon />
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://www.facebook.com/WebPurple"
-          target="_blank"
-          rel="noopener noreferrer">
-          <HiddenText>We are in Facebook</HiddenText>
-          <StyledFacebookIcon />
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA"
-          target="_blank"
-          rel="noopener noreferrer">
-          <HiddenText>Our youtube channel</HiddenText>
-          <StyledYoutubeIcon />
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://t.me/WebPurple"
-          target="_blank"
-          rel="noopener noreferrer">
-          <HiddenText>We are in telegram</HiddenText>
-          <StyledTelegramIcon />
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://www.instagram.com/webpurple"
-          target="_blank"
-          rel="noopener noreferrer">
-          <HiddenText>Our instagram</HiddenText>
-          <StyledInstagramIcon />
-        </a>
-      </li>
+      {socialNetworks.map(({ link, description, icon: Icon }) => (
+        <li>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <HiddenText>{description}</HiddenText>
+            <Icon />
+          </a>
+        </li>
+      ))}
     </LinksWrapper>
   </SocialLinksContainer>
 )
