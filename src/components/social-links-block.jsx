@@ -17,7 +17,8 @@ const responsiveHeight = (component, mobile, tablet, desktop) => styled(
   component,
 )`
   height: ${mobile}px;
-  ${media.tablet`height: ${tablet}px;`} ${media.desktop`height: ${desktop}px;`};
+  ${media.tablet`height: ${tablet}px`};
+  ${media.desktop`height: ${desktop}px`};
 `
 
 let socialNetworks = [
