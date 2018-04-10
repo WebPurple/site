@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { withTheme } from 'styled-components'
 
-import { media } from '../../utils/css-utils'
+import { BrowserOnly, media } from '../../utils/css-utils'
 import Button from '../common/button'
 import { subscibtionBackground } from '../../utils/selectors'
 
@@ -70,19 +70,21 @@ const Input = styled.input`
 `
 
 const SubscriptionForm = withTheme(({ theme }) => (
-  <SubscriptionFormContainer>
-    <Header>Be informed about the coolest meetups</Header>
-    <SubHeader>
-      Get Webpurples latest news straight to your inbox. Enter your email
-      address below:
-    </SubHeader>
-    <FormWrapper data-netlify="true">
-      <Input type="text" placeholder="Enter your email" name="email" />
-      <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
-        Subscribe
-      </Button>
-    </FormWrapper>
-  </SubscriptionFormContainer>
+  <BrowserOnly>
+    <SubscriptionFormContainer>
+      <Header>Be informed about the coolest meetups</Header>
+      <SubHeader>
+        Get Webpurples latest news straight to your inbox. Enter your email
+        address below:
+      </SubHeader>
+      <FormWrapper data-netlify="true">
+        <Input type="text" placeholder="Enter your email" name="email" />
+        <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
+          Subscribe
+        </Button>
+      </FormWrapper>
+    </SubscriptionFormContainer>
+  </BrowserOnly>
 ))
 
 export default SubscriptionForm
