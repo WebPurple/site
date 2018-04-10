@@ -1,6 +1,8 @@
 import { flatten, map, pipe, prop, reduce, uniq } from 'ramda'
 
-export let eventTags = pipe(prop('talks'), map(prop('tags')), flatten, uniq)
+const viewTags = talk => talk.tags ? talk.tags : [];
+
+export let eventTags = pipe(prop('talks'), map(viewTags), flatten, uniq)
 
 let getEventNode = event => event.node
 
