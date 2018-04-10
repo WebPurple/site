@@ -7,7 +7,7 @@ import {
   VkIcon,
   FacebookSquareIcon,
   YoutubeIcon,
-  TwitterIcon,
+  TelegramIcon,
   InstagramIcon,
 } from './icons/social/index'
 import { HiddenText } from '../utils/accessibility'
@@ -37,7 +37,7 @@ const responsiveHeight = (component, mobile, tablet, desktop) => styled(
 const StyledVkIcon = responsiveHeight(VkIcon, 22, 42, 50)
 const StyledFacebookIcon = responsiveHeight(FacebookSquareIcon, 30, 65, 80)
 const StyledYoutubeIcon = responsiveHeight(YoutubeIcon, 30, 60, 70)
-const StyledTwitterIcon = responsiveHeight(TwitterIcon, 30, 55, 65)
+const StyledTelegramIcon = responsiveHeight(TelegramIcon, 30, 55, 65)
 const StyledInstagramIcon = responsiveHeight(InstagramIcon, 30, 65, 80)
 
 export default () => (
@@ -72,7 +72,13 @@ export default () => (
         </a>
       </li>
       <li>
-        <StyledTwitterIcon />
+        <a
+          href="https://t.me/WebPurple"
+          target="_blank"
+          rel="noopener noreferrer">
+          <HiddenText>We are in telegram</HiddenText>
+          <StyledTelegramIcon />
+        </a>
       </li>
       <li>
         <a
