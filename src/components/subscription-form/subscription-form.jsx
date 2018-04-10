@@ -123,7 +123,7 @@ export default compose(
             }),
           })
           .then(() => {
-            window.localStorage.setItem(FORM_NAME, 'done1')
+            window.localStorage.setItem(FORM_NAME, 'done')
             alert('Мы вас запомнили! Только рассылку пока не реализовали :-)')
             ym('reachGoal', 'email-subscription')
           })
