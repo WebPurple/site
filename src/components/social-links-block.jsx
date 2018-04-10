@@ -65,7 +65,7 @@ export default () => (
       mt={['5rem', '10rem']}
       style={{ listStyle: 'none' }}>
       {socialNetworks.map(({ link, description, icon: Icon, ymGoal }) => (
-        <li>
+        <li key={link}>
           <a
             href={link}
             target="_blank"
