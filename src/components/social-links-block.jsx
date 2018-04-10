@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Flex, Box } from 'grid-styled'
 
 import { media } from '../utils/css-utils'
 import BlockHeader from './common/block-header'
@@ -11,21 +12,6 @@ import {
   InstagramIcon,
 } from './icons/social/index'
 import { HiddenText } from '../utils/accessibility'
-
-const SocialLinksContainer = styled.section`
-  padding: 6rem 2rem;
-  ${media.tablet`padding: 9rem 7rem;`} ${media.desktop`padding: 10rem;`};
-`
-
-const LinksWrapper = styled.ul`
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5rem 0 0 0;
-  ${media.desktop`margin: 10rem 0 0 0;`};
-`
 
 const responsiveHeight = (component, mobile, tablet, desktop) => styled(
   component,
@@ -63,9 +49,14 @@ let socialNetworks = [
 ]
 
 export default () => (
-  <SocialLinksContainer>
+  <Box p={['6rem 2rem', '9rem 7rem', '10rem']}>
     <BlockHeader>Join&nbsp;us&nbsp;in&nbsp;social networks!</BlockHeader>
-    <LinksWrapper>
+    <Flex
+      justifyContent="space-between"
+      alignItems="center"
+      p={0}
+      mt={['5rem', '10rem']}
+      style={{ listStyle: 'none' }}>
       {socialNetworks.map(({ link, description, icon: Icon }) => (
         <li>
           <a href={link} target="_blank" rel="noopener noreferrer">
@@ -74,6 +65,6 @@ export default () => (
           </a>
         </li>
       ))}
-    </LinksWrapper>
-  </SocialLinksContainer>
+    </Flex>
+  </Box>
 )
