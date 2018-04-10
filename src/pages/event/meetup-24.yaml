@@ -38,7 +38,7 @@ talks:
     title: Ленивые массивы в JavaScript.
   - title: Treemap
     description: Расскажу о своём опыте визуализации данных с помощью метода treemap
-    speaker: Andrey Smolko
+    speaker: Андрей Смолко
     tags:
       - javascript
       - treemap

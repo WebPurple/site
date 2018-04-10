@@ -33,7 +33,7 @@ talks:
     description: >-
       Как задокументировать стили с помощью KSS и сгенерировать классный
       стайлгайд с помощью KSS-Node
-  - speaker: Andrey Smolko
+  - speaker: Андрей Смолко
     tags:
       - html
       - javascript
