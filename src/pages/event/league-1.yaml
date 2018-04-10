@@ -5,7 +5,7 @@ description: >-
 date: 2018-03-29T16:30:48.000Z
 address: бар Карась, Почтовая ул., 60, Рязань
 talks:
-  - speaker: Dmitry Krilov
+  - speaker: Дмитрий Крылов
     title: Geekjs
     tags:
       - javascript

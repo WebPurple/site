@@ -3,5 +3,5 @@ description: История развития модулей и script-loader'о�
 date: 2015-09-24T01:21:02+03:00
 address: Библиотека им. Горького
 talks:
-  - speaker: Nikita Kirsanov
+  - speaker: Никита Кирсанов
     title: JS modules and loaders

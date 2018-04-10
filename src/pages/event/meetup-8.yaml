@@ -3,7 +3,7 @@ description: Typescript
 date: 2016-04-28T16:30:00.000Z
 address: '  Рязань'
 talks:
-  - speaker: Dmitry Pikulin
+  - speaker: Дмитрий Пикулин
     tags:
       - typescript
     title: Typescript

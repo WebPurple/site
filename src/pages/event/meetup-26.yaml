@@ -8,7 +8,7 @@ talks:
     description: >-
       Никита поделится своим видением того, когда всё-таки следует использовать 
       const,  а когда let в javascipt
-    speaker: Nikita Kirsanov
+    speaker: Никита Кирсанов
     tags:
       - javascript
       - es6
