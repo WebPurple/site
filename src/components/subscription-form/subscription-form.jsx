@@ -3,7 +3,7 @@ import styled, { withTheme } from 'styled-components'
 import { compose, lifecycle, withStateHandlers } from 'recompose'
 import ym from 'react-yandex-metrika'
 
-import { BrowserOnly, media } from '../../utils/css-utils'
+import { media } from '../../utils/css-utils'
 import Button from '../common/button'
 import { subscibtionBackground } from '../../utils/selectors'
 
@@ -74,31 +74,29 @@ const FORM_NAME = 'email-subscription'
 
 const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
   !hasSubscribed && (
-    <BrowserOnly>
-      <SubscriptionFormContainer>
-        <Header>Be informed about the coolest meetups</Header>
-        <SubHeader>
-          Get Webpurples latest news straight to your inbox. Enter your email
-          address below:
-        </SubHeader>
-        <FormWrapper
-          name={FORM_NAME}
-          method="POST"
-          data-netlify="true"
-          onSubmit={subscribe}>
-          <Input
-            type="email"
-            required
-            placeholder="Enter your email"
-            name="email"
-          />
-          <div data-netlify-recaptcha />
-          <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
-            Subscribe
-          </Button>
-        </FormWrapper>
-      </SubscriptionFormContainer>
-    </BrowserOnly>
+    <SubscriptionFormContainer>
+      <Header>Be informed about the coolest meetups</Header>
+      <SubHeader>
+        Get Webpurples latest news straight to your inbox. Enter your email
+        address below:
+      </SubHeader>
+      <FormWrapper
+        name={FORM_NAME}
+        method="POST"
+        data-netlify="true"
+        onSubmit={subscribe}>
+        <Input
+          type="email"
+          required
+          placeholder="Enter your email"
+          name="email"
+        />
+        <div data-netlify-recaptcha />
+        <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
+          Subscribe
+        </Button>
+      </FormWrapper>
+    </SubscriptionFormContainer>
   )
 
 const encode = data =>
