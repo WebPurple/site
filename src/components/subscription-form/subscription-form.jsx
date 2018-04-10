@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { withTheme } from 'styled-components'
+import { compose, lifecycle, withStateHandlers } from 'recompose'
 import ym from 'react-yandex-metrika'
 
 import { BrowserOnly, media } from '../../utils/css-utils'
@@ -70,32 +71,50 @@ const Input = styled.input`
   `};
 `
 
-const SubscriptionForm = withTheme(({ theme }) => (
-  <BrowserOnly>
-    <SubscriptionFormContainer>
-      <Header>Be informed about the coolest meetups</Header>
-      <SubHeader>
-        Get Webpurples latest news straight to your inbox. Enter your email
-        address below:
-      </SubHeader>
-      <FormWrapper data-netlify="true">
-        <Input
-          type="email"
-          required
-          placeholder="Enter your email"
-          name="email"
-        />
-        <Button
-          defaultSheme={'#fff'}
-          hoverColor={theme.vividPurple}
-          onClick={() => {
-            ym('reachGoal', 'email-subscription')
-          }}>
-          Subscribe
-        </Button>
-      </FormWrapper>
-    </SubscriptionFormContainer>
-  </BrowserOnly>
-))
+const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
+  !hasSubscribed && (
+    <BrowserOnly>
+      <SubscriptionFormContainer>
+        <Header>Be informed about the coolest meetups</Header>
+        <SubHeader>
+          Get Webpurples latest news straight to your inbox. Enter your email
+          address below:
+        </SubHeader>
+        <FormWrapper data-netlify="true">
+          <Input
+            type="email"
+            required
+            placeholder="Enter your email"
+            name="email"
+          />
+          <Button
+            defaultSheme={'#fff'}
+            hoverColor={theme.vividPurple}
+            onClick={() => subscribe()}>
+            Subscribe
+          </Button>
+        </FormWrapper>
+      </SubscriptionFormContainer>
+    </BrowserOnly>
+  )
 
-export default SubscriptionForm
+export default compose(
+  withStateHandlers(() => ({}), {
+    subscribe: () => setStateOnly => {
+      if (!setStateOnly) {
+        window.localStorage.setItem('email-subscription', 'done')
+        ym('reachGoal', 'email-subscription')
+      }
+
+      return { hasSubscribed: true }
+    },
+  }),
+  lifecycle({
+    componentDidMount() {
+      if (window.localStorage.getItem('email-subscription') === 'done') {
+        this.props.subscribe(true)
+      }
+    },
+  }),
+  withTheme,
+)(SubscriptionForm)
