@@ -91,13 +91,14 @@ const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
             Don’t fill this out: <input name="bot-field" />
           </label>
         </p>
+
         <Input
+          name="email"
           type="email"
           required
           placeholder="Enter your email"
-          name="email"
         />
-        <div data-netlify-recaptcha />
+
         <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
           Subscribe
         </Button>
