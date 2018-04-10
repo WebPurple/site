@@ -23,8 +23,7 @@ const SubscriptionFormContainer = styled.section`
 
 const Header = styled.h2`
   text-align: center;
-  margin: 0;
-  margin-bottom: 0.615rem; /* 16px */
+  margin: 0 0 0.615rem;
   font-family: 'Rubik', sans-serif;
   font-weight: bold;
   color: #fff;
@@ -71,6 +70,8 @@ const Input = styled.input`
   `};
 `
 
+const FORM_NAME = 'email-subscription'
+
 const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
   !hasSubscribed && (
     <BrowserOnly>
@@ -80,17 +81,19 @@ const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
           Get Webpurples latest news straight to your inbox. Enter your email
           address below:
         </SubHeader>
-        <FormWrapper data-netlify="true">
+        <FormWrapper
+          name={FORM_NAME}
+          method="POST"
+          data-netlify="true"
+          onSubmit={subscribe}>
           <Input
             type="email"
             required
             placeholder="Enter your email"
             name="email"
           />
-          <Button
-            defaultSheme={'#fff'}
-            hoverColor={theme.vividPurple}
-            onClick={() => subscribe()}>
+          <div data-netlify-recaptcha />
+          <Button defaultSheme={'#fff'} hoverColor={theme.vividPurple}>
             Subscribe
           </Button>
         </FormWrapper>
@@ -98,12 +101,32 @@ const SubscriptionForm = ({ theme, hasSubscribed, subscribe }) =>
     </BrowserOnly>
   )
 
+const encode = data =>
+  Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+
 export default compose(
   withStateHandlers(() => ({}), {
-    subscribe: () => setStateOnly => {
+    subscribe: () => (_, setStateOnly) => {
       if (!setStateOnly) {
-        window.localStorage.setItem('email-subscription', 'done')
-        ym('reachGoal', 'email-subscription')
+        let form = window.document.forms[FORM_NAME]
+        let email = form.elements.email.value
+
+        window
+          .fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: encode({
+              'form-name': FORM_NAME,
+              email,
+            }),
+          })
+          .then(() => {
+            window.localStorage.setItem(FORM_NAME, 'done1')
+            alert('Мы вас запомнили! Только рассылку пока не реализовали :-)')
+            ym('reachGoal', 'email-subscription')
+          })
       }
 
       return { hasSubscribed: true }
@@ -111,8 +134,8 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      if (window.localStorage.getItem('email-subscription') === 'done') {
-        this.props.subscribe(true)
+      if (window.localStorage.getItem(FORM_NAME) === 'done') {
+        this.props.subscribe(null, true)
       }
     },
   }),
