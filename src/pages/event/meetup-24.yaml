@@ -30,7 +30,6 @@ talks:
     tags:
       - design
       - waltdisney
-      - ''
   - speaker: Александр Харьков
     tags:
       - javascript
@@ -55,6 +54,9 @@ talks:
     speaker: Ярослав Перегуда
     tags:
       - blockchain
+  - title: Секрет успешного доклада
+    description: 'Поделюсь своим мнением, каким должен быть успешный технический доклад'
+    speaker: Илья Чесноков
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk

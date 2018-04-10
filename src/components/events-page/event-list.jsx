@@ -6,7 +6,7 @@ import styled, { withTheme } from 'styled-components'
 import Masonry from 'react-masonry-component'
 import moment from 'moment'
 
-import { media, isPhone, isTablet } from '../../utils/css-utils'
+import { isPhone, isTablet, media } from '../../utils/css-utils'
 import { TagList } from '../common/tag'
 import { ClockIcon, PlaceholderIcon } from '../icons'
 import { eventSmallBackground, eventTags } from '../../utils/selectors'
@@ -94,7 +94,7 @@ const Talk = styled.li`
   margin: 1.6rem 0;
 `
 
-const EventList = ({ events, theme }) => (
+const EventList = ({ events, theme, onTagClick, selectedTags }) => (
   <Container>
     {events.map((event, eventIndex) => (
       <EventSnippet className="e2e-event-card" key={event.title}>
@@ -104,11 +104,13 @@ const EventList = ({ events, theme }) => (
         <header>
           <Info>
             <ClockIcon style={{ marginRight: '1.6rem' }} />
-            <time>{moment(event.date).format('LLL')}</time>
+            <time>
+              {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+            </time>
           </Info>
           <Info>
             <PlaceholderIcon style={{ marginRight: '1.6rem' }} />
-            <span>{event.address}</span>
+            <span>{event.address || 'Уточняется'}</span>
           </Info>
           <Title
             className="e2e-event-card-title"
@@ -120,7 +122,11 @@ const EventList = ({ events, theme }) => (
         <TalkList>
           {event.talks.map(talk => <Talk key={talk.title}>{talk.title}</Talk>)}
         </TalkList>
-        <TagList tags={eventTags(event)} />
+        <TagList
+          tags={eventTags(event)}
+          onTagClick={onTagClick}
+          selectedTags={selectedTags}
+        />
       </EventSnippet>
     ))}
   </Container>
@@ -129,6 +135,8 @@ const EventList = ({ events, theme }) => (
 EventList.propTypes = {
   events: PropTypes.arrayOf(Object).isRequired,
   theme: PropTypes.object.isRequired,
+  onTagClick: PropTypes.func,
+  selectedTags: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default withTheme(EventList)

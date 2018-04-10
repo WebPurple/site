@@ -6,8 +6,9 @@ import { height, fontSize } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
 import { VK, Like } from 'react-vk'
+import FacebookProvider, { Like as FbLike } from 'react-facebook'
 
-import { media } from '../../utils/css-utils'
+import { BrowserOnly, media } from '../../utils/css-utils'
 
 import EventBG from './event-background'
 import BlockHeader from '../common/block-header'
@@ -170,9 +171,20 @@ const EventPage = ({ event }) => (
       </Flex>
 
       <Flex mt="3.6rem" justifyContent="space-between" alignItems="flex-end">
-        <VK apiId={5360165} options={{ version: 152 }}>
-          <Like options={{ type: 'mini', height: 30 }} />
-        </VK>
+        <BrowserOnly>
+          <Flex alignItems="center">
+            <VK apiId={5360165} options={{ version: 152 }}>
+              <Like
+                options={{ type: 'mini', height: 30 }}
+                pageId={event.fields.slug}
+              />
+            </VK>
+
+            <FacebookProvider appId="1094823327247465">
+              <FbLike layout="button_count" share />
+            </FacebookProvider>
+          </Flex>
+        </BrowserOnly>
 
         {event.socialNetworks && (
           <EventSocialNetworks socialNetworks={event.socialNetworks} />
@@ -183,8 +195,8 @@ const EventPage = ({ event }) => (
     <BlockHeader>Talks</BlockHeader>
     <Flex flexWrap="wrap" mt="6.4rem" mx="-1rem">
       {event.talks.map(talk => (
-        <Box width={[1, 1, 1 / 2]} p="1rem">
-          <EventTalk key={talk.title} talk={talk} />
+        <Box width={[1, 1, 1 / 2]} p="1rem" key={talk.title}>
+          <EventTalk talk={talk} />
         </Box>
       ))}
     </Flex>
@@ -205,6 +217,9 @@ const EventPage = ({ event }) => (
 
 EventPage.propTypes = {
   event: PropTypes.shape({
+    fields: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     address: PropTypes.string,
