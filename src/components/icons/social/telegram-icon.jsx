@@ -6,6 +6,17 @@ let TelegramIcon = ({ className, height = '2.4rem' }) => (
     viewBox="0 0 240 240"
     className={className}
     height={height}>
+    <style>
+      {`
+            #telegram-icon {
+                fill: #a1a1a1;
+            }
+
+            svg:hover #telegram-icon {
+                fill: url(#b);
+            }
+        `}
+    </style>
     <defs>
       <linearGradient id="b" x1="0.6667" y1="0.1667" x2="0.4167" y2="0.75">
         <stop stopColor="#37aee2" offset="0" />
@@ -16,7 +27,7 @@ let TelegramIcon = ({ className, height = '2.4rem' }) => (
         <stop stopColor="#fff" offset="1" />
       </linearGradient>
     </defs>
-    <circle cx="120" cy="120" r="120" fill="url(#b)" />
+    <circle cx="120" cy="120" r="120" id="telegram-icon" />
     <path
       fill="#c8daea"
       d="m98 175c-3.8876 0-3.227-1.4679-4.5678-5.1695L82 132.2059 170 80"
