@@ -1,7 +1,8 @@
 backend:
-  name: github
-  repo: kitos/web-purple
-  branch: master
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
 
 media_folder: static/img
 public_folder: /img
