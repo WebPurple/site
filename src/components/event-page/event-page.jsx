@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import moment from 'moment'
-import { height, fontSize } from 'styled-system'
+import { fontSize, height } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
-import { VK, Like } from 'react-vk'
+import { Like, VK } from 'react-vk'
 import FacebookProvider, { Like as FbLike } from 'react-facebook'
+import canUseDom from 'can-use-dom'
+import { DiscussionEmbed } from 'disqus-react'
 
 import { BrowserOnly, media } from '../../utils/css-utils'
 
@@ -16,7 +18,7 @@ import { TagList } from '../common/tag'
 import { ClockIcon, PlaceholderIcon } from './../icons'
 import EventMap from './event-map'
 import { eventBigBackground, eventTags } from '../../utils/selectors'
-import { VkIcon, FacebookIcon } from '../icons/social'
+import { FacebookIcon, VkIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 import EventTalk from './talks/talk'
 
@@ -212,6 +214,17 @@ const EventPage = ({ event }) => (
         </Box>
       </React.Fragment>
     )}
+
+    <DiscussionEmbed
+      shortname="WebPurple"
+      config={{
+        url: canUseDom
+          ? window.location.href
+          : `https://www.webpurple.net${event.fields.slug}`,
+        identifier: event.fields.slug,
+        title: event.title,
+      }}
+    />
   </Box>
 )
 
