@@ -1,9 +1,8 @@
-import { flatten, map, pipe, prop, reduce, uniq, defaultTo } from 'ramda'
+import { pipe, prop, uniq, defaultTo, chain } from 'ramda'
 
 export let eventTags = pipe(
   prop('talks'),
-  map(pipe(prop('tags'), defaultTo([]))),
-  flatten,
+  chain(pipe(prop('tags'), defaultTo([]))),
   uniq,
 )
 
