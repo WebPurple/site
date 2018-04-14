@@ -84,6 +84,7 @@ const EventText = styled.span`
 `
 
 const TalksBlock = styled.ul`
+  list-style: none;
   top: 5rem;
   position: relative;
   display: flex;
