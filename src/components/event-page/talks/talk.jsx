@@ -123,7 +123,9 @@ const EventTalk = ({ talk }) => (
     <div>
       <Header itemProp="actor">{talk.title}</Header>
       <SpeakerJobTitle>
-        {talk.speaker.title}, {talk.speaker.jobTitle}
+        {talk.speaker.jobTitle
+          ? `${talk.speaker.title}, ${talk.speaker.jobTitle}`
+          : talk.speaker.title}
       </SpeakerJobTitle>
       {talk.description ? <Description>{talk.description}</Description> : null}
       {talk.links ? (
