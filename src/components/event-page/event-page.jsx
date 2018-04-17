@@ -55,36 +55,26 @@ const IconStyleMixin = `
 `
 
 const PlaceholderIconStyled = styled(PlaceholderIcon)`
-  ${IconStyleMixin}
-
-  ${media.phone`
+  ${IconStyleMixin} ${media.phone`
     margin-right: 1.2rem;
-  `}
-  ${media.tablet`
+  `} ${media.tablet`
     margin-right: 1.6rem;
     width: 2.8rem;
     height: 2.8rem;
-  `}
-
-  & path {
+  `} & path {
     fill: ${props => props.theme.lipstick};
     opacity: 1;
   }
 `
 
 const ClockIconStyled = styled(ClockIcon)`
-  ${IconStyleMixin}
-
-  ${media.phone`
+  ${IconStyleMixin} ${media.phone`
     margin-right: 1.2rem;
-  `}
-  ${media.tablet`
+  `} ${media.tablet`
     margin-right: 1.6rem;
     width: 2.8rem;
     height: 2.8rem;
-  `}
-
-  & path {
+  `} & path {
     fill: ${props => props.theme.lipstick};
     opacity: 1;
   }

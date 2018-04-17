@@ -22,7 +22,7 @@ export let pageQuery = graphql`
       fields {
         slug
       }
-      
+
       title
       description
       date
