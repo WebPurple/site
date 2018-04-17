@@ -6,9 +6,10 @@ import { compose, withStateHandlers } from 'recompose'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
-import { CloseIcon, MenuIcon } from './icons/header/index'
-import { Flex } from 'grid-styled'
+import { CloseIcon, MenuIcon, GithubIcon } from './icons'
+import { Flex, Box } from 'grid-styled'
 import { Portal } from 'react-portal'
+import { HiddenText } from '../utils/accessibility'
 
 let NavigationLink = styled(Link).attrs({
   activeClassName: 'active',
@@ -34,6 +35,9 @@ let NavigationLink = styled(Link).attrs({
 `
 
 let MobileSidebar = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   height: 100vh;
@@ -78,13 +82,35 @@ let Navbar = () => (
   </nav>
 )
 
+let GitHubLink = ({ children, className }) => (
+  <Flex is="a"
+    className={className}
+    href="https://github.com/kitos/web-purple"
+    title="Contribute"
+    target="_blank"
+    rel="noopener noreferrer">
+    <GithubIcon />
+    <span>{children}</span>
+  </Flex>
+)
+
+let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
+  position: relative;
+  & svg {
+    position: absolute;
+    right: calc(100% + 1rem);
+  }
+`
+
 let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
   <Flex
     is="header"
     flexDirection={['column', 'row']}
+    alignItems={['normal', 'center']}
     m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
     <Flex justifyContent="space-between">
       <WebpurpleLogo />
+
       <Media.MobileOnly>
         {isMenuOpen ? (
           <CloseIcon
@@ -97,15 +123,23 @@ let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
             style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
           />
         )}
+
         <Portal isOpened={isMenuOpen}>
           <MobileSidebar isOpen={isMenuOpen} onClick={hideMenu}>
             <Navbar />
+            <Box is={MobileGithubLink} m="7.5rem">Contribute</Box>
           </MobileSidebar>
         </Portal>
       </Media.MobileOnly>
     </Flex>
+
     <Media.TabletPlus>
-      <Navbar />
+      <Flex justifyContent="space-between" alignItems="center" flex="1">
+        <Navbar />
+        <GitHubLink>
+          <HiddenText>Contribute</HiddenText>
+        </GitHubLink>
+      </Flex>
     </Media.TabletPlus>
   </Flex>
 )

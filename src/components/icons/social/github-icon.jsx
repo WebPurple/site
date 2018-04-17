@@ -1,6 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
 
-// TODO change github icon
 const GithubIcon = ({ className, height = '2.4rem' }) => (
   <svg
     className={className}
@@ -9,7 +9,6 @@ const GithubIcon = ({ className, height = '2.4rem' }) => (
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink">
-    <title>Facebook</title>
     <defs>
       <style>
         {`
@@ -43,4 +42,6 @@ const GithubIcon = ({ className, height = '2.4rem' }) => (
   </svg>
 )
 
-export default GithubIcon
+export default styled(GithubIcon)`
+  vertical-align: middle;
+`
