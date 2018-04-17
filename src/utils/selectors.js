@@ -1,10 +1,26 @@
 import { flatten, map, pipe, prop, reduce, uniq } from 'ramda'
 
-const viewTags = talk => talk.tags ? talk.tags : [];
+const viewTags = talk => (talk.tags ? talk.tags : [])
 
 export let eventTags = pipe(prop('talks'), map(viewTags), flatten, uniq)
 
 let getEventNode = event => event.node
+
+export let filterByDate = (events, show) => {
+  const today = new Date().getTime()
+  switch (show) {
+    case 'past':
+      return events.filter(
+        event => !!event.date && new Date(event.date).getTime() < today,
+      )
+    case 'upcoming':
+      return events.filter(
+        event => !event.date || new Date(event.date).getTime() > today,
+      )
+    case 'all':
+      return events
+  }
+}
 
 export let selectPastEvents = events =>
   events.map(getEventNode).filter(e => e.date && new Date(e.date) < new Date())

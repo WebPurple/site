@@ -25,7 +25,7 @@ import { TagList } from '../common/tag'
 import { FilterBlock, FilterTab, Search } from '../page-filter'
 import EventList from './event-list'
 import { elasticSearch } from '../../utils/search'
-import { eventTags } from '../../utils/selectors'
+import { eventTags, filterByDate } from '../../utils/selectors'
 
 const NoEventsBlock = styled.div`
   margin: 10rem 0;
@@ -47,6 +47,7 @@ let EventsFeed = ({
   handleSearchBlur,
   selectedTags,
   toggleTag,
+  location,
 }) => {
   let filteredEvents = events.filter(
     both(
@@ -57,8 +58,14 @@ let EventsFeed = ({
       ),
     ),
   )
+
+  let show = !!location.search.substring(6)
+    ? location.search.substring(6)
+    : 'all'
+
+  filteredEvents = filterByDate(filteredEvents, show)
+
   let allEventsTags = pipe(map(eventTags), flatten, uniq)(filteredEvents)
-  let show = ''
 
   return (
     <MainContainer>
