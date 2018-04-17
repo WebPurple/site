@@ -5,8 +5,8 @@ const VKIcon = () => (
     width="42"
     height="24"
     viewBox="0 0 42 24"
-    xmlns="http://www.w3.org/2000/svg">
-    <title>A15E1003-A1C0-4517-AA4A-D8FB0E543314</title>
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true">
     <defs>
       <path id="a" d="M.01.036v23.918h41.902V.036H.01z" />
     </defs>

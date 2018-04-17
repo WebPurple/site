@@ -6,8 +6,8 @@ const FacebookIcon = ({ className, height = '2.4rem' }) => (
     className={className}
     height={height}
     viewBox="0 0 25 45"
-    xmlns="http://www.w3.org/2000/svg">
-    <title>30ADDDDC-709A-44AB-8CE8-76037A5CC8E1</title>
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true">
     <style>
       {`
                 #facebook-icon {

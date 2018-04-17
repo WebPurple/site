@@ -5,7 +5,8 @@ let TelegramIcon = ({ className, height = '2.4rem' }) => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 240 240"
     className={className}
-    height={height}>
+    height={height}
+    aria-hidden="true">
     <defs>
       <linearGradient id="b" x1="0.6667" y1="0.1667" x2="0.4167" y2="0.75">
         <stop stopColor="#37aee2" offset="0" />

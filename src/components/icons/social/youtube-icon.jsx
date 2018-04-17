@@ -6,8 +6,8 @@ const VkIcon = props => (
     viewBox="0 0 71 30"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink">
-    <title>Youtube</title>
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    aria-hidden="true">
     <defs>
       <style>
         {`
