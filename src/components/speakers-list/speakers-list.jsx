@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { withState } from 'recompose'
 import styled from 'styled-components'
 
@@ -30,7 +31,8 @@ const speakerElasticSearch = elasticSearch([
 export default withState('query', 'search', '')(
   ({ speakers, search, query }) => (
     <MainContainer>
-      <BlockHeader>Speakers</BlockHeader>
+      <Helmet title="Speaker" />
+      <BlockHeader size="h1">Speakers</BlockHeader>
       <FilterBlock>
         <Search
           placeholder="Search for speaker…"

@@ -12,7 +12,7 @@ let Logo = styled(Link)`
   z-index: ${Z_INDEXES.LOGO};
 `
 
-let Title = styled.h1`
+let Title = styled.span`
   font-size: 2.6rem;
   margin: 0;
   text-transform: uppercase;

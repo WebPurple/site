@@ -1,12 +1,14 @@
 import React from 'react'
 import { injectGlobal } from 'styled-components'
 import { mapProps } from 'recompose'
+import Helmet from 'react-helmet'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import UpcomingEvents from '../components/home-page/upcoming-events-block'
 import PastEvents from '../components/home-page/past-events'
 import SocialLinksBlock from '../components/social-links-block'
 import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
+import { HiddenText } from '../utils/accessibility'
 
 injectGlobal`
   html {
@@ -20,6 +22,10 @@ injectGlobal`
 
 const IndexPage = ({ upcomingEvent, pastTalks }) => (
   <React.Fragment>
+    <Helmet title="Home" />
+    <HiddenText>
+      <h1>Home</h1>
+    </HiddenText>
     {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
     <PastEvents talks={pastTalks} />
     <SubscriptionForm />

@@ -22,7 +22,7 @@ import { FacebookIcon, VkIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 import EventTalk from './talks/talk'
 
-const EventTitle = styled.h2`
+const EventTitle = styled.h1`
   ${fontSize};
   font-family: Rubik, sans-serif;
   font-weight: bold;
@@ -129,8 +129,7 @@ const EventPage = ({ event }) => (
     m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
     itemScope
     itemType="http://schema.org/Event">
-    <Helmet>
-      <title>WebPurple | {event.title}</title>
+    <Helmet title={event.title}>
       <meta property="og:title" content={event.title} />
       <meta property="og:description" content={event.description} />
       <meta property="og:type" content="event" />

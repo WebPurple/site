@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 import { withStateHandlers } from 'recompose'
@@ -62,7 +63,8 @@ let EventsFeed = ({
 
   return (
     <MainContainer>
-      <BlockHeader>Events</BlockHeader>
+      <Helmet title="Events" />
+      <BlockHeader size="h1">Events</BlockHeader>
       <FilterBlock>
         {!showSearch /* TODO: animate */ && (
           <Flex>
