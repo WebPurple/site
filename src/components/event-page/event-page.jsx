@@ -134,7 +134,7 @@ const EventPage = ({ event }) => (
       <meta property="og:title" content={event.title} />
       <meta property="og:description" content={event.description} />
       <meta property="og:type" content="event" />
-      <meta property="og:image" content={eventBigBackground()} />
+      <meta property="og:image" content="//webpurple.net/img/social-thumbnail-bg.png" />
     </Helmet>
 
     <EventBG image={eventBigBackground()} />
