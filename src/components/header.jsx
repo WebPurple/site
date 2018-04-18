@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import { compose, withStateHandlers } from 'recompose'
+import ym from 'react-yandex-metrika'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
@@ -83,8 +84,10 @@ let Navbar = () => (
 )
 
 let GitHubLink = ({ children, className }) => (
-  <Flex is="a"
+  <Flex
+    is="a"
     className={className}
+    onClick={() => ym('reachGoal', 'gh-contribute')}
     href="https://github.com/kitos/web-purple"
     title="Contribute"
     target="_blank"
@@ -127,7 +130,9 @@ let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
         <Portal isOpened={isMenuOpen}>
           <MobileSidebar isOpen={isMenuOpen} onClick={hideMenu}>
             <Navbar />
-            <Box is={MobileGithubLink} m="7.5rem">Contribute</Box>
+            <Box is={MobileGithubLink} m="7.5rem">
+              Contribute
+            </Box>
           </MobileSidebar>
         </Portal>
       </Media.MobileOnly>
