@@ -4,7 +4,7 @@ description: >-
   Брать или бежать? Какие радости и какие беды ждут первопроходцев. Заодно
   поговорим о других современных подходах к API и работе с данными на клиенте, и
   о том, куда все это катится
-date: 2017-10-05T19:30:20+03:00
+date: 2017-10-05T16:30:20.000Z
 address: 'Бар Карась, Почтовая, 60'
 talks:
   - title: Хороним REST с GraphQL
@@ -19,4 +19,6 @@ talks:
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup22'
     type: vk
+  - link: 'https://www.facebook.com/events/322441078166173/'
+    type: fb
 video: 'https://www.youtube.com/watch?v=GfjWdNaD-2M'
