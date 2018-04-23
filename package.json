@@ -14,6 +14,7 @@
     "gatsby-plugin-netlify-cms": "^1.0.9",
     "gatsby-plugin-react-helmet": "^2.0.5",
     "gatsby-plugin-sharp": "^1.6.34",
+    "gatsby-plugin-sitemap": "^1.2.22",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-remark-images": "^1.5.50",
     "gatsby-source-filesystem": "^1.5.23",

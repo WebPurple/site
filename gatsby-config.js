@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: 'WebPurple',
+    siteUrl: 'https://www.webpurple.net',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-filesystem',
