@@ -15,7 +15,9 @@ talks:
       клиенте, и о том, куда все это катится
     speaker: Яков Жмуров
     tags:
-      - '#graphql #rest #apollo'
+      - graphql
+      - rest
+      - apollo
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup22'
     type: vk
