@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'gatsby-link'
 import { Flex } from 'grid-styled'
 
 export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
@@ -10,9 +11,8 @@ export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
     <h1>Blog</h1>
     {posts
       .map(p => ({
+        ...p.node,
         ...p.node.frontmatter,
-        id: p.node.id,
-        content: p.node.html,
       }))
       .map(post => (
         <article key={post.id}>
@@ -23,7 +23,9 @@ export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
             </span>
           </header>
           <ul>{post.tags.map(t => <li key={t}>#{t}</li>)}</ul>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+
+          <Link to={post.fields.slug}>Read more -></Link>
         </article>
       ))}
   </Flex>
@@ -35,7 +37,10 @@ export let pageQuery = graphql`
       edges {
         node {
           id
-          html
+          excerpt(pruneLength: 400)
+          fields {
+            slug
+          }
           frontmatter {
             title
             date
