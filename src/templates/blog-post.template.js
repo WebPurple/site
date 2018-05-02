@@ -2,6 +2,9 @@ import * as React from 'react'
 import { mapProps } from 'recompose'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
+import { DiscussionEmbed } from 'disqus-react'
+import canUseDom from 'can-use-dom'
+
 import { TagList } from '../components/common/tag'
 
 let Header = styled.header`
@@ -61,6 +64,19 @@ let BlogPost = ({ post }) => (
     <Flex justifyContent="center" py="10rem">
       <Box w={['100%', '1078px']}>
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+
+        <Box mt="10rem">
+          <DiscussionEmbed
+            shortname="WebPurple"
+            config={{
+              url: canUseDom
+                ? window.location.href
+                : `https://www.webpurple.net${post.slug}`,
+              identifier: post.slug,
+              title: post.title,
+            }}
+          />
+        </Box>
       </Box>
     </Flex>
   </React.Fragment>
@@ -70,6 +86,7 @@ export default mapProps(({ data }) => ({
   post: {
     ...data.markdownRemark.frontmatter,
     content: data.markdownRemark.html,
+    slug: data.markdownRemark.fields.slug,
   },
 }))(BlogPost)
 
@@ -77,6 +94,9 @@ export let pageQuery = graphql`
   query BlogPost($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         date
