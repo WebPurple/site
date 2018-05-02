@@ -26,6 +26,18 @@ let Oxigen = styled.span`
   font-family: Oxigen, sans-serif;
 `
 
+let Content = styled.div`
+  font-family: Oxigen, sans-serif;
+  font-size: 2.2rem;
+  line-height: 4.2rem;
+  color: ${({ theme }) => theme.greyishBrown};
+
+  h2 {
+    font-family: Rubic, sans-serif;
+    font-size: 3.6rem;
+  }
+`
+
 let BlogPost = ({ post }) => (
   <React.Fragment>
     <Box is={Header} p={['6rem 2rem', '9.6rem 12rem']}>
@@ -45,9 +57,10 @@ let BlogPost = ({ post }) => (
         {post.title}
       </Box>
     </Box>
-    <Flex justifyContent="center">
+
+    <Flex justifyContent="center" py="10rem">
       <Box w={['100%', '1078px']}>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       </Box>
     </Flex>
   </React.Fragment>
