@@ -41,7 +41,38 @@ let createEventPages = ({ boundActionCreators: { createPage }, graphql }) =>
     })
   })
 
-exports.createPages = (...args) => Promise.all([createEventPages(...args)])
+let createBlogPostPages = ({ boundActionCreators: { createPage }, graphql }) =>
+  graphql(`
+    {
+      allMarkdownRemark {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      return Promise.reject(result.errors)
+    }
+
+    result.data.allMarkdownRemark.edges.forEach(({ node }) =>
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve('src/templates/blog-post.template.js'),
+        context: {
+          id: node.id,
+        },
+      }),
+    )
+  })
+
+exports.createPages = (...args) =>
+  Promise.all([createEventPages(...args), createBlogPostPages(...args)])
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   let { createNodeField } = boundActionCreators
