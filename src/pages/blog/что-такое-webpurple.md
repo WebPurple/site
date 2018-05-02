@@ -4,6 +4,9 @@ date: 2018-05-01T21:24:24.237Z
 author: Никита Кирсанов
 tags:
   - webpurple
+  - Ryazan
+  - frontend
+  - community
 ---
 
 ## Это подзаголовок
