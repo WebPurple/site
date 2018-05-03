@@ -3,7 +3,7 @@ description: >-
   В этот раз у нас будет 2 технических доклада: Руслан Абрамов расскажет о
   типизированной разработке React приложений (спойлер: не typescript и не flow),
   а Никита Кирсанов придёт с холиварчиком по поводу использования let и const.
-date: 2018-05-10T19:30:00+03:00
+date: 2018-05-10T16:30:00.000Z
 address: 'Бар Карась, Почтовая, 60'
 talks:
   - title: const vs let
@@ -23,4 +23,9 @@ talks:
     speaker: Руслан Абрамов
     tags:
       - react
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup26'
+    type: vk
+  - link: 'https://www.facebook.com/events/394587027617904/'
+    type: fb
 video: '-'
