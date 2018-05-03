@@ -121,8 +121,8 @@ const EventTalk = ({ talk }) => (
       <Avatar avatar={talk.speaker.avatar} stretch />
     </AvatarWrapper>
     <div>
-      <Header itemProp="actor">{talk.title}</Header>
-      <SpeakerJobTitle>
+      <Header>{talk.title}</Header>
+      <SpeakerJobTitle itemProp="actor">
         {talk.speaker.jobTitle
           ? `${talk.speaker.title}, ${talk.speaker.jobTitle}`
           : talk.speaker.title}
