@@ -1,34 +1,63 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import { Flex } from 'grid-styled'
+import styled from 'styled-components'
+import { Box, Flex } from 'grid-styled'
+import Helmet from 'react-helmet'
+import Masonry from 'react-masonry-component'
+
+import BlockHeader from '../components/common/block-header'
+import MainContainer from '../components/common/main-container'
+import { isTablet, Media } from '../utils/css-utils'
+import ArticleCard from '../components/blog/article-card'
+
+const AdaptiveList = styled(({ children, className }) => {
+  return (
+    <Media.MobileOnly>
+      {isMobile =>
+        isMobile ? (
+          <ul className={className}>{children}</ul>
+        ) : (
+          <Masonry
+            className={className}
+            elementType="ul"
+            option
+            s={{ gutter: isTablet() ? 30 : 75, fitWidth: true }}>
+            {children}
+          </Masonry>
+        )
+      }
+    </Media.MobileOnly>
+  )
+})`
+  list-style: none;
+  padding: 0;
+`
 
 export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
-  <Flex
-    flexDirection="column"
-    alignItems="center"
-    my="5rem"
-    fontSize={'2.4rem'}>
-    <h1>Blog</h1>
-    {posts
-      .map(p => ({
-        ...p.node,
-        ...p.node.frontmatter,
-      }))
-      .map(post => (
-        <article key={post.id}>
-          <header>
-            <h2>{post.title}</h2>
-            <span>
-              {post.author} - {new Date(post.date).toLocaleString()}
-            </span>
-          </header>
-          <ul>{post.tags.map(t => <li key={t}>#{t}</li>)}</ul>
-          <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+  <MainContainer>
+    <Helmet title="Blog">
+      <meta />
+    </Helmet>
 
-          <Link to={post.fields.slug}>Read more -></Link>
-        </article>
-      ))}
-  </Flex>
+    <BlockHeader size="h1">Blog</BlockHeader>
+
+    <AdaptiveList>
+      {posts
+        .map(p => ({
+          ...p.node,
+          ...p.node.frontmatter,
+          link: p.node.fields.slug,
+        }))
+        .map(post => (
+          <Box
+            is="li"
+            key={post.id}
+            width={['100%', '30rem', '35rem']}
+            mb={['2rem', '2rem', '7rem']}>
+            <ArticleCard post={post} />
+          </Box>
+        ))}
+    </AdaptiveList>
+  </MainContainer>
 )
 
 export let pageQuery = graphql`
@@ -37,7 +66,7 @@ export let pageQuery = graphql`
       edges {
         node {
           id
-          excerpt(pruneLength: 400)
+          excerpt(pruneLength: 250)
           fields {
             slug
           }

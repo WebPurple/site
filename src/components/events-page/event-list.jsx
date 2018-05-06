@@ -37,7 +37,8 @@ const EventSnippet = styled.li`
   width: 100%;
   ${media.tablet`width: 30rem;`} ${media.hd`width: 35rem;`} padding: 2.5rem;
   margin-bottom: 2rem;
-  ${media.desktop`margin-bottom: 7rem;`} box-sizing: border-box;
+  ${media.desktop`margin-bottom: 7rem`};
+  box-sizing: border-box;
   overflow: hidden;
   box-shadow: 0 0 8px 1px #bbb;
 `

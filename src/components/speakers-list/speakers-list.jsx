@@ -31,14 +31,16 @@ const speakerElasticSearch = elasticSearch([
 export default withState('query', 'search', '')(
   ({ speakers, search, query }) => (
     <MainContainer>
-      <Helmet title="Speaker" />
+      <Helmet title="Speakers" />
       <BlockHeader size="h1">Speakers</BlockHeader>
+
       <FilterBlock>
         <Search
           placeholder="Search for speaker…"
           onChange={event => search(event.target.value)}
         />
       </FilterBlock>
+
       <SpeakerCardContainer>
         {speakers.length ? (
           speakers
