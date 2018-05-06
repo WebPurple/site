@@ -32,7 +32,7 @@ let BlogPost = ({ post }) => (
       <meta property="og:type" content="article" />
       <meta property="article:published_time" content={post.date} />
       <meta property="article:author" content={post.author} />
-      {post.tags.map(tag => <meta property="article:tag" content={tag} />)}
+      {post.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
       <meta
         property="og:image"
         content="https://webpurple.net/img/social-thumbnail-bg.png"
@@ -42,7 +42,7 @@ let BlogPost = ({ post }) => (
     <Box is={Header} p={['3.2rem 2rem', '3.2rem 2rem', '9.6rem 12rem']}>
       <TagList tags={post.tags} itemProp="keywords" />
       <Flex alignItems="center" my={['3.2rem', '4.8rem']}>
-        <RoundImg size="6rem" bg="/img/3a10409e4afd745b080502e5fb10df93.jpg" />
+        <RoundImg size="6rem" bg={post.author.avatar} />
 
         <Flex flexDirection="column" color="white" ml="1.6rem">
           <Box
@@ -50,7 +50,7 @@ let BlogPost = ({ post }) => (
             fontSize={['1.8rem', '2.4rem']}
             mb=".8rem"
             itemProp="author">
-            {post.author}
+            {post.author.title}
           </Box>
 
           <Box
@@ -92,17 +92,31 @@ let BlogPost = ({ post }) => (
   </div>
 )
 
-export default mapProps(({ data }) => ({
-  post: {
-    ...data.markdownRemark.frontmatter,
-    content: data.markdownRemark.html,
-    excerpt: data.markdownRemark.excerpt,
-    slug: data.markdownRemark.fields.slug,
-  },
-}))(BlogPost)
+export default mapProps(
+  ({ data: { markdownRemark, allSpeakerYaml: { edges: speakers } } }) => ({
+    post: {
+      ...markdownRemark.frontmatter,
+      content: markdownRemark.html,
+      excerpt: markdownRemark.excerpt,
+      slug: markdownRemark.fields.slug,
+      author: speakers.find(
+        speaker => speaker.node.title === markdownRemark.frontmatter.author,
+      ).node,
+    },
+  }),
+)(BlogPost)
 
 export let pageQuery = graphql`
   query BlogPost($id: String!) {
+    allSpeakerYaml {
+      edges {
+        node {
+          title
+          avatar
+        }
+      }
+    }
+
     markdownRemark(id: { eq: $id }) {
       html
       excerpt(pruneLength: 400)
