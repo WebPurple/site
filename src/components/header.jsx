@@ -138,7 +138,7 @@ let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
       </Media.MobileOnly>
     </Flex>
 
-    <Media.TabletPlus values={{ deviceWidth: 1200 }}>
+    <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
       <Flex justifyContent="space-between" alignItems="center" flex="1">
         <Navbar />
         <GitHubLink>
