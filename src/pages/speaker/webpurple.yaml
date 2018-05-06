@@ -1,0 +1,11 @@
+title: WebPurple
+avatar: /img/social-thumbnail-bg.png
+organization: ''
+jobTitle: Frontend community
+socialNetworks:
+  - link: 'https://vk.com/webpurple'
+    type: vk
+  - link: 'https://www.facebook.com/WebPurple/'
+    type: fb
+  - link: 'https://www.webpurple.net/'
+    type: site
