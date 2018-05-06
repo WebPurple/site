@@ -1,4 +1,5 @@
 import React from 'react'
+import { mapProps } from 'recompose'
 import styled from 'styled-components'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
@@ -32,7 +33,7 @@ const AdaptiveList = styled(({ children, className }) => {
   padding: 0;
 `
 
-export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
+let BlogPage = ({ posts }) => (
   <MainContainer>
     <Helmet title="Blog">
       <meta />
@@ -41,24 +42,26 @@ export default ({ data: { allMarkdownRemark: { edges: posts } } }) => (
     <BlockHeader size="h1">Blog</BlockHeader>
 
     <AdaptiveList>
-      {posts
-        .map(p => ({
-          ...p.node,
-          ...p.node.frontmatter,
-          link: p.node.fields.slug,
-        }))
-        .map(post => (
-          <Box
-            is="li"
-            key={post.id}
-            width={['100%', '30rem', '35rem']}
-            mb={['2rem', '2rem', '7rem']}>
-            <ArticleCard post={post} />
-          </Box>
-        ))}
+      {posts.map(post => (
+        <Box
+          is="li"
+          key={post.id}
+          width={['100%', '30rem', '35rem']}
+          mb={['2rem', '2rem', '7rem']}>
+          <ArticleCard post={post} />
+        </Box>
+      ))}
     </AdaptiveList>
   </MainContainer>
 )
+
+export default mapProps(({ data: { allMarkdownRemark: { edges } } }) => ({
+  posts: edges.map(p => ({
+    ...p.node,
+    ...p.node.frontmatter,
+    link: p.node.fields.slug,
+  })),
+}))(BlogPage)
 
 export let pageQuery = graphql`
   query AllPosts {
