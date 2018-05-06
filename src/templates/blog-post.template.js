@@ -5,6 +5,7 @@ import { Box, Flex } from 'grid-styled'
 import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
+import moment from 'moment'
 
 import { TagList } from '../components/common/tag'
 import HTMLContent from '../components/blog/HTMLContent'
@@ -56,7 +57,7 @@ let BlogPost = ({ post }) => (
             is={Oxigen}
             fontSize={['1.4rem', '1.6rem']}
             itemProp="dateCreated">
-            {new Date(post.date).toLocaleString()}
+            {moment(post.date).format('LLL')}
           </Box>
         </Flex>
       </Flex>
