@@ -2,35 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled, { withTheme } from 'styled-components'
-
-import Masonry from 'react-masonry-component'
+import { Box } from 'grid-styled'
 import moment from 'moment'
 
-import { isPhone, isTablet, media } from '../../utils/css-utils'
+import { media } from '../../utils/css-utils'
 import { TagList } from '../common/tag'
 import { ClockIcon, PlaceholderIcon } from '../icons'
 import { eventSmallBackground, eventTags } from '../../utils/selectors'
-
-const gutter = isTablet() ? 30 : 75 // space between cards
-
-const Container = styled(
-  ({ children, className }) =>
-    isPhone() ? (
-      <ul className={className}>{children}</ul>
-    ) : (
-      <Masonry
-        className={className}
-        elementType="ul"
-        options={{ gutter, fitWidth: true }}>
-        {children}
-      </Masonry>
-    ),
-)`
-  list-style: none;
-  padding: 0;
-  margin: 3.6rem auto 0;
-  ${media.desktop`margin-top: 10rem;`};
-`
+import AdaptiveMasonryList from '../adaptive-masonry-list'
 
 const EventSnippet = styled.li`
   position: relative;
@@ -96,7 +75,11 @@ const Talk = styled.li`
 `
 
 const EventList = ({ events, theme, onTagClick, selectedTags }) => (
-  <Container>
+  <Box
+    is={AdaptiveMasonryList}
+    w="100%"
+    mx="auto"
+    mt={['3.6rem', '3.6rem', '10rem']}>
     {events.map((event, eventIndex) => (
       <EventSnippet className="e2e-event-card" key={event.title}>
         <BackgroundShape>
@@ -130,7 +113,7 @@ const EventList = ({ events, theme, onTagClick, selectedTags }) => (
         />
       </EventSnippet>
     ))}
-  </Container>
+  </Box>
 )
 
 EventList.propTypes = {

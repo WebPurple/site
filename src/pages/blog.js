@@ -1,37 +1,12 @@
 import React from 'react'
 import { mapProps } from 'recompose'
-import styled from 'styled-components'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
-import Masonry from 'react-masonry-component'
 
 import BlockHeader from '../components/common/block-header'
 import MainContainer from '../components/common/main-container'
-import { isTablet, Media } from '../utils/css-utils'
 import ArticleCard from '../components/blog/article-card'
-
-const AdaptiveList = styled(({ children, className }) => {
-  return (
-    <Media.MobileOnly>
-      {isMobile =>
-        isMobile ? (
-          <ul className={className}>{children}</ul>
-        ) : (
-          <Masonry
-            className={className}
-            elementType="ul"
-            option
-            s={{ gutter: isTablet() ? 30 : 75, fitWidth: true }}>
-            {children}
-          </Masonry>
-        )
-      }
-    </Media.MobileOnly>
-  )
-})`
-  list-style: none;
-  padding: 0;
-`
+import AdaptiveMasonryList from '../components/adaptive-masonry-list'
 
 let BlogPage = ({ posts }) => (
   <MainContainer>
@@ -39,7 +14,7 @@ let BlogPage = ({ posts }) => (
 
     <BlockHeader size="h1">Blog</BlockHeader>
 
-    <AdaptiveList>
+    <AdaptiveMasonryList>
       {posts.map(post => (
         <Box
           is="li"
@@ -49,7 +24,7 @@ let BlogPage = ({ posts }) => (
           <ArticleCard post={post} />
         </Box>
       ))}
-    </AdaptiveList>
+    </AdaptiveMasonryList>
   </MainContainer>
 )
 
