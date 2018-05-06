@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 
 import { TagList } from '../common/tag'
+import RoundImg from '../round-img'
 
 let Card = styled.div`
   box-shadow: 0 0 8px 1px #bbb;
@@ -53,8 +54,14 @@ let ArticleCard = ({ post }) => (
       {post.excerpt}
     </Box>
     <footer>
-      <Flex my="2.4rem">
-        <Author>{post.author}</Author>
+      <Flex my="2.4rem" alignItems="center">
+        <RoundImg
+          size="3.6rem"
+          bg="/img/3a10409e4afd745b080502e5fb10df93.jpg"
+        />
+        <Box is={Author} ml="1.2rem">
+          {post.author}
+        </Box>
       </Flex>
       <TagList tags={post.tags} />
     </footer>
