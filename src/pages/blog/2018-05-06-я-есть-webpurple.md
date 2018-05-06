@@ -13,6 +13,7 @@ tags:
 
 ![logo](/img/social-thumbnail-bg.png)
 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error harum minima modi nisi qui similique suscipit temporibus voluptatem voluptatibus. A quidem suscipit ut voluptatibus? Aliquid nisi, quam. Animi, nisi!
 
 Рязанское сообщество веб-разработчиков и веб-дизайнеров, целями которого
 являются:
@@ -33,14 +34,22 @@ Progressive Enhancement и т.д.);
 в мире web.
 
 
-> Мал клоп да вонюч!
+> Мал клоп да вонюч! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error harum minima modi nisi qui similique suscipit temporibus voluptatem voluptatibus. A quidem suscipit ut voluptatibus? Aliquid nisi, quam. Animi, nisi!
+
 
 ## Как мне выступить?
 
 
 ```
+export let selectUpcomingEvents = events =>
+  events.map(getEventNode).filter(e => !e.date || new Date(e.date) > new Date())
 
-let userLetAlways = 42
+export let selectNearestEvent = events =>
+  selectUpcomingEvents(events).reduce(
+    (nearestEvent, event) =>
+      nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,
+    null,
+  )
 
 ```
 
