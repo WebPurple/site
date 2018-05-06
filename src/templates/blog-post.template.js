@@ -6,6 +6,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 
 import { TagList } from '../components/common/tag'
+import { media } from '../utils/css-utils'
 
 let Header = styled.header`
   background-image: linear-gradient(to bottom, #be00ff, #6200ff);
@@ -31,25 +32,28 @@ let Oxigen = styled.span`
 
 let Content = styled.div`
   font-family: Oxigen, sans-serif;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
+  ${media.desktop`font-size: 2.2rem`};
   line-height: 1.58;
   color: ${({ theme }) => theme.greyishBrown};
-  margin-top: 2.9rem;
 
   h2 {
     font-family: Rubik, sans-serif;
     font-size: 3.6rem;
+    ${media.desktop`font-size: 4.4rem`};
   }
 
   p,
   ul,
   blockquote {
-    margin-top: 3rem;
+    margin-top: 2rem;
+    ${media.desktop`margin-top: 3rem;`};
   }
   
   img {
     display: block;
     margin: 0 auto;
+    width: 100%;
   }
 
   ul {
@@ -89,7 +93,8 @@ let Content = styled.div`
     font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
       'Liberation Mono', Menlo, Courier, monospace;
     padding: 0.2em 0 0.2em;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    ${media.desktop`font-size: 1.2rem`};
   }
 
   pre {
@@ -124,7 +129,7 @@ let Content = styled.div`
 
 let BlogPost = ({ post }) => (
   <React.Fragment>
-    <Box is={Header} p={['6rem 2rem', '9.6rem 12rem']}>
+    <Box is={Header} p={['3.2rem 2rem', '3.2rem 2rem', '9.6rem 12rem']}>
       <TagList tags={post.tags} />
       <Flex alignItems="center" my={['3.2rem', '4.8rem']}>
         <Avatar background="/img/3a10409e4afd745b080502e5fb10df93.jpg" />
@@ -137,16 +142,16 @@ let BlogPost = ({ post }) => (
           </Box>
         </Flex>
       </Flex>
-      <Box is={Heading} m={0} fontSize={['3.2rem', '7.8rem']}>
+      <Box is={Heading} m={0} fontSize={['3.2rem', '6.4rem', '7.8rem']}>
         {post.title}
       </Box>
     </Box>
 
-    <Flex justifyContent="center" pt="5rem">
+    <Flex justifyContent="center" px={['2rem', '2rem', 0]}>
       <Box w={['100%', '958px']}>
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
 
-        <Box mt="5rem">
+        <Box mt={['1rem', '1rem', '5rem']}>
           <DiscussionEmbed
             shortname="WebPurple"
             config={{
