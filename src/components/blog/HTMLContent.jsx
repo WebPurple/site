@@ -99,8 +99,8 @@ let StyledMarkdown = styled.div`
   }
 `
 
-let HTMLContent = ({ children }) => (
-  <StyledMarkdown dangerouslySetInnerHTML={{ __html: children }} />
+let HTMLContent = ({ children, ...rest }) => (
+  <StyledMarkdown dangerouslySetInnerHTML={{ __html: children }} {...rest} />
 )
 
 export default HTMLContent
