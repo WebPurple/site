@@ -6,10 +6,13 @@ import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
 import moment from 'moment'
+import { Like, VK } from 'react-vk'
+import FacebookProvider, { Like as FbLike } from 'react-facebook'
 
 import { TagList } from '../components/common/tag'
 import HTMLContent from '../components/blog/HTMLContent'
 import RoundImg from '../components/round-img'
+import { BrowserOnly } from '../utils/css-utils'
 
 let Header = styled.header`
   background-image: linear-gradient(to bottom, #be00ff, #6200ff);
@@ -74,6 +77,21 @@ let BlogPost = ({ post }) => (
     <Flex justifyContent="center" px={['2rem', '2rem', 0]}>
       <Box w={['100%', '958px']}>
         <HTMLContent itemProp="articleBody">{post.content}</HTMLContent>
+
+        <BrowserOnly>
+          <Flex alignItems="center" justifyContent="flex-end" my="2rem">
+            <VK apiId={5360165} options={{ version: 152 }}>
+              <Like
+                options={{ type: 'mini', height: 30 }}
+                pageId={post.slug}
+              />
+            </VK>
+
+            <FacebookProvider appId="1094823327247465">
+              <FbLike layout="button_count" share />
+            </FacebookProvider>
+          </Flex>
+        </BrowserOnly>
 
         <Box mt={['1rem', '1rem', '5rem']}>
           <DiscussionEmbed
