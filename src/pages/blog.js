@@ -35,9 +35,7 @@ const AdaptiveList = styled(({ children, className }) => {
 
 let BlogPage = ({ posts }) => (
   <MainContainer>
-    <Helmet title="Blog">
-      <meta />
-    </Helmet>
+    <Helmet title="Blog" />
 
     <BlockHeader size="h1">Blog</BlockHeader>
 
