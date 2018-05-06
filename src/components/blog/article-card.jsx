@@ -55,12 +55,9 @@ let ArticleCard = ({ post }) => (
     </Box>
     <footer>
       <Flex my="2.4rem" alignItems="center">
-        <RoundImg
-          size="3.6rem"
-          bg="/img/3a10409e4afd745b080502e5fb10df93.jpg"
-        />
+        <RoundImg size="3.6rem" bg={post.author.avatar} />
         <Box is={Author} ml="1.2rem">
-          {post.author}
+          {post.author.title}
         </Box>
       </Flex>
       <TagList tags={post.tags} />
@@ -75,6 +72,10 @@ ArticleCard.propTypes = {
     link: PropTypes.string.isRequired,
     excerpt: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string),
+    author: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      avatar: PropTypes.string,
+    }),
   }),
 }
 
