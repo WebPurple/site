@@ -46,6 +46,11 @@ let Content = styled.div`
   blockquote {
     margin-top: 3rem;
   }
+  
+  img {
+    display: block;
+    margin: 0 auto;
+  }
 
   ul {
     padding: 0;
@@ -137,11 +142,11 @@ let BlogPost = ({ post }) => (
       </Box>
     </Box>
 
-    <Flex justifyContent="center" py="10rem">
+    <Flex justifyContent="center" pt="5rem">
       <Box w={['100%', '958px']}>
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
 
-        <Box mt="10rem">
+        <Box mt="5rem">
           <DiscussionEmbed
             shortname="WebPurple"
             config={{

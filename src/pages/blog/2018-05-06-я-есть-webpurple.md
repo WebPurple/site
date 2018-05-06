@@ -11,7 +11,7 @@ tags:
 ## История
 
 
-![logo](/img/social-thumbnail-bg.png)
+<img src="/img/social-thumbnail-bg.png" width="500">
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error harum minima modi nisi qui similique suscipit temporibus voluptatem voluptatibus. A quidem suscipit ut voluptatibus? Aliquid nisi, quam. Animi, nisi!
 
@@ -57,4 +57,4 @@ export let selectNearestEvent = events =>
 `let itBe = 42`
 
 
-<https://vk.com/webpurple>
+[wp](https://vk.com/webpurple)
