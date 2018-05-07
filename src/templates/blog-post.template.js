@@ -43,7 +43,8 @@ let BlogPost = ({ post }) => (
       ))}
       <meta
         property="og:image"
-        content="https://webpurple.net/img/social-thumbnail-bg.png"
+        content={`https://webpurple.net${post.background ||
+          '/img/social-thumbnail-bg.png'}`}
       />
     </Helmet>
 
