@@ -18,6 +18,7 @@ let Header = styled.header`
   background-blend-mode: overlay;
   background: #c788fe
     url(${({ cover }) => cover || '/img/social-thumbnail-bg.png'});
+  background-size: cover;
 `
 
 let Heading = styled.h1`
