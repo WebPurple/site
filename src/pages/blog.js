@@ -68,6 +68,9 @@ export let pageQuery = graphql`
             date
             author
             tags
+            background
+            bgPosX
+            bgPosY
           }
         }
       }

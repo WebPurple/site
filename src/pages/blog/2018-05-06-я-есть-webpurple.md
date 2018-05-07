@@ -1,12 +1,15 @@
 ---
 title: Я есть WebPurple
 date: 2018-05-06T08:10:25.162Z
-author: WebPurple
+author: Никита Кирсанов
 tags:
   - webpurple
   - ryazan
   - fronten
   - community
+background: /img/groot.jpg
+bgPosX: -160
+bgPosY: 0
 ---
 ## История
 

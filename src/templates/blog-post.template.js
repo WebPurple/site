@@ -15,7 +15,9 @@ import RoundImg from '../components/round-img'
 import { BrowserOnly } from '../utils/css-utils'
 
 let Header = styled.header`
-  background-image: linear-gradient(to bottom, #be00ff, #6200ff);
+  background-blend-mode: overlay;
+  background: #c788fe
+    url(${({ cover }) => cover || '/img/social-thumbnail-bg.png'});
 `
 
 let Heading = styled.h1`
@@ -35,14 +37,19 @@ let BlogPost = ({ post }) => (
       <meta property="og:type" content="article" />
       <meta property="article:published_time" content={post.date} />
       <meta property="article:author" content={post.author} />
-      {post.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
+      {post.tags.map(tag => (
+        <meta key={tag} property="article:tag" content={tag} />
+      ))}
       <meta
         property="og:image"
         content="https://webpurple.net/img/social-thumbnail-bg.png"
       />
     </Helmet>
 
-    <Box is={Header} p={['3.2rem 2rem', '3.2rem 2rem', '9.6rem 12rem']}>
+    <Box
+      is={Header}
+      p={['3.2rem 2rem', '3.2rem 2rem', '9.6rem 12rem']}
+      cover={post.background}>
       <TagList tags={post.tags} itemProp="keywords" />
       <Flex alignItems="center" my={['3.2rem', '4.8rem']}>
         <RoundImg size="6rem" bg={post.author.avatar} />
@@ -81,10 +88,7 @@ let BlogPost = ({ post }) => (
         <BrowserOnly>
           <Flex alignItems="center" justifyContent="flex-end" my="2rem">
             <VK apiId={5360165} options={{ version: 152 }}>
-              <Like
-                options={{ type: 'mini', height: 30 }}
-                pageId={post.slug}
-              />
+              <Like options={{ type: 'mini', height: 30 }} pageId={post.slug} />
             </VK>
 
             <FacebookProvider appId="1094823327247465">
@@ -146,6 +150,7 @@ export let pageQuery = graphql`
         date
         author
         tags
+        background
       }
     }
   }

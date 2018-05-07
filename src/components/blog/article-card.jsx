@@ -10,6 +10,8 @@ import RoundImg from '../round-img'
 
 let Card = styled.div`
   box-shadow: 0 0 8px 1px #bbb;
+  position: relative;
+  overflow: hidden;
 `
 
 let Date = styled.time`
@@ -42,6 +44,31 @@ let Author = styled.div`
   color: ${({ theme }) => theme.greyishBrown};
 `
 
+let BackgroundShape = styled.div`
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 230%;
+  height: 100%;
+  transform: skew(-60deg, 0);
+  overflow: hidden;
+  z-index: -1;
+`
+
+let BackgroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100);
+  opacity: 0.15;
+  background: url(${props => props.url}) no-repeat;
+  background-size: cover;
+  transform: skew(60deg, 0);
+  ${({ bgPosX = 0, bgPosY = 0 }) => `
+    background-position-x: ${bgPosX}px;
+    background-position-y: ${bgPosY}px;
+  `};
+`
+
 let ArticleCard = ({ post }) => (
   <Box is={Card} p="2.5rem">
     <header>
@@ -50,9 +77,19 @@ let ArticleCard = ({ post }) => (
         <StyledLink to={post.link}>{post.title}</StyledLink>
       </Box>
     </header>
+
+    <BackgroundShape>
+      <BackgroundImage
+        url={post.background}
+        bgPosX={post.bgPosX}
+        bgPosY={post.bgPosY}
+      />
+    </BackgroundShape>
+
     <Box is={Excerpt} mt="2.4rem">
       {post.excerpt}
     </Box>
+
     <footer>
       <Flex my="2.4rem" alignItems="center">
         <RoundImg size="3.6rem" bg={post.author.avatar} />
