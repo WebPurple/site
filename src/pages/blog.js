@@ -36,7 +36,9 @@ export default mapProps(
       ...p.node,
       ...p.node.frontmatter,
       link: p.node.fields.slug,
-      author: speakers.find(speaker => speaker.title === p.node.speaker).node,
+      author: speakers.find(
+        speaker => speaker.node.title === p.node.frontmatter.author,
+      ).node,
     })),
   }),
 )(BlogPage)
