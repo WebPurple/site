@@ -32,14 +32,16 @@ export default mapProps(
   ({
     data: { allMarkdownRemark: { edges }, allSpeakerYaml: { edges: speakers } },
   }) => ({
-    posts: edges.map(p => ({
-      ...p.node,
-      ...p.node.frontmatter,
-      link: p.node.fields.slug,
-      author: speakers.find(
-        speaker => speaker.node.title === p.node.frontmatter.author,
-      ).node,
-    })),
+    posts: edges
+      .map(p => ({
+        ...p.node,
+        ...p.node.frontmatter,
+        link: p.node.fields.slug,
+        author: speakers.find(
+          speaker => speaker.node.title === p.node.frontmatter.author,
+        ).node,
+      }))
+      .filter(p => !p.draft),
   }),
 )(BlogPage)
 
@@ -71,6 +73,7 @@ export let pageQuery = graphql`
             background
             bgPosX
             bgPosY
+            draft
           }
         }
       }

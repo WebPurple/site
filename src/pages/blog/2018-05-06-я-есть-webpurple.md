@@ -10,6 +10,7 @@ tags:
 background: /img/groot.jpg
 bgPosX: -160
 bgPosY: 0
+draft: false
 ---
 ## История
 
