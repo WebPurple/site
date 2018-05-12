@@ -58,7 +58,7 @@ export default mapProps(
 
     let upcomingEvent = selectNearestEvent(allEventNodes)
     return {
-      upcomingEvent: {
+      upcomingEvent: upcomingEvent && {
         ...upcomingEvent,
         talks: upcomingEvent.talks.map(extendTalk(upcomingEvent)),
       },
