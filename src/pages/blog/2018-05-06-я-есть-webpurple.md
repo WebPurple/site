@@ -12,53 +12,79 @@ bgPosX: -160
 bgPosY: 0
 draft: false
 ---
+__WebPurple__ это рязанское сообщество посвящённое разработке, в частности, *frontend*.
+~~Его организацией занимается компания имя которой нельзя называть вслух.~~
+Это некоммерческая организация. А цели его следущие:
+
+* популяризация frontend разработки в Рязани
+
+* обмен знаниями и соответственно повышения уровня этих знаний
+
+* создание ~~движа~~ досуга для IT'шников
+
+То есть мы хотим сделать Рязань интересной для разработчиков; хотим чтобы на интересную конференцию можно было бы сходить прямо здесь, а не ехать в Москву;
+хотим чтобы похоливать за новую библиотеку можно было в баре на подбелке, а не только на хабре (или где там сейчас это модно делать);
+ну вы поняли...
+
+## Что такое frontend
+
+Мы подразумеваем под этим понятием всё, что связано с веб (а сейчас всё с ним связано) и интерфейсами:
+javascript во всех его проявлениях (клиентские части веб приложений/сайтов, мобильные приложения, backend - nodejs, и т.д.),
+а также всё, что в него может компилироваться; UX/UI дизайн, вёрстка (html, css...), вот это всё...
+
+Этим мы конечно не ограничиваемся, на наших митапах можно услышать и о подходах к разботке backend сервисов - [graphql например](https://www.webpurple.net/event/meetup-22/),
+и о [функциональном программировании](https://vk.com/webpurple_meetup20); посмотреть в завтрашний день, где правит [WebAssembly](https://vk.com/webpurple_meetup18).
+[Пару](https://www.webpurple.net/event/meetup-24/) [раз](https://www.webpurple.net/event/meetup-25/)
+мы даже решили хайпануть на blockchain'е.
+
+Любим порассуждать и на тему soft skills: [продуктивное обучение](https://www.webpurple.net/event/meetup-23/),
+да и в целом [продуктивность](https://www.webpurple.net/event/meetup-25/), [как поднять уровень своего инглиша](https://vk.com/webpurple_meetup9).
+
+## Что мы делаем
+
+* каждый месяц мы проводим встречи - митапы, на которых наши спикеры делятся знаниями
+
+* делимся новостями в [нашей группе vk.com](https://vk.com/webpurple)
+
+* общаемся в телеграм [чате](https://t.me/WebPurple)
+
+* организуем лекции и workshop'ы (практические занятия) для студентов (показывали например в РГУ [как написать свою игру Марио](https://vk.com/webpurple_studio_workshop_4_rsu))
+
+## Как узнать об очередном митапе
+
+Достаточно подписаться на нас в одной из социальных сетей, и следить за новостями:
+[вк](https://vk.com/webpurple), [facebook](https://www.facebook.com/WebPurple/), [instagram](https://www.instagram.com/webpurple/?hl=ru),
+[telegram](https://t.me/WebPurple) и [youtube](https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA).
+В телеграме даже бот есть, который и про митап напомнит и новости форварднёт.
+Ну и как ты, наверное, заметил(а), у нас есть сайт. Хотя ни email рассылку ни rss мы тут пока не намутили... Да это и не модно.
+
+## Как стать спикером WebPurple
+
+Мы всегда находимся в посках докладчиков и всегда рады новым людям. По-этому если ты ~~заюзал в проде cutting edge либу~~ изучил новую технологию,
+хочешь поделиться опытом со своего проекта или просто устал молчать - напиши нам
+в группу вк/facebook или в личку [Саше Дробышеву](https://vk.com/id71847955) или [Рите Курдюмовой](https://vk.com/margalencia).
+
 ## История
 
+Ну если ты дочитал досюда это тотальный успех, можно расходиться. Но сперва могу рассказать небольшую историю WebPurple.
 
-<img src="/img/social-thumbnail-bg.png" width="500">
+Началась она 3 года назад в мае 2015 (походу у нас юбилей на носу), когда группа людей из компании, имя которой мы называть не будем,
+решила что пора что-то менять - нужно создавать движ. Нашли помещение и позвали Яшу, который в том далёком 2015 рассказал про,
+непопулярные ещё тогда, [React и Typescript](https://vk.com/event94468191) (даже видос [есть](https://youtu.be/fZxV8qQVHEk)).
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error harum minima modi nisi qui similique suscipit temporibus voluptatem voluptatibus. A quidem suscipit ut voluptatibus? Aliquid nisi, quam. Animi, nisi!
+Ну и оно как-то закрутилось, мы встречались митап за митапом; эксперементировали с площадками, темами и форматами.
 
-Рязанское сообщество веб-разработчиков и веб-дизайнеров, целями которого
-являются:
+Мы собирались в "НеКафе", которое вскоре затопило и закрылось; в библиотеке имени Горького, где было много места, но советский интерьер как-то стеснял.
+В основном конечно встречаемся, в Карасе, но недавно попробовали Амакс.
 
+Помимо стандартных митапов мы пробовали проводить lightning talks - короткие (5-15 минутные) доклады, проверяли знания JS на викторине.
+Летом попробуем организовать что-нить новенькое (но это не точно).
 
-* популяризация веб-технологий (HTML5, JS, CSS3, SVG, canvas и т.д.) и
-подходов к веб-разработке (Responsive Web Design, Adaptive Web Design,
-Progressive Enhancement и т.д.);
+Награждали спикеров - раздавали вебштормы
 
-* обмен знаниями;
+Редизайн
 
-* активное участие и поддержка open-source сообщества;
+<img src="/img/social-thumbnail-bg.png" width="200">
 
-* влияние на развитие веб-стандартов и веба в целом.
+Сайт
 
-
-Сообщество открыто для участников. Добавляйтесь, и вы узнаете, что происходит
-в мире web.
-
-
-> Мал клоп да вонюч! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error harum minima modi nisi qui similique suscipit temporibus voluptatem voluptatibus. A quidem suscipit ut voluptatibus? Aliquid nisi, quam. Animi, nisi!
-
-
-## Как мне выступить?
-
-
-```
-export let selectUpcomingEvents = events =>
-  events.map(getEventNode).filter(e => !e.date || new Date(e.date) > new Date())
-
-export let selectNearestEvent = events =>
-  selectUpcomingEvents(events).reduce(
-    (nearestEvent, event) =>
-      nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,
-    null,
-  )
-
-```
-
-
-`let itBe = 42`
-
-
-[wp](https://vk.com/webpurple)
