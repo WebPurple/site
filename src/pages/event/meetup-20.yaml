@@ -1,0 +1,28 @@
+title: 'Meetup #20'
+description: >-
+  Руслан Абрамов расскажет об основных концепциях функционального
+  программирования, о том, как они могут быть применены к языку Javascript.
+  Рассмотрим некоторые библиотеки функционального программирования. И все-таки
+  ответим на вопрос, стоит ли изучать функциональное программирование в 2017
+  году.
+date: 2017-06-29T19:30:00+03:00
+address: 'Бар Карась, Почтовая, 60'
+talks:
+  - title: 'Functional programming in JavaScript. Beyond Array#extras'
+    description: >-
+      Руслан Абрамов расскажет об основных концепциях функционального
+      программирования, о том, как они могут быть применены к языку Javascript.
+      Рассмотрим некоторые библиотеки функционального программирования. И
+      все-таки ответим на вопрос, стоит ли изучать функциональное
+      программирование в 2017 году.
+    presentation: >-
+      https://vk.com/away.php?to=https%3A%2F%2Fdrive.google.com%2Fopen%3Fid%3D1h9unQoUaVkJbkIlJwXz0zrIMily9ohmQ4zgdr3thLm4&post=-148750496_3&cc_key=
+    speaker: Руслан Абрамов
+    tags:
+      - functional_programming
+      - javascript
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup20'
+    type: vk
+  - link: 'https://www.facebook.com/events/643964952475615/'
+    type: fb
