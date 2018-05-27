@@ -1,0 +1,42 @@
+title: 'Meetup #27'
+description: >-
+  В этот раз у нас три доклада. Дима Пикулин поделится своим опытом получения строго типизированного API.
+  Егор Леонтьев расскажет о микро оптимизациях.
+  А Илья Зуев расскажет о своем увлечении генеративным дизайном.
+date: 2018-05-31T16:30:00.000Z
+address: 'Кванториум, ул. Дзержинского,6 (бывш.кинотеатр Дружба)'
+talks:
+  - title: Как подружить Java и Typescript и получить GraphQL агрегатор
+    description: >-
+      Я расскажу о том, как frontend-разработчик смог получить типизацию с Java-микросервисов и из этого получил TypeScript-интерфейсы,
+      API и GraphQL агрегатор.
+    speaker: Дмитрий Пикулин
+    tags:
+      - javascript
+      - typescript
+      - java
+      - graphql
+      - rest
+      - api
+      - integration
+  - title: Микро оптимизации на примере AngularJS#$digest
+    description: >-
+      Разберу, что такое digest, особенности его реализации. А также покажу, как, зная общий принцип работы, можно оптимизировать свой код.
+      В конце обсудим, насколько нужны микрооптимизации и есть ли в них смысл.
+    speaker: Егор Леонтьев
+    tags:
+      - angular
+      - digest
+      - micro_optimization
+  - title: Processing
+      description: >-
+        Расскажу про Algorithmic design.
+      speaker: Илья Зуев
+      tags:
+        - algorithmic_design
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup27'
+    type: vk
+  - link: 'https://www.facebook.com/events/461686797578463/'
+    type: fb
+video: '-'
