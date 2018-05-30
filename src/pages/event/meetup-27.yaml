@@ -29,11 +29,11 @@ talks:
       - digest
       - micro_optimization
   - title: Processing
-      description: >-
-        Расскажу про Algorithmic design.
-      speaker: Илья Зуев
-      tags:
-        - algorithmic_design
+    description: >-
+      Расскажу про Algorithmic design.
+    speaker: Илья Зуев
+    tags:
+      - algorithmic_design
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup27'
     type: vk
