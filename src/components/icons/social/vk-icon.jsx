@@ -1,27 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { SVG, prepareFillColors } from './icon-wrapper'
 
-const VkIcon = ({ className, height = '2.4rem' }) => (
-  <svg
-    className={className}
-    height={height}
-    viewBox="0 0 39 22"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
+const colorMap = {
+  '#vk-icon': '#5b7aa8',
+}
+
+const VkSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+const VkIcon = props => (
+  <VkSVG {...props} viewBox="0 0 39 22">
     <defs>
-      <style>
-        {`
-                #vk-icon {
-                    fill: #a1a1a1;
-                }
-
-                svg:hover #vk-icon {
-                    fill: #5b7aa8;
-                }
-            `}
-      </style>
       <polygon
         id="path-1"
         points="0.00947192551 0.0328258739 0.00947192551 21.7786576 38.4384211 21.7786576 38.4384211 0.0328258739 0.00947192551 0.0328258739"
@@ -47,7 +38,7 @@ const VkIcon = ({ className, height = '2.4rem' }) => (
         </g>
       </g>
     </g>
-  </svg>
+  </VkSVG>
 )
 
 VkIcon.propTypes = {

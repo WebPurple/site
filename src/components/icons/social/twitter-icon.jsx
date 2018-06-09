@@ -1,27 +1,16 @@
 import React from 'react'
+import { SVG, prepareFillColors } from './icon-wrapper'
 
-const TwitterIcon = ({ className, height = '2.4rem' }) => (
-  <svg
-    className={className}
-    height={height}
-    viewBox="0 0 37 30"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
-    <defs>
-      <style>
-        {`
-                #twitter-icon {
-                    fill: #a1a1a1;
-                }
+const colorMap = {
+  '#twitter-icon': '#1da1f2',
+}
 
-                svg:hover #twitter-icon {
-                    fill: #1da1f2;
-                }
-            `}
-      </style>
-    </defs>
+const TwitterSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+const TwitterIcon = props => (
+  <TwitterSVG {...props} viewBox="0 0 37 30">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g
         id="Mobile-Portrait"
@@ -37,7 +26,7 @@ const TwitterIcon = ({ className, height = '2.4rem' }) => (
         </g>
       </g>
     </g>
-  </svg>
+  </TwitterSVG>
 )
 
 export default TwitterIcon
