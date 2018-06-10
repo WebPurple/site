@@ -25,7 +25,17 @@ let StyledMarkdown = styled.div`
   img {
     display: block;
     margin: 0 auto;
+    max-height: 500px;
     width: 100%;
+    ${media.tablet`width: auto`};
+
+    & + em {
+      display: block;
+      text-align: center;
+      padding-top: 10px;
+      font-size: 1.4rem;
+      ${media.desktop`font-size: 1.6rem`};
+    }
   }
 
   ul {
