@@ -71,13 +71,13 @@ let Navbar = () => (
         </NavigationLink>
       </NavbarItem>
       <NavbarItem>
-        <NavigationLink to="/events">events</NavigationLink>
+        <NavigationLink to="/events/">events</NavigationLink>
       </NavbarItem>
       <NavbarItem>
-        <NavigationLink to="/speakers">speakers</NavigationLink>
+        <NavigationLink to="/speakers/">speakers</NavigationLink>
       </NavbarItem>
       <NavbarItem>
-        <NavigationLink to="/blog">blog</NavigationLink>
+        <NavigationLink to="/blog/">blog</NavigationLink>
       </NavbarItem>
     </Flex>
   </nav>
@@ -138,7 +138,7 @@ let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
       </Media.MobileOnly>
     </Flex>
 
-    <Media.TabletPlus>
+    <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
       <Flex justifyContent="space-between" alignItems="center" flex="1">
         <Navbar />
         <GitHubLink>
