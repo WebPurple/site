@@ -1,12 +1,16 @@
 import React from 'react'
+import { SVG, prepareFillColors } from './icon-wrapper'
 
-let TelegramIcon = ({ className, height = '2.4rem' }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 240 240"
-    className={className}
-    height={height}
-    aria-hidden="true">
+const colorMap = {
+  '#telegram-icon': 'url(#b)',
+}
+
+const TelegramSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+let TelegramIcon = props => (
+  <TelegramSVG {...props} viewBox="0 0 240 240">
     <defs>
       <linearGradient id="b" x1="0.6667" y1="0.1667" x2="0.4167" y2="0.75">
         <stop stopColor="#37aee2" offset="0" />
@@ -17,7 +21,7 @@ let TelegramIcon = ({ className, height = '2.4rem' }) => (
         <stop stopColor="#fff" offset="1" />
       </linearGradient>
     </defs>
-    <circle cx="120" cy="120" r="120" fill="url(#b)" />
+    <circle cx="120" cy="120" r="120" id="telegram-icon" />
     <path
       fill="#c8daea"
       d="m98 175c-3.8876 0-3.227-1.4679-4.5678-5.1695L82 132.2059 170 80"
@@ -30,7 +34,7 @@ let TelegramIcon = ({ className, height = '2.4rem' }) => (
       fill="url(#w)"
       d="m100.04 144.41 48.36 35.729c5.5185 3.0449 9.5014 1.4684 10.876-5.1235l19.685-92.763c2.0154-8.0802-3.0801-11.745-8.3594-9.3482l-115.59 44.571c-7.8901 3.1647-7.8441 7.5666-1.4382 9.528l29.663 9.2583 68.673-43.325c3.2419-1.9659 6.2173-0.90899 3.7752 1.2584"
     />
-  </svg>
+  </TelegramSVG>
 )
 
 export default TelegramIcon

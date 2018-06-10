@@ -1,29 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
+import { SVG, prepareFillColors } from './icon-wrapper'
 
-const GithubIcon = ({ className, height = '2.4rem' }) => (
-  <svg
-    className={className}
-    height={height}
-    viewBox="0 0 25 24"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
-    <defs>
-      <style>
-        {`
-                #gh-icon {
-                    fill: #a1a1a1;
-                    fill-rule="evenodd"
-                }
+const colorMap = {
+  '#gh-icon': '#000',
+}
 
-                svg:hover #gh-icon {
-                    fill: #000;
-                }
-            `}
-      </style>
-    </defs>
+const GithubSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+export default props => (
+  <GithubSVG {...props} viewBox="0 0 25 24" style={{ verticalAlign: 'middle' }}>
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="Mobile-Portrait" transform="translate(-87.000000, -2773.000000)">
         <g id="Social" transform="translate(20.000000, 2661.000000)">
@@ -40,9 +27,5 @@ const GithubIcon = ({ className, height = '2.4rem' }) => (
         </g>
       </g>
     </g>
-  </svg>
+  </GithubSVG>
 )
-
-export default styled(GithubIcon)`
-  vertical-align: middle;
-`

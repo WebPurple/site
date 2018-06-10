@@ -1,29 +1,19 @@
 import React from 'react'
+import { SVG, prepareFillColors } from './icon-wrapper'
+import PropTypes from 'prop-types'
 
-const VkIcon = props => (
-  <svg
-    {...props}
-    viewBox="0 0 71 30"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
+const colorMap = {
+  '.tube-wrapper-fill': '#c12026',
+  '.you-fill': '#040707',
+}
+
+const YoutubeSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+export default props => (
+  <YoutubeSVG {...props} viewBox="0 0 71 30">
     <defs>
-      <style>
-        {`
-                .you-fill, .tube-wrapper-fill {
-                    fill: #a1a1a1;
-                }
-
-                svg:hover .tube-wrapper-fill {
-                    fill: #C12026;
-                }
-
-                svg:hover .you-fill {
-                    fill: #040707;
-                }
-            `}
-      </style>
       <polygon
         id="path-3"
         points="0.00848083916 0.0168093161 0.00848083916 19.3315611 16.9616783 19.3315611 16.9616783 0.0168093161 0.00848083916 0.0168093161"
@@ -88,7 +78,5 @@ const VkIcon = props => (
         </g>
       </g>
     </g>
-  </svg>
+  </YoutubeSVG>
 )
-
-export default VkIcon

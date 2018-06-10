@@ -1,24 +1,16 @@
 import React from 'react'
+import { SVG, prepareFillColors } from './icon-wrapper'
+
+const colorMap = {
+  '.fill': 'url(#instagram-gradient)',
+}
+
+const InstagramSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
 
 const InstagramIcon = props => (
-  <svg
-    {...props}
-    viewBox="0 0 30 30"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
-    <style>
-      {`
-            .fill {
-                fill: #a1a1a1;
-            }
-
-            svg:hover .fill {
-                fill: url(#instagram-gradient);
-            }
-        `}
-    </style>
+  <InstagramSVG {...props} viewBox="0 0 30 30">
     <linearGradient id="instagram-gradient" x1="0" y1="100%" x2="100%" y2="0">
       <stop offset="0%" stopColor="#f9ed32" />
       <stop offset="50%" stopColor="#ff0000" />
@@ -40,7 +32,7 @@ const InstagramIcon = props => (
         </g>
       </g>
     </g>
-  </svg>
+  </InstagramSVG>
 )
 
 export default InstagramIcon

@@ -1,27 +1,16 @@
 import React from 'react'
+import { SVG, prepareFillColors } from './icon-wrapper'
 
-const FacebookIcon = ({ className, height = '2.4rem' }) => (
-  <svg
-    className={className}
-    height={height}
-    viewBox="0 0 30 30"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    aria-hidden="true">
-    <defs>
-      <style>
-        {`
-                #fb-icon {
-                    fill: #a1a1a1;
-                }
+const colorMap = {
+  '#fb-icon': '#3b5998',
+}
 
-                svg:hover #fb-icon {
-                    fill: #3b5998;
-                }
-            `}
-      </style>
-    </defs>
+const FacebookSVG = SVG.extend`
+  ${prepareFillColors(colorMap)};
+`
+
+const FacebookIcon = props => (
+  <FacebookSVG {...props} viewBox="0 0 30 30">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="Mobile-Portrait" transform="translate(-87.000000, -2773.000000)">
         <g id="Social" transform="translate(20.000000, 2661.000000)">
@@ -38,7 +27,7 @@ const FacebookIcon = ({ className, height = '2.4rem' }) => (
         </g>
       </g>
     </g>
-  </svg>
+  </FacebookSVG>
 )
 
 export default FacebookIcon
