@@ -20,20 +20,18 @@ const TalkGrid = styled.div`
 `
 
 const AvatarWrapper = styled.div`
-    display: block;
-    min-width: 12.2rem;
-    min-height: 20rem;
+  display: block;
+  min-width: 12.2rem;
+  min-height: 20rem;
 
-    ${media.phone`
+  ${media.phone`
         display: inline-block;
         margin-right: 2.7rem;  
-    `}
-    ${media.tablet`
+    `} ${media.tablet`
         margin-right: 3.6rem;
-    `}
-    ${media.desktop`
+    `} ${media.desktop`
         margin-right: 2.4rem;
-    `}
+    `};
 `
 
 const Header = styled.h3`

@@ -44,39 +44,34 @@ const ImagesWrapper = styled(
 `
 
 const ImageWrapper = styled.li`
-    position: relative;
-    width: 100%;
-    filter: grayscale(100%);
-    filter: grayscale(1);
-    filter: gray;
-    background-image: url(${props => props.image});
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: background-size 0.3s;
-    box-sizing: border-box;
-    overflow: hidden;
-    margin-bottom: ${getGutterSpace() / 10}rem;
-    ${media.phone`
+  position: relative;
+  width: 100%;
+  filter: grayscale(100%);
+  filter: grayscale(1);
+  filter: gray;
+  background-image: url(${props => props.image});
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: ${getGutterSpace() / 10}rem;
+  ${media.phone`
         width: 29rem;    
-    `}
-    ${media.tablet`
+    `} ${media.tablet`
         width: 16.4rem;
-    `}
-    ${media.desktop`
+    `} ${media.desktop`
         width: 20rem;
-    `}
-    ${media.hd`
+    `} ${media.hd`
         width: 23rem;
-    `}
+    `} &:first-child {
+    margin-top: 0;
+  }
 
-    &:first-child {
-        margin-top: 0;
-    }
-    
-    &:hover {
-        background-size: 110% 110%;
-    }
+  &:hover {
+    background-size: 110% 110%;
+  }
 `
 
 const ImageStyled = styled.img`
@@ -94,33 +89,30 @@ const Footer = styled.div`
 `
 
 const MorePicsButton = styled.button`
-    width: 100%;
-    background: #FFFFFF;
-    border: 0.3rem solid ${props => props.theme.lipstick};
-    color: ${props => props.theme.lipstick};
-    font-family: Rubik, sans-serif;
-    font-size: 1.8rem;
-    font-weight: bold;
-    line-height: 6rem;
-    text-align: center;
-    padding: 0;
-    text-transform: uppercase;
-    outline: none;
-    cursor: pointer;
+  width: 100%;
+  background: #ffffff;
+  border: 0.3rem solid ${props => props.theme.lipstick};
+  color: ${props => props.theme.lipstick};
+  font-family: Rubik, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 6rem;
+  text-align: center;
+  padding: 0;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
 
-    ${media.phone`
+  ${media.phone`
         width: 31.4rem;
-    `}
-    ${media.tablet`
+    `} ${media.tablet`
         width: 32.4rem;
         line-height: 8rem;
-    `}
-    ${media.desktop`
+    `} ${media.desktop`
         width: 19.4rem;
-    `}
-    ${media.hd`
+    `} ${media.hd`
         width: 22.4rem;
-    `}
+    `};
 `
 
 class ImageList extends React.Component {
