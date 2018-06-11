@@ -5,7 +5,7 @@ author: Никита Кирсанов
 tags:
   - webpurple
   - ryazan
-  - fronten
+  - frontend
   - community
 background: /img/groot.jpg
 bgPosX: -160
