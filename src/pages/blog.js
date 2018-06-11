@@ -1,6 +1,6 @@
 import React from 'react'
 import { mapProps } from 'recompose'
-import { Box, Flex } from 'grid-styled'
+import { Box } from 'grid-styled'
 import Helmet from 'react-helmet'
 
 import BlockHeader from '../components/common/block-header'

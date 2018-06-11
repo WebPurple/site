@@ -1,6 +1,5 @@
 import React from 'react'
 import { SVG, prepareFillColors } from './icon-wrapper'
-import PropTypes from 'prop-types'
 
 const colorMap = {
   '.tube-wrapper-fill': '#c12026',

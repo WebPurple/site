@@ -1,4 +1,4 @@
-import { flatten, map, pipe, prop, reduce, uniq } from 'ramda'
+import { flatten, map, pipe, prop, uniq } from 'ramda'
 
 const viewTags = talk => talk.tags ? talk.tags : [];
 

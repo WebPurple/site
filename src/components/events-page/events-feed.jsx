@@ -26,7 +26,7 @@ import EventList from './event-list'
 import { elasticSearch } from '../../utils/search'
 import { eventTags } from '../../utils/selectors'
 
-const NoEventsBlock = styled.div`
+export const NoEventsBlock = styled.div`
   margin: 10rem 0;
   text-align: center;
   font-family: 'Oxygen', sans-serif;

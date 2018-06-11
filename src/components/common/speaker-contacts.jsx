@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Flex, Box } from 'grid-styled'
-import { height } from 'styled-system'
 
 import {
   TwitterIcon,
