@@ -84,7 +84,7 @@ let BlogPost = ({ post }) => (
     </Box>
 
     <Flex justifyContent="center" px={['2rem', '2rem', 0]}>
-      <Box w={['100%', '958px']}>
+      <Box w={['100%', '100%', '958px']}>
         <HTMLContent itemProp="articleBody">{post.content}</HTMLContent>
 
         <BrowserOnly>
