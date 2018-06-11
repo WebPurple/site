@@ -7,25 +7,28 @@ import BlockHeader from '../components/common/block-header'
 import MainContainer from '../components/common/main-container'
 import ArticleCard from '../components/blog/article-card'
 import AdaptiveMasonryList from '../components/adaptive-masonry-list'
+import Layout from '../components/layout'
 
 let BlogPage = ({ posts }) => (
-  <MainContainer>
-    <Helmet title="Blog" />
+  <Layout>
+    <MainContainer>
+      <Helmet title="Blog" />
 
-    <BlockHeader size="h1">Blog</BlockHeader>
+      <BlockHeader size="h1">Blog</BlockHeader>
 
-    <AdaptiveMasonryList>
-      {posts.map(post => (
-        <Box
-          is="li"
-          key={post.id}
-          width={['100%', '30rem', '35rem']}
-          mb={['2rem', '2rem', '7rem']}>
-          <ArticleCard post={post} />
-        </Box>
-      ))}
-    </AdaptiveMasonryList>
-  </MainContainer>
+      <AdaptiveMasonryList>
+        {posts.map(post => (
+          <Box
+            is="li"
+            key={post.id}
+            width={['100%', '30rem', '35rem']}
+            mb={['2rem', '2rem', '7rem']}>
+            <ArticleCard post={post} />
+          </Box>
+        ))}
+      </AdaptiveMasonryList>
+    </MainContainer>
+  </Layout>
 )
 
 export default mapProps(

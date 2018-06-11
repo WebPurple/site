@@ -4,12 +4,13 @@ import { chain, comparator, groupBy, path, pipe, prop } from 'ramda'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import SpeakersList from '../components/speakers-list/speakers-list'
+import Layout from '../components/layout'
 
 let SpeakersPage = ({ speakers }) => (
-  <React.Fragment>
+  <Layout>
     <SubscriptionForm />
     <SpeakersList speakers={speakers} />
-  </React.Fragment>
+  </Layout>
 )
 
 export default mapProps(

@@ -9,6 +9,7 @@ import PastEvents from '../components/home-page/past-events'
 import SocialLinksBlock from '../components/social-links-block'
 import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
 import { HiddenText } from '../utils/accessibility'
+import Layout from '../components/layout'
 
 injectGlobal`
   html {
@@ -21,7 +22,7 @@ injectGlobal`
 `
 
 const IndexPage = ({ upcomingEvent, pastTalks }) => (
-  <React.Fragment>
+  <Layout>
     <Helmet title="Home" />
     <HiddenText>
       <h1>Home</h1>
@@ -30,7 +31,7 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
     <PastEvents talks={pastTalks} />
     <SubscriptionForm />
     <SocialLinksBlock />
-  </React.Fragment>
+  </Layout>
 )
 
 export default mapProps(
