@@ -1,7 +1,7 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-let createEventPages = ({ boundActionCreators: { createPage }, graphql }) =>
+let createEventPages = ({ actions: { createPage }, graphql }) =>
   graphql(
     `
       {
@@ -41,7 +41,7 @@ let createEventPages = ({ boundActionCreators: { createPage }, graphql }) =>
     })
   })
 
-let createBlogPostPages = ({ boundActionCreators: { createPage }, graphql }) =>
+let createBlogPostPages = ({ actions: { createPage }, graphql }) =>
   graphql(`
     {
       allMarkdownRemark {
@@ -74,8 +74,8 @@ let createBlogPostPages = ({ boundActionCreators: { createPage }, graphql }) =>
 exports.createPages = (...args) =>
   Promise.all([createEventPages(...args), createBlogPostPages(...args)])
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  let { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  let { createNodeField } = actions
 
   if (/MarkdownRemark|EventYaml|SpeakerYaml/.test(node.internal.type)) {
     let value = createFilePath({ node, getNode })
