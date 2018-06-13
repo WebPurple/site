@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { ThemeProvider } from 'styled-components'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 import { Flex } from 'grid-styled'
 import { YMInitializer } from 'react-yandex-metrika'
 
@@ -31,6 +31,16 @@ const theme = {
     .slice(1)
     .map(s => `${s / 16}em`),
 }
+
+injectGlobal`
+  html {
+    font-size: .625em; /* 10px; */
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+`
 
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>

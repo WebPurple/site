@@ -1,5 +1,4 @@
 import React from 'react'
-import { injectGlobal } from 'styled-components'
 import { mapProps } from 'recompose'
 import Helmet from 'react-helmet'
 
@@ -10,16 +9,6 @@ import SocialLinksBlock from '../components/social-links-block'
 import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
 import { HiddenText } from '../utils/accessibility'
 import Layout from '../components/layout'
-
-injectGlobal`
-  html {
-    font-size: .625em; /* 10px; */
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-`
 
 const IndexPage = ({ upcomingEvent, pastTalks }) => (
   <Layout>
