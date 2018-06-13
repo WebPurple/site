@@ -19,6 +19,8 @@ talks:
       - rest
       - api
       - integration
+    links:
+      video: 'F0aDAlvtPRY'
   - title: Микро оптимизации на примере AngularJS#$digest
     description: >-
       Разберу, что такое digest, особенности его реализации. А также покажу, как, зная общий принцип работы, можно оптимизировать свой код.
@@ -28,12 +30,16 @@ talks:
       - angular
       - digest
       - micro_optimization
+    links:
+      video: 'M8XxCBWWkt0'
   - title: Processing
     description: >-
       Расскажу про Algorithmic design.
     speaker: Илья Зуев
     tags:
       - algorithmic_design
+    links:
+      video: '4w_uuH4uGB4'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup27'
     type: vk

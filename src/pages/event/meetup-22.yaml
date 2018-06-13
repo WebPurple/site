@@ -18,6 +18,8 @@ talks:
       - graphql
       - rest
       - apollo
+    links:
+      video: 'GfjWdNaD-2M'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup22'
     type: vk

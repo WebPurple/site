@@ -16,6 +16,8 @@ talks:
       - es6
       - linters
       - styleguides
+    links:
+      video: 'WXojma0u_o4'
   - title: Reasonable react development
     description: >-
       Руслан расскажет об очередном способе создания "бронебойного"
@@ -23,6 +25,9 @@ talks:
     speaker: Руслан Абрамов
     tags:
       - react
+    links:
+      video: 'PF6FL58vLrQ?start=500'
+      presentation: 'https://docs.google.com/presentation/d/1EDKaOckYKUpHo8YpPzOyvlQRQgULbbtVOiU1ZVVFEWQ/edit?usp=sharing'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup26'
     type: vk

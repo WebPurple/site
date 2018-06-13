@@ -22,7 +22,7 @@ export let pageQuery = graphql`
       fields {
         slug
       }
-      
+
       title
       description
       date
@@ -36,6 +36,10 @@ export let pageQuery = graphql`
         description
         speaker
         tags
+        links {
+          video
+          presentation
+        }
       }
     }
 
