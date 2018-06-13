@@ -1,4 +1,5 @@
 const path = require('path')
+const { pick } = require('ramda')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 let createEventPages = ({ actions: { createPage }, graphql }) =>
@@ -113,5 +114,31 @@ exports.onCreateNode = ({
       break
     case 'SpeakerYaml':
       addSlugField()
+
+      let userTalks = getNodes()
+        .filter(n => n.internal.type === 'EventYaml')
+        .filter(event => event.talks.some(t => t.speaker === node.title))
+        .reduce(
+          (talks, event) => [
+            ...talks,
+            ...event.talks.filter(t => t.speaker === node.title).map(talk => ({
+              ...pick(['title', 'tags'], talk),
+              event: pick(['title, date'], event),
+            })),
+          ],
+          [],
+        )
+
+      createNodeField({
+        node,
+        name: 'talks',
+        value: userTalks,
+      })
+
+      createNodeField({
+        node,
+        name: 'talksCount',
+        value: userTalks.length,
+      })
   }
 }
