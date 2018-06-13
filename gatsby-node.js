@@ -80,26 +80,38 @@ exports.onCreateNode = ({
   getNodes,
   getNode,
 }) => {
+  let getUser = title =>
+    getNodes().find(n => n.internal.type === 'SpeakerYaml' && n.title === title)
+  let addSlugField = () =>
+    createNodeField({
+      name: `slug`,
+      node,
+      value: createFilePath({ node, getNode }),
+    })
+
   switch (node.internal.type) {
-    case 'MarkdownRemark':
-      let author = getNodes().find(
-        n =>
-          n.internal.type === 'SpeakerYaml' &&
-          n.title === node.frontmatter.author,
-      )
+    case 'MarkdownRemark': // blog post
+      addSlugField()
 
       createNodeField({
         node,
         name: 'author',
-        value: author,
+        value: getUser(node.frontmatter.author),
       })
+      break
     case 'EventYaml':
-    case 'SpeakerYaml':
-      let value = createFilePath({ node, getNode })
+      addSlugField()
+
       createNodeField({
-        name: `slug`,
         node,
-        value,
+        name: 'talks',
+        value: node.talks.map(talk => ({
+          ...talk,
+          speaker: getUser(talk.speaker),
+        })),
       })
+      break
+    case 'SpeakerYaml':
+      addSlugField()
   }
 }

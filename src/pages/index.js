@@ -35,25 +35,11 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
 )
 
 export default mapProps(
-  ({
-    data: {
-      allEventYaml: { edges: allEventNodes },
-      allSpeakerYaml: { edges: allSpeakers },
-    },
-  }) => {
-    let speakerByTitleMap = allSpeakers.reduce(
-      (map, speaker) => map.set(speaker.node.title, speaker.node),
-      new Map(),
-    )
-
-    let extendTalk = event => talk => ({
-      ...talk,
-      event: event,
-      speaker: speakerByTitleMap.get(talk.speaker),
-    })
+  ({ data: { allEventYaml: { edges: allEventNodes } } }) => {
+    let extendTalk = event => talk => ({ ...talk, event })
 
     let pastTalks = selectPastEvents(allEventNodes).reduce(
-      (arr, event) => [...arr, ...event.talks.map(extendTalk(event))],
+      (arr, event) => [...arr, ...event.fields.talks.map(extendTalk(event))],
       [],
     )
 
@@ -61,7 +47,7 @@ export default mapProps(
     return {
       upcomingEvent: upcomingEvent && {
         ...upcomingEvent,
-        talks: upcomingEvent.talks.map(extendTalk(upcomingEvent)),
+        talks: upcomingEvent.fields.talks.map(extendTalk(upcomingEvent)),
       },
       pastTalks,
     }
@@ -75,30 +61,24 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
+            talks {
+              title
+              speaker {
+                title
+                avatar
+                organization
+                jobTitle
+                socialNetworks {
+                  type
+                  link
+                }
+              }
+            }
           }
           title
           description
           date
           address
-          talks {
-            title
-            speaker
-          }
-        }
-      }
-    }
-
-    allSpeakerYaml {
-      edges {
-        node {
-          title
-          avatar
-          organization
-          jobTitle
-          socialNetworks {
-            type
-            link
-          }
         }
       }
     }
