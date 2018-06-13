@@ -122,46 +122,31 @@ let BlogPost = ({ post }) => (
   </Layout>
 )
 
-export default mapProps(
-  ({
-    data: {
-      markdownRemark,
-      allSpeakerYaml: { edges: speakers },
-    },
-  }) => ({
-    post: {
-      ...markdownRemark.frontmatter,
-      content: markdownRemark.html,
-      excerpt: markdownRemark.excerpt,
-      slug: markdownRemark.fields.slug,
-      author: speakers.find(
-        speaker => speaker.node.title === markdownRemark.frontmatter.author,
-      ).node,
-    },
-  }),
-)(BlogPost)
+export default mapProps(({ data: { markdownRemark } }) => ({
+  post: {
+    ...markdownRemark.frontmatter,
+    content: markdownRemark.html,
+    excerpt: markdownRemark.excerpt,
+    slug: markdownRemark.fields.slug,
+    author: markdownRemark.fields.author,
+  },
+}))(BlogPost)
 
 export let pageQuery = graphql`
   query BlogPost($id: String!) {
-    allSpeakerYaml {
-      edges {
-        node {
-          title
-          avatar
-        }
-      }
-    }
-
     markdownRemark(id: { eq: $id }) {
       html
       excerpt(pruneLength: 400)
       fields {
         slug
+        author {
+          title
+          avatar
+        }
       }
       frontmatter {
         title
         date
-        author
         tags
         background
       }

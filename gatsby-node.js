@@ -74,15 +74,32 @@ let createBlogPostPages = ({ actions: { createPage }, graphql }) =>
 exports.createPages = (...args) =>
   Promise.all([createEventPages(...args), createBlogPostPages(...args)])
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  let { createNodeField } = actions
+exports.onCreateNode = ({
+  node,
+  actions: { createNodeField },
+  getNodes,
+  getNode,
+}) => {
+  switch (node.internal.type) {
+    case 'MarkdownRemark':
+      let author = getNodes().find(
+        n =>
+          n.internal.type === 'SpeakerYaml' &&
+          n.title === node.frontmatter.author,
+      )
 
-  if (/MarkdownRemark|EventYaml|SpeakerYaml/.test(node.internal.type)) {
-    let value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
+      createNodeField({
+        node,
+        name: 'author',
+        value: author,
+      })
+    case 'EventYaml':
+    case 'SpeakerYaml':
+      let value = createFilePath({ node, getNode })
+      createNodeField({
+        name: `slug`,
+        node,
+        value,
+      })
   }
 }

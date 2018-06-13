@@ -31,35 +31,19 @@ let BlogPage = ({ posts }) => (
   </Layout>
 )
 
-export default mapProps(
-  ({
-    data: { allMarkdownRemark: { edges }, allSpeakerYaml: { edges: speakers } },
-  }) => ({
-    posts: edges
-      .map(p => ({
-        ...p.node,
-        ...p.node.frontmatter,
-        link: p.node.fields.slug,
-        author: speakers.find(
-          speaker => speaker.node.title === p.node.frontmatter.author,
-        ).node,
-      }))
-      .filter(p => !p.draft),
-  }),
-)(BlogPage)
+export default mapProps(({ data: { allMarkdownRemark: { edges } } }) => ({
+  posts: edges
+    .map(p => ({
+      ...p.node,
+      ...p.node.frontmatter,
+      link: p.node.fields.slug,
+      author: p.node.fields.author,
+    }))
+    .filter(p => !p.draft),
+}))(BlogPage)
 
-// TODO: find out how to query relation data
 export let pageQuery = graphql`
   query AllPosts {
-    allSpeakerYaml {
-      edges {
-        node {
-          title
-          avatar
-        }
-      }
-    }
-
     allMarkdownRemark {
       edges {
         node {
@@ -67,11 +51,14 @@ export let pageQuery = graphql`
           excerpt(pruneLength: 250)
           fields {
             slug
+            author {
+              title
+              avatar
+            }
           }
           frontmatter {
             title
             date
-            author
             tags
             background
             bgPosX
