@@ -4,7 +4,7 @@ import id from 'ramda/src/identity'
 
 import { Media } from '../../utils/css-utils'
 import Loader from './loader'
-import Popup from './Popup'
+import Popup from './popup'
 
 const VideoLoader = Loader.extend`
   &:after {
