@@ -17,7 +17,7 @@ talks:
       - linters
       - styleguides
     links:
-      video: 'WXojma0u_o4'
+      video: 'https://www.youtube.com/embed/WXojma0u_o4'
   - title: Reasonable react development
     description: >-
       Руслан расскажет об очередном способе создания "бронебойного"
@@ -26,7 +26,7 @@ talks:
     tags:
       - react
     links:
-      video: 'PF6FL58vLrQ?start=500'
+      video: 'https://www.youtube.com/embed/PF6FL58vLrQ'
       presentation: 'https://docs.google.com/presentation/d/1EDKaOckYKUpHo8YpPzOyvlQRQgULbbtVOiU1ZVVFEWQ/edit?usp=sharing'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup26'

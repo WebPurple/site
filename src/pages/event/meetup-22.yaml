@@ -19,10 +19,10 @@ talks:
       - rest
       - apollo
     links:
-      video: 'GfjWdNaD-2M'
+      video: 'https://www.youtube.com/embed/GfjWdNaD-2M'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup22'
     type: vk
   - link: 'https://www.facebook.com/events/322441078166173/'
     type: fb
-video: 'https://www.youtube.com/watch?v=GfjWdNaD-2M'
+video: 'https://www.youtube.com/embed/GfjWdNaD-2M'

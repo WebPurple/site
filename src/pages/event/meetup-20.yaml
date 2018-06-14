@@ -15,12 +15,12 @@ talks:
       Рассмотрим некоторые библиотеки функционального программирования. И
       все-таки ответим на вопрос, стоит ли изучать функциональное
       программирование в 2017 году.
-    presentation: >-
-      https://vk.com/away.php?to=https%3A%2F%2Fdrive.google.com%2Fopen%3Fid%3D1h9unQoUaVkJbkIlJwXz0zrIMily9ohmQ4zgdr3thLm4&post=-148750496_3&cc_key=
     speaker: Руслан Абрамов
     tags:
       - functional_programming
       - javascript
+    links:
+      presentation: https://docs.google.com/presentation/d/1h9unQoUaVkJbkIlJwXz0zrIMily9ohmQ4zgdr3thLm4/edit?usp=sharing
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup20'
     type: vk
