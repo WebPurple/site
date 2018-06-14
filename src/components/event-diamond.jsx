@@ -3,25 +3,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 
-let defaultAngle = 30
-let sinusAngle = Math.sin((90 - defaultAngle) / 180 * Math.PI)
-let width = 32
-let height = width / sinusAngle
-
-/* descriptionTop for the defaultAngle 30 */
-let descriptionTop = height / 4
-
 let Diamond = styled.div`
   display: block;
-  transform: skewY(
-    ${props => (props.isTurnLeft ? defaultAngle : -defaultAngle)}deg
-  );
-
   font-family: 'Rubik', sans-serif;
   padding: 0 3rem;
   color: white;
   position: relative;
-  top: ${descriptionTop}rem;
   z-index: 1;
 `
 
@@ -69,8 +56,8 @@ let SpeakerName = styled.div`
   font-family: 'Oxygen', sans-serif;
 `
 
-let EventDiamond = ({ isTurnLeft, talk: { title, event, speaker } }) => (
-  <Diamond isTurnLeft={isTurnLeft}>
+let EventDiamond = ({ talk: { title, event, speaker } }) => (
+  <Diamond>
     <EventName to={event.fields.slug}>{event.title}</EventName>
     <TalkTitle to={event.fields.slug}>{title}</TalkTitle>
     <Speaker>
