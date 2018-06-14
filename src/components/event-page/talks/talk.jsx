@@ -133,10 +133,10 @@ const EventTalk = ({ talk }) => (
         <LinksGrid>
           {talk.links.video ? (
             <Video src={talk.links.video}>
-              {({ onClick, src }) => (
+              {({ onClick }) => (
                 <FileLink
                   onClick={onClick}
-                  href={src}
+                  href={talk.links.video}
                   target="__blank"
                   rel="noreferrer noopener">
                   <WatchIconStyled />Video

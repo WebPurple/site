@@ -2,6 +2,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import { Portal } from 'react-portal'
 import styled, { injectGlobal } from 'styled-components'
+import { media } from '../../utils/css-utils'
 
 import CloseIcon from '../icons/close-icon'
 
@@ -37,7 +38,7 @@ const Shadow = styled.div`
 
 const PopupWindow = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
   max-width: 75rem;
 
   &:before {
@@ -71,6 +72,10 @@ const IconButton = styled.button`
   &:hover #closeIcon {
     stroke: #ababab;
   }
+  ${media.phone &&
+    `
+    display: none;
+  `};
 `
 
 class Popup extends React.Component {
