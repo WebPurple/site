@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 
 let defaultAngle = 30
-let sinusAngle = Math.sin((90 - defaultAngle) / 180 * Math.PI)
+let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
 let width = 32
 let height = width / sinusAngle
 

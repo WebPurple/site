@@ -170,7 +170,9 @@ const Footer = styled.div`
 const UpcomingEvents = withTheme(({ theme, event }) => {
   const DIAMOND_SIZE = isPhone()
     ? DIAMOND_PHONE_SIZE
-    : isTablet() ? DIAMOND_TABLET_SIZE : DIAMOND_DESKTOP_SIZE
+    : isTablet()
+      ? DIAMOND_TABLET_SIZE
+      : DIAMOND_DESKTOP_SIZE
 
   return (
     <Wrapper>

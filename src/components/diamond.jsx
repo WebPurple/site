@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 let defaultAngle = 30
-let sinusAngle = Math.sin((90 - defaultAngle) / 180 * Math.PI)
+let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
 let width = 32
 let height = width / sinusAngle
 let shiftPhoto = height / 2
