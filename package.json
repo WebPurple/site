@@ -32,6 +32,7 @@
     "react-facebook": "^5.0.3",
     "react-helmet": "^5.2.0",
     "react-masonry-component": "^6.0.2",
+    "react-modal": "^3.4.5",
     "react-portal": "^4.1.4",
     "react-responsive": "^4.1.0",
     "react-vk": "^1.1.8",

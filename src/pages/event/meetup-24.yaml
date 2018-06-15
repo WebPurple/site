@@ -13,6 +13,8 @@ talks:
     tags:
       - hacktoberfest
       - opensource
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=528
   - title: Плагин для Vue.js и Yandex.Карт
     description: >-
       Расскажу свою историю разработки плагина для Vue.js и Yandex.Карт и
@@ -22,6 +24,8 @@ talks:
       - vuejs
       - yandexmaps
       - opensource
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28
   - title: История работы дизайнером в Лондоне в Walt Disney
     description: >-
       Расскажу о своем опыте работы в Лондоне ведущим дизайнером в компании Walt
@@ -30,23 +34,31 @@ talks:
     tags:
       - design
       - waltdisney
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=1497
   - speaker: Александр Харьков
     tags:
       - javascript
       - arrays
       - functional_programming
     title: Ленивые массивы в JavaScript.
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=2331
   - title: Treemap
     description: Расскажу о своём опыте визуализации данных с помощью метода treemap
     speaker: Андрей Смолко
     tags:
       - javascript
       - treemap
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=2732
   - title: ' WebPurple Retrospective'
     description: >-
       Подведу итоги 2,5 лет существования WebPurple и поделюсь идеями и планами
       на следующий год
     speaker: Маргарита Курдюмова
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=3889
   - title: ' Блокчейн'
     description: >-
       Расскажу о том, что такое блокчейн, зачем он нужен и в каких сферах его
@@ -54,9 +66,13 @@ talks:
     speaker: Ярослав Перегуда
     tags:
       - blockchain
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=3432
   - title: Секрет успешного доклада
     description: 'Поделюсь своим мнением, каким должен быть успешный технический доклад'
     speaker: Илья Чесноков
+    links:
+      video: https://youtube.com/embed/amkV3KRyw28?start=1145
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup24'
     type: vk

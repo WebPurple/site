@@ -1,10 +1,58 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
+import { Media } from '../../utils/css-utils'
 
 import CloseIcon from '../icons/close-icon'
 
+injectGlobal`
+  body.ReactModal__Body--open {
+    overflow: hidden;
+    & > *:not(.ReactModalPortal) {
+      filter: blur(3px);
+    }
+  }
+`
+
+const PopupWindowContainer = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const PopupWindow = styled.div`
+  position: relative;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: 56.25%;
+  }
+`
+
+const IconButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  width: auto;
+  height: auto;
+  right: -4rem;
+  top: -2rem;
+  left: auto;
+
+  &:hover #closeIcon {
+    stroke: #ababab;
+  }
+`
 const customStyles = {
   overlay: {
     alignItems: 'center',
@@ -13,57 +61,41 @@ const customStyles = {
     justifyContent: 'center',
   },
   content: {
-    top: 'auto',
-    left: 'auto',
-    right: 'auto',
-    bottom: 'auto',
     border: 'none',
     borderRadius: 'none',
     maxHeight: '100vh',
-    overflow: 'auto',
+    overflow: 'initial',
     padding: '0',
     position: 'static',
+    width: '90%',
+    maxWidth: '75rem',
+    backgroundColor: 'transparent',
   },
 }
 
-const ModalHeader = styled.header`
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 1.2em;
-`
+Modal.setAppElement('#___gatsby')
 
-const ModalContent = styled.div`
-  padding: 0 4em 4em;
-`
-
-const IconButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-
-  &:hover #closeIcon {
-    stroke: #ababab;
-  }
-`
-
-const Popup = ({ width, children, onRequestClose, ...rest }) => (
+const Popup = ({ children, onRequestClose, ...rest }) => (
   <Modal
     {...rest}
     onRequestClose={onRequestClose}
-    style={{ ...customStyles, content: { ...customStyles.content, width } }}>
-    <ModalHeader>
-      <IconButton onClick={onRequestClose}>
-        <CloseIcon />
-      </IconButton>
-    </ModalHeader>
-    <ModalContent>{children}</ModalContent>
+    parentSelector={() => document.body}
+    style={customStyles}>
+    <PopupWindow>
+      <PopupWindowContainer>
+        <Media.TabletPlus>
+          <IconButton onClick={onRequestClose}>
+            <CloseIcon />
+          </IconButton>
+        </Media.TabletPlus>
+        {children}
+      </PopupWindowContainer>
+    </PopupWindow>
   </Modal>
 )
 
 export default Popup
 
 Popup.propTypes = {
-  onRequestClose: PropTypes.func,
-  width: PropTypes.number,
+  onRequestClose: PropTypes.func.isRequired,
 }
