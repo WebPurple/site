@@ -117,7 +117,12 @@ let BlogPost = ({ post }) => (
 )
 
 export default mapProps(
-  ({ data: { markdownRemark, allSpeakerYaml: { edges: speakers } } }) => ({
+  ({
+    data: {
+      markdownRemark,
+      allSpeakerYaml: { edges: speakers },
+    },
+  }) => ({
     post: {
       ...markdownRemark.frontmatter,
       content: markdownRemark.html,
