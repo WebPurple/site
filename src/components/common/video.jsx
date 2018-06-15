@@ -5,7 +5,7 @@ import Popup from './popup'
 
 const VideoLoader = Loader.extend`
   &:after {
-    background-color: rgb(229, 212, 212);
+    background-color: rgb(240, 236, 236);
   }
 `
 
@@ -17,9 +17,6 @@ const initialState = {
 class Video extends Component {
   state = initialState
 
-  /**
-   * @param {Event} event
-   */
   showPopup = event => {
     event.preventDefault()
     this.setState({ isPlaying: true })
@@ -39,23 +36,21 @@ class Video extends Component {
         {this.props.children({
           onClick: this.showPopup,
         })}
-        {this.state.isPlaying && (
-          <Popup onRequestClose={this.closePopup}>
-            {!this.state.isLoaded && (
-              <div>
-                <VideoLoader size="80" border="8" />
-              </div>
-            )}
-            <iframe
-              src={this.props.src}
-              onLoad={this.onVideoLoad}
-              style={{ display: this.state.isLoaded ? 'initial' : 'none' }}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-          </Popup>
-        )}
+        <Popup onRequestClose={this.closePopup} isOpen={this.state.isPlaying}>
+          {!this.state.isLoaded ? <VideoLoader size="80" border="8" /> : null}
+          <iframe
+            src={this.props.src}
+            onLoad={this.onVideoLoad}
+            style={{
+              display: this.state.isLoaded ? 'initial' : 'none',
+              width: '100%',
+              height: '100%',
+            }}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        </Popup>
       </React.Fragment>
     )
   }

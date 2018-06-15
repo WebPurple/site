@@ -1,59 +1,41 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { Portal } from 'react-portal'
+import Modal from 'react-modal'
 import styled, { injectGlobal } from 'styled-components'
 import { media } from '../../utils/css-utils'
 
 import CloseIcon from '../icons/close-icon'
 
 injectGlobal`
-  body.popup-opened {
+  body.ReactModal__Body--open {
     overflow: hidden;
-    & > *:not(:last-child) {
+    & > *:not(.ReactModalPortal) {
       filter: blur(3px);
     }
-  } 
+  }
 `
 
 const ESC_KEY_CODE = 27
-const PopupContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
-const Shadow = styled.div`
+const PopupWindowContainer = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
   left: 0;
-  bottom: 0;
-  background-color: rgba(94, 94, 94, 0.13);
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const PopupWindow = styled.div`
   position: relative;
-  width: 90%;
-  max-width: 75rem;
 
   &:before {
     display: block;
     content: '';
     width: 100%;
     padding-top: 56.25%;
-  }
-
-  & > * {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
   }
 `
 
@@ -77,31 +59,53 @@ const IconButton = styled.button`
     display: none;
   `};
 `
+const customStyles = {
+  overlay: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(94, 94, 94, 0.13)',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  content: {
+    border: 'none',
+    borderRadius: 'none',
+    maxHeight: '100vh',
+    overflow: 'auto',
+    padding: '0',
+    position: 'static',
+    width: '90%',
+    maxWidth: '75rem',
+    backgroundColor: 'transparent',
+  },
+}
+
+Modal.setAppElement('#___gatsby')
 
 class Popup extends React.Component {
   render() {
-    const { children, onRequestClose } = this.props
+    const { children, onRequestClose, ...rest } = this.props
     return (
-      <Portal>
-        <PopupContainer>
-          <Shadow onClick={onRequestClose} />
-          <PopupWindow>
+      <Modal
+        {...rest}
+        onRequestClose={onRequestClose}
+        parentSelector={this.getDocumentBody}
+        style={customStyles}>
+        <PopupWindow>
+          <PopupWindowContainer>
             <IconButton onClick={onRequestClose}>
               <CloseIcon />
             </IconButton>
             {children}
-          </PopupWindow>
-        </PopupContainer>
-      </Portal>
+          </PopupWindowContainer>
+        </PopupWindow>
+      </Modal>
     )
   }
 
   componentDidMount() {
-    document.querySelector('body').classList.add('popup-opened')
     document.addEventListener('keydown', this.closeOnEscape)
   }
   componentWillUnmount() {
-    document.querySelector('body').classList.remove('popup-opened')
     document.removeEventListener('keydown', this.closeOnEscape)
   }
 
@@ -110,6 +114,8 @@ class Popup extends React.Component {
       this.props.onRequestClose()
     }
   }
+
+  getDocumentBody = () => document.body
 }
 
 export default Popup
