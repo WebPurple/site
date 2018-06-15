@@ -2,7 +2,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
 import styled, { injectGlobal } from 'styled-components'
-import { media } from '../../utils/css-utils'
+import { Media } from '../../utils/css-utils'
 
 import CloseIcon from '../icons/close-icon'
 
@@ -52,10 +52,6 @@ const IconButton = styled.button`
   &:hover #closeIcon {
     stroke: #ababab;
   }
-  ${media.phone &&
-    `
-    display: none;
-  `};
 `
 const customStyles = {
   overlay: {
@@ -68,7 +64,7 @@ const customStyles = {
     border: 'none',
     borderRadius: 'none',
     maxHeight: '100vh',
-    overflow: 'auto',
+    overflow: 'initial',
     padding: '0',
     position: 'static',
     width: '90%',
@@ -87,9 +83,11 @@ const Popup = ({ children, onRequestClose, ...rest }) => (
     style={customStyles}>
     <PopupWindow>
       <PopupWindowContainer>
-        <IconButton onClick={onRequestClose}>
-          <CloseIcon />
-        </IconButton>
+        <Media.TabletPlus>
+          <IconButton onClick={onRequestClose}>
+            <CloseIcon />
+          </IconButton>
+        </Media.TabletPlus>
         {children}
       </PopupWindowContainer>
     </PopupWindow>
