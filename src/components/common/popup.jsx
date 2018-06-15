@@ -15,8 +15,6 @@ injectGlobal`
   }
 `
 
-const ESC_KEY_CODE = 27
-
 const PopupWindowContainer = styled.div`
   position: absolute;
   left: 0;
@@ -81,42 +79,22 @@ const customStyles = {
 
 Modal.setAppElement('#___gatsby')
 
-class Popup extends React.Component {
-  render() {
-    const { children, onRequestClose, ...rest } = this.props
-    return (
-      <Modal
-        {...rest}
-        onRequestClose={onRequestClose}
-        parentSelector={this.getDocumentBody}
-        style={customStyles}>
-        <PopupWindow>
-          <PopupWindowContainer>
-            <IconButton onClick={onRequestClose}>
-              <CloseIcon />
-            </IconButton>
-            {children}
-          </PopupWindowContainer>
-        </PopupWindow>
-      </Modal>
-    )
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.closeOnEscape)
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.closeOnEscape)
-  }
-
-  closeOnEscape = event => {
-    if (event.keyCode === ESC_KEY_CODE) {
-      this.props.onRequestClose()
-    }
-  }
-
-  getDocumentBody = () => document.body
-}
+const Popup = ({ children, onRequestClose, ...rest }) => (
+  <Modal
+    {...rest}
+    onRequestClose={onRequestClose}
+    parentSelector={() => document.body}
+    style={customStyles}>
+    <PopupWindow>
+      <PopupWindowContainer>
+        <IconButton onClick={onRequestClose}>
+          <CloseIcon />
+        </IconButton>
+        {children}
+      </PopupWindowContainer>
+    </PopupWindow>
+  </Modal>
+)
 
 export default Popup
 
