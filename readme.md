@@ -1,4 +1,4 @@
-# Web Purple Web Site
+# WebPurple web site
 [![Build Status](https://travis-ci.org/WebPurple/site.svg?branch=master)](https://travis-ci.org/WebPurple/site)
 [![Coverage Status](https://coveralls.io/repos/github/kitos/web-purple/badge.svg?branch=master)](https://coveralls.io/github/kitos/web-purple?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/WebPurple/site.svg)](https://greenkeeper.io/)
@@ -31,5 +31,7 @@ Feel free to use emoji in your commit messages :anguished: (More about it [here]
 
 ## Powered by
 :heart: https://www.gatsbyjs.org/
+
 :green_heart: https://www.netlify.com/
+
 :purple_heart: https://www.netlifycms.org/
