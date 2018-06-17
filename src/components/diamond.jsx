@@ -2,47 +2,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 let defaultAngle = 30
-let sinusAngle = Math.sin((90 - defaultAngle) / 180 * Math.PI)
-let width = 32
-let height = width / sinusAngle
+let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
+export let width = 32
+export const calculateHeight = width => (width / sinusAngle / 2) * 3
+export let height = width / sinusAngle
 let shiftPhoto = height / 2
-
-const injectResponsiveOption = option => ({ responsiveOptions: config }) => {
-  if (config[option] === void 0) {
-    return ''
-  }
-  if (config[option] === 'hidden') {
-    return 'display: none'
-  }
-  let responsiveString = ''
-  if (config[option].row) {
-    responsiveString += `grid-row-start: ${config[option].row};`
-  }
-  if (config[option].column) {
-    responsiveString += `grid-column-start: ${config[option].column};`
-  }
-  return responsiveString
-}
-
-const calculateTurningAngle = option => ({ responsiveOptions: config }) => {
-  if (config[option] === void 0) {
-    return ''
-  }
-  return `transform: skewY(${
-    config[option].turn === 'right' ? defaultAngle : -defaultAngle
-  }deg);`
-}
-
-const getReverseAngle = (option, additionalInfo = '') => ({
-  responsiveOptions: config,
-}) => {
-  if (config[option] === void 0) {
-    return ''
-  }
-  return `transform: skewY(${
-    config[option].turn === 'right' ? -defaultAngle : defaultAngle
-  }deg) ${additionalInfo}`
-}
 
 let DiamondPadder = styled.div`
   flex: 1;
@@ -94,60 +58,88 @@ let DiamondSkewReset = styled.div`
   z-index: 1;
 `
 
+const getWrapperTransformOptions = option => ({ turningPoints }) => {
+  if (turningPoints === void 0 || turningPoints[option] === void 0) {
+    return ''
+  }
+  const turnedRight = turningPoints[option] === 'right'
+  return `
+    transform: skewY(
+      ${turnedRight ? defaultAngle : -defaultAngle}deg
+    )`
+}
+
+const getResetTransformOptions = option => ({ turningPoints }) => {
+  if (turningPoints === void 0 || turningPoints[option] === void 0) {
+    return ''
+  }
+  const turnedRight = turningPoints[option] === 'right'
+  return `
+    transform: skewY(
+      ${turnedRight ? -defaultAngle : defaultAngle}deg
+    )`
+}
+
+const getPhotoTransformOptions = option => ({ turningPoints }) => {
+  if (turningPoints === void 0 || turningPoints[option] === void 0) {
+    return ''
+  }
+  const turnedRight = turningPoints[option] === 'right'
+  const verticalOffset = turnedRight ? `translateY(-${shiftPhoto}rem)` : ''
+  return `
+    transform: skewY(
+      ${turnedRight ? -defaultAngle : defaultAngle}deg
+    ) ${verticalOffset}`
+}
+
 let DiamondWrapper = styled.div`
-  ${injectResponsiveOption('desktop')};
-  grid-row-end: span 3;
-  grid-column-end: span 1;
   display: flex;
   flex-direction: column;
-
+  width: 100%;
+  height: 100%;
   ${DiamondBlock} {
-    ${calculateTurningAngle('desktop')};
+    ${getWrapperTransformOptions('desktop')};
   }
   ${DiamondSkewReset} {
-    ${getReverseAngle('desktop')};
+    ${getResetTransformOptions('desktop')};
   }
   ${DiamondPhoto} {
-    ${getReverseAngle('desktop', `translateY(${-shiftPhoto}rem)`)};
+    ${getPhotoTransformOptions('desktop')};
   }
 
-  @media screen and (max-width: 1280px) {
-    ${injectResponsiveOption('tablet')};
-
+  @media screen and (max-width: 80rem) {
     ${DiamondBlock} {
-      ${calculateTurningAngle('tablet')};
+      ${getWrapperTransformOptions('tablet')};
     }
     ${DiamondSkewReset} {
-      ${getReverseAngle('tablet')};
+      ${getResetTransformOptions('tablet')};
     }
     ${DiamondPhoto} {
-      ${getReverseAngle('tablet', `translateY(${-shiftPhoto}rem)`)};
+      ${getPhotoTransformOptions('tablet')};
     }
   }
-  @media screen and (max-width: 980px) {
-    ${injectResponsiveOption('landscape')};
 
+  @media screen and (max-width: 62rem) {
     ${DiamondBlock} {
-      ${calculateTurningAngle('landscape')};
+      ${getWrapperTransformOptions('landscape')};
     }
     ${DiamondSkewReset} {
-      ${getReverseAngle('landscape')};
+      ${getResetTransformOptions('landscape')};
     }
     ${DiamondPhoto} {
-      ${getReverseAngle('landscape', `translateY(${-shiftPhoto}rem)`)};
+      ${getPhotoTransformOptions('landscape')};
     }
   }
-  @media screen and (max-width: 630px) {
-    ${injectResponsiveOption('mobile')};
 
+  @media screen and (max-width: 40rem) {
     ${DiamondBlock} {
-      ${calculateTurningAngle('mobile')};
+      ${getWrapperTransformOptions('mobile')};
     }
     ${DiamondSkewReset} {
-      ${getReverseAngle('mobile')};
+      ${getResetTransformOptions('mobile')};
     }
     ${DiamondPhoto} {
-      ${getReverseAngle('mobile', `translateY(${-shiftPhoto}rem)`)};
+      ${getPhotoTransformOptions('mobile')};
     }
   }
 `
@@ -158,45 +150,32 @@ let SpeakerPhoto = styled(DiamondPhoto)`
 `
 
 let Diamond = ({
-  size,
-  isTurnLeft,
   backSrc,
   backPosition,
   color,
   hasShadow,
   children,
-  responsiveOptions,
+  turningPoints = { desktop: 'left' },
 }) => (
-  <DiamondWrapper responsiveOptions={responsiveOptions}>
+  <DiamondWrapper turningPoints={turningPoints}>
     {(() => {
       if (backSrc && !hasShadow) {
         return (
-          <DiamondWithPhoto size={size} isTurnLeft={isTurnLeft} cover={color}>
-            <DiamondPhoto
-              isTurnLeft={isTurnLeft}
-              src={backSrc}
-              position={backPosition}
-            />
+          <DiamondWithPhoto cover={color}>
+            <DiamondPhoto src={backSrc} position={backPosition} />
             <DiamondSkewReset>{children}</DiamondSkewReset>
           </DiamondWithPhoto>
         )
       }
       if (hasShadow) {
         return (
-          <DiamondWithShadow size={size} isTurnLeft={isTurnLeft} color={color}>
-            <SpeakerPhoto
-              isTurnLeft={isTurnLeft}
-              src={backSrc}
-              position={backPosition}
-            />
+          <DiamondWithShadow color={color}>
+            <SpeakerPhoto src={backSrc} position={backPosition} />
           </DiamondWithShadow>
         )
       }
       return (
-        <DiamondBlock
-          size={size}
-          isTurnLeft={isTurnLeft}
-          style={{ backgroundColor: color }}>
+        <DiamondBlock style={{ backgroundColor: color }}>
           <DiamondSkewReset>{children}</DiamondSkewReset>
         </DiamondBlock>
       )
