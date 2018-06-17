@@ -12,7 +12,7 @@ talks:
       серьёзный прирост производительности это на данный момент даёт по
       сравнению с традиционным JS и более производительным asm.js.
     links:
-      video: 'https://www.youtube.com/watch?v=maXt60O2C4o'
+      video: 'https://www.youtube.com/embed/maXt60O2C4o'
     speaker: Вячеслав Лапин
     tags:
       - javascript
@@ -21,4 +21,4 @@ talks:
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup18'
     type: vk
-video: 'https://www.youtube.com/watch?v=maXt60O2C4o'
+video: 'https://www.youtube.com/embed/maXt60O2C4o'
