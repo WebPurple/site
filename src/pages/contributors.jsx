@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Header from '../components/common/block-header'
 import Loader from '../components/common/loader'
+import Layout from '../components/layout'
 
 const ContributorsList = styled.ul`
   list-style: none;
@@ -50,7 +51,7 @@ const Note = styled.footer`
 `
 
 const ContributorsPage = ({ contributors }) => (
-  <section>
+  <Layout>
     <Header>Contributors</Header>
     {!contributors ? (
       <StyledLoader size="80" border="8" />
@@ -80,7 +81,7 @@ const ContributorsPage = ({ contributors }) => (
       </a>
       &nbsp;might be the answer.
     </Note>
-  </section>
+  </Layout>
 )
 
 export default compose(

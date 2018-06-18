@@ -1,5 +1,4 @@
 import React from 'react'
-import { injectGlobal } from 'styled-components'
 import { mapProps } from 'recompose'
 import Helmet from 'react-helmet'
 
@@ -9,19 +8,10 @@ import PastEvents from '../components/home-page/past-events'
 import SocialLinksBlock from '../components/social-links-block'
 import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
 import { HiddenText } from '../utils/accessibility'
-
-injectGlobal`
-  html {
-    font-size: .625em; /* 10px; */
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-`
+import Layout from '../components/layout'
 
 const IndexPage = ({ upcomingEvent, pastTalks }) => (
-  <React.Fragment>
+  <Layout>
     <Helmet title="Home" />
     <HiddenText>
       <h1>Home</h1>
@@ -30,29 +20,15 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
     <PastEvents talks={pastTalks} />
     <SubscriptionForm />
     <SocialLinksBlock />
-  </React.Fragment>
+  </Layout>
 )
 
 export default mapProps(
-  ({
-    data: {
-      allEventYaml: { edges: allEventNodes },
-      allSpeakerYaml: { edges: allSpeakers },
-    },
-  }) => {
-    let speakerByTitleMap = allSpeakers.reduce(
-      (map, speaker) => map.set(speaker.node.title, speaker.node),
-      new Map(),
-    )
-
-    let extendTalk = event => talk => ({
-      ...talk,
-      event: event,
-      speaker: speakerByTitleMap.get(talk.speaker),
-    })
+  ({ data: { allEventYaml: { edges: allEventNodes } } }) => {
+    let extendTalk = event => talk => ({ ...talk, event })
 
     let pastTalks = selectPastEvents(allEventNodes).reduce(
-      (arr, event) => [...arr, ...event.talks.map(extendTalk(event))],
+      (arr, event) => [...arr, ...event.fields.talks.map(extendTalk(event))],
       [],
     )
 
@@ -60,7 +36,7 @@ export default mapProps(
     return {
       upcomingEvent: upcomingEvent && {
         ...upcomingEvent,
-        talks: upcomingEvent.talks.map(extendTalk(upcomingEvent)),
+        talks: upcomingEvent.fields.talks.map(extendTalk(upcomingEvent)),
       },
       pastTalks,
     }
@@ -74,30 +50,24 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
+            talks {
+              title
+              speaker {
+                title
+                avatar
+                organization
+                jobTitle
+                socialNetworks {
+                  type
+                  link
+                }
+              }
+            }
           }
           title
           description
           date
           address
-          talks {
-            title
-            speaker
-          }
-        }
-      }
-    }
-
-    allSpeakerYaml {
-      edges {
-        node {
-          title
-          avatar
-          organization
-          jobTitle
-          socialNetworks {
-            type
-            link
-          }
         }
       }
     }

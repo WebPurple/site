@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import map from 'ramda/src/map'
 import compose from 'ramda/src/compose'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { mapProps } from 'recompose'
 import EventPage from '../components/event-page/event-page'
 

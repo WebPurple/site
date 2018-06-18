@@ -2,16 +2,17 @@ import React from 'react'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import EventsFeed from '../components/events-page/events-feed'
+import Layout from '../components/layout'
 
 let EventsPage = ({
   data: {
     allEventYaml: { edges: events },
   },
 }) => (
-  <React.Fragment>
+  <Layout>
     <SubscriptionForm />
     <EventsFeed events={events.map(e => e.node)} />
-  </React.Fragment>
+  </Layout>
 )
 
 export default EventsPage

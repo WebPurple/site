@@ -91,7 +91,12 @@ const FooterComponent = () => (
       <LogoContainer>
         <WebpurpleLogoIcon color={'#b3a8c1'} />
       </LogoContainer>
-      <BlockElem>&#169; 2013 - {new Date().getFullYear()} Webpurple.</BlockElem>
+      <BlockElem>
+        <span role="img" aria-label="love">
+          &#169;
+        </span>{' '}
+        2013 - {new Date().getFullYear()} Webpurple.
+      </BlockElem>
       <BlockElem>All rights reserved.</BlockElem>
     </Copyrights>
     <Contacts>
