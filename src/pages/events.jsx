@@ -4,7 +4,11 @@ import SubscriptionForm from '../components/subscription-form/subscription-form'
 import EventsFeed from '../components/events-page/events-feed'
 import Layout from '../components/layout'
 
-let EventsPage = ({ data: { allEventYaml: { edges: events } } }) => (
+let EventsPage = ({
+  data: {
+    allEventYaml: { edges: events },
+  },
+}) => (
   <Layout>
     <SubscriptionForm />
     <EventsFeed events={events.map(e => e.node)} />

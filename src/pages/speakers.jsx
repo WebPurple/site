@@ -13,7 +13,11 @@ let SpeakersPage = ({ speakers }) => (
 )
 
 export default mapProps(
-  ({ data: { allSpeakerYaml: { edges: allUsers } } }) => ({
+  ({
+    data: {
+      allSpeakerYaml: { edges: allUsers },
+    },
+  }) => ({
     speakers: allUsers.map(s => ({
       ...s.node,
       talks: s.node.fields.talks,
