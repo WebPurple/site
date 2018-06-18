@@ -6,7 +6,6 @@ let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
 export let width = 32
 export const calculateHeight = width => (width / sinusAngle / 2) * 3
 export let height = width / sinusAngle
-let shiftPhoto = height / 2
 
 let DiamondPadder = styled.div`
   flex: 1;
@@ -21,8 +20,6 @@ let DiamondBlock = styled.div`
 `
 
 let DiamondWithPhoto = styled(DiamondBlock)`
-  position: relative;
-
   &:after {
     opacity: 0.7;
     content: '';
@@ -38,12 +35,12 @@ let DiamondWithPhoto = styled(DiamondBlock)`
 
 let DiamondPhoto = styled.div`
   position: absolute;
-  top: 0;
+  top: -25%;
 
   background-size: cover;
   filter: grayscale(100%);
-  width: 200%;
-  height: 200%;
+  width: 100%;
+  height: 150%;
 
   background-image: url(${props => props.src});
   background-position: ${props => props.position};
@@ -80,18 +77,6 @@ const getResetTransformOptions = option => ({ turningPoints }) => {
     )`
 }
 
-const getPhotoTransformOptions = option => ({ turningPoints }) => {
-  if (turningPoints === void 0 || turningPoints[option] === void 0) {
-    return ''
-  }
-  const turnedRight = turningPoints[option] === 'right'
-  const verticalOffset = turnedRight ? `translateY(-${shiftPhoto}rem)` : ''
-  return `
-    transform: skewY(
-      ${turnedRight ? -defaultAngle : defaultAngle}deg
-    ) ${verticalOffset}`
-}
-
 let DiamondWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,22 +85,16 @@ let DiamondWrapper = styled.div`
   ${DiamondBlock} {
     ${getWrapperTransformOptions('desktop')};
   }
-  ${DiamondSkewReset} {
+  ${DiamondSkewReset}, ${DiamondPhoto} {
     ${getResetTransformOptions('desktop')};
-  }
-  ${DiamondPhoto} {
-    ${getPhotoTransformOptions('desktop')};
   }
 
   @media screen and (max-width: 80rem) {
     ${DiamondBlock} {
       ${getWrapperTransformOptions('tablet')};
     }
-    ${DiamondSkewReset} {
+    ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('tablet')};
-    }
-    ${DiamondPhoto} {
-      ${getPhotoTransformOptions('tablet')};
     }
   }
 
@@ -123,11 +102,8 @@ let DiamondWrapper = styled.div`
     ${DiamondBlock} {
       ${getWrapperTransformOptions('landscape')};
     }
-    ${DiamondSkewReset} {
+    ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('landscape')};
-    }
-    ${DiamondPhoto} {
-      ${getPhotoTransformOptions('landscape')};
     }
   }
 
@@ -135,11 +111,8 @@ let DiamondWrapper = styled.div`
     ${DiamondBlock} {
       ${getWrapperTransformOptions('mobile')};
     }
-    ${DiamondSkewReset} {
+    ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('mobile')};
-    }
-    ${DiamondPhoto} {
-      ${getPhotoTransformOptions('mobile')};
     }
   }
 `

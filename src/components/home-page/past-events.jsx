@@ -169,7 +169,7 @@ let PastEvents = ({ talks, theme }) => {
           <Diamond
             color={theme.rouge}
             backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-            backPosition="120% 0%"
+            backPosition="-94% center"
             turningPoints={{ desktop: 'right', mobile: 'left' }}>
             <EventDiamond talk={talk1.talk} />
           </Diamond>
@@ -190,7 +190,7 @@ let PastEvents = ({ talks, theme }) => {
           <Diamond
             color={theme.vividPurpleTwo}
             backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
-            backPosition="40% 20%"
+            backPosition="25% 50%"
             turningPoints={{ desktop: 'left', landscape: 'right' }}>
             <EventDiamond talk={talk4.talk} />
           </Diamond>
@@ -198,8 +198,8 @@ let PastEvents = ({ talks, theme }) => {
         <PastEventsGridItem responsiveOptions={talk5.responsiveOptions}>
           <Diamond
             color={theme.grape}
-            backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-            backPosition="120% 0%">
+            backSrc="https://sun1-2.userapi.com/c834200/v834200219/1473a0/m_uTLXGP7Cw.jpg"
+            backPosition="39% center">
             <EventDiamond talk={talk5.talk} />
           </Diamond>
         </PastEventsGridItem>
