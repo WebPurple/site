@@ -68,6 +68,7 @@
     "jsxBracketSameLine": true
   },
   "devDependencies": {
+    "extract-text-webpack-plugin": "^3.0.2",
     "prettier": "^1.13.5"
   }
 }
