@@ -1,57 +1,44 @@
 import React from 'react'
 import { mapProps } from 'recompose'
-import { chain, comparator, groupBy, path, pipe, prop } from 'ramda'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import SpeakersList from '../components/speakers-list/speakers-list'
+import Layout from '../components/layout'
 
 let SpeakersPage = ({ speakers }) => (
-  <React.Fragment>
+  <Layout>
     <SubscriptionForm />
     <SpeakersList speakers={speakers} />
-  </React.Fragment>
+  </Layout>
 )
 
 export default mapProps(
   ({
     data: {
-      allEventYaml: { edges: allEvents },
       allSpeakerYaml: { edges: allUsers },
     },
-  }) => {
-    let talksBySpeaker = pipe(
-      chain(path(['node', 'talks'])),
-      groupBy(prop('speaker')),
-    )(allEvents)
-
-    let speakers = allUsers
-      .filter(s => talksBySpeaker.hasOwnProperty(s.node.title))
-      .map(s => ({
-        ...s.node,
-        talks: talksBySpeaker[s.node.title],
-      }))
-      .sort(comparator((s1, s2) => s1.talks.length > s2.talks.length))
-
-    return { speakers }
-  },
+  }) => ({
+    speakers: allUsers.map(s => ({
+      ...s.node,
+      talks: s.node.fields.talks,
+    })),
+  }),
 )(SpeakersPage)
 
 export const pageQuery = graphql`
   query AllSpeakers {
-    allEventYaml {
+    allSpeakerYaml(
+      sort: { fields: fields___talksCount, order: DESC }
+      filter: { fields: { talksCount: { gt: 0 } } }
+    ) {
       edges {
         node {
-          talks {
-            title
-            speaker
+          fields {
+            talks {
+              title
+            }
           }
-        }
-      }
-    }
 
-    allSpeakerYaml {
-      edges {
-        node {
           title
           avatar
           organization

@@ -7,7 +7,6 @@ import { withStateHandlers } from 'recompose'
 import {
   always,
   both,
-  complement,
   difference,
   either,
   flatten,
@@ -16,7 +15,6 @@ import {
   pipe,
   uniq,
   when,
-  without,
 } from 'ramda'
 
 import { isPhone, isTablet } from '../../utils/css-utils'
@@ -28,7 +26,7 @@ import EventList from './event-list'
 import { elasticSearch } from '../../utils/search'
 import { eventTags } from '../../utils/selectors'
 
-const NoEventsBlock = styled.div`
+export const NoEventsBlock = styled.div`
   margin: 10rem 0;
   text-align: center;
   font-family: 'Oxygen', sans-serif;
@@ -54,11 +52,19 @@ let EventsFeed = ({
       eventElasticSearch(query),
       either(
         () => isEmpty(selectedTags),
-        pipe(eventTags, difference(selectedTags), isEmpty),
+        pipe(
+          eventTags,
+          difference(selectedTags),
+          isEmpty,
+        ),
       ),
     ),
   )
-  let allEventsTags = pipe(map(eventTags), flatten, uniq)(filteredEvents)
+  let allEventsTags = pipe(
+    map(eventTags),
+    flatten,
+    uniq,
+  )(filteredEvents)
   let show = ''
 
   return (

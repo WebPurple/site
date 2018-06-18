@@ -1,8 +1,7 @@
-# Web Purple Web Site
-[![Build Status](https://travis-ci.org/kitos/web-purple.svg?branch=master)](https://travis-ci.org/kitos/web-purple)
+# WebPurple web site
+[![Build Status](https://travis-ci.org/WebPurple/site.svg?branch=master)](https://travis-ci.org/WebPurple/site)
 [![Coverage Status](https://coveralls.io/repos/github/kitos/web-purple/badge.svg?branch=master)](https://coveralls.io/github/kitos/web-purple?branch=master)
-[![Dependency status](https://david-dm.org/kitos/web-purple/status.png)](https://david-dm.org/kitos/web-purple#info=dependencies&view=table)
-[![Dev Dependency Status](https://david-dm.org/kitos/web-purple/dev-status.png)](https://david-dm.org/kitos/web-purple#info=devDependencies&view=table)
+[![Greenkeeper badge](https://badges.greenkeeper.io/WebPurple/site.svg)](https://greenkeeper.io/)
 
 ## How to start the project?
 ```
@@ -30,5 +29,9 @@ You can read more about contributing [here](https://guides.github.com/activities
 ### Commit messages
 Feel free to use emoji in your commit messages :anguished: (More about it [here](https://github.com/dannyfritz/commit-message-emoji)).
 
-## Useful links
-[redux](http://redux.js.org/)
+## Powered by
+:heart: https://www.gatsbyjs.org/
+
+:green_heart: https://www.netlify.com/
+
+:purple_heart: https://www.netlifycms.org/

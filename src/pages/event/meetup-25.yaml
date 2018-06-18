@@ -17,6 +17,8 @@ talks:
       Дам свои эмпирические определения эффективности, результативности и
       продуктивности применительно к программированию, расскажу, чем полезно
       ориентироваться на продуктивность
+    links:
+      video: https://youtube.com/embed/X9se89JEU-A?start=3334
   - speaker: Ярослав Перегуда
     tags:
       - blockchain
@@ -24,6 +26,8 @@ talks:
       - bitcoin
     title: Смарт-контракты
     description: 'Смарт-контракты, перспективы и их дальнейшее будущее'
+    links:
+      video: https://youtube.com/embed/X9se89JEU-A?start=1649
   - speaker: Аля Рыбакова
     tags:
       - css
@@ -33,6 +37,8 @@ talks:
     description: >-
       Как задокументировать стили с помощью KSS и сгенерировать классный
       стайлгайд с помощью KSS-Node
+    links:
+      video: https://youtube.com/embed/X9se89JEU-A?start=2251
   - speaker: Андрей Смолко
     tags:
       - html
@@ -44,6 +50,8 @@ talks:
       Каждый из нас 100500 раз использовал тег <img>, но знаете ли вы, как
       происходит загрузка изображения и как мы можем на неё повлиять? За 7 минут
       я расскажу все тайны, которые скрывает img
+    links:
+      video: https://youtube.com/embed/X9se89JEU-A?start=4113
   - speaker: Игорь Федюкин
     tags:
       - blockchain
@@ -51,6 +59,8 @@ talks:
     description: >-
       Расскажу о блоках в блокчейне и перспективах его применения в
       криптографии, распределенных вычислениях и хранении данных
+    links:
+      video: https://youtube.com/embed/X9se89JEU-A?start=324
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup25'
     type: vk

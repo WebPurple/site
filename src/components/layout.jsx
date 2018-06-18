@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { ThemeProvider } from 'styled-components'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 import { Flex } from 'grid-styled'
 import { YMInitializer } from 'react-yandex-metrika'
 
@@ -10,11 +9,10 @@ import appleFavicon from '../../static/apple-touch-icon.png'
 import favicon16 from '../../static/favicon-16x16.png'
 import favicon32 from '../../static/favicon-32x32.png'
 import safariPinnedTab from '../../static/safari-pinned-tab.svg'
-// import manifest from '../../static/favicon/manifest.json'
 
 import { sizes } from '../utils/css-utils'
-import Header from '../components/header'
-import Footer from '../components/footer'
+import Header from './header'
+import Footer from './footer'
 
 const theme = {
   grape: '#432867',
@@ -34,7 +32,17 @@ const theme = {
     .map(s => `${s / 16}em`),
 }
 
-const TemplateWrapper = ({ children }) => (
+injectGlobal`
+  html {
+    font-size: .625em; /* 10px; */
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <Flex flexDirection="column">
       <Helmet>
@@ -76,14 +84,10 @@ const TemplateWrapper = ({ children }) => (
         />
       )}
       <Header />
-      <main>{children()}</main>
+      <main>{children}</main>
       <Footer />
     </Flex>
   </ThemeProvider>
 )
 
-TemplateWrapper.propTypes = {
-  children: PropTypes.func,
-}
-
-export default TemplateWrapper
+export default Layout

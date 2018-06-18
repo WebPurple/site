@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
-import Color from 'color'
 
 export const Tag = styled.li`
   font-family: 'Oxygen', sans-serif;
@@ -13,8 +12,10 @@ export const Tag = styled.li`
   transition: all 0.2s ease-out;
 
   background: ${props => props.color};
-  &:hover {
-    background: ${props => props.hoverColor};
+  opacity: 0.5;
+  &:hover,
+  &.active {
+    opacity: 1;
   }
 `
 
@@ -39,28 +40,20 @@ export const TagList = withTheme(
     <div>
       {label && <TagListLabel>{label}</TagListLabel>}
 
-      <Tags>
-        {tags &&
-          tags.length > 0 &&
-          tags.map((tag, i) => {
-            const selectedOrHoverColor = theme[tagColors[i % tagColors.length]]
-            const fadeColor = new Color(selectedOrHoverColor).fade(0.5).string()
-
-            return (
+      {tags &&
+        tags.length > 0 && (
+          <Tags>
+            {tags.map((tag, i) => (
               <Tag
                 key={tag}
-                color={
-                  selectedTags && selectedTags.includes(tag)
-                    ? selectedOrHoverColor
-                    : fadeColor
-                }
-                hoverColor={selectedOrHoverColor}
-                onClick={onTagClick && (() => onTagClick(tag))}>
+                color={theme[tagColors[i % tagColors.length]]}
+                className={selectedTags.includes(tag) ? 'active' : ''}
+                onClick={() => onTagClick(tag)}>
                 #{tag}
               </Tag>
-            )
-          })}
-      </Tags>
+            ))}
+          </Tags>
+        )}
     </div>
   ),
 )
@@ -70,4 +63,9 @@ TagList.propTypes = {
   selectedTags: PropTypes.arrayOf(PropTypes.string),
   label: PropTypes.string,
   onTagClick: PropTypes.func,
+}
+
+TagList.defaultProps = {
+  selectedTags: [],
+  onTagClick: () => null,
 }

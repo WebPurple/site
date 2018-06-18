@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Avatar from './../../common/avatar'
 import { media } from './../../../utils/css-utils'
 import { WatchIcon, DownloadIcon } from './../../icons'
+import Video from '../../common/video'
 
 const TalkGrid = styled.div`
   display: flex;
@@ -20,20 +21,20 @@ const TalkGrid = styled.div`
 `
 
 const AvatarWrapper = styled.div`
-    display: block;
-    min-width: 12.2rem;
-    min-height: 20rem;
+  display: block;
+  min-width: 12.2rem;
+  min-height: 20rem;
 
-    ${media.phone`
-        display: inline-block;
-        margin-right: 2.7rem;  
-    `}
-    ${media.tablet`
-        margin-right: 3.6rem;
-    `}
-    ${media.desktop`
-        margin-right: 2.4rem;
-    `}
+  ${media.phone`
+    display: inline-block;
+    margin-right: 2.7rem;  
+   `};
+  ${media.tablet`
+    margin-right: 3.6rem;
+  `};
+  ${media.desktop`
+    margin-right: 2.4rem;
+  `};
 `
 
 const Header = styled.h3`
@@ -131,12 +132,23 @@ const EventTalk = ({ talk }) => (
       {talk.links ? (
         <LinksGrid>
           {talk.links.video ? (
-            <FileLink href={talk.links.video} target="__blank">
-              <WatchIconStyled />Video
-            </FileLink>
+            <Video src={talk.links.video}>
+              {({ onClick }) => (
+                <FileLink
+                  onClick={onClick}
+                  href={talk.links.video}
+                  target="__blank"
+                  rel="noreferrer noopener">
+                  <WatchIconStyled />Video
+                </FileLink>
+              )}
+            </Video>
           ) : null}
           {talk.links.presentation ? (
-            <FileLink href={talk.links.presentation} target="__blank">
+            <FileLink
+              href={talk.links.presentation}
+              target="__blank"
+              rel="noreferrer noopener">
               <DownloadIconStyled />Presentation
             </FileLink>
           ) : null}
