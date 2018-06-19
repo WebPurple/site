@@ -1,9 +1,11 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 import zipWith from 'ramda/src/zipWith'
 
 import { media } from '../../utils/css-utils'
+import ArrowButton from '../arrow-button/arrow-button'
 import Diamond, { width, height } from '../diamond'
 import EventDiamond from '../event-diamond'
 import BlockHeader from '../common/block-header'
@@ -52,6 +54,33 @@ let PastEventsGrid = styled.div`
     grid-template-columns: repeat(1, ${width}rem);
     grid-template-rows: repeat(7, ${height / 2}rem);
   }
+`
+
+const PastEventsGridItem = styled.div`
+  ${injectResponsiveOption('desktop')};
+  grid-row-end: span 3;
+  grid-column-end: span 1;
+  @media screen and (max-width: 80rem) {
+    ${injectResponsiveOption('tablet')};
+  }
+  @media screen and (max-width: 62rem) {
+    ${injectResponsiveOption('landscape')};
+  }
+
+  @media screen and (max-width: 40rem) {
+    ${injectResponsiveOption('mobile')};
+  }
+`
+
+const ArrowLink = ArrowButton.withComponent(NavLink)
+
+const ArrowLinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  ${media.tablet`
+    margin-top: 6rem;
+  `};
 `
 
 const responsiveGridConfig = [
@@ -134,22 +163,6 @@ const responsiveGridConfig = [
   },
 ]
 
-const PastEventsGridItem = styled.div`
-  ${injectResponsiveOption('desktop')};
-  grid-row-end: span 3;
-  grid-column-end: span 1;
-  @media screen and (max-width: 80rem) {
-    ${injectResponsiveOption('tablet')};
-  }
-  @media screen and (max-width: 62rem) {
-    ${injectResponsiveOption('landscape')};
-  }
-
-  @media screen and (max-width: 40rem) {
-    ${injectResponsiveOption('mobile')};
-  }
-`
-
 let PastEvents = ({ talks, theme }) => {
   if (!talks || talks.length < 7) {
     return null
@@ -214,6 +227,9 @@ let PastEvents = ({ talks, theme }) => {
           </Diamond>
         </PastEventsGridItem>
       </PastEventsGrid>
+      <ArrowLinkWrapper>
+        <ArrowLink to="/events?show=past">More Events</ArrowLink>
+      </ArrowLinkWrapper>
     </PastEventsContainer>
   )
 }
