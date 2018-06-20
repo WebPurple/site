@@ -1,7 +1,5 @@
 let algoliaQueries = require('./src/algolia-queries')
 
-const ALGOLIA_ADMIN_KEY = process.env.ALGOLIA_ADMIN_KEY
-
 module.exports = {
   siteMetadata: {
     title: 'WebPurple',
@@ -32,7 +30,7 @@ module.exports = {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: '16WOJBASFD',
-        apiKey: ALGOLIA_ADMIN_KEY,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
         queries: algoliaQueries,
         chunkSize: 10000,
       },
