@@ -7,7 +7,6 @@ import { media } from '../../utils/css-utils'
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'
 import { FilterBlock, Search } from '../page-filter'
-import { NoEventsBlock } from '../events-page/events-feed'
 import SpeakerCard from '../../components/speaker-card/speaker-card'
 import { elasticSearch } from '../../utils/search'
 
@@ -49,9 +48,7 @@ export default withState('query', 'search', '')(
               <SpeakerCard key={speaker.title} speaker={speaker} />
             ))
         ) : (
-          <NoEventsBlock>
-            There are no speakers satisfying your query...
-          </NoEventsBlock>
+          <p>There are no speakers satisfying your query...</p>
         )}
       </SpeakerCardContainer>
     </MainContainer>

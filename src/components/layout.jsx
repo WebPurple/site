@@ -35,6 +35,7 @@ const theme = {
 injectGlobal`
   html {
     font-size: .625em; /* 10px; */
+    font-family: 'Oxygen', Helvetica, sans-serif;
   }
   html, body {
     margin: 0;

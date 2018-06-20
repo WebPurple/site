@@ -33,6 +33,7 @@ class Video extends Component {
         <Popup onRequestClose={this.closePopup} isOpen={this.state.isPlaying}>
           {!this.state.isLoaded ? <VideoLoader size="80" border="8" /> : null}
           <iframe
+            title="Talk video"
             src={this.props.src}
             onLoad={this.onVideoLoad}
             style={{

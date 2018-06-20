@@ -11,6 +11,7 @@ import { CloseIcon, MenuIcon, GithubIcon } from './icons'
 import { Flex, Box } from 'grid-styled'
 import { Portal } from 'react-portal'
 import { HiddenText } from '../utils/accessibility'
+import Search from './algolia-search'
 
 let NavigationLink = styled(Link).attrs({
   activeClassName: 'active',
@@ -139,11 +140,16 @@ let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
     </Flex>
 
     <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
-      <Flex justifyContent="space-between" alignItems="center" flex="1">
+      <Flex justifyContent="space-between" flex="1">
         <Navbar />
-        <GitHubLink>
-          <HiddenText>Contribute</HiddenText>
-        </GitHubLink>
+
+        <Flex alignItems="center">
+          <Box is={Search} mr="20px" />
+
+          <GitHubLink>
+            <HiddenText>Contribute</HiddenText>
+          </GitHubLink>
+        </Flex>
       </Flex>
     </Media.TabletPlus>
   </Flex>
