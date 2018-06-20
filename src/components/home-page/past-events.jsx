@@ -6,11 +6,12 @@ import zipWith from 'ramda/src/zipWith'
 
 import { media } from '../../utils/css-utils'
 import ArrowButton from '../arrow-button/arrow-button'
-import Diamond, { width, height } from '../diamond'
+import Diamond, { calculateHeight } from '../diamond'
 import EventDiamond from '../event-diamond'
 import BlockHeader from '../common/block-header'
+import ResizeObserver from '../../utils/resize.observer'
 
-const injectResponsiveOption = option => ({ responsiveOptions: config }) => {
+let injectResponsiveOption = option => ({ responsiveOptions: config }) => {
   if (config === void 0 || config[option] === void 0) {
     return ''
   }
@@ -28,35 +29,41 @@ const injectResponsiveOption = option => ({ responsiveOptions: config }) => {
 }
 
 let PastEventsContainer = styled.section`
-  padding: 6rem 2rem;
-  ${media.tablet`padding: 9rem 7rem;`};
-  ${media.desktop`padding: 10rem;`};
+  padding-bottom: 6rem;
+  ${media.tablet`padding-bottom: 7rem;`};
+  ${media.desktop`padding-bottom: 10rem`};
+`
+
+let HeaderPaddings = styled.div`
+  padding: 6rem 2rem 0 2rem;
+  ${media.tablet`padding: 9rem 7rem 0 7rem;`};
+  ${media.desktop`padding: 10rem 10rem 0 10rem`};
 `
 
 let PastEventsGrid = styled.div`
   margin-top: 4rem;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, ${width}rem);
-  grid-template-rows: repeat(7, ${height / 2}rem);
+  grid-template-columns: repeat(4, ${props => props.width / 40}rem);
+  grid-auto-rows: ${props => calculateHeight(props.width / 4) / 30}rem;
   justify-content: center;
 
   @media screen and (max-width: 80rem) {
-    grid-template-columns: repeat(3, ${width}rem);
-    grid-template-rows: repeat(9, ${height / 2}rem);
+    grid-template-columns: repeat(3, ${props => props.width / 30}rem);
+    grid-auto-rows: ${props => calculateHeight(props.width / 3) / 30}rem;
   }
   @media screen and (max-width: 62rem) {
-    grid-template-columns: repeat(2, ${width}rem);
-    grid-template-rows: repeat(7, ${height / 2}rem);
+    grid-template-columns: repeat(2, ${props => props.width / 20}rem);
+    grid-auto-rows: ${props => calculateHeight(props.width / 2) / 30}rem;
   }
   @media screen and (max-width: 40rem) {
     margin-top: 3rem;
-    grid-template-columns: repeat(1, ${width}rem);
-    grid-template-rows: repeat(7, ${height / 2}rem);
+    grid-template-columns: repeat(1, ${props => props.width / 10}rem);
+    grid-auto-rows: ${props => calculateHeight(props.width) / 30}rem;
   }
 `
 
-const PastEventsGridItem = styled.div`
+let PastEventsGridItem = styled.div`
   ${injectResponsiveOption('desktop')};
   grid-row-end: span 3;
   grid-column-end: span 1;
@@ -72,9 +79,9 @@ const PastEventsGridItem = styled.div`
   }
 `
 
-const ArrowLink = ArrowButton.withComponent(NavLink)
+let ArrowLink = ArrowButton.withComponent(NavLink)
 
-const ArrowLinkWrapper = styled.div`
+let ArrowLinkWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 3rem;
@@ -83,7 +90,7 @@ const ArrowLinkWrapper = styled.div`
   `};
 `
 
-const responsiveGridConfig = [
+let responsiveGridConfig = [
   /* 1 */
   {
     desktop: {
@@ -176,57 +183,63 @@ let PastEvents = ({ talks, theme }) => {
 
   return (
     <PastEventsContainer>
-      <BlockHeader>Passed events</BlockHeader>
-      <PastEventsGrid>
-        <PastEventsGridItem responsiveOptions={talk1.responsiveOptions}>
-          <Diamond
-            color={theme.rouge}
-            backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
-            backPosition="-94% center"
-            turningPoints={{ desktop: 'right', mobile: 'left' }}>
-            <EventDiamond talk={talk1.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk2.responsiveOptions}>
-          <Diamond color={theme.lipstick}>
-            <EventDiamond talk={talk2.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk3.responsiveOptions}>
-          <Diamond
-            color={theme.cerise}
-            turningPoints={{ desktop: 'right', mobile: 'left' }}>
-            <EventDiamond talk={talk3.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk4.responsiveOptions}>
-          <Diamond
-            color={theme.vividPurpleTwo}
-            backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
-            backPosition="25% 50%"
-            turningPoints={{ desktop: 'left', landscape: 'right' }}>
-            <EventDiamond talk={talk4.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk5.responsiveOptions}>
-          <Diamond
-            color={theme.grape}
-            backSrc="https://sun1-2.userapi.com/c834200/v834200219/1473a0/m_uTLXGP7Cw.jpg"
-            backPosition="39% center">
-            <EventDiamond talk={talk5.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk6.responsiveOptions}>
-          <Diamond color={theme.vividPurple}>
-            <EventDiamond talk={talk6.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-        <PastEventsGridItem responsiveOptions={talk7.responsiveOptions}>
-          <Diamond color={theme.warmPurple}>
-            <EventDiamond talk={talk7.talk} />
-          </Diamond>
-        </PastEventsGridItem>
-      </PastEventsGrid>
+      <HeaderPaddings>
+        <BlockHeader>Passed events</BlockHeader>
+      </HeaderPaddings>
+      <ResizeObserver>
+        {width => (
+          <PastEventsGrid width={width}>
+            <PastEventsGridItem responsiveOptions={talk1.responsiveOptions}>
+              <Diamond
+                color={theme.rouge}
+                backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
+                backPosition="-94% center"
+                turningPoints={{ desktop: 'right', mobile: 'left' }}>
+                <EventDiamond talk={talk1.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk2.responsiveOptions}>
+              <Diamond color={theme.lipstick}>
+                <EventDiamond talk={talk2.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk3.responsiveOptions}>
+              <Diamond
+                color={theme.cerise}
+                turningPoints={{ desktop: 'right', mobile: 'left' }}>
+                <EventDiamond talk={talk3.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk4.responsiveOptions}>
+              <Diamond
+                color={theme.vividPurpleTwo}
+                backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
+                backPosition="25% 50%"
+                turningPoints={{ desktop: 'left', landscape: 'right' }}>
+                <EventDiamond talk={talk4.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk5.responsiveOptions}>
+              <Diamond
+                color={theme.grape}
+                backSrc="https://sun1-2.userapi.com/c834200/v834200219/1473a0/m_uTLXGP7Cw.jpg"
+                backPosition="39% center">
+                <EventDiamond talk={talk5.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk6.responsiveOptions}>
+              <Diamond color={theme.vividPurple}>
+                <EventDiamond talk={talk6.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+            <PastEventsGridItem responsiveOptions={talk7.responsiveOptions}>
+              <Diamond color={theme.warmPurple}>
+                <EventDiamond talk={talk7.talk} />
+              </Diamond>
+            </PastEventsGridItem>
+          </PastEventsGrid>
+        )}
+      </ResizeObserver>
       <ArrowLinkWrapper>
         <ArrowLink to="/events?show=past">More Events</ArrowLink>
       </ArrowLinkWrapper>

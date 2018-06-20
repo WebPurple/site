@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 let defaultAngle = 30
 let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
-export let width = 32
 export const calculateHeight = width => (width / sinusAngle / 2) * 3
-export let height = width / sinusAngle
 
 let DiamondPadder = styled.div`
   flex: 1;
