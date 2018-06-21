@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import zipWith from 'ramda/src/zipWith'
+import { Box } from 'grid-styled'
 
 import { media, Media } from '../../utils/css-utils'
 import ArrowButton from '../arrow-button/arrow-button'
@@ -25,7 +26,7 @@ let injectResponsiveOption = option => ({ responsiveOptions: config }) => {
   if (config[option].column) {
     responsiveString += `grid-column-start: ${config[option].column};`
   }
-  return responsiveString
+  return `${responsiveString} display: initial;`
 }
 
 let PastEventsContainer = styled.section`
@@ -34,49 +35,42 @@ let PastEventsContainer = styled.section`
   ${media.desktop`padding-bottom: 10rem`};
 `
 
-let HeaderPaddings = styled.div`
-  padding: 6rem 2rem 0 2rem;
-  ${media.tablet`padding: 9rem 7rem 0 7rem;`};
-  ${media.desktop`padding: 10rem 10rem 0 10rem`};
-`
-
 let PastEventsGrid = styled.div`
-  margin-top: 4rem;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, ${props => props.width / 40}rem);
-  grid-auto-rows: ${props => calculateHeight(props.width / 4) / 30}rem;
   justify-content: center;
-
-  @media screen and (max-width: 80rem) {
-    grid-template-columns: repeat(3, ${props => props.width / 30}rem);
-    grid-auto-rows: ${props => calculateHeight(props.width / 3) / 30}rem;
-  }
-  @media screen and (max-width: 62rem) {
+  margin-top: 3rem;
+  grid-template-columns: repeat(1, ${props => props.width / 10}rem);
+  grid-auto-rows: ${props => calculateHeight(props.width) / 30}rem;
+  ${media.phone`
+    margin-top: 4rem;
     grid-template-columns: repeat(2, ${props => props.width / 20}rem);
     grid-auto-rows: ${props => calculateHeight(props.width / 2) / 30}rem;
-  }
-  @media screen and (max-width: 40rem) {
-    margin-top: 3rem;
-    grid-template-columns: repeat(1, ${props => props.width / 10}rem);
-    grid-auto-rows: ${props => calculateHeight(props.width) / 30}rem;
-  }
+  `};
+  ${media.tablet`
+    grid-template-columns: repeat(3, ${props => props.width / 30}rem);
+    grid-auto-rows: ${props => calculateHeight(props.width / 3) / 30}rem;
+  `};
+  ${media.desktop`
+    margin-top: 8rem;
+    grid-template-columns: repeat(4, ${props => props.width / 40}rem);
+    grid-auto-rows: ${props => calculateHeight(props.width / 4) / 30}rem;
+  `};
 `
 
 let PastEventsGridItem = styled.div`
-  ${injectResponsiveOption('desktop')};
   grid-row-end: span 3;
   grid-column-end: span 1;
-  @media screen and (max-width: 80rem) {
-    ${injectResponsiveOption('tablet')};
-  }
-  @media screen and (max-width: 62rem) {
+  ${injectResponsiveOption('mobile')};
+  ${media.phone`
     ${injectResponsiveOption('landscape')};
-  }
-
-  @media screen and (max-width: 40rem) {
-    ${injectResponsiveOption('mobile')};
-  }
+  `};
+  ${media.tablet`
+    ${injectResponsiveOption('tablet')};
+  `};
+  ${media.desktop`
+    ${injectResponsiveOption('desktop')};
+  `};
 `
 
 let ArrowLink = ArrowButton.withComponent(NavLink)
@@ -93,80 +87,80 @@ let ArrowLinkWrapper = styled.div`
 let responsiveGridConfig = [
   /* 1 */
   {
-    desktop: {
+    mobile: {
       row: 1,
       column: 1,
     },
   },
   /* 2 */
   {
-    desktop: {
-      row: 1,
-      column: 2,
-    },
     mobile: {
       row: 3,
       column: 1,
+    },
+    landscape: {
+      row: 1,
+      column: 2,
     },
   },
   /* 3 */
   {
-    desktop: {
-      row: 3,
-      column: 1,
-    },
     mobile: {
       row: 5,
+      column: 1,
+    },
+    landscape: {
+      row: 3,
       column: 1,
     },
   },
   /* 4 */
   {
-    desktop: {
-      row: 5,
-      column: 2,
-    },
+    mobile: 'hidden',
     landscape: {
       row: 5,
       column: 1,
     },
-    mobile: 'hidden',
+    tablet: {
+      row: 5,
+      column: 2,
+    },
   },
   /* 5 */
   {
-    desktop: {
-      row: 2,
-      column: 3,
-    },
+    mobile: 'hidden',
     landscape: {
       row: 5,
       column: 2,
     },
-    mobile: 'hidden',
+    tablet: {
+      row: 2,
+      column: 3,
+    },
   },
   /* 6 */
   {
-    desktop: {
-      row: 1,
-      column: 4,
-    },
+    mobile: 'hidden',
     tablet: {
       row: 7,
       column: 2,
     },
-    landscape: 'hidden',
+    desktop: {
+      row: 1,
+      column: 4,
+    },
   },
   /* 7 */
   {
-    desktop: {
-      row: 3,
-      column: 4,
-    },
+    mobile: 'hidden',
     tablet: {
       row: 6,
       column: 3,
     },
-    landscape: 'hidden',
+    desktop: {
+      row: 3,
+      column: 4,
+    },
   },
 ]
 
@@ -183,9 +177,9 @@ let PastEvents = ({ talks, theme }) => {
 
   return (
     <PastEventsContainer>
-      <HeaderPaddings>
+      <Box p={['6rem 2rem 0 2rem', '9rem 7rem 0 7rem', '10rem 10rem 0 10rem']}>
         <BlockHeader>Passed events</BlockHeader>
-      </HeaderPaddings>
+      </Box>
       <ResizeObserver>
         {width => (
           <PastEventsGrid width={width}>
@@ -194,7 +188,7 @@ let PastEvents = ({ talks, theme }) => {
                 color={theme.rouge}
                 backSrc="https://pp.vk.me/c604521/v604521206/36c32/HtwS8cHJZes.jpg"
                 backPosition="-94% center"
-                turningPoints={{ desktop: 'right', mobile: 'left' }}>
+                turningPoints={{ mobile: 'left', landscape: 'right' }}>
                 <EventDiamond talk={talk1.talk} />
               </Diamond>
             </PastEventsGridItem>
@@ -217,14 +211,14 @@ let PastEvents = ({ talks, theme }) => {
               <Media.MobileOnly>
                 <Diamond
                   color={theme.vividPurple}
-                  turningPoints={{ desktop: 'right', mobile: 'left' }}>
+                  turningPoints={{ landscape: 'right', mobile: 'left' }}>
                   <EventDiamond talk={talk3.talk} />
                 </Diamond>
               </Media.MobileOnly>
               <Media.TabletPlus>
                 <Diamond
                   color={theme.cerise}
-                  turningPoints={{ desktop: 'right', mobile: 'left' }}>
+                  turningPoints={{ landscape: 'right', mobile: 'left' }}>
                   <EventDiamond talk={talk3.talk} />
                 </Diamond>
               </Media.TabletPlus>
@@ -234,7 +228,7 @@ let PastEvents = ({ talks, theme }) => {
                 color={theme.vividPurpleTwo}
                 backSrc="https://pp.vk.me/c636319/v636319206/17ded/P0Ku4LJZznI.jpg"
                 backPosition="25% 50%"
-                turningPoints={{ desktop: 'left', landscape: 'right' }}>
+                turningPoints={{ tablet: 'left', mobile: 'right' }}>
                 <EventDiamond talk={talk4.talk} />
               </Diamond>
             </PastEventsGridItem>

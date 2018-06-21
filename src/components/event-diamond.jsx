@@ -2,6 +2,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
+import { media } from '../utils/css-utils'
 
 let Diamond = styled.div`
   display: block;
@@ -22,7 +23,7 @@ let EventName = styled(Link)`
 `
 
 let TalkTitle = styled(Link)`
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: bold;
   margin: 1.8rem 0;
   text-decoration: none;
@@ -35,6 +36,9 @@ let TalkTitle = styled(Link)`
   display: -webkit-box;
   max-height: 10rem;
   cursor: pointer;
+  ${media.desktop`
+    font-size: 2.8rem;
+  `};
 `
 
 let Speaker = styled.div`

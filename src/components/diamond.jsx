@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { media } from '../utils/css-utils'
 
 let defaultAngle = 30
 let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
@@ -87,30 +88,30 @@ let DiamondWrapper = styled.div`
   ${DiamondSkewReset}, ${DiamondPhoto} {
     ${getResetTransformOptions('mobile')};
   }
-  @media screen and (min-width: 40rem) {
+  ${media.phone`
     ${DiamondBlock} {
       ${getWrapperTransformOptions('landscape')};
     }
     ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('landscape')};
     }
-  }
-  @media screen and (min-width: 62rem) {
+  `};
+  ${media.tablet`
     ${DiamondBlock} {
       ${getWrapperTransformOptions('tablet')};
     }
     ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('tablet')};
     }
-  }
-  @media screen and (min-width: 80rem) {
+  `};
+  ${media.desktop`
     ${DiamondBlock} {
       ${getWrapperTransformOptions('desktop')};
     }
     ${DiamondSkewReset}, ${DiamondPhoto} {
       ${getResetTransformOptions('desktop')};
     }
-  }
+  `};
 `
 
 let SpeakerPhoto = styled(DiamondPhoto)`
