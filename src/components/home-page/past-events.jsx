@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import zipWith from 'ramda/src/zipWith'
 import { Box } from 'grid-styled'
 
-import { media, Media } from '../../utils/css-utils'
+import { media } from '../../utils/css-utils'
 import ArrowButton from '../arrow-button/arrow-button'
 import Diamond, { calculateHeight } from '../diamond'
 import EventDiamond from '../event-diamond'
@@ -193,35 +193,16 @@ let PastEvents = ({ talks, theme }) => {
               </Diamond>
             </PastEventsGridItem>
             <PastEventsGridItem responsiveOptions={talk2.responsiveOptions}>
-              <Media.MobileOnly>
-                <Diamond
-                  color={theme.grape}
-                  backSrc="https://sun1-2.userapi.com/c834200/v834200219/1473a0/m_uTLXGP7Cw.jpg"
-                  backPosition="39% center">
-                  <EventDiamond talk={talk2.talk} />
-                </Diamond>
-              </Media.MobileOnly>
-              <Media.TabletPlus>
-                <Diamond color={theme.lipstick}>
-                  <EventDiamond talk={talk2.talk} />
-                </Diamond>
-              </Media.TabletPlus>
+              <Diamond color={theme.lipstick}>
+                <EventDiamond talk={talk2.talk} />
+              </Diamond>
             </PastEventsGridItem>
             <PastEventsGridItem responsiveOptions={talk3.responsiveOptions}>
-              <Media.MobileOnly>
-                <Diamond
-                  color={theme.vividPurple}
-                  turningPoints={{ landscape: 'right', mobile: 'left' }}>
-                  <EventDiamond talk={talk3.talk} />
-                </Diamond>
-              </Media.MobileOnly>
-              <Media.TabletPlus>
-                <Diamond
-                  color={theme.cerise}
-                  turningPoints={{ landscape: 'right', mobile: 'left' }}>
-                  <EventDiamond talk={talk3.talk} />
-                </Diamond>
-              </Media.TabletPlus>
+              <Diamond
+                color={theme.cerise}
+                turningPoints={{ landscape: 'right', mobile: 'left' }}>
+                <EventDiamond talk={talk3.talk} />
+              </Diamond>
             </PastEventsGridItem>
             <PastEventsGridItem responsiveOptions={talk4.responsiveOptions}>
               <Diamond
