@@ -4,26 +4,51 @@ import styled, { withTheme } from 'styled-components'
 import moment from 'moment'
 import { NavLink } from 'react-router-dom'
 
-import { isPhone, isTablet, media } from '../../utils/css-utils'
+import { media } from '../../utils/css-utils'
 
 import ClockIcon from '../icons/clock-icon'
 import LocationIcon from '../icons/placeholder-icon'
 import ArrowButton from '../arrow-button/arrow-button'
-import Diamond from '../diamond'
+import Diamond, { calculateHeight } from '../diamond'
 import EventBackground from '../event-page/event-background'
 import { eventBigBackground } from '../../utils/selectors'
 
-const DIAMOND_DESKTOP_SIZE = 11
-const DIAMOND_TABLET_SIZE = 9
-const DIAMOND_PHONE_SIZE = 7
+const DIAMOND_SIZES = {
+  DESKTOP: 11,
+  TABLET: 9,
+  MOBILE: 6.5,
+}
 
 const Wrapper = styled.div`
   margin-top: 0;
   padding: 0 2rem;
-  ${media.tablet`
-        padding: 0 10rem;
-        margin-top: 0rem;
-    `};
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'title'
+    'info'
+    'talks'
+    'link';
+  ${media.phone`
+    grid-template-columns: max-content 1fr;
+    grid-column-gap: 2rem;
+    grid-template-areas:
+      'header header'
+      'title title'
+      'info info'
+      'link talks';
+  `};
+  ${media.desktop`
+      padding: 0 10rem;
+      margin-top: 0rem;
+      grid-template-columns: 50rem 1fr;
+      grid-template-areas:
+        'header header'
+        'title title'
+        'info talks'
+        'link talks';
+  `};
 `
 
 const Header = styled.h4`
@@ -31,15 +56,12 @@ const Header = styled.h4`
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
+  grid-area: header;
   color: ${props => props.theme.warmGrey};
   margin-bottom: 0;
   ${media.tablet`
-        font-size: 2.1rem;
-    `};
-`
-
-const EventBlock = styled.div`
-  margin-top: 2rem;
+      font-size: 2.1rem;
+  `};
 `
 
 const EventTitle = styled.h1`
@@ -47,176 +69,170 @@ const EventTitle = styled.h1`
   font-family: 'Rubik', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
+  grid-area: title;
+  margin-bottom: 2rem;
   color: ${props => props.theme.lipstick};
   ${media.tablet`
-        font-size: 4.8rem;
-    `} ${media.desktop`
-        font-size: 5.8rem;
-        letter-spacing: 0.3rem;
-    `};
+      font-size: 4.8rem;
+  `};
+  ${media.desktop`
+      font-size: 5.8rem;
+      letter-spacing: 0.3rem;
+  `};
 `
 
 const EventInfo = styled.div`
   display: flex;
   flex-direction: column;
+  grid-area: info;
 `
 
 const EventInfoRow = styled.div`
   margin-bottom: 1rem;
   ${media.tablet`
-        margin-bottom: 2rem;
-    `};
+      margin-bottom: 2rem;
+  `};
 `
 
 const EventText = styled.span`
   vertical-align: top;
   font-family: 'Oxygen', sans-serif;
-  font-size: 1.8rem;
-  line-height: 1.9rem;
+  font-size: 1.6rem;
+  line-height: 1;
   font-weight: 700;
   color: ${props => props.theme.greyishBrown};
   margin-left: 1.4rem;
   ${media.tablet`
-        font-size: 2rem;
-        line-height: 2rem;
-        letter-spacing: 0.1rem;
-    `};
+      font-size: 2rem;
+      line-height: 2rem;
+      letter-spacing: 0.1rem;
+  `};
+`
+const TalkInfo = styled.li`
+  display: flex;
+  align-items: center;
 `
 
 const TalksBlock = styled.ul`
-  list-style: none;
-  top: 5rem;
-  position: relative;
+  grid-area: talks;
+  padding: 0;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  ${media.tablet`
-        top: 2rem;
-        position: relative;
-        align-items: flex-end;
-    `} ${media.desktop`
-        top: -2.5rem;
-        position: relative;
-        align-items: flex-end;
+  align-items: flex-end;
+  ${TalkInfo}:nth-child(odd) {
+    align-self: flex-start;
+    ${media.phone`
+      align-self: flex-end;
+      margin-right: 10rem;
     `};
-`
-
-const TalkInfo = styled.li`
-  position: relative;
-  &:first-child {
-    margin-left: ${DIAMOND_PHONE_SIZE}rem;
-  }
-  &:nth-child(2) {
-    margin-left: ${DIAMOND_PHONE_SIZE + 7}rem;
-    margin-top: 4rem;
-  }
-  ${media.tablet`
-        max-width: 30%;
-        &:nth-child(2) {
-            margin-left: ${DIAMOND_TABLET_SIZE + 7}rem;
-        };
-        &:first-child {
-            margin-left: ${DIAMOND_TABLET_SIZE}rem;
-            margin-right: 18rem;
-            margin-bottom: 2rem;
-        };
-    `} ${media.desktop`
-        max-width: 25%;
-        &:nth-child(2) {
-            margin-left: 0;
-        };
-        &:first-child {
-            margin-right: 16rem;
-            margin-bottom: 9rem;
-        };
+    ${media.desktop`
+      margin-right: 14rem;
     `};
-`
-
-const DiamondWrapper = styled.div`
-  position: absolute;
-  left: -${isPhone() ? DIAMOND_PHONE_SIZE : isTablet() ? DIAMOND_TABLET_SIZE : DIAMOND_DESKTOP_SIZE}rem;
+  }
 `
 
 const TalkDataWrapper = styled.div`
-  margin-left: 2rem;
+  width: 16rem;
+  ${media.phone`
+    width: 20rem;
+  `};
+  ${media.desktop`
+    width: 35rem;
+  `};
 `
 
 const TalkTitle = styled.h3`
   margin: 0;
   font-family: 'Rubik', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 500;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
   color: ${props => props.theme.greyishBrown};
-  ${media.tablet`
-        font-size: 3rem;
-    `};
+  ${media.phone`
+    font-size: 2.2rem;
+  `};
+  ${media.desktop`
+    font-size: 3rem;
+    font-weight: 700;
+  `};
 `
 
 const TalkSpeaker = styled.div`
   font-family: 'Oxygen', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 400;
   color: ${props => props.theme.grape};
+  ${media.desktop`
+    font-size: 2rem;
+  `};
 `
 
 const ArrowLink = ArrowButton.withComponent(NavLink)
 
-const Footer = styled.div`
-  margin-top: 15rem;
-  ${media.desktop`
-        margin-top: 5rem;
-    `};
+const ArrowLinkWrapper = styled.div`
+  grid-area: link;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 1rem;
 `
 
-const UpcomingEvents = withTheme(({ theme, event }) => {
-  const DIAMOND_SIZE = isPhone()
-    ? DIAMOND_PHONE_SIZE
-    : isTablet()
-      ? DIAMOND_TABLET_SIZE
-      : DIAMOND_DESKTOP_SIZE
+const DiamondOuterWrapper = styled.div`
+  width: ${DIAMOND_SIZES.MOBILE}rem;
+  height: ${calculateHeight(DIAMOND_SIZES.MOBILE)}rem;
+  margin-right: 1rem;
+  ${media.phone`
+  width: ${DIAMOND_SIZES.TABLET}rem;
+  height: ${calculateHeight(DIAMOND_SIZES.TABLET)}rem;
+  `};
+  ${media.desktop`
+    width: ${DIAMOND_SIZES.DESKTOP}rem;
+    height: ${calculateHeight(DIAMOND_SIZES.DESKTOP)}rem;
+  `};
+`
 
-  return (
-    <Wrapper>
-      <EventBackground image={eventBigBackground()} />
-      <Header>Upcoming event</Header>
-      <EventTitle>{event.title}</EventTitle>
-      <EventBlock>
-        <EventInfo>
-          <EventInfoRow>
-            <LocationIcon color={theme.lipstick} opaque />
-            <EventText>{event.address || 'Уточняется'}</EventText>
-          </EventInfoRow>
-          <EventInfoRow>
-            <ClockIcon color={theme.lipstick} opaque />
-            <EventText>
-              {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
-            </EventText>
-          </EventInfoRow>
-        </EventInfo>
-        <TalksBlock>
-          {event.talks.map((talk, i) => (
-            <TalkInfo key={talk.title}>
-              <DiamondWrapper>
-                <Diamond
-                  color={i % 2 ? theme.rouge : theme.grape}
-                  backSrc={talk.speaker.avatar}
-                  isTurnLeft
-                  size={DIAMOND_SIZE}
-                />
-              </DiamondWrapper>
-              <TalkDataWrapper>
-                <TalkTitle>{talk.title}</TalkTitle>
-                <TalkSpeaker>{talk.speaker.title}</TalkSpeaker>
-              </TalkDataWrapper>
-            </TalkInfo>
-          ))}
-        </TalksBlock>
-      </EventBlock>
-      <Footer>
-        <ArrowLink to={event.fields.slug}>See details</ArrowLink>
-      </Footer>
-    </Wrapper>
-  )
-})
+const UpcomingEvents = withTheme(({ theme, event }) => (
+  <Wrapper>
+    <EventBackground image={eventBigBackground()} />
+    <Header>Upcoming event</Header>
+    <EventTitle>{event.title}</EventTitle>
+    <EventInfo>
+      <EventInfoRow>
+        <LocationIcon color={theme.lipstick} opaque />
+        <EventText>{event.address || 'Уточняется'}</EventText>
+      </EventInfoRow>
+      <EventInfoRow>
+        <ClockIcon color={theme.lipstick} opaque />
+        <EventText>
+          {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+        </EventText>
+      </EventInfoRow>
+    </EventInfo>
+    <TalksBlock>
+      {event.talks.map((talk, i) => (
+        <TalkInfo key={talk.title}>
+          <DiamondOuterWrapper>
+            <Diamond
+              color={i % 2 ? theme.rouge : theme.grape}
+              backSrc={talk.speaker.avatar}
+            />
+          </DiamondOuterWrapper>
+          <TalkDataWrapper>
+            <TalkTitle>{talk.title}</TalkTitle>
+            <TalkSpeaker>{talk.speaker.title}</TalkSpeaker>
+          </TalkDataWrapper>
+        </TalkInfo>
+      ))}
+    </TalksBlock>
+    <ArrowLinkWrapper>
+      <ArrowLink to={event.fields.slug}>See details</ArrowLink>
+    </ArrowLinkWrapper>
+  </Wrapper>
+))
 
 UpcomingEvents.propTypes = {
   event: PropTypes.shape({

@@ -2,26 +2,14 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
-
-let defaultAngle = 30
-let sinusAngle = Math.sin(((90 - defaultAngle) / 180) * Math.PI)
-let width = 32
-let height = width / sinusAngle
-
-/* descriptionTop for the defaultAngle 30 */
-let descriptionTop = height / 4
+import { media } from '../utils/css-utils'
 
 let Diamond = styled.div`
   display: block;
-  transform: skewY(
-    ${props => (props.isTurnLeft ? defaultAngle : -defaultAngle)}deg
-  );
-
   font-family: 'Rubik', sans-serif;
   padding: 0 3rem;
   color: white;
   position: relative;
-  top: ${descriptionTop}rem;
   z-index: 1;
 `
 
@@ -35,7 +23,7 @@ let EventName = styled(Link)`
 `
 
 let TalkTitle = styled(Link)`
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: bold;
   margin: 1.8rem 0;
   text-decoration: none;
@@ -48,6 +36,9 @@ let TalkTitle = styled(Link)`
   display: -webkit-box;
   max-height: 10rem;
   cursor: pointer;
+  ${media.desktop`
+    font-size: 2.8rem;
+  `};
 `
 
 let Speaker = styled.div`
@@ -69,8 +60,8 @@ let SpeakerName = styled.div`
   font-family: 'Oxygen', sans-serif;
 `
 
-let EventDiamond = ({ isTurnLeft, talk: { title, event, speaker } }) => (
-  <Diamond isTurnLeft={isTurnLeft}>
+let EventDiamond = ({ talk: { title, event, speaker } }) => (
+  <Diamond>
     <EventName to={event.fields.slug}>{event.title}</EventName>
     <TalkTitle to={event.fields.slug}>{title}</TalkTitle>
     <Speaker>
