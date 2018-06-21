@@ -80,23 +80,14 @@ let DiamondWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+
   ${DiamondBlock} {
-    ${getWrapperTransformOptions('desktop')};
+    ${getWrapperTransformOptions('mobile')};
   }
   ${DiamondSkewReset}, ${DiamondPhoto} {
-    ${getResetTransformOptions('desktop')};
+    ${getResetTransformOptions('mobile')};
   }
-
-  @media screen and (max-width: 80rem) {
-    ${DiamondBlock} {
-      ${getWrapperTransformOptions('tablet')};
-    }
-    ${DiamondSkewReset}, ${DiamondPhoto} {
-      ${getResetTransformOptions('tablet')};
-    }
-  }
-
-  @media screen and (max-width: 62rem) {
+  @media screen and (min-width: 40rem) {
     ${DiamondBlock} {
       ${getWrapperTransformOptions('landscape')};
     }
@@ -104,13 +95,20 @@ let DiamondWrapper = styled.div`
       ${getResetTransformOptions('landscape')};
     }
   }
-
-  @media screen and (max-width: 40rem) {
+  @media screen and (min-width: 62rem) {
     ${DiamondBlock} {
-      ${getWrapperTransformOptions('mobile')};
+      ${getWrapperTransformOptions('tablet')};
     }
     ${DiamondSkewReset}, ${DiamondPhoto} {
-      ${getResetTransformOptions('mobile')};
+      ${getResetTransformOptions('tablet')};
+    }
+  }
+  @media screen and (min-width: 80rem) {
+    ${DiamondBlock} {
+      ${getWrapperTransformOptions('desktop')};
+    }
+    ${DiamondSkewReset}, ${DiamondPhoto} {
+      ${getResetTransformOptions('desktop')};
     }
   }
 `
@@ -126,7 +124,7 @@ let Diamond = ({
   color,
   hasShadow,
   children,
-  turningPoints = { desktop: 'left' },
+  turningPoints = { mobile: 'left' },
 }) => (
   <DiamondWrapper turningPoints={turningPoints}>
     {(() => {
