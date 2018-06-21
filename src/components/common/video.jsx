@@ -34,6 +34,7 @@ class Video extends Component {
           {!this.state.isLoaded ? <VideoLoader size="80" border="8" /> : null}
           <iframe
             src={this.props.src}
+            title="Youtube video"
             onLoad={this.onVideoLoad}
             style={{
               display: this.state.isLoaded ? 'initial' : 'none',
