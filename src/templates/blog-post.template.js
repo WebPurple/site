@@ -6,7 +6,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
 import moment from 'moment'
-import { Like, VK } from 'react-vk'
+import VK, { Like } from 'react-vk'
 import FacebookProvider, { Like as FbLike } from 'react-facebook'
 
 import { TagList } from '../components/common/tag'
