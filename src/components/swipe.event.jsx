@@ -58,10 +58,14 @@ class SwipeEventEmitter extends Component {
   }
 
   isHorizontal(x, y) {
-    return Math.abs(y) < this.props.offset && Math.abs(x) > this.props.offset
+    return (
+      Math.abs(y) < this.props.offset * 2 && Math.abs(x) > this.props.offset
+    )
   }
   isVertical(x, y) {
-    return Math.abs(x) < this.props.offset && Math.abs(y) > this.props.offset
+    return (
+      Math.abs(x) < this.props.offset * 2 && Math.abs(y) > this.props.offset
+    )
   }
 
   getKatets(event) {

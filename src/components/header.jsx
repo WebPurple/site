@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import ym from 'react-yandex-metrika'
+import { Spring, animated } from 'react-spring'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
@@ -36,7 +37,7 @@ let NavigationLink = styled(Link).attrs({
   }
 `
 
-let MobileSidebar = styled.nav`
+let MobileSidebar = styled(animated.nav)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,9 +46,6 @@ let MobileSidebar = styled.nav`
   height: 100vh;
   width: 100%;
   left: 100%;
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(-100%)' : '')};
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
   background: #fff;
 `
 
@@ -109,31 +107,66 @@ let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
 export default class extends React.Component {
   state = {
     isMenuOpen: false,
+    drawerPosition: 0,
   }
   static propTypes = {
     isMenuOpen: PropTypes.bool,
     showMenu: PropTypes.func,
     hideMenu: PropTypes.func,
   }
+  componentDidMount() {
+    this.windowWidth = window ? window.innerWidth : 360
+  }
+
   showMenu = () => {
     document.body.style.overflow = 'hidden'
-    return this.setState(pState => ({ ...pState, isMenuOpen: true }))
+    return this.setState(pState => ({
+      ...pState,
+      isMenuOpen: true,
+    }))
   }
   hideMenu = () => {
     document.body.style.overflow = 'visible'
-    return this.setState(pState => ({ ...pState, isMenuOpen: false }))
+    return this.setState(pState => ({
+      ...pState,
+      isMenuOpen: false,
+    }))
   }
   toggle = () => {
     this.state.isMenuOpen ? this.hideMenu() : this.showMenu()
   }
-  onSwipe = event => {
+
+  onSwipeRelease = event => {
     const { distance } = event
-    if (distance < 0) {
+    if (distance < -130) {
       return this.showMenu()
     }
-    if (distance > 0) {
-      this.hideMenu()
+    if (distance > 130) {
+      return this.hideMenu()
     }
+    this.setState(pState => ({
+      ...pState,
+      drawerPosition: 0,
+    }))
+  }
+
+  updateDrawerPosition = event => {
+    this.setState(pState => ({ ...pState, drawerPosition: event.distance }))
+  }
+
+  getDrawerPosition() {
+    const { isMenuOpen, drawerPosition } = this.state
+    let finalDistance = ''
+    if (!isMenuOpen) {
+      finalDistance = drawerPosition + 'px'
+    }
+    if (isMenuOpen) {
+      finalDistance = `-${this.windowWidth}px`
+    }
+    if (isMenuOpen && drawerPosition > 0) {
+      finalDistance = -this.windowWidth + drawerPosition + `px`
+    }
+    return `translateX(${finalDistance})`
   }
 
   render() {
@@ -143,7 +176,10 @@ export default class extends React.Component {
         flexDirection={['column', 'row']}
         alignItems={['normal', 'center']}
         m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-        <SwipeEventEmitter onRelease={this.onSwipe} />
+        <SwipeEventEmitter
+          onRelease={this.onSwipeRelease}
+          onHorizontalMove={this.updateDrawerPosition}
+        />
         <Flex justifyContent="space-between">
           <WebpurpleLogo />
 
@@ -155,14 +191,16 @@ export default class extends React.Component {
             />
 
             <Portal isOpened={this.state.isMenuOpen}>
-              <MobileSidebar
-                isOpen={this.state.isMenuOpen}
-                onClick={this.hideMenu}>
-                <Navbar />
-                <Box is={MobileGithubLink} m="7.5rem">
-                  Contribute
-                </Box>
-              </MobileSidebar>
+              <Spring native to={{ x: this.getDrawerPosition() }}>
+                {({ x }) => (
+                  <MobileSidebar style={{ transform: x }}>
+                    <Navbar />
+                    <Box is={MobileGithubLink} m="7.5rem">
+                      Contribute
+                    </Box>
+                  </MobileSidebar>
+                )}
+              </Spring>
             </Portal>
           </Media.MobileOnly>
         </Flex>
