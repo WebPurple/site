@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import ym from 'react-yandex-metrika'
-import Hammer from 'hammerjs'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
@@ -12,6 +11,7 @@ import { Flex, Box } from 'grid-styled'
 import { Portal } from 'react-portal'
 import { HiddenText } from '../utils/accessibility'
 import Search from './algolia-search'
+import SwipeEventEmitter from './swipe.event'
 
 let NavigationLink = styled(Link).attrs({
   activeClassName: 'active',
@@ -127,23 +127,13 @@ export default class extends React.Component {
     this.state.isMenuOpen ? this.hideMenu() : this.showMenu()
   }
   onSwipe = event => {
-    const { deltaX } = event
-    if (deltaX < -30) {
+    const { distance } = event
+    if (distance < 0) {
       return this.showMenu()
     }
-    if (deltaX > 30) {
+    if (distance > 0) {
       this.hideMenu()
     }
-  }
-
-  componentDidMount() {
-    this.hammer = new Hammer(document.body)
-    this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL })
-    this.hammer.on('swipe', this.onSwipe)
-  }
-
-  componentWillUnmount() {
-    this.hammer.off('swipe', this.onSwipe)
   }
 
   render() {
@@ -153,6 +143,7 @@ export default class extends React.Component {
         flexDirection={['column', 'row']}
         alignItems={['normal', 'center']}
         m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+        <SwipeEventEmitter onRelease={this.onSwipe} />
         <Flex justifyContent="space-between">
           <WebpurpleLogo />
 
