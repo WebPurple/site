@@ -2,12 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
-import { compose, withStateHandlers } from 'recompose'
 import ym from 'react-yandex-metrika'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
-import { CloseIcon, MenuIcon, GithubIcon } from './icons'
+import { MenuIcon, GithubIcon } from './icons'
 import { Flex, Box } from 'grid-styled'
 import { Portal } from 'react-portal'
 import { HiddenText } from '../utils/accessibility'
@@ -106,69 +105,70 @@ let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
   }
 `
 
-let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
-  <Flex
-    is="header"
-    flexDirection={['column', 'row']}
-    alignItems={['normal', 'center']}
-    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-    <Flex justifyContent="space-between">
-      <WebpurpleLogo />
+export default class extends React.Component {
+  state = {
+    isMenuOpen: false,
+  }
+  static propTypes = {
+    isMenuOpen: PropTypes.bool,
+    showMenu: PropTypes.func,
+    hideMenu: PropTypes.func,
+  }
+  showMenu = () => {
+    document.body.style.overflow = 'hidden'
+    return this.setState(pState => ({ ...pState, isMenuOpen: true }))
+  }
+  hideMenu = () => {
+    document.body.style.overflow = 'visible'
+    return this.setState(pState => ({ ...pState, isMenuOpen: false }))
+  }
+  toggle = () => {
+    this.state.isMenuOpen ? this.hideMenu() : this.showMenu()
+  }
+  render() {
+    return (
+      <Flex
+        is="header"
+        flexDirection={['column', 'row']}
+        alignItems={['normal', 'center']}
+        m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+        <Flex justifyContent="space-between">
+          <WebpurpleLogo />
 
-      <Media.MobileOnly>
-        {isMenuOpen ? (
-          <CloseIcon
-            onClick={hideMenu}
-            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
-          />
-        ) : (
-          <MenuIcon
-            onClick={showMenu}
-            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
-          />
-        )}
+          <Media.MobileOnly>
+            <MenuIcon
+              onToggle={this.toggle}
+              isOpened={this.state.isMenuOpen}
+              style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
+            />
 
-        <Portal isOpened={isMenuOpen}>
-          <MobileSidebar isOpen={isMenuOpen} onClick={hideMenu}>
-            <Navbar />
-            <Box is={MobileGithubLink} m="7.5rem">
-              Contribute
-            </Box>
-          </MobileSidebar>
-        </Portal>
-      </Media.MobileOnly>
-    </Flex>
-
-    <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
-      <Flex justifyContent="space-between" flex="1">
-        <Navbar />
-
-        <Flex alignItems="center">
-          <Box is={Search} mr="20px" />
-
-          <GitHubLink>
-            <HiddenText>Contribute</HiddenText>
-          </GitHubLink>
+            <Portal isOpened={this.state.isMenuOpen}>
+              <MobileSidebar
+                isOpen={this.state.isMenuOpen}
+                onClick={this.hideMenu}>
+                <Navbar />
+                <Box is={MobileGithubLink} m="7.5rem">
+                  Contribute
+                </Box>
+              </MobileSidebar>
+            </Portal>
+          </Media.MobileOnly>
         </Flex>
+
+        <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
+          <Flex justifyContent="space-between" flex="1">
+            <Navbar />
+
+            <Flex alignItems="center">
+              <Box is={Search} mr="20px" />
+
+              <GitHubLink>
+                <HiddenText>Contribute</HiddenText>
+              </GitHubLink>
+            </Flex>
+          </Flex>
+        </Media.TabletPlus>
       </Flex>
-    </Media.TabletPlus>
-  </Flex>
-)
-
-Header.propTypes = {
-  isMenuOpen: PropTypes.bool,
-  showMenu: PropTypes.func,
-  hideMenu: PropTypes.func,
+    )
+  }
 }
-
-export default compose(
-  withStateHandlers(
-    () => ({
-      isMenuOpen: false,
-    }),
-    {
-      showMenu: () => () => ({ isMenuOpen: true }),
-      hideMenu: () => () => ({ isMenuOpen: false }),
-    },
-  ),
-)(Header)

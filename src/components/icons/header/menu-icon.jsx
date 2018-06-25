@@ -1,17 +1,42 @@
 import React from 'react'
+import { Spring, config } from 'react-spring'
+import { withTheme } from 'styled-components'
 
-const MenuIcon = props => (
+const MenuIcon = ({ leftBar, centerBar, rightBar, color, ...otherProps }) => (
   <svg
-    {...props}
+    {...otherProps}
     width="30"
     height="25"
     viewBox="0 0 30 25"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg">
-    <title>3DE4AB19-7DA1-402B-B33C-D4B9F627003A</title>
-    <g fill="#E62270" fillRule="evenodd">
-      <path d="M0 0h30v5H0zM0 10h30v5H0zM0 20h30v5H0z" />
-    </g>
+    <rect width="30" height="5" transform={leftBar} fill={color} />
+    <rect width="30" height="5" transform={centerBar} fill={color} />
+    <rect width="30" height="5" transform={rightBar} fill={color} />
   </svg>
 )
 
-export default MenuIcon
+const openBars = {
+  leftBar: 'translate(0) rotate(0)',
+  centerBar: 'translate(0 10) rotate(0)',
+  rightBar: 'translate(0 20) rotate(0)',
+}
+
+const closeBars = {
+  leftBar: 'translate(3.53552) rotate(45)',
+  centerBar: 'translate(3.53998 0.125641) rotate(45)',
+  rightBar: 'translate(0 21.2132) rotate(-45)',
+}
+
+export default withTheme(({ isOpened, onToggle, style, theme }) => (
+  <Spring to={isOpened ? closeBars : openBars} config={config.gentle}>
+    {barProps => (
+      <MenuIcon
+        onClick={onToggle}
+        style={style}
+        {...barProps}
+        color={theme.lipstick}
+      />
+    )}
+  </Spring>
+))
