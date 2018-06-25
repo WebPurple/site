@@ -3,89 +3,77 @@ import React from 'react'
 const WebpurpleIcon = props => (
   <svg
     {...props}
+    width="35"
+    height="31"
     viewBox="0 0 35 31"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink">
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
     <title>Webpurple</title>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M3.46924e-07 30.6761L0.0306686 -3.144e-10L8.63859 5.10324L8.60792 25.5728L3.46924e-07 30.6761Z"
+      transform="translate(25.8298)"
+      fill="url(#paint0_linear)"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M1.8235e-09 10.2125L8.60792 15.3157L17.2219 10.2125L25.8298 15.3157L34.4377 10.2125L17.2219 2.26489e-07L1.8235e-09 10.2125Z"
+      transform="translate(0 15.3604)"
+      fill="url(#paint1_linear)"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M8.60792 15.3157L17.2219 2.26489e-07L1.8235e-09 10.2125L8.60792 15.3157Z"
+      transform="translate(0 15.35)"
+      fill="url(#paint2_linear)"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M1.8235e-09 25.5728L0.09615 5.10324L8.70407 -2.24339e-10L8.60792 30.6761L1.8235e-09 25.5728Z"
+      fill="url(#paint3_linear)"
+    />
     <defs>
       <linearGradient
-        x1="50.0352858%"
-        y1="100%"
-        x2="50.0352858%"
-        y2="0%"
-        id="linearGradient-1">
-        <stop stopColor="#262262" offset="0%" />
-        <stop stopColor="#662D91" offset="100%" />
+        id="paint0_linear"
+        x2="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(0.00304819 30.6761) scale(8.63859 30.6761) rotate(-90)">
+        <stop stopColor="#262262" />
+        <stop offset="1" stopColor="#662D91" />
       </linearGradient>
       <linearGradient
-        x1="0%"
-        y1="50.0196002%"
-        x2="100%"
-        y2="50.0196002%"
-        id="linearGradient-2">
-        <stop stopColor="#BE1E2D" offset="0%" />
-        <stop stopColor="#EE2A7B" offset="100%" />
+        id="paint1_linear"
+        x2="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(0 0.00300191) scale(34.4377 15.3157)">
+        <stop stopColor="#BE1E2D" />
+        <stop offset="1" stopColor="#EE2A7B" />
       </linearGradient>
       <linearGradient
-        x1="100%"
-        y1="50.0196002%"
-        x2="0%"
-        y2="50.0196002%"
-        id="linearGradient-3">
-        <stop stopColor="#FFFFFF" offset="0%" />
-        <stop stopColor="#231F20" offset="100%" />
+        id="paint2_linear"
+        x2="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(17.2219 15.3187) scale(17.2219 15.3157) rotate(180)">
+        <stop stopColor="#D22351" />
+        <stop offset="0.143646" stopColor="#C9214B" />
+        <stop offset="0.314917" stopColor="#B91E40" />
+        <stop offset="0.546961" stopColor="#A31B33" />
+        <stop offset="0.762431" stopColor="#901728" />
+        <stop offset="1" stopColor="#7E141D" />
       </linearGradient>
       <linearGradient
-        x1="709%"
-        y1="5669%"
-        x2="709%"
-        y2="0%"
-        id="linearGradient-4">
-        <stop stopColor="#262262" offset="0%" />
-        <stop stopColor="#662D91" offset="100%" />
+        id="paint3_linear"
+        x2="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(-185.005 1739.03) scale(493.434 1739.03) rotate(-90)">
+        <stop stopColor="#262262" />
+        <stop offset="1" stopColor="#662D91" />
       </linearGradient>
-
-      <style>
-        {`
-                .mix {
-                    mix-blend-mode: multiply;
-                }
-            `}
-      </style>
     </defs>
-    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g id="Desktop-HD" transform="translate(-121.000000, -41.000000)">
-        <g id="Menu" transform="translate(1.000000, 0.000000)">
-          <g id="Group" transform="translate(120.000000, 41.000000)">
-            <g id="Layer_1-2" transform="translate(-0.000000, 0.206061)">
-              <polygon
-                id="Shape"
-                fill="url(#linearGradient-1)"
-                points="25.884174 30.7265263 25.9148433 0.0504544753 34.522761 5.15369572 34.4920916 25.6232851"
-              />
-              <polygon
-                id="Shape"
-                fill="url(#linearGradient-2)"
-                points="0.0543461312 25.6232851 8.66226382 30.7265263 17.2762563 25.6232851 25.884174 30.7265263 34.4920916 25.6232851 17.2762563 15.4107988"
-              />
-              <polygon
-                id="Shape"
-                fill="url(#linearGradient-3)"
-                opacity="0.4"
-                className="mix"
-                points="8.66226382 30.7265263 17.2762563 15.4107988 0.0543461312 25.6232851"
-              />
-              <polygon
-                id="Shape"
-                fill="url(#linearGradient-4)"
-                points="0.0543461312 25.6232851 0.150496129 5.15369624 8.75841382 0.0504549893 8.66226382 30.7265263"
-              />
-            </g>
-          </g>
-        </g>
-      </g>
-    </g>
   </svg>
 )
 

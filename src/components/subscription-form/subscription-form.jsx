@@ -14,11 +14,29 @@ const SubscriptionFormContainer = styled.section`
   align-items: center;
   justify-content: center;
   padding: 6em 2em;
+  background-size: cover;
+  transform: translateZ(0);
+  background: url(${subscibtionBackground()});
+  background-position: top center;
   ${media.desktop`padding: 10em 2em;`};
 
-  background-size: cover;
-  background: #9300ef url(${subscibtionBackground()});
-  background-blend-mode: soft-light;
+  position: relative;
+
+  & > * {
+    position: relative;
+  }
+
+  &:before {
+    position: absolute;
+    background: linear-gradient(to bottom, #be00ff, #6200ff);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    opacity: 0.75;
+  }
 `
 
 const Header = styled.h2`
