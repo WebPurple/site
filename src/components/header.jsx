@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import ym from 'react-yandex-metrika'
+import Hammer from 'hammerjs'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
@@ -125,6 +126,26 @@ export default class extends React.Component {
   toggle = () => {
     this.state.isMenuOpen ? this.hideMenu() : this.showMenu()
   }
+  onSwipe = event => {
+    const { deltaX } = event
+    if (deltaX < -30) {
+      return this.showMenu()
+    }
+    if (deltaX > 30) {
+      this.hideMenu()
+    }
+  }
+
+  componentDidMount() {
+    this.hammer = new Hammer(document.body)
+    this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL })
+    this.hammer.on('swipe', this.onSwipe)
+  }
+
+  componentWillUnmount() {
+    this.hammer.off('swipe', this.onSwipe)
+  }
+
   render() {
     return (
       <Flex
