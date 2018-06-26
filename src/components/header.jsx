@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import ym from 'react-yandex-metrika'
-import { Spring, animated } from 'react-spring'
+import { Spring, animated, config } from 'react-spring'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
@@ -47,6 +47,7 @@ let MobileSidebar = styled(animated.nav)`
   width: 100%;
   left: 100%;
   background: #fff;
+  transition: all 50ms ease-in-out;
 `
 
 let NavbarItem = styled.li`
@@ -138,16 +139,16 @@ export default class extends React.Component {
 
   onSwipeRelease = event => {
     const { distance } = event
+    this.setState(pState => ({
+      ...pState,
+      drawerPosition: 0,
+    }))
     if (distance < -130) {
       return this.showMenu()
     }
     if (distance > 130) {
       return this.hideMenu()
     }
-    this.setState(pState => ({
-      ...pState,
-      drawerPosition: 0,
-    }))
   }
 
   updateDrawerPosition = event => {
@@ -191,7 +192,13 @@ export default class extends React.Component {
             />
 
             <Portal isOpened={this.state.isMenuOpen}>
-              <Spring native to={{ x: this.getDrawerPosition() }}>
+              <Spring
+                native
+                to={{ x: this.getDrawerPosition() }}
+                immediate={name =>
+                  this.state.drawerPosition !== 0 && name === 'x'
+                }
+                config={config.gentle}>
                 {({ x }) => (
                   <MobileSidebar style={{ transform: x }}>
                     <Navbar />
