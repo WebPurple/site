@@ -47,7 +47,7 @@ let MobileSidebar = styled(animated.nav)`
   width: 100%;
   left: 100%;
   background: #fff;
-  transition: all 50ms ease-in-out;
+  transition: all 100ms ease-in-out;
 `
 
 let NavbarItem = styled.li`

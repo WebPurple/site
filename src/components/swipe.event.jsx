@@ -15,6 +15,7 @@ class SwipeEventEmitter extends Component {
     onRelease: () => {},
     offset: 30,
   }
+
   componentDidMount() {
     document.body.addEventListener('touchstart', this.handleStart)
     document.body.addEventListener('touchmove', this.handleMove)
@@ -38,30 +39,32 @@ class SwipeEventEmitter extends Component {
   }
 
   handleEnd = e => {
-    const [katet1, katet2] = this.getKatets(e)
+    const [katet1] = this.getKatets(e)
     this.startCoords = {
       x: null,
       y: null,
     }
     if (this.horizontalStarted) {
       this.horizontalStarted = false
-      return this.props.onRelease({ distance: katet1 })
-    }
-
-    if (this.verticalStarted) {
       this.verticalStarted = false
-      return this.props.onRelease({ distance: katet2 })
+      return this.props.onRelease({ distance: katet1 })
     }
   }
 
   handleMove = e => {
     const { onHorizontalMove, onVerticalMove } = this.props
     const [katet1, katet2] = this.getKatets(e)
-    if (this.isHorizontal(katet1, katet2) || this.horizontalStarted) {
+    if (
+      this.isHorizontal(katet1, katet2) ||
+      (this.horizontalStarted && !this.verticalStarted)
+    ) {
       this.horizontalStarted = true
       onHorizontalMove({ distance: katet1 })
     }
-    if (this.isVertical(katet1, katet2) || this.verticalStarted) {
+    if (
+      this.isVertical(katet1, katet2) ||
+      (this.verticalStarted && !this.horizontalStarted)
+    ) {
       this.verticalStarted = true
       onVerticalMove({ distance: katet2 })
     }
