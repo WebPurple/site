@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import LazyLoad from 'react-lazyload'
 
 import styled from 'styled-components'
 
@@ -71,7 +72,9 @@ const SpeakerAdditionalContainer = styled.div`
 const SpeakerCard = ({ speaker }) => (
   <Card>
     <SpeakerAvatarContainer>
-      <Avatar avatar={speaker.avatar} />
+      <LazyLoad once>
+        <Avatar avatar={speaker.avatar} />
+      </LazyLoad>
     </SpeakerAvatarContainer>
     <SpeakerInfoContainer>
       <SpeakerInitials href="#">{speaker.title}</SpeakerInitials>
