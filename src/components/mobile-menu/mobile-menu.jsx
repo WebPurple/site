@@ -84,7 +84,6 @@ class MobileMenu extends Component {
                     left: 0,
                     right: 0,
                     zIndex: Z_INDEXES.SIDEBAR_BUTTON,
-                    overflow: 'scroll',
                   }}>
                   {this.props.renderLogo()}
                   <MenuIcon
