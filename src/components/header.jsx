@@ -57,30 +57,28 @@ let NavbarItem = styled.li`
 `
 
 let Navbar = () => (
-  <nav>
-    <Flex
-      is="ul"
-      flexDirection={['column', 'row']}
-      p={0}
-      m={0}
-      mt={['10rem', 0]}
-      mx={['7.5rem', '4rem']}>
-      <NavbarItem>
-        <NavigationLink to="/" exact>
-          home
-        </NavigationLink>
-      </NavbarItem>
-      <NavbarItem>
-        <NavigationLink to="/events/">events</NavigationLink>
-      </NavbarItem>
-      <NavbarItem>
-        <NavigationLink to="/speakers/">speakers</NavigationLink>
-      </NavbarItem>
-      <NavbarItem>
-        <NavigationLink to="/blog/">blog</NavigationLink>
-      </NavbarItem>
-    </Flex>
-  </nav>
+  <Flex
+    is="ul"
+    flexDirection={['column', 'row']}
+    p={0}
+    m={0}
+    mt={['10rem', 0]}
+    mx={['7.5rem', '4rem']}>
+    <NavbarItem>
+      <NavigationLink to="/" exact>
+        home
+      </NavigationLink>
+    </NavbarItem>
+    <NavbarItem>
+      <NavigationLink to="/events/">events</NavigationLink>
+    </NavbarItem>
+    <NavbarItem>
+      <NavigationLink to="/speakers/">speakers</NavigationLink>
+    </NavbarItem>
+    <NavbarItem>
+      <NavigationLink to="/blog/">blog</NavigationLink>
+    </NavbarItem>
+  </Flex>
 )
 
 let GitHubLink = ({ children, className }) => (
@@ -110,6 +108,7 @@ export default class extends React.Component {
     isMenuOpen: false,
     drawerPosition: 0,
   }
+  headerRef = React.createRef()
   static propTypes = {
     isMenuOpen: PropTypes.bool,
     showMenu: PropTypes.func,
@@ -170,55 +169,93 @@ export default class extends React.Component {
     return `translateX(${finalDistance})`
   }
 
+  shouldBeSticky() {
+    if (this.headerRef.current === null) {
+      return false
+    }
+    const height = this.headerRef.current.getBoundingClientRect().height
+    return height < window.pageYOffset
+  }
+
   render() {
     return (
       <Flex
+        innerRef={this.headerRef}
         is="header"
         flexDirection={['column', 'row']}
         alignItems={['normal', 'center']}
-        m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-        <SwipeEventEmitter
-          onRelease={this.onSwipeRelease}
-          onHorizontalMove={this.updateDrawerPosition}
-        />
-        <Flex justifyContent="space-between">
-          <WebpurpleLogo />
-
-          <Media.MobileOnly>
-            <MenuIcon
-              onToggle={this.toggle}
-              isOpened={this.state.isMenuOpen}
-              style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
-            />
-
-            <Portal isOpened={this.state.isMenuOpen}>
+        m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
+        style={{
+          zIndex: Z_INDEXES.SIDEBAR_BUTTON,
+        }}>
+        <Media.MobileOnly>
+          <SwipeEventEmitter
+            onRelease={this.onSwipeRelease}
+            onHorizontalMove={this.updateDrawerPosition}
+          />
+          <Flex justifyContent="space-between" alignItems="center">
+            <WebpurpleLogo />
+            <MenuIcon onToggle={this.toggle} isOpened={this.state.isMenuOpen} />
+          </Flex>
+          <Portal isOpened={this.state.isMenuOpen}>
+            {this.shouldBeSticky() ? (
               <Spring
                 native
-                to={{ x: this.getDrawerPosition() }}
-                immediate={name =>
-                  this.state.drawerPosition !== 0 && name === 'x'
-                }
+                to={{
+                  opacity: this.state.isMenuOpen ? 1 : 0,
+                }}
+                delay={this.state.isMenuOpen ? 400 : 0}
                 config={config.gentle}>
-                {({ x }) => (
-                  <MobileSidebar style={{ transform: x }}>
-                    <Navbar />
-                    <Box is={MobileGithubLink} m="7.5rem">
-                      Contribute
-                    </Box>
-                  </MobileSidebar>
+                {({ opacity }) => (
+                  <Flex
+                    is={animated.div}
+                    justifyContent="space-between"
+                    alignItems="center"
+                    m={'2rem'}
+                    style={{
+                      opacity,
+                      position: 'fixed',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      zIndex: Z_INDEXES.SIDEBAR_BUTTON,
+                    }}>
+                    <WebpurpleLogo />
+                    <MenuIcon
+                      onToggle={this.toggle}
+                      isOpened={this.state.isMenuOpen}
+                    />
+                  </Flex>
                 )}
               </Spring>
-            </Portal>
-          </Media.MobileOnly>
-        </Flex>
+            ) : null}
+            <Spring
+              native
+              to={{
+                translation: this.getDrawerPosition(),
+              }}
+              immediate={name =>
+                this.state.drawerPosition !== 0 && name === 'translation'
+              }
+              config={config.gentle}>
+              {({ translation }) => (
+                <MobileSidebar style={{ transform: translation }}>
+                  <Navbar />
+                  <Box is={MobileGithubLink} m="7.5rem">
+                    Contribute
+                  </Box>
+                </MobileSidebar>
+              )}
+            </Spring>
+          </Portal>
+        </Media.MobileOnly>
 
         <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
+          <WebpurpleLogo />
           <Flex justifyContent="space-between" flex="1">
             <Navbar />
-
             <Flex alignItems="center">
               <Box is={Search} mr="20px" />
-
               <GitHubLink>
                 <HiddenText>Contribute</HiddenText>
               </GitHubLink>
