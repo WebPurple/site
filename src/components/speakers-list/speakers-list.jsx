@@ -1,25 +1,13 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { withState } from 'recompose'
-import styled from 'styled-components'
+import { Flex } from 'grid-styled'
 
-import { media } from '../../utils/css-utils'
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'
 import { FilterBlock, Search } from '../page-filter'
 import SpeakerCard from '../../components/speaker-card/speaker-card'
 import { elasticSearch } from '../../utils/search'
-
-const SpeakerCardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  ${media.desktop`
-    flex-flow: row wrap;  
-    justify-content: flex-start;
-  `};
-`
 
 const speakerElasticSearch = elasticSearch([
   'title',
@@ -40,7 +28,10 @@ export default withState('query', 'search', '')(
         />
       </FilterBlock>
 
-      <SpeakerCardContainer>
+      <Flex
+        flexDirection={['column', 'row']}
+        justifyContent={['center']}
+        flexWrap="wrap">
         {speakers.length ? (
           speakers
             .filter(speakerElasticSearch(query))
@@ -50,7 +41,7 @@ export default withState('query', 'search', '')(
         ) : (
           <p>There are no speakers satisfying your query...</p>
         )}
-      </SpeakerCardContainer>
+      </Flex>
     </MainContainer>
   ),
 )

@@ -50,11 +50,11 @@ const SpeakerTalks = ({ talks, visible, toggle }) => {
                 <Flex
                   is={Talks}
                   m={0}
-                  p="1.8rem"
+                  p="10px 18px"
                   mt="10px"
                   flexDirection="column">
                   {talks.map(talk => (
-                    <Box key={talk.title} m="0.5rem 0">
+                    <Box key={talk.title} m="5px 0">
                       — {talk.title}
                     </Box>
                   ))}
