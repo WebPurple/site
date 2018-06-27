@@ -9,7 +9,9 @@ import { Z_INDEXES } from '../../utils/css-utils'
 import SwipeEventEmitter from '../swipe.event'
 import { MenuIcon } from '../icons'
 
-let MobileSidebar = styled(animated.nav)`
+let MobileSidebar = styled(({ transitioned, ...props }) => (
+  <animated.nav {...props} />
+))`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
