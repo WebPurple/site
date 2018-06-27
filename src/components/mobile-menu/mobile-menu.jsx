@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Spring, animated, config } from 'react-spring'
+import { Spring, animated } from 'react-spring'
 import { Flex } from 'grid-styled'
 import { Portal } from 'react-portal'
 
@@ -31,26 +31,17 @@ class MobileMenu extends Component {
     isMenuOpen: false,
     drawerPosition: 0,
   }
-  headerRef = React.createRef()
 
   static propTypes = {
     stickyOffset: PropTypes.number,
   }
 
   static defaultProps = {
-    stickyOffset: 35,
+    stickyOffset: 75,
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.setInnerWidth)
-    this.setInnerWidth()
     document.body.style.overflow = 'visible'
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.setInnerWidth)
-  }
-  setInnerWidth = () => {
-    this.windowWidth = window ? window.innerWidth : 360
   }
 
   render() {
@@ -71,8 +62,7 @@ class MobileMenu extends Component {
               to={{
                 opacity: this.state.isMenuOpen ? 1 : 0,
               }}
-              delay={this.state.isMenuOpen ? 400 : 0}
-              config={config.stiff}>
+              delay={this.state.isMenuOpen ? 400 : 0}>
               {({ opacity }) => (
                 <Flex
                   is={animated.div}
@@ -103,8 +93,7 @@ class MobileMenu extends Component {
             }}
             immediate={name =>
               this.state.drawerPosition !== 0 && name === 'translation'
-            }
-            config={config.stiff}>
+            }>
             {({ translation }) => (
               <MobileSidebar
                 style={{ transform: translation }}
@@ -119,17 +108,18 @@ class MobileMenu extends Component {
   }
   getDrawerPosition() {
     const { isMenuOpen, drawerPosition } = this.state
+    let windowWidth = window.innerWidth
     let finalDistance = ''
     if (!isMenuOpen) {
-      finalDistance = drawerPosition + 'px'
+      finalDistance = drawerPosition
     }
     if (isMenuOpen) {
-      finalDistance = `-${this.windowWidth}px`
+      finalDistance = -windowWidth
     }
     if (isMenuOpen && drawerPosition > 0) {
-      finalDistance = -this.windowWidth + drawerPosition + `px`
+      finalDistance = -windowWidth + drawerPosition
     }
-    return `translateX(${finalDistance})`
+    return `translateX(-${finalDistance}px)`
   }
   shouldBeSticky() {
     return this.props.stickyOffset < window.pageYOffset

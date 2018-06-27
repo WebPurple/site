@@ -99,7 +99,7 @@ export default () => (
       zIndex: Z_INDEXES.SIDEBAR_BUTTON,
     }}>
     <Media.MobileOnly>
-      <MobileMenu stickyOffset={35} renderLogo={() => <WebpurpleLogo />}>
+      <MobileMenu stickyOffset={75} renderLogo={() => <WebpurpleLogo />}>
         <Navbar />
         <Box is={MobileGithubLink} m="7.5rem">
           Contribute
