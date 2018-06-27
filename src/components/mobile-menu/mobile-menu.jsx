@@ -44,13 +44,13 @@ class MobileMenu extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.setInnerWidth)
     this.setInnerWidth()
+    document.body.style.overflow = 'visible'
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.setInnerWidth)
   }
   setInnerWidth = () => {
     this.windowWidth = window ? window.innerWidth : 360
-    console.log(this.windowWidth)
   }
 
   render() {
