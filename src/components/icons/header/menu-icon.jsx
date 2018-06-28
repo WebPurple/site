@@ -28,11 +28,11 @@ const closeBars = {
   rightBar: 'translate(0 21.2132) rotate(-45)',
 }
 
-export default withTheme(({ isOpened, onToggle, style, theme }) => (
+export default withTheme(({ isOpened, onShow, onHide, style, theme }) => (
   <Spring to={isOpened ? closeBars : openBars} config={config.gentle}>
     {barProps => (
       <MenuIcon
-        onClick={onToggle}
+        onClick={isOpened ? onHide : onShow}
         style={style}
         {...barProps}
         color={theme.lipstick}

@@ -55,11 +55,15 @@ class MobileMenu extends Component {
         />
         <Flex justifyContent="space-between" alignItems="center">
           {this.props.renderLogo()}
-          <MenuIcon onToggle={this.toggle} isOpened={this.state.isMenuOpen} />
+          <MenuIcon
+            onShow={this.showMenu}
+            onHide={this.hideMenu}
+            isOpened={this.state.isMenuOpen}
+          />
         </Flex>
         <Portal>
           <Spring
-            to={this.animationPose}
+            to={this.getAnimationPose()}
             immediate={name =>
               this.state.drawerPosition !== 0 && name === 'translation'
             }>
@@ -67,7 +71,7 @@ class MobileMenu extends Component {
               <MobileSidebar
                 translation={translation}
                 transitioned={this.state.drawerPosition === 0}>
-                {this.isSticky ? (
+                {this.isSticky() ? (
                   <Flex
                     justifyContent="space-between"
                     alignItems="center"
@@ -81,7 +85,8 @@ class MobileMenu extends Component {
                     }}>
                     {this.props.renderLogo()}
                     <MenuIcon
-                      onToggle={this.toggle}
+                      onShow={this.showMenu}
+                      onHide={this.hideMenu}
                       isOpened={this.state.isMenuOpen}
                     />
                   </Flex>
@@ -94,7 +99,7 @@ class MobileMenu extends Component {
       </React.Fragment>
     )
   }
-  get animationPose() {
+  getAnimationPose() {
     const { isMenuOpen, drawerPosition } = this.state
     let windowWidth = window.innerWidth
     let finalDistance = ''
@@ -112,7 +117,7 @@ class MobileMenu extends Component {
       opacity: -finalDistance / windowWidth,
     }
   }
-  get isSticky() {
+  isSticky() {
     return this.props.stickyOffset < window.pageYOffset
   }
   updateDrawerPosition = event => {
@@ -142,9 +147,6 @@ class MobileMenu extends Component {
     return this.setState({
       isMenuOpen: false,
     })
-  }
-  toggle = () => {
-    this.state.isMenuOpen ? this.hideMenu() : this.showMenu()
   }
 }
 
