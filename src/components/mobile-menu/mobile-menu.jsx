@@ -57,7 +57,7 @@ class MobileMenu extends Component {
           {this.props.renderLogo()}
           <MenuIcon onToggle={this.toggle} isOpened={this.state.isMenuOpen} />
         </Flex>
-        <Portal isOpened={this.state.isMenuOpen}>
+        <Portal>
           <Spring
             to={this.animationPose}
             immediate={name =>

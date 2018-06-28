@@ -122,10 +122,10 @@ export default () => (
     </Media.TabletPlus>
     <Media.SeoOnly>
       <WebpurpleLogo />
-      <Navbar />
-      <Box is={MobileGithubLink} m="7.5rem">
-        Contribute
-      </Box>
+      <section style={{ left: '-9999px', position: 'absolute' }}>
+        <Navbar />
+        <Box is={Search} mr="20px" />
+      </section>
     </Media.SeoOnly>
   </Flex>
 )
