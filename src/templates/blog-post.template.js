@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 import styled from 'styled-components'
 import { Box, Flex } from 'grid-styled'

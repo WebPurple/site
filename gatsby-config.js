@@ -20,7 +20,7 @@ let plugins = [
     },
   },
   `gatsby-transformer-yaml`,
-  'gatsby-plugin-netlify-cms',
+  // 'gatsby-plugin-netlify-cms',
   {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
@@ -43,6 +43,8 @@ if (process.env.ALGOLIA_ADMIN_KEY) {
     },
   })
 }
+
+plugins.push('gatsby-plugin-netlify')
 
 module.exports = {
   siteMetadata: {
