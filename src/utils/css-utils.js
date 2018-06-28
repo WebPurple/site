@@ -34,21 +34,6 @@ export let media = Object.keys(sizes).reduce((accumulator, label) => {
   return accumulator
 }, {})
 
-export let isHD = () =>
-  typeof window !== 'undefined' && window.innerWidth >= sizes.hd
-
-export let isDesktop = () =>
-  typeof window !== 'undefined' &&
-  (window.innerWidth >= sizes.desktop && window.innerWidth < sizes.hd)
-
-export let isTablet = () =>
-  typeof window !== 'undefined' &&
-  (window.innerWidth >= sizes.tablet && window.innerWidth < sizes.desktop)
-
-export let isPhone = () => {
-  return typeof window !== 'undefined' && window.innerWidth < sizes.tablet
-}
-
 export let Z_INDEXES = {
   LOGO: 1,
   SIDEBAR_BUTTON: 1,
