@@ -17,6 +17,14 @@ export let Media = {
   TabletPlus: props => <Responsive {...props} minWidth={sizes.tablet} />,
   DesktopPlus: props => <Responsive {...props} minWidth={sizes.desktop} />,
   WidePlus: props => <Responsive {...props} minWidth={sizes.hd} />,
+  SeoOnly: props => (
+    <Responsive
+      {...props}
+      maxWidth={10}
+      values={{ width: 5, deviceWidth: 5 }}
+      style={{ position: 'absolute', left: '-9990px' }}
+    />
+  ),
 }
 
 export let media = Object.keys(sizes).reduce((accumulator, label) => {

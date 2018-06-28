@@ -41,29 +41,31 @@ let NavbarItem = styled.li`
 `
 
 let Navbar = () => (
-  <Flex
-    is="ul"
-    flexDirection={['column', 'row']}
-    p={0}
-    m={0}
-    mt={['10rem', 0]}
-    mx={['7.5rem', '4rem']}
-    flex={'1 0 auto'}>
-    <NavbarItem>
-      <NavigationLink to="/" exact>
-        home
-      </NavigationLink>
-    </NavbarItem>
-    <NavbarItem>
-      <NavigationLink to="/events/">events</NavigationLink>
-    </NavbarItem>
-    <NavbarItem>
-      <NavigationLink to="/speakers/">speakers</NavigationLink>
-    </NavbarItem>
-    <NavbarItem>
-      <NavigationLink to="/blog/">blog</NavigationLink>
-    </NavbarItem>
-  </Flex>
+  <nav>
+    <Flex
+      is="ul"
+      flexDirection={['column', 'row']}
+      p={0}
+      m={0}
+      mt={['10rem', 0]}
+      mx={['7.5rem', '4rem']}
+      flex={'1 0 auto'}>
+      <NavbarItem>
+        <NavigationLink to="/" exact>
+          home
+        </NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/events/">events</NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/speakers/">speakers</NavigationLink>
+      </NavbarItem>
+      <NavbarItem>
+        <NavigationLink to="/blog/">blog</NavigationLink>
+      </NavbarItem>
+    </Flex>
+  </nav>
 )
 
 let GitHubLink = ({ children, className }) => (
@@ -106,7 +108,7 @@ export default () => (
         </Box>
       </MobileMenu>
     </Media.MobileOnly>
-    <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
+    <Media.TabletPlus>
       <WebpurpleLogo />
       <Flex justifyContent="space-between" flex="1">
         <Navbar />
@@ -118,5 +120,12 @@ export default () => (
         </Flex>
       </Flex>
     </Media.TabletPlus>
+    <Media.SeoOnly>
+      <WebpurpleLogo />
+      <Navbar />
+      <Box is={MobileGithubLink} m="7.5rem">
+        Contribute
+      </Box>
+    </Media.SeoOnly>
   </Flex>
 )

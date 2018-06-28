@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring'
+import { Spring } from 'react-spring'
 import { Flex } from 'grid-styled'
 import { Portal } from 'react-portal'
 
-import { Z_INDEXES } from '../../utils/css-utils'
 import SwipeEventEmitter from '../swipe.event'
 import { MenuIcon } from '../icons'
 
-let MobileSidebar = styled(({ transitioned, ...props }) => (
-  <animated.nav {...props} />
-))`
+let MobileSidebar = styled.div.attrs({
+  style: ({ translation }) => ({
+    transform: `translateX(${translation || 0}px)`,
+  }),
+})`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,6 +23,7 @@ let MobileSidebar = styled(({ transitioned, ...props }) => (
   left: 100%;
   overflow: auto;
   background: #fff;
+
   transition: ${props =>
     props.transitioned ? 'all 50ms ease-in-out' : 'none'};
 `
@@ -56,48 +58,34 @@ class MobileMenu extends Component {
           <MenuIcon onToggle={this.toggle} isOpened={this.state.isMenuOpen} />
         </Flex>
         <Portal isOpened={this.state.isMenuOpen}>
-          {this.shouldBeSticky() ? (
-            <Spring
-              native
-              to={{
-                opacity: this.state.isMenuOpen ? 1 : 0,
-              }}
-              delay={this.state.isMenuOpen ? 400 : 0}>
-              {({ opacity }) => (
-                <Flex
-                  is={animated.div}
-                  justifyContent="space-between"
-                  alignItems="center"
-                  m={'2rem'}
-                  style={{
-                    opacity,
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: Z_INDEXES.SIDEBAR_BUTTON,
-                  }}>
-                  {this.props.renderLogo()}
-                  <MenuIcon
-                    onToggle={this.toggle}
-                    isOpened={this.state.isMenuOpen}
-                  />
-                </Flex>
-              )}
-            </Spring>
-          ) : null}
           <Spring
-            native
-            to={{
-              translation: this.getDrawerPosition(),
-            }}
+            to={this.animationPose}
             immediate={name =>
               this.state.drawerPosition !== 0 && name === 'translation'
             }>
-            {({ translation }) => (
+            {({ translation, opacity }) => (
               <MobileSidebar
-                style={{ transform: translation }}
+                translation={translation}
                 transitioned={this.state.drawerPosition === 0}>
+                {this.isSticky ? (
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    m={'2rem'}
+                    style={{
+                      opacity,
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                    }}>
+                    {this.props.renderLogo()}
+                    <MenuIcon
+                      onToggle={this.toggle}
+                      isOpened={this.state.isMenuOpen}
+                    />
+                  </Flex>
+                ) : null}
                 {this.props.children}
               </MobileSidebar>
             )}
@@ -106,7 +94,7 @@ class MobileMenu extends Component {
       </React.Fragment>
     )
   }
-  getDrawerPosition() {
+  get animationPose() {
     const { isMenuOpen, drawerPosition } = this.state
     let windowWidth = window.innerWidth
     let finalDistance = ''
@@ -119,9 +107,12 @@ class MobileMenu extends Component {
     if (isMenuOpen && drawerPosition > 0) {
       finalDistance = -windowWidth + drawerPosition
     }
-    return `translateX(-${finalDistance}px)`
+    return {
+      translation: finalDistance,
+      opacity: -finalDistance / windowWidth,
+    }
   }
-  shouldBeSticky() {
+  get isSticky() {
     return this.props.stickyOffset < window.pageYOffset
   }
   updateDrawerPosition = event => {
