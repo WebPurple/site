@@ -17,7 +17,7 @@ export let Arrow = styled.div`
   width: 20px;
   height: 10px;
 
-  margin-top: -9px;
+  margin-top: -10px;
 
   &::before,
   &::after {
