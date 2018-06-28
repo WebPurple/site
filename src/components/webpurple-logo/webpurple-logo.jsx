@@ -3,13 +3,11 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 
 import { WebpurpleIcon } from '../icons/header'
-import { Z_INDEXES } from '../../utils/css-utils'
 
 let Logo = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  z-index: ${Z_INDEXES.LOGO};
 `
 
 let Title = styled.span`

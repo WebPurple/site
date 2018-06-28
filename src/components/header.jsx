@@ -1,17 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
-import { compose, withStateHandlers } from 'recompose'
 import ym from 'react-yandex-metrika'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
-import { CloseIcon, MenuIcon, GithubIcon } from './icons'
+import { GithubIcon } from './icons'
 import { Flex, Box } from 'grid-styled'
-import { Portal } from 'react-portal'
 import { HiddenText } from '../utils/accessibility'
 import Search from './algolia-search'
+import MobileMenu from './mobile-menu/mobile-menu'
 
 let NavigationLink = styled(Link).attrs({
   activeClassName: 'active',
@@ -36,21 +34,6 @@ let NavigationLink = styled(Link).attrs({
   }
 `
 
-let MobileSidebar = styled.nav`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  left: 100%;
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(-100%)' : '')};
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  background: #fff;
-`
-
 let NavbarItem = styled.li`
   list-style: none;
   margin-bottom: 2.5rem;
@@ -65,7 +48,8 @@ let Navbar = () => (
       p={0}
       m={0}
       mt={['10rem', 0]}
-      mx={['7.5rem', '4rem']}>
+      mx={['7.5rem', '4rem']}
+      flex={'1 0 auto'}>
       <NavbarItem>
         <NavigationLink to="/" exact>
           home
@@ -100,75 +84,48 @@ let GitHubLink = ({ children, className }) => (
 
 let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
   position: relative;
+  margin-top: 0;
   & svg {
     position: absolute;
     right: calc(100% + 1rem);
   }
 `
 
-let Header = ({ isMenuOpen, showMenu, hideMenu }) => (
+export default () => (
   <Flex
     is="header"
     flexDirection={['column', 'row']}
     alignItems={['normal', 'center']}
-    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-    <Flex justifyContent="space-between">
+    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
+    style={{
+      zIndex: Z_INDEXES.SIDEBAR_BUTTON,
+    }}>
+    <Media.MobileOnly>
+      <MobileMenu stickyOffset={75} renderLogo={() => <WebpurpleLogo />}>
+        <Navbar />
+        <Box is={MobileGithubLink} m="7.5rem">
+          Contribute
+        </Box>
+      </MobileMenu>
+    </Media.MobileOnly>
+    <Media.TabletPlus>
       <WebpurpleLogo />
-
-      <Media.MobileOnly>
-        {isMenuOpen ? (
-          <CloseIcon
-            onClick={hideMenu}
-            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
-          />
-        ) : (
-          <MenuIcon
-            onClick={showMenu}
-            style={{ zIndex: Z_INDEXES.SIDEBAR_BUTTON }}
-          />
-        )}
-
-        <Portal isOpened={isMenuOpen}>
-          <MobileSidebar isOpen={isMenuOpen} onClick={hideMenu}>
-            <Navbar />
-            <Box is={MobileGithubLink} m="7.5rem">
-              Contribute
-            </Box>
-          </MobileSidebar>
-        </Portal>
-      </Media.MobileOnly>
-    </Flex>
-
-    <Media.TabletPlus values={{ width: 1200, deviceWidth: 1200 }}>
       <Flex justifyContent="space-between" flex="1">
         <Navbar />
-
         <Flex alignItems="center">
           <Box is={Search} mr="20px" />
-
           <GitHubLink>
             <HiddenText>Contribute</HiddenText>
           </GitHubLink>
         </Flex>
       </Flex>
     </Media.TabletPlus>
+    <Media.SeoOnly>
+      <WebpurpleLogo />
+      <section style={{ left: '-9999px', position: 'absolute' }}>
+        <Navbar />
+        <Box is={Search} mr="20px" />
+      </section>
+    </Media.SeoOnly>
   </Flex>
 )
-
-Header.propTypes = {
-  isMenuOpen: PropTypes.bool,
-  showMenu: PropTypes.func,
-  hideMenu: PropTypes.func,
-}
-
-export default compose(
-  withStateHandlers(
-    () => ({
-      isMenuOpen: false,
-    }),
-    {
-      showMenu: () => () => ({ isMenuOpen: true }),
-      hideMenu: () => () => ({ isMenuOpen: false }),
-    },
-  ),
-)(Header)

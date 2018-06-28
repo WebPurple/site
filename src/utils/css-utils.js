@@ -13,10 +13,20 @@ export let sizes = {
 export let BrowserOnly = ({ children }) => (canUseDom ? children : null)
 
 export let Media = {
-  MobileOnly: props => <Responsive {...props} maxWidth={sizes.tablet - 1} />,
+  MobileOnly: props => (
+    <Responsive {...props} maxWidth={sizes.tablet - 1} minWidth={320} />
+  ),
   TabletPlus: props => <Responsive {...props} minWidth={sizes.tablet} />,
   DesktopPlus: props => <Responsive {...props} minWidth={sizes.desktop} />,
   WidePlus: props => <Responsive {...props} minWidth={sizes.hd} />,
+  SeoOnly: props => (
+    <Responsive
+      {...props}
+      minWidth={10}
+      maxWidth={20}
+      values={{ width: 20, deviceWidth: 20 }}
+    />
+  ),
 }
 
 export let media = Object.keys(sizes).reduce((accumulator, label) => {
