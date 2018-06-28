@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 import EventPage from '../components/event-page/event-page'
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import EventsFeed from '../components/events-page/events-feed'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
