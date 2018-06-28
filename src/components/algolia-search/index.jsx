@@ -14,7 +14,7 @@ import {
 
 import { SuggestionList } from './snippets'
 import { SearchInput } from './search-input'
-import { Arrow, Popup } from './popup'
+import { Arrow, Popup } from '../popup'
 
 let AutoComplete = ({ hits: sections, currentRefinement, debouncedRefine }) => (
   <Manager>

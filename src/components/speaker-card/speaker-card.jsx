@@ -1,90 +1,68 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LazyLoad from 'react-lazyload'
-
 import styled from 'styled-components'
+import { Flex, Box } from 'grid-styled'
 
-import { media } from '../../utils/css-utils'
 import hoverLink from '../../utils/hover-link'
 import SpeakerContacts from '../common/speaker-contacts'
 import Avatar from '../common/avatar'
 import SpeakerTalks from '../speaker-talks/speaker-talks'
+import { media } from '../../utils/css-utils'
 
-const Card = styled.div`
-  display: flex;
-  padding: 0 0 3.5rem;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  align-self: stretch;
-  ${media.desktop`
-        width: 50%;
-        padding: 3.5rem 0;
-        flex-direction: row; 
-        align-items: flex-start;
-    `};
+// TODO: shity Avatar
+let FixAvatarHeight = styled.div`
+  height: 200px;
 `
 
-const SpeakerAvatarContainer = styled.div`
-  width: 12rem;
-  height: 20rem;
-  padding-bottom: 2rem;
-  ${media.desktop`padding-bottom: 0;`};
-`
-
-const SpeakerInfoContainer = styled.div`
+let Name = styled.a`
   text-align: center;
-  width: 100%;
-  ${media.desktop`
-        text-align: left;
-        padding-left: 3.5rem;
-        width: auto;
-    `};
-`
-
-const SpeakerInitials = styled.a`
-  margin: 0;
   text-decoration: none;
   font-family: Rubik, 'sans-serif';
-  font-size: 3.2rem;
   font-weight: bold;
-  line-height: 1.13;
   color: ${props => props.theme.greyishBrown};
   ${props => hoverLink(props.theme.greyishBrown)};
 `
 
-const SpeakerDescription = styled.p`
-  margin: 0;
-  padding-top: 1rem;
-  padding-bottom: 2.5rem;
-  font-family: Oxygen, 'sans-serif';
-  font-size: 2.2rem;
+let Position = styled.div`
   color: ${props => props.theme.grape};
+  text-align: center;
+  ${media.desktop`text-align: left`};
 `
 
-const SpeakerAdditionalContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  position: relative;
-  ${media.desktop`justify-content: flex-start;`};
-`
-
-const SpeakerCard = ({ speaker }) => (
-  <Card>
-    <SpeakerAvatarContainer>
+let SpeakerCard = ({ speaker }) => (
+  <Flex
+    width={[1, 1 / 2]}
+    flexDirection={['column', 'column', 'row']}
+    alignItems={['center', 'center', 'flex-start']}
+    justifyContent={['flex-start']}
+    my={['20px', '35px']}>
+    <Box is={FixAvatarHeight} pb={['20px', 0]}>
       <LazyLoad once>
         <Avatar avatar={speaker.avatar} />
       </LazyLoad>
-    </SpeakerAvatarContainer>
-    <SpeakerInfoContainer>
-      <SpeakerInitials href="#">{speaker.title}</SpeakerInitials>
-      <SpeakerDescription>{speaker.jobTitle}</SpeakerDescription>
-      <SpeakerAdditionalContainer>
+    </Box>
+
+    <Flex
+      flexDirection="column"
+      alignItems={['center', 'flex-start']}
+      pl={[0, '35px']}>
+      <Box is={Name} href="#" fontSize={['24px', '32px']}>
+        {speaker.title}
+      </Box>
+
+      <Box is={Position} pt="10px" pb="25px" fontSize={['16px', '22px']}>
+        {speaker.jobTitle}
+        {speaker.jobTitle && speaker.organization && ' - '}
+        {speaker.organization}
+      </Box>
+
+      <Flex justifyContent={['center', 'center', 'flex-start']}>
         <SpeakerContacts speaker={speaker} />
         <SpeakerTalks talks={speaker.talks} />
-      </SpeakerAdditionalContainer>
-    </SpeakerInfoContainer>
-  </Card>
+      </Flex>
+    </Flex>
+  </Flex>
 )
 
 SpeakerCard.propTypes = {
@@ -92,6 +70,7 @@ SpeakerCard.propTypes = {
     avatar: PropTypes.string,
     title: PropTypes.string,
     jobTitle: PropTypes.string,
+    organization: PropTypes.string,
     talks: PropTypes.array,
   }),
 }
