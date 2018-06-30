@@ -154,7 +154,7 @@ exports.onCreateNode = ({
           (talks, event) => [
             ...talks,
             ...event.talks.filter(t => t.speaker === node.title).map(talk => ({
-              ...pick(['title', 'tags'], talk),
+              ...pick(['title', 'tags', 'links'], talk),
               event: pick(['title, date'], event),
             })),
           ],
