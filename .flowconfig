@@ -7,5 +7,9 @@
 [lints]
 
 [options]
-
+emoji=true
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.ico
+module.name_mapper.extension='ico' -> 'empty/object'
 [strict]
