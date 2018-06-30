@@ -21,7 +21,7 @@ let theme = {
 
   breakpoints: Object.values(sizes)
     .slice(1)
-    .map(s => `${s / 16}em`),
+    .map(s => `${+s / 16}em`),
 }
 
 injectGlobal`
