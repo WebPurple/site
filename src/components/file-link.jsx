@@ -16,16 +16,24 @@ let MyBox = styled(Box)`
 export interface IFileLinkProps {
   icon: React.ComponentType<any>;
   href: string;
+  className?: string;
   onClick?: () => void;
   children?: any; // React.Node doesn't want to work :-(
 }
 
-let FileLink = ({ children, icon: Icon, href, onClick }: IFileLinkProps) => {
+let FileLink = ({
+  children,
+  className,
+  icon: Icon,
+  href,
+  onClick,
+}: IFileLinkProps) => {
   return (
     <Flex
       is={Link}
       href={href}
       onClick={onClick}
+      className={className}
       fontSize={['16px', '18px']}
       target="__blank"
       rel="noreferrer noopener"
