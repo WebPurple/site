@@ -1,11 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Avatar from './../../common/avatar'
 import { media } from './../../../utils/css-utils'
-import { WatchIcon, DownloadIcon } from './../../icons'
-import Video from '../../common/video'
+import { DownloadIcon } from './../../icons'
+import YoutubeLink from '../../youtube-link'
+import { FileLink } from '../../file-link'
 
 const TalkGrid = styled.div`
   display: flex;
@@ -85,37 +86,6 @@ const LinksGrid = styled.div`
     `};
 `
 
-const FileLink = styled.a`
-  font-family: Oxygen, sans-serif;
-  font-size: 1.6rem;
-  line-height: 1;
-  color: #909090;
-  text-decoration: none;
-
-  ${media.phone`
-        padding-right: 3.6rem;
-    `} ${media.tablet`
-        font-size: 1.8rem;
-    `};
-`
-
-const IconsMixin = `
-    height: 1.2rem;
-    margin-right: 1.2rem;
-
-    ${media.tablet`
-        height: 1.8rem;
-    `}
-`
-
-const WatchIconStyled = styled(WatchIcon)`
-  ${IconsMixin};
-`
-
-const DownloadIconStyled = styled(DownloadIcon)`
-  ${IconsMixin};
-`
-
 const EventTalk = ({ talk }) => (
   <TalkGrid>
     <AvatarWrapper>
@@ -131,27 +101,12 @@ const EventTalk = ({ talk }) => (
       {talk.description ? <Description>{talk.description}</Description> : null}
       {talk.links ? (
         <LinksGrid>
-          {talk.links.video ? (
-            <Video src={talk.links.video}>
-              {({ onClick }) => (
-                <FileLink
-                  onClick={onClick}
-                  href={talk.links.video}
-                  target="__blank"
-                  rel="noreferrer noopener">
-                  <WatchIconStyled />Video
-                </FileLink>
-              )}
-            </Video>
-          ) : null}
-          {talk.links.presentation ? (
-            <FileLink
-              href={talk.links.presentation}
-              target="__blank"
-              rel="noreferrer noopener">
-              <DownloadIconStyled />Presentation
+          {talk.links.video && <YoutubeLink url={talk.links.video} />}
+          {talk.links.presentation && (
+            <FileLink icon={DownloadIcon} href={talk.links.presentation}>
+              Presentation
             </FileLink>
-          ) : null}
+          )}
         </LinksGrid>
       ) : null}
     </div>
