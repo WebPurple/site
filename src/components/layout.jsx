@@ -14,7 +14,7 @@ import { sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
-const theme = {
+let colors = {
   grape: '#432867',
   warmGrey: '#a1a1a1',
   greyishBrown: '#545454',
@@ -26,6 +26,11 @@ const theme = {
   rouge: '#b21d3d',
   rosePink: '#f290b7',
   liliac: '#c788fe',
+}
+
+let theme = {
+  ...colors, // deprecated
+  colors,
 
   breakpoints: Object.values(sizes)
     .slice(1)
@@ -43,7 +48,7 @@ injectGlobal`
   }
 `
 
-const Layout = ({ children }) => (
+let Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <Flex flexDirection="column">
       <Helmet>
