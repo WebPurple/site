@@ -1,13 +1,19 @@
+// @flow
 import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SpeakerPage from '../components/speaker-page'
+import type { ISpeaker } from '../model'
 
-const Speaker = ({ data: { speakerYaml } }) => {
+const Speaker = ({
+  data: { speakerYaml },
+}: {
+  data: { speakerYaml: ISpeaker },
+}) => {
   return (
     <Layout>
-      <SpeakerPage speaker={console.log(speakerYaml) || speakerYaml} />
+      <SpeakerPage speaker={speakerYaml} />
     </Layout>
   )
 }
