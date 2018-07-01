@@ -14,6 +14,11 @@ export interface ITalk {
     video: string | null,
     presentation: string | null,
   } | null;
+
+  event: {
+    slug: string,
+    date: string,
+  };
 }
 
 export interface ISpeaker {

@@ -62,6 +62,10 @@ export let pageQuery = graphql`
             video
             presentation
           }
+          event {
+            slug
+            date
+          }
         }
       }
     }
