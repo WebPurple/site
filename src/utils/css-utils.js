@@ -20,9 +20,13 @@ export let colors = {
 
 export type ColorName = $Keys<typeof colors>
 
-export let tColor = (colorName: ColorName) => (props: {
-  theme: { colors: typeof colors },
-}) => props.theme.colors[colorName]
+export type ThemeProps = {
+  theme?: { colors?: typeof colors },
+}
+
+export let tColor = (colorName: ColorName) => ({
+  theme: { colors: cls = colors } = {},
+}: ThemeProps = {}) => cls[colorName]
 
 export let sizes = {
   phone: 599,
@@ -39,7 +43,9 @@ export let Media = {
     <Responsive {...props} maxWidth={sizes.tablet - 1} minWidth={320} />
   ),
   TabletPlus: (props: any) => <Responsive {...props} minWidth={sizes.tablet} />,
-  DesktopPlus: (props: any) => <Responsive {...props} minWidth={sizes.desktop} />,
+  DesktopPlus: (props: any) => (
+    <Responsive {...props} minWidth={sizes.desktop} />
+  ),
   WidePlus: (props: any) => <Responsive {...props} minWidth={sizes.hd} />,
   SeoOnly: (props: any) => (
     <Responsive
