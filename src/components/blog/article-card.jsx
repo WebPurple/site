@@ -15,7 +15,6 @@ let Card = styled.div`
 `
 
 let Date = styled.time`
-  font-family: Oxygen, sans-serif;
   font-size: 1.6rem;
   color: ${({ theme }) => theme.greyishBrown};
 `
@@ -32,13 +31,11 @@ let StyledLink = styled(Link)`
 `
 
 let Excerpt = styled.p`
-  font-family: Oxygen, sans-serif;
   font-size: 1.4rem;
   color: ${({ theme }) => theme.greyishBrown};
 `
 
 let Author = styled.div`
-  font-family: Oxygen, sans-serif;
   font-size: 1.6rem;
   font-weight: bold;
   color: ${({ theme }) => theme.greyishBrown};

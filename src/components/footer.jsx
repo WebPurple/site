@@ -23,7 +23,6 @@ const Footer = styled.footer`
 const FooterElementsStyle = styled.span`
   margin: 0;
   color: #fff;
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
