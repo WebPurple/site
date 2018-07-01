@@ -56,7 +56,6 @@ const EventTalk = ({ talk }) => (
 
       {talk.links && (
         <Flex
-          flexFlow="row nowrap"
           justifyContent={['space-around', 'flex-start']}>
           {talk.links.video && (
             <Box is={YoutubeLink} url={talk.links.video} mr={[0, '36px']} />
