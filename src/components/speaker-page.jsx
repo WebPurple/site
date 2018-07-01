@@ -35,7 +35,9 @@ let ListStyleNone = styled.ul`
 `
 
 let SpeakerPage = ({ speaker }: { speaker: ISpeaker }) => (
-  <Flex m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
+  <Flex
+    flexDirection={['column', 'row']}
+    m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
     <Flex flexDirection="column" alignItems="center">
       <Box style={{ height: 200 }} mb="16px">
         <Avatar avatar={speaker.avatar} />
@@ -44,7 +46,7 @@ let SpeakerPage = ({ speaker }: { speaker: ISpeaker }) => (
       <SpeakerContacts speaker={speaker} />
     </Flex>
 
-    <Box ml="60px">
+    <Box ml={[0, '60px']}>
       <Name>{speaker.title}</Name>
 
       {(speaker.jobTitle || speaker.organization) && (
