@@ -155,7 +155,10 @@ exports.onCreateNode = ({
             ...talks,
             ...event.talks.filter(t => t.speaker === node.title).map(talk => ({
               ...pick(['title', 'tags', 'links'], talk),
-              event: pick(['title, date'], event),
+              event: {
+                ...pick(['title', 'date'], event),
+                slug: createFilePath({ node: event, getNode }),
+              },
             })),
           ],
           [],
