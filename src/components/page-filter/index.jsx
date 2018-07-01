@@ -56,7 +56,6 @@ const SearchInput = styled.input`
   ${media.desktop`padding: 2.4rem 0;`} border: 0;
   font-size: 2.4rem;
   line-height: 2.8rem;
-  font-family: 'Oxygen', sans-serif;
   outline: none;
 
   width: 0;

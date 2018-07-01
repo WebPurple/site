@@ -13,7 +13,6 @@ const InputField = styled.input`
   flex-basis: 100%;
   flex-grow: 0;
   flex-shrink: 10;
-  font-family: Oxygen, sans-serif;
   font-size: 1.8em;
   min-width: 0;
   outline: none;

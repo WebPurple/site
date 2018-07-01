@@ -57,7 +57,6 @@ let SpeakerPhoto = styled.div`
 let SpeakerName = styled.div`
   padding-left: 1.8rem;
   font-size: 1.8rem;
-  font-family: 'Oxygen', sans-serif;
 `
 
 let EventDiamond = ({ talk: { title, event, speaker } }) => (

@@ -50,14 +50,12 @@ const Info = styled.span`
   display: flex;
   margin-bottom: 1.6rem;
   font-size: 1.6em;
-  font-family: 'Oxygen', sans-serif;
   color: ${props => props.theme.greyishBrown};
   vertical-align: middle;
 `
 
 const TalkList = styled.ul`
   list-style: disc;
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.6rem;
   margin: 2.4rem 0;
   color: #4a4a4a;

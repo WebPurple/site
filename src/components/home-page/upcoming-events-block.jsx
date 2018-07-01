@@ -52,7 +52,6 @@ const Wrapper = styled.div`
 `
 
 const Header = styled.h4`
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
@@ -96,7 +95,6 @@ const EventInfoRow = styled.div`
 
 const EventText = styled.span`
   vertical-align: top;
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.6rem;
   line-height: 1;
   font-weight: 700;
@@ -163,7 +161,6 @@ const TalkTitle = styled.h3`
 `
 
 const TalkSpeaker = styled.div`
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.4rem;
   font-weight: 400;
   color: ${props => props.theme.grape};

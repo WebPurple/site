@@ -31,13 +31,11 @@ const EventTitle = styled.h1`
 `
 
 const Description = styled.div`
-  font-family: Oxygen, sans-serif;
   color: ${props => props.theme.greyishBrown};
 `
 
 const InfoText = styled.div`
   margin-bottom: 2.5rem;
-  font-family: Oxygen, sans-serif;
   font-weight: bold;
   color: ${props => props.theme.greyishBrown};
   font-size: 1.6rem;

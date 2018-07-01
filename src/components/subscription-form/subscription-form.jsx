@@ -55,7 +55,6 @@ const SubHeader = styled.p`
   text-align: center;
   margin: 0;
   margin-bottom: 2.86rem; /* 40px */
-  font-family: 'Oxygen', sans-serif;
   color: #fff;
   font-size: 1.4em;
   ${media.tablet`
@@ -74,7 +73,6 @@ const FormWrapper = styled.form`
 `
 
 const Input = styled.input`
-  font-family: 'Oxygen', sans-serif;
   font-size: 2.4em;
   box-sizing: border-box;
   width: 100%;
