@@ -20,9 +20,13 @@ export let colors = {
 
 export type ColorName = $Keys<typeof colors>
 
-export let tColor = (colorName: ColorName) => (props: {
-  theme: { colors: typeof colors },
-}) => props.theme.colors[colorName]
+export type ThemeProps = {
+  theme?: { colors?: typeof colors },
+}
+
+export let tColor = (colorName: ColorName) => ({
+  theme: { colors: cls = colors } = {},
+}: ThemeProps = {}) => cls[colorName]
 
 export let sizes = {
   phone: 599,
@@ -35,9 +39,13 @@ export let BrowserOnly = ({ children }: { children: React.Node }) =>
   canUseDom ? children : null
 
 export let Media = {
-  MobileOnly: (props: any) => <Responsive {...props} maxWidth={sizes.tablet - 1} />,
+  MobileOnly: (props: any) => (
+    <Responsive {...props} maxWidth={sizes.tablet - 1} />
+  ),
   TabletPlus: (props: any) => <Responsive {...props} minWidth={sizes.tablet} />,
-  DesktopPlus: (props: any) => <Responsive {...props} minWidth={sizes.desktop} />,
+  DesktopPlus: (props: any) => (
+    <Responsive {...props} minWidth={sizes.desktop} />
+  ),
   WidePlus: (props: any) => <Responsive {...props} minWidth={sizes.hd} />,
 }
 

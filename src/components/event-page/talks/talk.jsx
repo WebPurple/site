@@ -28,7 +28,7 @@ const EventTalk = ({ talk }) => (
     <div>
       <Box
         is={Header}
-        color={tColor('greyishBrown')}
+        color={tColor('greyishBrown')()}
         fontSize={['28px', '32px']}
         m={0}
         mb="24px">
@@ -37,7 +37,7 @@ const EventTalk = ({ talk }) => (
 
       <Box
         itemProp="actor"
-        color={tColor('grape')}
+        color={tColor('grape')()}
         fontSize={['16px', '18px']}
         mb="24px">
         {talk.speaker.jobTitle
@@ -47,7 +47,7 @@ const EventTalk = ({ talk }) => (
 
       {talk.description && (
         <Box
-          color={tColor('greyishBrown')}
+          color={tColor('greyishBrown')()}
           fontSize={['16px', '18px']}
           mb="24px">
           {talk.description}

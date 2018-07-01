@@ -3,9 +3,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { height } from 'styled-system'
 import { Flex, Box } from 'grid-styled'
+import { tColor } from '../utils/css-utils'
 
 let Link = styled.a`
-  color: #909090;
+  color: ${tColor('warmGrey')};
   text-decoration: none;
 `
 

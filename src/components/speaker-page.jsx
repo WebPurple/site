@@ -36,7 +36,7 @@ let ListStyleNone = styled.ul`
 
 let SpeakerPage = ({ speaker }: { speaker: ISpeaker }) => (
   <Flex m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" alignItems="center">
       <Box style={{ height: 200 }} mb="16px">
         <Avatar avatar={speaker.avatar} />
       </Box>
@@ -55,25 +55,33 @@ let SpeakerPage = ({ speaker }: { speaker: ISpeaker }) => (
         </Position>
       )}
 
-      <Flex is={ListStyleNone} flexDirection="column" m={0} p={0} mt="96px">
+      <Flex is={ListStyleNone} flexDirection="column" m={0} p={0} mt="72px">
         {speaker.talks.map(talk => (
           <Flex is="li" key={talk.title} flexDirection="column" mb="15px">
-            <Box is={TalkName} to="#" mb="20px">
+            <Box is={TalkName} to="#" mb="18px">
               {talk.title}
             </Box>
 
-            {talk.links && (
-              <Flex mb="60px">
-                {talk.links.video && (
-                  <Box is={YoutubeLink} url={talk.links.video} mr="36px" />
-                )}
-                {talk.links.presentation && (
-                  <FileLink icon={DownloadIcon} href={talk.links.presentation}>
-                    Presentation
-                  </FileLink>
-                )}
-              </Flex>
-            )}
+            <Flex mb="36px">
+              {talk.links && (talk.links.video || talk.links.presentation) ? (
+                <React.Fragment>
+                  {talk.links.video && (
+                    <Box is={YoutubeLink} url={talk.links.video} mr="36px" />
+                  )}
+                  {talk.links.presentation && (
+                    <FileLink
+                      icon={DownloadIcon}
+                      href={talk.links.presentation}>
+                      Presentation
+                    </FileLink>
+                  )}
+                </React.Fragment>
+              ) : (
+                <Box fontSize="16px" color={tColor('warmGrey')()}>
+                  There is no materials
+                </Box>
+              )}
+            </Flex>
           </Flex>
         ))}
       </Flex>
