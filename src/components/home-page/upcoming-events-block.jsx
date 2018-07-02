@@ -1,11 +1,12 @@
+// @flow
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 import styled, { withTheme } from 'styled-components'
+import { Box } from 'grid-styled'
 import moment from 'moment'
-import { NavLink } from 'react-router-dom'
 
-import { media } from '../../utils/css-utils'
-
+import { media, tColor } from '../../utils/css-utils'
 import ClockIcon from '../icons/clock-icon'
 import LocationIcon from '../icons/placeholder-icon'
 import ArrowButton from '../arrow-button/arrow-button'
@@ -160,16 +161,13 @@ const TalkTitle = styled.h3`
   `};
 `
 
-const TalkSpeaker = styled.div`
-  font-size: 1.4rem;
+const TalkSpeaker = styled(Link)`
+  text-decoration: none;
   font-weight: 400;
-  color: ${props => props.theme.grape};
-  ${media.desktop`
-    font-size: 2rem;
-  `};
+  color: ${tColor('grape')};
 `
 
-const ArrowLink = ArrowButton.withComponent(NavLink)
+const ArrowLink = ArrowButton.withComponent(Link)
 
 const ArrowLinkWrapper = styled.div`
   grid-area: link;
@@ -197,18 +195,23 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
     <EventBackground image={eventBigBackground()} />
     <Header>Upcoming event</Header>
     <EventTitle>{event.title}</EventTitle>
+
     <EventInfo>
       <EventInfoRow>
         <LocationIcon color={theme.lipstick} opaque />
+
         <EventText>{event.address || 'Уточняется'}</EventText>
       </EventInfoRow>
+
       <EventInfoRow>
         <ClockIcon color={theme.lipstick} opaque />
+
         <EventText>
           {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
         </EventText>
       </EventInfoRow>
     </EventInfo>
+
     <TalksBlock>
       {event.talks.map((talk, i) => (
         <TalkInfo key={talk.title}>
@@ -218,13 +221,21 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
               backSrc={talk.speaker.avatar}
             />
           </DiamondOuterWrapper>
+
           <TalkDataWrapper>
             <TalkTitle>{talk.title}</TalkTitle>
-            <TalkSpeaker>{talk.speaker.title}</TalkSpeaker>
+
+            <Box
+              is={TalkSpeaker}
+              to={talk.speaker.fields.slug.replace('speaker', 'speakers')}
+              fontSize={['14px', '14px', '20px']}>
+              {talk.speaker.title}
+            </Box>
           </TalkDataWrapper>
         </TalkInfo>
       ))}
     </TalksBlock>
+
     <ArrowLinkWrapper>
       <ArrowLink to={event.fields.slug}>See details</ArrowLink>
     </ArrowLinkWrapper>

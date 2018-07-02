@@ -58,6 +58,9 @@ export const pageQuery = graphql`
             talks {
               title
               speaker {
+                fields {
+                  slug
+                }
                 title
                 avatar
                 organization
