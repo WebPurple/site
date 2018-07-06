@@ -88,9 +88,9 @@ export default compose(
   withState('contributors', 'setContributors'),
   lifecycle({
     componentDidMount() {
-      fetch('https://api.github.com/repos/kitos/web-purple/contributors')
+      fetch('https://api.github.com/repos/WebPurple/site/contributors')
         .then(r => r.json())
-        .then(contributors => this.props.setContributors(contributors))
+        .then(contributors => this.props.setContributors(Array.isArray(contributors) ? contributors : []))
     },
   }),
 )(ContributorsPage)
