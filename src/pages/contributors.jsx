@@ -90,7 +90,11 @@ export default compose(
     componentDidMount() {
       fetch('https://api.github.com/repos/WebPurple/site/contributors')
         .then(r => r.json())
-        .then(contributors => this.props.setContributors(Array.isArray(contributors) ? contributors : []))
+        .then(contributors =>
+          this.props.setContributors(
+            Array.isArray(contributors) ? contributors : [],
+          ),
+        )
     },
   }),
 )(ContributorsPage)
