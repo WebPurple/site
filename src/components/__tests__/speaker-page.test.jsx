@@ -5,5 +5,18 @@ import SpeakerPage from '../speaker-page'
 
 describe('<SpeakerPage>', () => {
   it('should match snapshot', () =>
-    expect(shallow(<SpeakerPage speaker={{ title: '' }} />)).toMatchSnapshot())
+    expect(
+      shallow(
+        <SpeakerPage
+          speaker={{
+            title: '',
+            avatar: '',
+            jobTitle: '',
+            organization: '',
+            socialNetworks: [],
+            talks: [],
+          }}
+        />,
+      ),
+    ).toMatchSnapshot())
 })

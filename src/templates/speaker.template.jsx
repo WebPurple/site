@@ -5,7 +5,7 @@ import { mapProps } from 'recompose'
 
 import Layout from '../components/layout'
 import SpeakerPage from '../components/speaker-page'
-import type { ISpeaker, ITalk, ISocialNetwork } from '../model'
+import type { SpeakerType, TalkType, ISocialNetwork } from '../model'
 
 interface IRawSpeaker {
   title: string;
@@ -15,11 +15,11 @@ interface IRawSpeaker {
   socialNetworks: Array<ISocialNetwork>;
 
   fields: {
-    talks: Array<ITalk>,
+    talks: Array<TalkType>,
   };
 }
 
-const Speaker = ({ speaker }: { speaker: ISpeaker }) => {
+const Speaker = ({ speaker }: { speaker: SpeakerType }) => {
   return (
     <Layout>
       <SpeakerPage speaker={speaker} />

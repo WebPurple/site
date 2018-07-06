@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { Box, Flex } from 'grid-styled'
 
-import type { ISpeaker } from '../model'
+import type { SpeakerType } from '../model'
 import Avatar from './common/avatar'
 import { tColor } from '../utils/css-utils'
 import YoutubeLink from './youtube-link'
@@ -34,7 +34,7 @@ let ListStyleNone = styled.ul`
   list-style: none;
 `
 
-let SpeakerPage = ({ speaker }: { speaker: ISpeaker }) => (
+let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
   <Flex
     flexDirection={['column', 'row']}
     m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}>

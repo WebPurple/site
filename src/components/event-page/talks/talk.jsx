@@ -8,14 +8,7 @@ import { tColor } from './../../../utils/css-utils'
 import { DownloadIcon } from './../../icons'
 import YoutubeLink from '../../youtube-link'
 import { FileLink } from '../../file-link'
-
-export type TalkType = {
-  title: string,
-  description: string,
-  links: Object,
-  speaker: Object,
-  tags: Array<string>
-};
+import type { TalkType } from '../../../model'
 
 // TODO: shity Avatar
 const AvatarWrapper = styled.div`
@@ -63,8 +56,7 @@ const EventTalk = ({ talk }: { talk: TalkType }) => (
       )}
 
       {talk.links && (
-        <Flex
-          justifyContent={['space-around', 'flex-start']}>
+        <Flex justifyContent={['space-around', 'flex-start']}>
           {talk.links.video && (
             <Box is={YoutubeLink} url={talk.links.video} mr={[0, '36px']} />
           )}

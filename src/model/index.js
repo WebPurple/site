@@ -7,8 +7,18 @@ export interface ISocialNetwork {
   link: string;
 }
 
-export interface ITalk {
+export type SpeakerType = {
+  title: string,
+  avatar: string | null,
+  jobTitle: string | null,
+  organization: string | null,
+  socialNetworks: Array<ISocialNetwork>,
+  talks: Array<TalkType>,
+}
+
+export interface TalkType {
   title: string;
+  description: string;
 
   links: {
     video: string | null,
@@ -19,13 +29,6 @@ export interface ITalk {
     slug: string,
     date: string,
   };
-}
 
-export interface ISpeaker {
-  title: string;
-  avatar: string | null;
-  jobTitle: string | null;
-  organization: string | null;
-  socialNetworks: ISocialNetwork[];
-  talks: ITalk[];
+  speaker: SpeakerType;
 }
