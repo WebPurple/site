@@ -17,7 +17,7 @@ let MyBox = styled(Box)`
 export interface IFileLinkProps {
   icon: React.ComponentType<any>;
   href: string;
-  className?: string;
+  className?: ?string;
   onClick?: () => void;
   children?: any; // React.Node doesn't want to work :-(
 }

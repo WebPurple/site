@@ -9,6 +9,14 @@ import { DownloadIcon } from './../../icons'
 import YoutubeLink from '../../youtube-link'
 import { FileLink } from '../../file-link'
 
+export type TalkType = {
+  title: string,
+  description: string,
+  links: Object,
+  speaker: Object,
+  tags: Array<string>
+};
+
 // TODO: shity Avatar
 const AvatarWrapper = styled.div`
   height: 200px;
@@ -19,7 +27,7 @@ const Header = styled.h3`
   font-weight: 500;
 `
 
-const EventTalk = ({ talk }) => (
+const EventTalk = ({ talk }: { talk: TalkType }) => (
   <Flex flexDirection={['column', 'row']} alignItems={['center', 'flex-start']}>
     <Box is={AvatarWrapper} mr={['27px', '36px', '24px']}>
       <Avatar avatar={talk.speaker.avatar} stretch />
