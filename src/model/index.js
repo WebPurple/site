@@ -1,9 +1,7 @@
 // @flow
 
-export type SocialNetworkType = 'vk' | 'fb' | 'twitter' | 'github' | 'site'
-
-export interface ISocialNetwork {
-  type: SocialNetworkType;
+export interface SocialNetworkType {
+  type: 'vk' | 'fb' | 'twitter' | 'github' | 'site';
   link: string;
 }
 
@@ -12,7 +10,7 @@ export type SpeakerType = {
   avatar: string | null,
   jobTitle: string | null,
   organization: string | null,
-  socialNetworks: Array<ISocialNetwork>,
+  socialNetworks: Array<SocialNetworkType>,
   talks: Array<TalkType>,
 }
 

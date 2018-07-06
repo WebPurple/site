@@ -5,14 +5,14 @@ import { mapProps } from 'recompose'
 
 import Layout from '../components/layout'
 import SpeakerPage from '../components/speaker-page'
-import type { SpeakerType, TalkType, ISocialNetwork } from '../model'
+import type { SpeakerType, TalkType, SocialNetworkType } from '../model'
 
 interface IRawSpeaker {
   title: string;
   avatar: string;
   jobTitle: string | null;
   organization: string | null;
-  socialNetworks: Array<ISocialNetwork>;
+  socialNetworks: Array<SocialNetworkType>;
 
   fields: {
     talks: Array<TalkType>,
