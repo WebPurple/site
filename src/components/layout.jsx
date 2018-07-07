@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { injectGlobal, ThemeProvider } from 'styled-components'
-import { Flex } from 'grid-styled'
+import { Flex, Box } from 'grid-styled'
 import { YMInitializer } from 'react-yandex-metrika'
 
 import faviconICO from '../../static/favicon.ico'
@@ -45,7 +45,7 @@ injectGlobal`
 
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
       <Helmet>
         <title>WebPurple</title>
         <link
@@ -85,7 +85,9 @@ const Layout = ({ children }) => (
         />
       )}
       <Header />
-      <main>{children}</main>
+      <Box is="main" flex="1 0 auto">
+        {children}
+      </Box>
       <Footer />
     </Flex>
   </ThemeProvider>
