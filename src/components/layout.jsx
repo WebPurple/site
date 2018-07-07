@@ -14,6 +14,8 @@ import { sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
+import { errorHandler } from './error-handler'
+
 const theme = {
   grape: '#432867',
   warmGrey: '#a1a1a1',
@@ -91,4 +93,4 @@ const Layout = ({ children }) => (
   </ThemeProvider>
 )
 
-export default Layout
+export default errorHandler(Layout)
