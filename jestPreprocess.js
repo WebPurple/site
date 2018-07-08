@@ -11,4 +11,5 @@ module.exports = require('babel-jest').createTransformer({
     ],
     '@babel/react',
   ],
+  plugins: ['@babel/plugin-proposal-class-properties'],
 })
