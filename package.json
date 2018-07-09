@@ -65,9 +65,10 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
+    "flow": "flow",
     "format": "prettier --write \"{gatsby-*.js?,src/**/*.js,src/**/*.jsx}\"",
     "prettier-ci": "prettier --list-different \"{gatsby-*.js,src/**/*.jsx}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "prettier": {
     "semi": false,
@@ -75,8 +76,21 @@
     "trailingComma": "all",
     "jsxBracketSameLine": true
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/jestPreprocess.js"
+    }
+  },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.52",
+    "babel-jest": "^23.2.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "flow-bin": "^0.75.0",
+    "jest": "^23.2.0",
+    "jest-enzyme": "^6.0.2",
     "pre-commit": "^1.2.2",
     "prettier": "^1.13.5"
   },

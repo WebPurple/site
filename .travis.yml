@@ -17,6 +17,8 @@ after_script: greenkeeper-lockfile-upload
 
 script:
 - npm run build
+- npm run test
+- npm run flow -- check
 - npm run prettier-ci
 notifications:
   slack: webpurple:mFXgdAsg8h2xwQSK6JqX0gKL

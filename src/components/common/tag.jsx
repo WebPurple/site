@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 
 export const Tag = styled.li`
-  font-family: 'Oxygen', sans-serif;
   font-size: 1.6rem;
   color: #fff;
   padding: 0.4rem 1.6rem;

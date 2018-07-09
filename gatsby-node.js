@@ -72,8 +72,40 @@ let createBlogPostPages = ({ actions: { createPage }, graphql }) =>
     )
   })
 
+let createSpeakerPages = ({ actions: { createPage }, graphql }) =>
+  graphql(`
+    {
+      allSpeakerYaml {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      return Promise.reject(result.errors)
+    }
+
+    result.data.allSpeakerYaml.edges.forEach(({ node: { id, fields } }) =>
+      createPage({
+        path: fields.slug.replace('speaker', 'speakers'),
+        component: path.resolve('src/templates/speaker.template.jsx'),
+        context: { id },
+      }),
+    )
+  })
+
 exports.createPages = (...args) =>
-  Promise.all([createEventPages(...args), createBlogPostPages(...args)])
+  Promise.all([
+    createEventPages(...args),
+    createBlogPostPages(...args),
+    createSpeakerPages(...args),
+  ])
 
 exports.onCreateNode = ({
   node,
@@ -122,8 +154,11 @@ exports.onCreateNode = ({
           (talks, event) => [
             ...talks,
             ...event.talks.filter(t => t.speaker === node.title).map(talk => ({
-              ...pick(['title', 'tags'], talk),
-              event: pick(['title, date'], event),
+              ...pick(['title', 'tags', 'links'], talk),
+              event: {
+                ...pick(['title', 'date'], event),
+                slug: createFilePath({ node: event, getNode }),
+              },
             })),
           ],
           [],

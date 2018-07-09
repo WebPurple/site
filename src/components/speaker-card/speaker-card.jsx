@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 import LazyLoad from 'react-lazyload'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
@@ -15,7 +16,7 @@ let FixAvatarHeight = styled.div`
   height: 200px;
 `
 
-let Name = styled.a`
+let Name = styled(Link)`
   text-align: center;
   text-decoration: none;
   font-family: Rubik, 'sans-serif';
@@ -47,7 +48,11 @@ let SpeakerCard = ({ speaker }) => (
       flexDirection="column"
       alignItems={['center', 'flex-start']}
       pl={[0, '35px']}>
-      <Box is={Name} href="#" fontSize={['24px', '32px']}>
+      <Box
+        is={Name}
+        to={speaker.slug.replace('speaker', 'speakers')}
+        href="#"
+        fontSize={['24px', '32px']}>
         {speaker.title}
       </Box>
 
@@ -67,11 +72,12 @@ let SpeakerCard = ({ speaker }) => (
 
 SpeakerCard.propTypes = {
   speaker: PropTypes.shape({
+    slug: PropTypes.string,
     avatar: PropTypes.string,
     title: PropTypes.string,
     jobTitle: PropTypes.string,
     organization: PropTypes.string,
-    talks: PropTypes.array,
+    talks: PropTypes.arrayOf(String),
   }),
 }
 

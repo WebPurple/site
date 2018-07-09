@@ -73,7 +73,11 @@ const customStyles = {
   },
 }
 
-Modal.setAppElement('#___gatsby')
+let { NODE_ENV } = process.env
+
+if (NODE_ENV !== 'test' && NODE_ENV !== 'travisci') {
+  Modal.setAppElement('#___gatsby')
+}
 
 const Popup = ({ children, onRequestClose, ...rest }) => (
   <Modal

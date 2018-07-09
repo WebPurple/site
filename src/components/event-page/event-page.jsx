@@ -31,13 +31,11 @@ const EventTitle = styled.h1`
 `
 
 const Description = styled.div`
-  font-family: Oxygen, sans-serif;
   color: ${props => props.theme.greyishBrown};
 `
 
 const InfoText = styled.div`
   margin-bottom: 2.5rem;
-  font-family: Oxygen, sans-serif;
   font-weight: bold;
   color: ${props => props.theme.greyishBrown};
   font-size: 1.6rem;
@@ -191,7 +189,11 @@ const EventPage = ({ event }) => (
       <BlockHeader>Talks</BlockHeader>
       <Flex flexWrap="wrap" mt="6.4rem" mx="-1rem">
         {event.talks.map(talk => (
-          <Box width={[1, 1, 1 / 2]} p="1rem" key={talk.title}>
+          <Box
+            width={[1, 1, 1 / 2]}
+            p="10px"
+            mb={['60px', '64px']}
+            key={talk.title}>
             <EventTalk talk={talk} />
           </Box>
         ))}

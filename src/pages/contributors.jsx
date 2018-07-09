@@ -21,7 +21,6 @@ const Avatar = styled.img`
 
 const Name = styled.span`
   font-size: 2.4rem;
-  font-family: 'Oxygen', sans-serif;
   padding-top: 1rem;
   color: ${props => props.theme.grape};
 `
@@ -43,7 +42,6 @@ const StyledLoader = styled(Loader)`
 `
 
 const Note = styled.footer`
-  font-family: 'Oxygen', sans-serif;
   color: ${props => props.theme.warmGrey};
   font-size: 1.8rem;
   margin: 3rem auto;
