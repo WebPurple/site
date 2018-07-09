@@ -1,4 +1,6 @@
+// @flow
 import React from 'react'
+import type { Node } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
@@ -7,8 +9,8 @@ import ArrowButton from '../components/arrow-button/arrow-button'
 const LINK =
   'https://github.com/WebPurple/site/issues/new?labels=bug&title=WebPurple+site+crash&body='
 
-let globalHandlerMounted = false
-let consoleIssueLink = false
+let globalHandlerMounted: boolean = false
+let consoleIssueLink: boolean = false
 
 const ErrorContainer = styled.div`
   padding: 20px;
@@ -39,12 +41,13 @@ const Link = ArrowButton.withComponent('a').extend`
   font-family: Rubik, sans-serif;
 `
 
-const codeBlock = code => '```\n' + code + '\n```'
+const codeBlock = (code: string): string => '```\n' + code + '\n```'
 
-const parseError = error => {
+const parseError = (error: Object): string => {
   let errorText = JSON.stringify(error)
   if (error instanceof Error) {
     errorText = error.name + '\n' + error.message + '\n' + error.stack
+    // $FlowFixMe
   } else if (error instanceof ErrorEvent) {
     errorText = error.error.message + '\n' + error.error.stack
   } else if (error.componentStack) {
@@ -53,10 +56,11 @@ const parseError = error => {
   return errorText
 }
 
-const openIssueLink = erros =>
-  encodeURI(LINK + erros.reduce((acc, err) => acc + '\n' + codeBlock(err), ''))
+const openIssueLink = (errors: Array<string>): string =>
+  encodeURI(LINK + errors.reduce((acc, err) => acc + '\n' + codeBlock(err), ''))
 
-const formatErrors = (...args) => [...args].map(arg => parseError(arg))
+const formatErrors = (...args: any): Array<string> =>
+  [...args].map(arg => parseError(arg))
 
 const consoleNewIssueLink = () => {
   if (!consoleIssueLink) {
@@ -67,7 +71,7 @@ const consoleNewIssueLink = () => {
   }
 }
 
-const ErrorSplash = ({ errors }) =>
+const ErrorSplash = ({ errors }: { errors: Array<string> }) =>
   Array.isArray(errors) && (
     <ErrorContainer>
       <Title>Something went wrong!</Title>
@@ -80,10 +84,10 @@ const ErrorSplash = ({ errors }) =>
     </ErrorContainer>
   )
 
-const globalErrorHandler = (...args) => {
+const globalErrorHandler = (...args: any): boolean => {
   const root = document.getElementById('___gatsby')
   setImmediate(() => {
-    if (!root.children.length) {
+    if (root !== null && !root.children.length) {
       const errors = formatErrors(...args)
       ReactDOM.render(<ErrorSplash errors={errors} />, root)
       window.removeEventListener('error', globalErrorHandler)
@@ -94,8 +98,19 @@ const globalErrorHandler = (...args) => {
   return true
 }
 
-export class ErrorHandler extends React.Component {
-  constructor(props) {
+type ErrorHandlerPropsType = {
+  children: Node,
+}
+
+type ErrorHandlerStateType = {
+  errors: ?Array<string>,
+}
+
+export class ErrorHandler extends React.Component<
+  ErrorHandlerPropsType,
+  ErrorHandlerStateType,
+> {
+  constructor(props: ErrorHandlerPropsType) {
     super(props)
     this.state = {
       errors: null,
@@ -109,7 +124,7 @@ export class ErrorHandler extends React.Component {
     }
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: any, info: any) {
     this.setState(
       state => (state.errors ? null : { errors: formatErrors(error, info) }),
     )
