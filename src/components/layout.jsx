@@ -14,7 +14,7 @@ import { sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
-import { errorHandler } from './error-handler'
+import { ErrorHandler } from './error-handler'
 
 const theme = {
   grape: '#432867',
@@ -46,23 +46,24 @@ injectGlobal`
 `
 
 const Layout = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <Flex flexDirection="column">
-      <Helmet>
-        <title>WebPurple</title>
-        <link
-          href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
-          rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
-        <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
-        <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
-        {/*<link rel="manifest" href={manifest} />*/}
-        <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
-        <link rel="shortcut icon" href={faviconICO} />
-        <meta name="theme-color" content="#ffffff" />
-        <script type="application/ld+json">
-          {`
+  <ErrorHandler>
+    <ThemeProvider theme={theme}>
+      <Flex flexDirection="column">
+        <Helmet>
+          <title>WebPurple</title>
+          <link
+            href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
+            rel="stylesheet"
+          />
+          <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
+          <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
+          <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
+          {/*<link rel="manifest" href={manifest} />*/}
+          <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
+          <link rel="shortcut icon" href={faviconICO} />
+          <meta name="theme-color" content="#ffffff" />
+          <script type="application/ld+json">
+            {`
           {
             "@context": "http://www.schema.org",
             "@type": "Organization",
@@ -71,26 +72,27 @@ const Layout = ({ children }) => (
             "description": "Ryazan front-end community"
           }
         `}
-        </script>
-      </Helmet>
-      {process.env.NODE_ENV === 'production' && (
-        <YMInitializer
-          accounts={['39965000']}
-          options={{
-            id: 39965000,
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-            trackHash: true,
-          }}
-        />
-      )}
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </Flex>
-  </ThemeProvider>
+          </script>
+        </Helmet>
+        {process.env.NODE_ENV === 'production' && (
+          <YMInitializer
+            accounts={['39965000']}
+            options={{
+              id: 39965000,
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: true,
+              trackHash: true,
+            }}
+          />
+        )}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </Flex>
+    </ThemeProvider>
+  </ErrorHandler>
 )
 
-export default errorHandler(Layout)
+export default Layout
