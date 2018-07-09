@@ -1,4 +1,5 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import Helmet from 'react-helmet'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import { Flex, Box } from 'grid-styled'
@@ -10,26 +11,17 @@ import favicon16 from '../../static/favicon-16x16.png'
 import favicon32 from '../../static/favicon-32x32.png'
 import safariPinnedTab from '../../static/safari-pinned-tab.svg'
 
-import { sizes } from '../utils/css-utils'
+import { colors, sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
-const theme = {
-  grape: '#432867',
-  warmGrey: '#a1a1a1',
-  greyishBrown: '#545454',
-  lipstick: '#e62270',
-  vividPurple: '#9012fe',
-  vividPurpleTwo: '#9013fe',
-  cerise: '#ee2a7b',
-  warmPurple: '#662d91',
-  rouge: '#b21d3d',
-  rosePink: '#f290b7',
-  liliac: '#c788fe',
+let theme = {
+  ...colors, // deprecated
+  colors,
 
   breakpoints: Object.values(sizes)
     .slice(1)
-    .map(s => `${s / 16}em`),
+    .map(s => `${+s / 16}em`),
 }
 
 injectGlobal`
@@ -43,7 +35,7 @@ injectGlobal`
   }
 `
 
-const Layout = ({ children }) => (
+let Layout = ({ children }: { children: React.Node }) => (
   <ThemeProvider theme={theme}>
     <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
       <Helmet>

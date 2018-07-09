@@ -25,7 +25,11 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
 )
 
 export default mapProps(
-  ({ data: { allEventYaml: { edges: allEventNodes } } }) => {
+  ({
+    data: {
+      allEventYaml: { edges: allEventNodes },
+    },
+  }) => {
     let extendTalk = event => talk => ({ ...talk, event })
 
     let pastTalks = selectPastEvents(allEventNodes).reduce(
@@ -54,6 +58,9 @@ export const pageQuery = graphql`
             talks {
               title
               speaker {
+                fields {
+                  slug
+                }
                 title
                 avatar
                 organization

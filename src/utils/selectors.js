@@ -1,18 +1,30 @@
+// @flow
 import { flatten, map, pipe, prop, uniq } from 'ramda'
 
-const viewTags = talk => talk.tags ? talk.tags : [];
+interface IEvent {
+  date: Date;
+}
 
-export let eventTags = pipe(prop('talks'), map(viewTags), flatten, uniq)
+const viewTags = talk => (talk.tags ? talk.tags : [])
 
-let getEventNode = event => event.node
+export let eventTags = pipe(
+  prop('talks'),
+  map(viewTags),
+  flatten,
+  uniq,
+)
 
-export let selectPastEvents = events =>
+let getEventNode = (event: { node: * }) => event.node
+
+export let selectPastEvents = (events: Array<{ node: IEvent }>): IEvent[] =>
   events.map(getEventNode).filter(e => e.date && new Date(e.date) < new Date())
 
-export let selectUpcomingEvents = events =>
+export let selectUpcomingEvents = (events: Array<{ node: IEvent }>): IEvent[] =>
   events.map(getEventNode).filter(e => !e.date || new Date(e.date) > new Date())
 
-export let selectNearestEvent = events =>
+export let selectNearestEvent = (
+  events: Array<{ node: IEvent }>,
+): IEvent | null =>
   selectUpcomingEvents(events).reduce(
     (nearestEvent, event) =>
       nearestEvent && nearestEvent.date < event.date ? nearestEvent : event,

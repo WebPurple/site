@@ -33,7 +33,10 @@ const SpeakerContacts = ({ speaker }) =>
     <Flex is="ul" style={{ listStyle: 'none' }} p={0} m={0}>
       {speaker.socialNetworks.map(sn => (
         <Box is="li" key={sn.type} mr="1rem">
-          <a href={buildSocialLink(sn)}>
+          <a
+            href={buildSocialLink(sn)}
+            target="_blank"
+            rel="noopener noreferrer">
             <HiddenText>
               {speaker.title} in {socialNetworksNames[sn.type]}
             </HiddenText>
@@ -62,5 +65,7 @@ SpeakerContacts.propTypes = {
     ),
   }).isRequired,
 }
+
+export { SpeakerContacts }
 
 export default SpeakerContacts

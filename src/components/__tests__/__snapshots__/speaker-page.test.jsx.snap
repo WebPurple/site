@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SpeakerPage> should match snapshot 1`] = `
+<Flex
+  flexDirection={
+    Array [
+      "column",
+      "row",
+    ]
+  }
+  m={
+    Array [
+      "2rem 2rem",
+      "4.0rem 8.6rem",
+      "4.0rem 10.8rem",
+      "4.0rem 12rem",
+    ]
+  }
+>
+  <Flex
+    alignItems="center"
+    flexDirection="column"
+  >
+    <Box
+      mb="16px"
+      style={
+        Object {
+          "height": 200,
+        }
+      }
+      theme={
+        Object {
+          "breakpoints": Array [
+            "40em",
+            "52em",
+            "64em",
+          ],
+          "fontSizes": Array [
+            12,
+            14,
+            16,
+            20,
+            24,
+            32,
+            48,
+            64,
+            96,
+            128,
+          ],
+          "space": Array [
+            0,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+          ],
+        }
+      }
+    >
+      <Avatar
+        avatar=""
+      />
+    </Box>
+    <SpeakerContacts
+      speaker={
+        Object {
+          "avatar": "",
+          "jobTitle": "",
+          "organization": "",
+          "socialNetworks": Array [],
+          "talks": Array [],
+          "title": "",
+        }
+      }
+    />
+  </Flex>
+  <Box
+    ml={
+      Array [
+        0,
+        "60px",
+      ]
+    }
+    theme={
+      Object {
+        "breakpoints": Array [
+          "40em",
+          "52em",
+          "64em",
+        ],
+        "fontSizes": Array [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          48,
+          64,
+          96,
+          128,
+        ],
+        "space": Array [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+        ],
+      }
+    }
+  >
+    <styled.h1 />
+    <Flex
+      flexDirection="column"
+      is={[Function]}
+      m={0}
+      mt="72px"
+      p={0}
+    />
+  </Box>
+</Flex>
+`;
