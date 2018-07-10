@@ -20,7 +20,7 @@ let plugins = [
     },
   },
   `gatsby-transformer-yaml`,
-  // 'gatsby-plugin-netlify-cms',
+  'gatsby-plugin-netlify-cms',
   {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
