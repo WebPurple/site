@@ -15,6 +15,8 @@ import { colors, sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
+import { ErrorHandler } from '../components/error-handler'
+
 let theme = {
   ...colors, // deprecated
   colors,
@@ -36,23 +38,24 @@ injectGlobal`
 `
 
 let Layout = ({ children }: { children: React.Node }) => (
-  <ThemeProvider theme={theme}>
-    <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
-      <Helmet>
-        <title>WebPurple</title>
-        <link
-          href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
-          rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
-        <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
-        <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
-        {/*<link rel="manifest" href={manifest} />*/}
-        <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
-        <link rel="shortcut icon" href={faviconICO} />
-        <meta name="theme-color" content="#ffffff" />
-        <script type="application/ld+json">
-          {`
+  <ErrorHandler>
+    <ThemeProvider theme={theme}>
+      <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
+        <Helmet>
+          <title>WebPurple</title>
+          <link
+            href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
+            rel="stylesheet"
+          />
+          <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
+          <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
+          <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
+          {/*<link rel="manifest" href={manifest} />*/}
+          <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
+          <link rel="shortcut icon" href={faviconICO} />
+          <meta name="theme-color" content="#ffffff" />
+          <script type="application/ld+json">
+            {`
           {
             "@context": "http://www.schema.org",
             "@type": "Organization",
@@ -61,28 +64,29 @@ let Layout = ({ children }: { children: React.Node }) => (
             "description": "Ryazan front-end community"
           }
         `}
-        </script>
-      </Helmet>
-      {process.env.NODE_ENV === 'production' && (
-        <YMInitializer
-          accounts={['39965000']}
-          options={{
-            id: 39965000,
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-            trackHash: true,
-          }}
-        />
-      )}
-      <Header />
-      <Box is="main" flex="1 0 auto">
-        {children}
-      </Box>
-      <Footer />
-    </Flex>
-  </ThemeProvider>
+          </script>
+        </Helmet>
+        {process.env.NODE_ENV === 'production' && (
+          <YMInitializer
+            accounts={['39965000']}
+            options={{
+              id: 39965000,
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: true,
+              trackHash: true,
+            }}
+          />
+        )}
+        <Header />
+        <Box is="main" flex="1 0 auto">
+          {children}
+        </Box>
+        <Footer />
+      </Flex>
+    </ThemeProvider>
+  </ErrorHandler>
 )
 
 export default Layout
