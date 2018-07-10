@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { navigateTo } from 'gatsby-link'
+import { navigateTo } from 'gatsby'
 import Downshift from 'downshift'
 import debounce from 'lodash.debounce'
 import { compose, withProps } from 'recompose'

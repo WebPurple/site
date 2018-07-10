@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
 import { Box } from 'grid-styled'
 import moment from 'moment'
