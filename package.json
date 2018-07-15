@@ -23,7 +23,7 @@
     "gatsby-transformer-remark": "^2.1.1-beta.2",
     "gatsby-transformer-sharp": "^2.1.1-beta.3",
     "gatsby-transformer-yaml": "^2.1.1-beta.2",
-    "grid-styled": "^4.2.0",
+    "grid-styled": "^5.0.0",
     "lodash": "^4.17.5",
     "lodash-webpack-plugin": "^0.11.4",
     "lodash.debounce": "^4.0.8",
