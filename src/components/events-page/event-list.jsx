@@ -64,14 +64,14 @@ const TalkList = styled.ul`
 const EventList = ({ events, theme, onTagClick, selectedTags }) => (
   <Box
     is={AdaptiveMasonryList}
-    w="100%"
+    width="100%"
     mx="auto"
     mt={['3.6rem', '3.6rem', '10rem']}>
     {events.map((event, eventIndex) => (
       <Box
         is={EventSnippet}
         key={event.title}
-        w={['100%', '30rem', '30rem', '35rem']}
+        width={['100%', '30rem', '30rem', '35rem']}
         p="2.5rem"
         mb={['2rem', '2rem', '7rem']}>
         <BackgroundShape>
