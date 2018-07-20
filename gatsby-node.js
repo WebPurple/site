@@ -1,5 +1,6 @@
 const path = require('path')
 const { pick } = require('ramda')
+const { transliterate } = require('transliteration')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 let createEventPages = ({ actions: { createPage }, graphql }) =>
@@ -119,7 +120,7 @@ exports.onCreateNode = ({
     createNodeField({
       name: `slug`,
       node,
-      value: createFilePath({ node, getNode }),
+      value: transliterate(createFilePath({ node, getNode })),
     })
 
   switch (node.internal.type) {
