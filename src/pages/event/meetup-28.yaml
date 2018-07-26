@@ -1,0 +1,19 @@
+title: 'Meetup #28'
+description: "Всем привет! Следующий митап проводим 2 августа! \U0001F4AA\nЖдем вас в Кванториуме в 19.30.\n\nВ этот раз у нас один доклад с провокационным названием \"Реквием по .header__button--primary\" \U0001F60F\n\nПаша Кучин расскажет о styled-components – замечательной библиотеке для React, которая в разы уменьшает боль от написания стилей для React-компонентов."
+date: '2018-08-02T19:30:07+03:00'
+address: 'Кванториум, ул. Дзержинского,6'
+talks:
+  - title: Реквием по .header__button--primary
+    description: >-
+      Расскажу о styled-components – замечательной библиотеке для React, которая
+      в разы уменьшает боль от написания стилей для React-компонентов.
+    speaker: Павел Кучин
+    tags:
+      - react
+      - css
+      - styled_components
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup28'
+    type: vk
+  - link: 'https://www.facebook.com/events/2142166179441405/'
+    type: fb
