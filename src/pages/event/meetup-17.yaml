@@ -1,0 +1,22 @@
+title: 'Meetup #17'
+description: >-
+  В этот раз Sasha Zaytsev расскажет о том, как написать web-сервер на Node.js и
+  не отстрелить себе ногу ☺
+date: 2017-03-09T16:30:28.048Z
+address: 'Почтовая, 60, Рязань'
+talks:
+  - title: Введение в разработку на Node.js
+    description: >-
+      В этот раз Sasha Zaytsev расскажет о том, как написать web-сервер на
+      Node.js и не отстрелить себе ногу ☺
+    speaker: Саша Зайцев
+    tags:
+      - javascript
+      - nodejs
+      - backend
+      - first_steps
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup17'
+    type: vk
+  - link: 'https://www.facebook.com/events/627175864140797/'
+    type: fb
