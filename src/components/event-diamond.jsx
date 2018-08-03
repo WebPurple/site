@@ -41,9 +41,11 @@ let TalkTitle = styled(Link)`
   `};
 `
 
-let Speaker = styled.div`
+let Speaker = styled(Link)`
   display: flex;
   align-items: center;
+  color: #fff;
+  text-decoration: none;
 `
 
 let SpeakerPhoto = styled.div`
@@ -63,7 +65,7 @@ let EventDiamond = ({ talk: { title, event, speaker } }) => (
   <Diamond>
     <EventName to={event.fields.slug}>{event.title}</EventName>
     <TalkTitle to={event.fields.slug}>{title}</TalkTitle>
-    <Speaker>
+    <Speaker to={speaker.fields.slug.replace('speaker', 'speakers')}>
       <SpeakerPhoto src={speaker.avatar} />
       <SpeakerName>{speaker.title}</SpeakerName>
     </Speaker>
@@ -80,6 +82,9 @@ EventDiamond.propTypes = {
       }).isRequired,
     }).isRequired,
     speaker: PropTypes.shape({
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+      }).isRequired,
       title: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
     }).isRequired,
