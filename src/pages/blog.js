@@ -53,6 +53,9 @@ export let pageQuery = graphql`
           fields {
             slug
             author {
+              fields {
+                slug
+              }
               title
               avatar
             }

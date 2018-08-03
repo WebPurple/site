@@ -88,7 +88,11 @@ let ArticleCard = ({ post }) => (
     </Box>
 
     <footer>
-      <Flex my="2.4rem" alignItems="center">
+      <Flex
+        is={Link}
+        my="2.4rem"
+        alignItems="center"
+        to={post.author.fields.slug.replace('speaker', 'speakers')}>
         <RoundImg size="3.6rem" bg={post.author.avatar} />
         <Box is={Author} ml="1.2rem">
           {post.author.title}
@@ -107,6 +111,9 @@ ArticleCard.propTypes = {
     excerpt: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string),
     author: PropTypes.shape({
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+      }).isRequired,
       title: PropTypes.string.isRequired,
       avatar: PropTypes.string,
     }),
