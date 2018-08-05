@@ -1,0 +1,29 @@
+title: 'Meetup #16'
+description: >-
+  Друзья! Новый митап уже совсем скоро - 2 февраля! Обратите внимание, что место
+  проведения изменилось - Sobaka.Space на Павлова, 29 (бывший клуб ДК).
+  Приходите и не забудьте зарегистрироваться!
+  https://webpurple.timepad.ru/event/438685/
+date: 2017-02-02T16:30:09.736Z
+address: 'Павлова ул., д. 29, Рязань'
+talks:
+  - title: Compiled to JS languages
+    description: >-
+      Расскажу о наиболее популярных языках, на которых можно писать в вебе,
+      компилируя в JavaScript. Исторически так сложилось, что хоть JavaScript и
+      является одним из самых популярных языков, но, тем не менее, он не лишен
+      недостатков, и люди стали придумывать языки, которые привносят что-то
+      новое в язык или полностью его изменяют.
+    links:
+      video: 'https://youtu.be/z6yVv7EDFLo'
+    speaker: Дмитрий Пикулин
+    tags:
+      - javascript
+      - flow
+      - typescript
+      - strict_types
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup16'
+    type: vk
+  - link: 'https://www.facebook.com/events/1288867171156366/'
+    type: fb
