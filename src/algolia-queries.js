@@ -84,7 +84,7 @@ module.exports = [
               value
             }
             
-            excerpt(pruneLength: 5000)
+            excerpt(pruneLength: 3000)
           }
         }
       }
