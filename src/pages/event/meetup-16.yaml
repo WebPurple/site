@@ -22,6 +22,16 @@ talks:
       - flow
       - typescript
       - strict_types
+  - title: Personal efficiency as a mean of survival
+    description: >-
+      2D-3D художник в гейм индустрии - расскажет о том, что общего у
+      программиста и гейм-художника, почему самообучение - действительно сложная
+      задача. Что мешает, а что помогает развиваться, и зачем это нужно вам, а
+      не только работодателю. 
+    speaker: Ника Прошкина
+    tags:
+      - самообучение
+      - развитие
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup16'
     type: vk
