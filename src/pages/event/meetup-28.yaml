@@ -7,6 +7,9 @@ talks:
     description: >-
       Расскажу о styled-components – замечательной библиотеке для React, которая
       в разы уменьшает боль от написания стилей для React-компонентов.
+    links:
+      presentation: >-
+        https://docs.google.com/presentation/d/1PKbiM_o258AWp-gujZZpFm3oIlLv0vC1jta-dBd13K8/edit?usp=sharing
     speaker: Павел Кучин
     tags:
       - react
