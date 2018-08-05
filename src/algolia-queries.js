@@ -60,7 +60,7 @@ module.exports = [
     transformer: ({ data }) =>
       data.allSpeakerYaml.edges.map(({ node: { fields, ...rest } }) => ({
         objectID: fields.slug,
-        slug: fields.slug,
+        slug: fields.slug.replace('speaker', 'speakers'),
         ...rest,
       })),
     indexName: `${ALGOLIA_PREFIX}_speakers`,
