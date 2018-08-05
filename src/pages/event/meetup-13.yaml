@@ -1,0 +1,31 @@
+title: 'Meetup #13'
+description: "Друзья!\n\nНаш 13й митап уже на следующей неделе, 13 октября \U0001F47D\n\nНикита Кирсанов расскажет о том, как фронтенд докатился до редукса, как он работает, и почему его нужно использовать.\n\nДмитрий Полисадов расскажет долгожданный доклад про жизнь, борьбу и верблюда.\n\nПриходите, будет интересно, и не забудьте зарегистрироваться https://webpurple.timepad.ru/event/385533/"
+date: 2018-08-05T21:33:24.666Z
+address: 'Почтовая ул., д. 60, Рязань'
+talks:
+  - title: redux-talk@1.0.0
+    description: >-
+      Как фронтенд докатился до редукса, как он работает, и почему его нужно
+      использовать.
+    links:
+      presentation: 'https://kitos.github.io/redux-talk/'
+      video: 'https://youtu.be/Et68tF6nL0g'
+    speaker: Никита Кирсанов
+    tags:
+      - redux
+      - state_managment
+      - functional_programming
+      - fp
+  - title: Программирование это новые 90ые
+    description: 'Долгожданный доклад про жизнь, борьбу и верблюда.'
+    links:
+      video: 'https://youtu.be/L20h-KSKi0A'
+    speaker: Дмитрий Полисадов
+    tags:
+      - жизнь
+      - борьба
+      - верблюд
+      - 90ые
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup13'
+    type: vk
