@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -22,6 +23,7 @@ import { FacebookIcon, VkIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 import EventTalk from './talks/talk'
 import Layout from '../layout'
+import type { EventType } from '../../model'
 
 const EventTitle = styled.h1`
   ${fontSize};
@@ -113,7 +115,7 @@ let EventSocialNetworks = ({ socialNetworks }) => (
   </Flex>
 )
 
-const EventPage = ({ event }) => (
+const EventPage = ({ event }: { event: EventType }) => (
   <Layout>
     <Box
       m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
@@ -224,22 +226,5 @@ const EventPage = ({ event }) => (
     </Box>
   </Layout>
 )
-
-EventPage.propTypes = {
-  event: PropTypes.shape({
-    fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    address: PropTypes.string,
-    date: PropTypes.string,
-    talks: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      }),
-    ),
-  }).isRequired,
-}
 
 export default EventPage

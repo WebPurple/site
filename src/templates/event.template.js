@@ -1,24 +1,22 @@
+// @flow
 import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 import EventPage from '../components/event-page/event-page'
+import type { RawEventType } from '../model'
+
+type EventQueryResultType = {
+  data: {
+    eventYaml: RawEventType,
+  },
+}
 
 export default mapProps(
-  ({
-    data: {
-      eventYaml: event,
-      allSpeakerYaml: { edges: allSpeakers },
+  ({ data: { eventYaml } }: EventQueryResultType) => ({
+    event: {
+      ...eventYaml,
+      talks: eventYaml.fields.talks,
     },
-  }) => {
-    return {
-      event: {
-        ...event,
-        talks: event.talks.map(talk => ({
-          ...talk,
-          speaker: allSpeakers.find(s => s.node.title === talk.speaker).node,
-        })),
-      },
-    }
-  },
+  }),
 )(EventPage)
 
 export let pageQuery = graphql`
@@ -26,6 +24,24 @@ export let pageQuery = graphql`
     eventYaml(id: { eq: $id }) {
       fields {
         slug
+
+        talks {
+          title
+          description
+          tags
+          links {
+            video
+            presentation
+          }
+          speaker {
+            fields {
+              slug
+            }
+            avatar
+            title
+            jobTitle
+          }
+        }
       }
 
       title
@@ -35,26 +51,6 @@ export let pageQuery = graphql`
       socialNetworks {
         type
         link
-      }
-      talks {
-        title
-        description
-        speaker
-        tags
-        links {
-          video
-          presentation
-        }
-      }
-    }
-
-    allSpeakerYaml {
-      edges {
-        node {
-          title
-          avatar
-          jobTitle
-        }
       }
     }
   }

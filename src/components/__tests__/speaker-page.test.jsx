@@ -9,6 +9,9 @@ describe('<SpeakerPage>', () => {
       shallow(
         <SpeakerPage
           speaker={{
+            fields: {
+              slug: '',
+            },
             title: '',
             avatar: '',
             jobTitle: '',

@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { Box, Flex } from 'grid-styled'
 
@@ -11,18 +12,27 @@ import { FileLink } from '../../file-link'
 import type { TalkType } from '../../../model'
 
 // TODO: shity Avatar
-const AvatarWrapper = styled.div`
+let AvatarWrapper = styled(Link)`
+  display: block;
   height: 200px;
 `
 
-const Header = styled.h3`
+let Header = styled.h3`
   font-family: Rubik, sans-serif;
   font-weight: 500;
 `
 
-const EventTalk = ({ talk }: { talk: TalkType }) => (
+let SpeakerLink = styled(Link)`
+  display: block;
+  text-decoration: none;
+`
+
+let EventTalk = ({ talk }: { talk: TalkType }) => (
   <Flex flexDirection={['column', 'row']} alignItems={['center', 'flex-start']}>
-    <Box is={AvatarWrapper} mr={['27px', '36px', '24px']}>
+    <Box
+      is={AvatarWrapper}
+      to={talk.speaker.fields.slug.replace('speaker', 'speakers')}
+      mr={['27px', '36px', '24px']}>
       <Avatar avatar={talk.speaker.avatar} stretch />
     </Box>
 
@@ -37,6 +47,8 @@ const EventTalk = ({ talk }: { talk: TalkType }) => (
       </Box>
 
       <Box
+        is={SpeakerLink}
+        to={talk.speaker.fields.slug.replace('speaker', 'speakers')}
         itemProp="actor"
         color={tColor('grape')()}
         fontSize={['16px', '18px']}
