@@ -10,14 +10,12 @@ type EventQueryResultType = {
   },
 }
 
-export default mapProps(
-  ({ data: { eventYaml } }: EventQueryResultType) => ({
-    event: {
-      ...eventYaml,
-      talks: eventYaml.fields.talks,
-    },
-  }),
-)(EventPage)
+export default mapProps(({ data: { eventYaml } }: EventQueryResultType) => ({
+  event: {
+    ...eventYaml,
+    talks: eventYaml.fields.talks,
+  },
+}))(EventPage)
 
 export let pageQuery = graphql`
   query Event($id: String) {
