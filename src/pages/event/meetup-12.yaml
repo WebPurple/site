@@ -30,7 +30,7 @@ talks:
       * Размечаем страницу псевдографикой.
     links:
       presentation: 'https://gwer.github.io/modern-css/'
-      video: 'https://vk.com/video2465473_456239021'
+      video: 'https://youtu.be/gGSvrUb9Yiw'
     speaker: Влад Грачев
     tags:
       - css
@@ -40,3 +40,4 @@ talks:
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup12'
     type: vk
+video: 'https://youtu.be/gGSvrUb9Yiw'
