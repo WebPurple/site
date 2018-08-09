@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
 import ym from 'react-yandex-metrika'
 
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
@@ -11,9 +11,17 @@ import { HiddenText } from '../utils/accessibility'
 import Search from './algolia-search'
 import MobileMenu from './mobile-menu/mobile-menu'
 
-let NavigationLink = styled(Link).attrs({
-  activeClassName: 'active',
-})`
+let NavLink = ({ className, ...props }) => (
+  <Link
+    className={className}
+    getProps={({ isCurrent }) =>
+      isCurrent ? { className: `${className} active` } : null
+    }
+    {...props}
+  />
+)
+
+let NavigationLink = styled(NavLink)`
   text-decoration: none;
   text-transform: uppercase;
   font-family: Rubik, sans-serif;
@@ -51,9 +59,7 @@ let Navbar = () => (
       mx={['7.5rem', '4rem']}
       flex={'1 0 auto'}>
       <NavbarItem>
-        <NavigationLink to="/" exact>
-          home
-        </NavigationLink>
+        <NavigationLink to="/">home</NavigationLink>
       </NavbarItem>
       <NavbarItem>
         <NavigationLink to="/events/">events</NavigationLink>

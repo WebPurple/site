@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'gatsby'
 
 import styled, { css } from 'styled-components'
 import { media } from '../utils/css-utils'
@@ -69,7 +69,7 @@ const ContactLink = styled.a`
   ${FooterLink};
 `
 
-const ContributorsLink = styled(NavLink)`
+const ContributorsLink = styled(Link)`
   ${FooterLink} color: #fff;
   display: block;
 

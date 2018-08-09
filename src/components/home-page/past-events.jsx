@@ -1,7 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
-import { NavLink } from 'react-router-dom'
 import zipWith from 'ramda/src/zipWith'
 import { Box } from 'grid-styled'
 
@@ -73,7 +73,7 @@ let PastEventsGridItem = styled.div`
   `};
 `
 
-let ArrowLink = ArrowButton.withComponent(NavLink)
+let ArrowLink = ArrowButton.withComponent(Link)
 
 let ArrowLinkWrapper = styled.div`
   display: flex;
