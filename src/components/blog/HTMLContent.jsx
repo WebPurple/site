@@ -67,46 +67,6 @@ let StyledMarkdown = styled.div`
     border-left: solid 3px #e62270;
     font-style: italic;
   }
-
-  tt,
-  code {
-    background-color: hsla(0, 0%, 0%, 0.04);
-    border-radius: 3px;
-    font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
-      'Liberation Mono', Menlo, Courier, monospace;
-    padding: 0.2em 0 0.2em;
-    font-size: 1rem;
-    ${media.desktop`font-size: 1.2rem`};
-  }
-
-  pre {
-    background: hsla(0, 0%, 0%, 0.04);
-    border-radius: 3px;
-    line-height: 1.42;
-    overflow: auto;
-    word-wrap: normal; // So code will scroll on Safari.
-    padding: 1.2rem;
-  }
-  pre code {
-    background: none;
-    line-height: 1.42;
-  }
-  // Add space before and after code/tt elements.
-  code:before,
-  code:after,
-  tt:before,
-  tt:after {
-    letter-spacing: -0.2em;
-    content: '\u00A0';
-  }
-
-  // But don't add spaces if the code is inside a pre.
-  pre code:before,
-  pre code:after,
-  pre tt:before,
-  pre tt:after {
-    content: none;
-  }
 `
 
 let HTMLContent = ({ children, ...rest }) => (

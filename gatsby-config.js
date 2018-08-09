@@ -16,7 +16,7 @@ let plugins = [
   {
     resolve: 'gatsby-transformer-remark',
     options: {
-      plugins: [],
+      plugins: ['gatsby-remark-prismjs'],
     },
   },
   `gatsby-transformer-yaml`,
