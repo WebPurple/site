@@ -26,7 +26,6 @@ import type { EventType } from '../../model'
 
 const EventTitle = styled.h1`
   ${fontSize};
-  font-family: Rubik, sans-serif;
   font-weight: bold;
   color: ${props => props.theme.lipstick};
 `

@@ -6,7 +6,6 @@ import { media } from '../../utils/css-utils'
 import Separator from './separator'
 
 let Header = styled.h2`
-  font-family: 'Rubik', sans-serif;
   font-size: 2.6rem;
   font-weight: bold;
   text-align: center;

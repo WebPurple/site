@@ -14,7 +14,6 @@ let Title = styled.span`
   font-size: 2.6rem;
   margin: 0;
   text-transform: uppercase;
-  font-family: Rubik, sans-serif;
   font-weight: bold;
   color: ${props => props.theme.lipstick};
 `

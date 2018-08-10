@@ -29,11 +29,11 @@ let theme = {
 injectGlobal`
   html {
     font-size: .625em; /* 10px; */
-    font-family: 'Oxygen', Helvetica, sans-serif;
   }
   html, body {
     margin: 0;
     padding: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   }
 `
 
@@ -43,10 +43,6 @@ let Layout = ({ children }: { children: React.Node }) => (
       <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
         <Helmet>
           <title>WebPurple</title>
-          <link
-            href="https://fonts.googleapis.com/css?family=Oxygen|Rubik"
-            rel="stylesheet"
-          />
           <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
           <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
           <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />

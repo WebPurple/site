@@ -4,7 +4,6 @@ const Button = styled.button`
   border: solid 3px ${props => props.defaultSheme};
   cursor: pointer;
   background: transparent;
-  font-family: 'Rubik', sans-serif;
   text-transform: uppercase;
   font-size: 2.4em;
   padding: 0.83em 1.25em;

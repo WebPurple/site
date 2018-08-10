@@ -19,7 +19,6 @@ export const Tag = styled.li`
 `
 
 const TagListLabel = styled.span`
-  font-family: 'Rubik', sans-serif;
   font-size: 1.8rem;
   color: ${props => props.theme.greyishBrown};
   margin-right: 2.4rem;

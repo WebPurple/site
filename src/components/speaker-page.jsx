@@ -14,7 +14,6 @@ import { SpeakerContacts } from './common/speaker-contacts'
 
 let Name = styled.h1`
   color: ${tColor('lipstick')};
-  font-family: Rubic, Helvetica, sans-serif;
   font-size: 32px;
 `
 
@@ -25,7 +24,6 @@ let Position = styled.div`
 
 let TalkName = styled(Link)`
   color: ${tColor('greyishBrown')};
-  font-family: Rubic, Helvetica, sans-serif;
   font-size: 24px;
   text-decoration: none;
 `

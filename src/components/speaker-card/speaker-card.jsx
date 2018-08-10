@@ -19,7 +19,6 @@ let FixAvatarHeight = styled.div`
 let Name = styled(Link)`
   text-align: center;
   text-decoration: none;
-  font-family: Rubik, 'sans-serif';
   font-weight: bold;
   color: ${props => props.theme.greyishBrown};
   ${props => hoverLink(props.theme.greyishBrown)};

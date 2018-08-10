@@ -24,12 +24,7 @@ let Header = styled.header`
 `
 
 let Heading = styled.h1`
-  font-family: Rubik, sans-serif;
   color: #fff;
-`
-
-let Oxigen = styled.span`
-  font-family: Oxigen, sans-serif;
 `
 
 let BlogPost = ({ post }) => (
@@ -60,18 +55,11 @@ let BlogPost = ({ post }) => (
           <RoundImg size="6rem" bg={post.author.avatar} />
 
           <Flex flexDirection="column" color="white" ml="1.6rem">
-            <Box
-              is={Oxigen}
-              fontSize={['1.8rem', '2.4rem']}
-              mb=".8rem"
-              itemProp="author">
+            <Box fontSize={['1.8rem', '2.4rem']} mb=".8rem" itemProp="author">
               {post.author.title}
             </Box>
 
-            <Box
-              is={Oxigen}
-              fontSize={['1.4rem', '1.6rem']}
-              itemProp="dateCreated">
+            <Box fontSize={['1.4rem', '1.6rem']} itemProp="dateCreated">
               {moment(post.date).format('LLL')}
             </Box>
           </Flex>

@@ -24,7 +24,6 @@ let NavLink = ({ className, ...props }) => (
 let NavigationLink = styled(NavLink)`
   text-decoration: none;
   text-transform: uppercase;
-  font-family: Rubik, sans-serif;
   font-size: 2.3rem;
   font-weight: 500;
   color: ${props => props.theme.warmGrey};

@@ -3,14 +3,12 @@ import styled from 'styled-components'
 import { media } from '../../utils/css-utils'
 
 let StyledMarkdown = styled.div`
-  font-family: Oxigen, sans-serif;
   font-size: 1.8rem;
   ${media.desktop`font-size: 2.2rem`};
   line-height: 1.58;
   color: ${({ theme }) => theme.greyishBrown};
 
   h2 {
-    font-family: Rubik, sans-serif;
     font-size: 3.6rem;
     ${media.desktop`font-size: 4.4rem`};
   }

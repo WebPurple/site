@@ -42,7 +42,6 @@ const SubscriptionFormContainer = styled.section`
 const Header = styled.h2`
   text-align: center;
   margin: 0 0 0.615rem;
-  font-family: 'Rubik', sans-serif;
   font-weight: bold;
   color: #fff;
   font-size: 2.6em;

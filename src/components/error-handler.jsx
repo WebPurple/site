@@ -25,7 +25,6 @@ const CodeContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 3.6rem;
-  font-family: Rubik, sans-serif;
   font-weight: bold;
   color: ${props => props.theme.lipstick || '#e62270'};
 `
@@ -38,7 +37,6 @@ const Code = styled.pre`
 const Link = ArrowButton.withComponent('a').extend`
   color: black;
   font: bold 1.8em Rubik;
-  font-family: Rubik, sans-serif;
 `
 
 const codeBlock = (code: string): string => '```\n' + code + '\n```'

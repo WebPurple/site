@@ -18,7 +18,6 @@ let AvatarWrapper = styled(Link)`
 `
 
 let Header = styled.h3`
-  font-family: Rubik, sans-serif;
   font-weight: 500;
 `
 

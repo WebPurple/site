@@ -66,7 +66,6 @@ const Header = styled.h4`
 
 const EventTitle = styled.h1`
   margin: 0;
-  font-family: 'Rubik', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   grid-area: title;
@@ -143,7 +142,6 @@ const TalkDataWrapper = styled.div`
 
 const TalkTitle = styled.h3`
   margin: 0;
-  font-family: 'Rubik', sans-serif;
   font-size: 1.6rem;
   font-weight: 500;
   -webkit-line-clamp: 3;

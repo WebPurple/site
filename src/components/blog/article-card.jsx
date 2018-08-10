@@ -20,7 +20,6 @@ let Date = styled.time`
 `
 
 let StyledLink = styled(Link)`
-  font-family: Rubik, sans-serif;
   font-size: 3.6rem;
   text-decoration: none;
   color: ${({ theme }) => theme.vividPurpleTwo};

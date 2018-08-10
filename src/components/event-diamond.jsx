@@ -6,7 +6,6 @@ import { media } from '../utils/css-utils'
 
 let Diamond = styled.div`
   display: block;
-  font-family: 'Rubik', sans-serif;
   padding: 0 3rem;
   color: white;
   position: relative;

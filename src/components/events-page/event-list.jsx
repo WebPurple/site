@@ -39,7 +39,6 @@ const BackgroundImage = styled.div`
 
 const Title = styled(Link)`
   margin: 2.4rem 0;
-  font-family: 'Rubik', sans-serif;
   font-size: 3.6rem;
   font-weight: bold;
   text-decoration: none;
