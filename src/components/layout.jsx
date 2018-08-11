@@ -46,10 +46,8 @@ let Layout = ({ children }: { children: React.Node }) => (
           <link rel="apple-touch-icon" sizes="180x180" href={appleFavicon} />
           <link rel="icon" type="image/png" href={favicon32} sizes="32x32" />
           <link rel="icon" type="image/png" href={favicon16} sizes="16x16" />
-          {/*<link rel="manifest" href={manifest} />*/}
           <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
           <link rel="shortcut icon" href={faviconICO} />
-          <meta name="theme-color" content="#ffffff" />
           <script type="application/ld+json">
             {`
           {

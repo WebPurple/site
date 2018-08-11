@@ -3,6 +3,18 @@ let algoliaQueries = require('./src/algolia-queries')
 let plugins = [
   'gatsby-plugin-react-helmet',
   'gatsby-plugin-sitemap',
+  {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: 'WebPurple',
+      short_name: 'WebPurple',
+      start_url: '/',
+      background_color: '#ffffff',
+      theme_color: '#9012fe',
+      display: 'minimal-ui',
+      icon: 'static/android-chrome-512x512.png',
+    },
+  },
   'gatsby-plugin-styled-components',
   {
     resolve: 'gatsby-source-filesystem',
