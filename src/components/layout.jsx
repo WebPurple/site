@@ -59,6 +59,10 @@ let Layout = ({ children }: { children: React.Node }) => (
           }
         `}
           </script>
+          <noscript>
+            Для работы этой страницы вам нужно включить JavaScript.
+            You need to enable JavaScript to run this app.
+          </noscript>
         </Helmet>
         {process.env.NODE_ENV === 'production' && (
           <YMInitializer
