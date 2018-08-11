@@ -1,6 +1,6 @@
 let { omit } = require('ramda')
 
-const ALGOLIA_PREFIX = process.env.ALGOLIA_PREFIX || 'DEV'
+const ALGOLIA_PREFIX = process.env.GATSBY_ALGOLIA_PREFIX || 'DEV'
 
 module.exports = [
   {

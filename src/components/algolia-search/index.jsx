@@ -81,7 +81,7 @@ let ConnectedAutoComplete = compose(
   withProps(({ refine }) => ({ debouncedRefine: debounce(refine, 200) })),
 )(AutoComplete)
 
-const ALGOLIA_PREFIX = process.env.ALGOLIA_PREFIX || 'DEV'
+const ALGOLIA_PREFIX = process.env.GATSBY_ALGOLIA_PREFIX || 'DEV'
 
 let Search = ({ className }) => (
   <div className={className}>
