@@ -73,6 +73,11 @@
     "prettier-ci": "prettier --list-different \"{gatsby-*.js,src/**/*.jsx}\"",
     "test": "jest"
   },
+  "browserslist": [
+    "> 1%",
+    "IE >= 11",
+    "last 2 versions"
+  ],
   "prettier": {
     "semi": false,
     "singleQuote": true,
