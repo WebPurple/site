@@ -1,0 +1,207 @@
+{
+  "projectName": "site",
+  "projectOwner": "webpurple",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kitos",
+      "name": "Nikita Kirsanov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2512612?v=4",
+      "profile": "https://www.webpurple.net/speakers/nikita-kirsanov/",
+      "contributions": [
+        "talk",
+        "blog",
+        "code",
+        "review",
+        "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "dmitryrykov-epam",
+      "name": "Dmitry Rykov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/23061613?v=4",
+      "profile": "https://github.com/dmitryrykov-epam",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "snak1t",
+      "name": "Ruslan Abramov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13414557?v=4",
+      "profile": "http://vk.com/snak1t",
+      "contributions": [
+        "blog",
+        "code",
+        "review",
+        "talk",
+        "bug"
+      ]
+    },
+    {
+      "login": "margalencia",
+      "name": "Margarita Kurdyumova",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3634380?v=4",
+      "profile": "https://github.com/margalencia",
+      "contributions": [
+        "talk",
+        "eventOrganizing",
+        "ideas",
+        "question"
+      ]
+    },
+    {
+      "login": "y-bobrovskaya",
+      "name": "y-bobrovskaya",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4069302?v=4",
+      "profile": "https://github.com/y-bobrovskaya",
+      "contributions": [
+        "design",
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "artyomkovshov",
+      "name": "Artem Kovshov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/18006145?v=4",
+      "profile": "https://github.com/artyomkovshov",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "ifedyukin",
+      "name": "Igor Fedyukin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11480414?v=4",
+      "profile": "https://ifedyukin.ru/",
+      "contributions": [
+        "talk",
+        "code",
+        "bug",
+        "tool"
+      ]
+    },
+    {
+      "login": "savva-k",
+      "name": "Savva Kodeikin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/22411063?v=4",
+      "profile": "https://imsavva.com",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "eugrdn",
+      "name": "Eugene Rodin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16277984?v=4",
+      "profile": "https://github.com/eugrdn",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "kuzn-ilya",
+      "name": "Ilya Kuznetsov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7905573?v=4",
+      "profile": "https://github.com/kuzn-ilya",
+      "contributions": [
+        "plugin",
+        "bug"
+      ]
+    },
+    {
+      "login": "mapkeji",
+      "name": "mapkeji",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/30983916?v=4",
+      "profile": "https://github.com/mapkeji",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ventrz",
+      "name": "Pavel Kuchin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25532752?v=4",
+      "profile": "https://github.com/ventrz",
+      "contributions": [
+        "talk",
+        "code"
+      ]
+    },
+    {
+      "login": "jonathanchrisp",
+      "name": "Jonathan Chrisp",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/406799?v=4",
+      "profile": "https://goo.gl/SqXn4t",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mmarkelov",
+      "name": "Maksim Markelov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22371328?v=4",
+      "profile": "https://github.com/mmarkelov",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "colmose",
+      "name": "Colm O'Shea",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8244036?v=4",
+      "profile": "https://github.com/colmose",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "alexanderdrobyshev",
+      "name": "Alexander Drobyshev",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3994081?v=4",
+      "profile": "https://github.com/alexanderdrobyshev",
+      "contributions": [
+        "plugin"
+      ]
+    },
+    {
+      "login": "Negan1911",
+      "name": "Nahuel Veron",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3399236?v=4",
+      "profile": "https://github.com/Negan1911",
+      "contributions": [
+        "plugin"
+      ]
+    },
+    {
+      "login": "alexandvoigt",
+      "name": "alexandvoigt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32663481?v=4",
+      "profile": "https://github.com/alexandvoigt",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "lex111",
+      "name": "Alexey Pyltsyn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4408379?v=4",
+      "profile": "http://lex111.ru",
+      "contributions": [
+        "bug"
+      ]
+    },
+  ]
+}
