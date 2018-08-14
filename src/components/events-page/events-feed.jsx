@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { compose, withProps, withStateHandlers } from 'recompose'
-import { chain, difference, either, isEmpty, pipe, uniq } from 'ramda'
+import { chain, difference, either, isEmpty, uniq } from 'ramda'
 
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'
@@ -55,19 +55,13 @@ export default compose(
     let filteredEvents = events.filter(
       either(
         () => isEmpty(selectedTags),
-        pipe(
-          eventTags,
-          difference(selectedTags),
-          isEmpty,
-        ),
+        e => e |> eventTags |> difference(selectedTags) |> isEmpty,
       ),
     )
+
     return {
       filteredEvents,
-      filteredEventsTags: pipe(
-        chain(eventTags),
-        uniq,
-      )(filteredEvents),
+      filteredEventsTags: filteredEvents |> chain(eventTags) |> uniq,
     }
   }),
 )(EventsFeed)

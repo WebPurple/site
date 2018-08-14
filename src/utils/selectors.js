@@ -1,5 +1,5 @@
 // @flow
-import { flatten, map, pipe, prop, uniq } from 'ramda'
+import { flatten, map, prop, uniq } from 'ramda'
 
 interface IEvent {
   date: Date;
@@ -7,12 +7,8 @@ interface IEvent {
 
 const viewTags = talk => (talk.tags ? talk.tags : [])
 
-export let eventTags = pipe(
-  prop('talks'),
-  map(viewTags),
-  flatten,
-  uniq,
-)
+export let eventTags = e =>
+  e |> prop('talks') |> map(viewTags) |> flatten |> uniq
 
 let getEventNode = (event: { node: * }) => event.node
 

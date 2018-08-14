@@ -178,3 +178,10 @@ exports.onCreateNode = ({
       })
   }
 }
+
+module.exports.onCreateBabelConfig = ({ actions, stage }) =>
+  actions.setBabelPlugin({
+    name: '@babel/plugin-proposal-pipeline-operator',
+    stage: stage,
+    options: { proposal: 'minimal' },
+  })
