@@ -13,7 +13,7 @@ describe('<SpeakerPage>', () => {
               slug: '',
             },
             title: '',
-            avatar: '',
+            avatar: null,
             jobTitle: '',
             organization: '',
             socialNetworks: [],

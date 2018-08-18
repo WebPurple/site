@@ -1,6 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+// @flow
+import * as React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import styled, { css } from 'styled-components'
+import Img from 'gatsby-image'
 import NoAvatarIcon from '../icons/no-avatar-icon'
 
 const avatarForm = styled.div`
@@ -17,21 +19,17 @@ const SpeakerAvatar = styled(avatarForm)`
   box-shadow: 1.2rem 1.4rem rgba(230, 33, 112, 0.5);
 `
 
-const avatarContainer = `
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20rem;
-    background-size: auto 100%;
-    transform: skewY(30deg) translateY(-3.2rem);
+const avatarContainer = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20rem;
+  background-size: auto 100%;
+  transform: skewY(30deg) translateY(-3.2rem);
 `
 
-// TODO: solve the issue with size of avatars (background-size: cover;)
 const AvatarContainer = styled.div`
-    ${avatarContainer}
-    background: url(${props => props.avatar}) center center no-repeat;
-    transform: skewY(30deg) translateY(-3.2rem);
-    background-size: cover;
+  ${avatarContainer};
 `
 
 const NoAvatarIconElement = styled.div`
@@ -45,14 +43,43 @@ const NoAvatarContainer = () => (
   </NoAvatarIconElement>
 )
 
-const Avatar = ({ avatar }) => (
+const Avatar = ({ avatar }: { avatar: ?string }) => (
   <SpeakerAvatar>
-    {avatar ? <AvatarContainer avatar={avatar} /> : <NoAvatarContainer />}
+    {avatar ? (
+      <StaticQuery
+        query={graphql`
+          query allImages {
+            allImageSharp {
+              edges {
+                node {
+                  fixed(width: 200) {
+                    originalName
+                    ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        `}>
+        {({ allImageSharp: { edges } }) => {
+          // TODO: avatar should be linked to user in onCreateNode
+          let avatarImage = edges.find(i =>
+            avatar.includes(i.node.fixed.originalName),
+          )
+
+          return avatarImage ? (
+            <AvatarContainer>
+              <Img fixed={avatarImage.node.fixed} />
+            </AvatarContainer>
+          ) : (
+            <NoAvatarContainer />
+          )
+        }}
+      </StaticQuery>
+    ) : (
+      <NoAvatarContainer />
+    )}
   </SpeakerAvatar>
 )
-
-Avatar.propTypes = {
-  avatar: PropTypes.string,
-}
 
 export default Avatar

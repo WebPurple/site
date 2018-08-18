@@ -10,18 +10,18 @@ export type SpeakerType = {
     slug: string,
   },
   title: string,
-  avatar: string | null,
-  jobTitle: string | null,
-  organization: string | null,
+  avatar: ?string,
+  jobTitle: ?string,
+  organization: ?string,
   socialNetworks: Array<SocialNetworkType>,
   talks: Array<TalkType>,
 }
 
 export type RawSpeakerType = {
   title: string,
-  avatar: string,
-  jobTitle: string | null,
-  organization: string | null,
+  avatar: ?string,
+  jobTitle: ?string,
+  organization: ?string,
   socialNetworks: Array<SocialNetworkType>,
 
   fields: {

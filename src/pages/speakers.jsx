@@ -1,10 +1,12 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
 import SpeakersList from '../components/speakers-list/speakers-list'
 import Layout from '../components/layout'
+import type { RawSpeakerType } from '../model'
 
 let SpeakersPage = ({ speakers }) => (
   <Layout>
@@ -17,6 +19,10 @@ export default mapProps(
   ({
     data: {
       allSpeakerYaml: { edges: allUsers },
+    },
+  }: {
+    data: {
+      allSpeakerYaml: { edges: { node: RawSpeakerType }[] },
     },
   }) => ({
     speakers: allUsers.map(({ node: { fields, ...speaker } }) => ({

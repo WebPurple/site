@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import LazyLoad from 'react-lazyload'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 
@@ -38,9 +37,7 @@ let SpeakerCard = ({ speaker }) => (
     justifyContent={['flex-start']}
     my={['20px', '35px']}>
     <Box is={FixAvatarHeight} pb={['20px', 0]}>
-      <LazyLoad once>
-        <Avatar avatar={speaker.avatar} />
-      </LazyLoad>
+      <Avatar avatar={speaker.avatar} />
     </Box>
 
     <Flex

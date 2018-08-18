@@ -23,6 +23,13 @@ let plugins = [
       name: 'pages',
     },
   },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: `${__dirname}/static/img`,
+      name: 'assets',
+    },
+  },
   'gatsby-plugin-sharp',
   'gatsby-transformer-sharp',
   {
