@@ -9,7 +9,7 @@ talks:
       использовать.
     links:
       presentation: 'https://kitos.github.io/redux-talk/'
-      video: 'https://youtu.be/Et68tF6nL0g'
+      video: 'https://youtube.com/embed/Et68tF6nL0g'
     speaker: Никита Кирсанов
     tags:
       - redux
@@ -19,7 +19,7 @@ talks:
   - title: Программирование это новые 90ые
     description: 'Долгожданный доклад про жизнь, борьбу и верблюда.'
     links:
-      video: 'https://youtu.be/L20h-KSKi0A'
+      video: 'https://youtube.com/embed/L20h-KSKi0A'
     speaker: Дмитрий Полисадов
     tags:
       - жизнь

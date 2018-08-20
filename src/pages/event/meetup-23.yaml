@@ -7,7 +7,7 @@ date: 2017-11-09T16:30:53.000Z
 address: 'Бар Карась, Почтовая, 60'
 talks:
   - links:
-      video: 'https://youtu.be/xOuMtZAF7Bg'
+      video: 'https://youtube.com/embed/xOuMtZAF7Bg'
     speaker: Ксения Торгаева
     tags:
       - производительность
