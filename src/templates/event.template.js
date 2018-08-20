@@ -23,6 +23,16 @@ export let pageQuery = graphql`
       fields {
         slug
 
+        vkAlbum {
+          title
+          photos {
+            sizes {
+              type
+              url
+            }
+          }
+        }
+
         talks {
           title
           description

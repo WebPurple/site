@@ -23,7 +23,7 @@ collections:
       - label: "Description"
         name: "description"
         widget: "text"
-      
+
       - label: "Date"
         name: "date"
         widget: "datetime"
@@ -81,6 +81,11 @@ collections:
 
       - label: "Link to video"
         name: "video"
+        widget: "string"
+        required: false
+
+    - label: "VK photo album"
+        name: "vkAlbum"
         widget: "string"
         required: false
 

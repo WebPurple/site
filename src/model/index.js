@@ -49,9 +49,36 @@ export interface TalkType {
   speaker: SpeakerType;
 }
 
+export type VkPhotoType =
+  | 's'
+  | 'm'
+  | 'x'
+  | 'o'
+  | 'p'
+  | 'q'
+  | 'r'
+  | 'y'
+  | 'z'
+  | 'w'
+
+export type VkPhoto = {
+  type: VkPhotoType,
+  url: string,
+  width: number,
+  height: number,
+}
+
+export type VkPhotoGroup = {
+  sizes: VkPhoto[],
+}
+
 export type EventType = {
   fields: {
     slug: string,
+    vkAlbum: ?{
+      title: string,
+      photos: VkPhotoGroup[],
+    },
   },
   title: string,
   description: string,
@@ -65,6 +92,10 @@ export type RawEventType = {
   fields: {
     slug: string,
     talks: TalkType[],
+    vkAlbum: ?{
+      title: string,
+      photos: VkPhotoGroup[],
+    },
   },
 
   title: string,

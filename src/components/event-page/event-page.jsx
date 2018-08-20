@@ -22,6 +22,7 @@ import { FacebookIcon, VkIcon } from '../icons/social'
 import { HiddenText } from '../../utils/accessibility'
 import EventTalk from './talks/talk'
 import Layout from '../layout'
+import ImageGallery from '../image-gallery'
 import type { EventType } from '../../model'
 
 const EventTitle = styled.h1`
@@ -198,6 +199,15 @@ const EventPage = ({ event }: { event: EventType }) => (
           </Box>
         ))}
       </Flex>
+
+      {event.fields.vkAlbum && (
+        <ImageGallery
+          images={event.fields.vkAlbum.photos.map(p => {
+            let thumbnail = p.sizes.find(s => s.type === 'x')
+            return thumbnail && thumbnail.url
+          })}
+        />
+      )}
 
       {new Date(event.date) < new Date() ? null : (
         <React.Fragment>

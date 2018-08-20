@@ -8,7 +8,7 @@ address: 'Бар Карась, Почтовая, 60'
 talks:
   - title: const vs let
     description: >-
-      Никита поделится своим видением того, когда всё-таки следует использовать 
+      Никита поделится своим видением того, когда всё-таки следует использовать
       const,  а когда let в javascipt
     speaker: Никита Кирсанов
     tags:
@@ -34,3 +34,4 @@ socialNetworks:
   - link: 'https://www.facebook.com/events/394587027617904/'
     type: fb
 video: '-'
+vkAlbum: 'meetup#26 10.05.2018'
