@@ -15,6 +15,7 @@ let plugins = [
       icon: 'static/android-chrome-512x512.png',
     },
   },
+  'gatsby-plugin-flow',
   'gatsby-plugin-styled-components',
   {
     resolve: 'gatsby-source-filesystem',
@@ -27,7 +28,7 @@ let plugins = [
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/static/img`,
-      name: 'assets',
+      name: 'images',
     },
   },
   'gatsby-plugin-sharp',
@@ -63,8 +64,8 @@ if (process.env.ALGOLIA_ADMIN_KEY) {
   })
 }
 
-plugins.push('gatsby-plugin-netlify')
 plugins.push('gatsby-plugin-offline')
+plugins.push('gatsby-plugin-netlify') // make sure to keep it last in the array
 
 module.exports = {
   siteMetadata: {
