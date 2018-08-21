@@ -56,6 +56,21 @@ let onCreateNode = ({
     case 'SpeakerYaml':
       addSlugField()
 
+      let images = getNodes().filter(
+        n => n.internal.type === 'File' && /jpg/.test(n.internal.extension),
+      )
+      let userAvatar = images.find(
+        i => node.avatar && i.publicURL === node.avatar,
+      )
+
+      if (userAvatar) {
+        createNodeField({
+          node,
+          name: 'avatar___NODE',
+          value: userAvatar.id,
+        })
+      }
+
       let userTalks = getNodes()
         .filter(n => n.internal.type === 'EventYaml')
         .filter(event => event.talks.some(t => t.speaker === node.title))
