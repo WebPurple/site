@@ -61,6 +61,19 @@ export type VkPhotoType =
   | 'z'
   | 'w'
 
+export let typesOrderedBySize = [
+  's',
+  'm',
+  'x',
+  'o',
+  'p',
+  'q',
+  'r',
+  'y',
+  'z',
+  'w',
+]
+
 export type VkPhoto = {
   type: VkPhotoType,
   url: string,

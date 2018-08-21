@@ -201,12 +201,7 @@ const EventPage = ({ event }: { event: EventType }) => (
       </Flex>
 
       {event.fields.vkAlbum && (
-        <ImageGallery
-          images={event.fields.vkAlbum.photos.map(p => {
-            let thumbnail = p.sizes.find(s => s.type === 'x')
-            return thumbnail && thumbnail.url
-          })}
-        />
+        <ImageGallery images={event.fields.vkAlbum.photos} />
       )}
 
       {new Date(event.date) < new Date() ? null : (

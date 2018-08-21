@@ -1,13 +1,17 @@
 // @flow
 import * as React from 'react'
+import * as R from 'ramda'
 import Masonry from 'react-masonry-component'
 import styled, { withTheme } from 'styled-components'
 import { Flex, Box } from 'grid-styled'
+import Lightbox from 'react-images'
 
 import { Media } from '../utils/css-utils'
 import Button from './common/button'
+import type { VkPhotoGroup } from '../model'
+import { typesOrderedBySize } from '../model'
 
-const ImagesWrapper = styled(({ children, className }) => (
+let ImagesWrapper = styled(({ children, className }) => (
   <React.Fragment>
     <Media.MobileOnly>
       <ul className={className}>{children}</ul>
@@ -27,30 +31,40 @@ const ImagesWrapper = styled(({ children, className }) => (
   margin: 0;
 `
 
-const ImageWrapper = styled.li`
-  position: relative;
+let ImageStyled = styled.img`
+  max-width: 100%;
+  transition: transform 0.3s;
+`
+
+let ImageWrapper = styled.li`
   filter: grayscale(1);
-  background: url(${props => props.image}) no-repeat center;
-  background-size: 100% 100%;
-  transition: background-size 0.3s;
   overflow: hidden;
-  &:first-child {
-    margin-top: 0;
-  }
 
   &:hover {
-    background-size: 110% 110%;
+    ${ImageStyled} {
+      transform: scale(1.1);
+    }
   }
 `
 
-const ImageStyled = styled.img`
-  max-width: 100%;
-  visibility: hidden;
-`
+let maxImage = sizes =>
+  R.reduce(
+    R.maxBy(({ type }) => typesOrderedBySize.indexOf(type)),
+    sizes[0],
+    sizes,
+  )
 
-type ImageListProps = { images: string[], imagesPerPage: number, theme: any }
+type ImageListProps = {
+  images: VkPhotoGroup[],
+  imagesPerPage: number,
+  theme: any,
+}
 
-type ImageListState = { count: number }
+type ImageListState = {
+  count: number,
+  lightboxIsOpen: boolean,
+  currentImage: number,
+}
 
 class ImageGallery extends React.Component<ImageListProps, ImageListState> {
   static defaultProps = {
@@ -62,27 +76,54 @@ class ImageGallery extends React.Component<ImageListProps, ImageListState> {
 
     this.state = {
       count: this.props.imagesPerPage,
+      lightboxIsOpen: false,
+      currentImage: 0,
     }
   }
+
+  toggleLightbox = (v, i = 0) =>
+    this.setState({ lightboxIsOpen: v, currentImage: i })
+
+  next = () =>
+    this.setState(({ currentImage }) => ({ currentImage: currentImage + 1 }))
+
+  prev = () =>
+    this.setState(({ currentImage }) => ({ currentImage: currentImage - 1 }))
 
   showMore = () =>
     this.setState({ count: this.state.count + this.props.imagesPerPage })
 
   render() {
+    let images = this.props.images.map(({ sizes }) => ({
+      src: maxImage(sizes).url,
+      srcSet: sizes.map(s => `${s.url} ${s.width}w`).join(', '),
+    }))
+
     return (
       <div>
         <Box is={ImagesWrapper} mt={['3.6rem', '3.6rem', '10rem']}>
-          {this.props.images.slice(0, this.state.count).map(url => (
+          {images.slice(0, this.state.count).map(({ src, srcSet }, i) => (
             <Box
               is={ImageWrapper}
-              image={url}
-              key={url}
+              onClick={() => this.toggleLightbox(true, i)}
+              key={src}
               width={['100%', '16.4rem', '20rem', '23rem']}
               mb="2rem">
-              <ImageStyled src={url} role="presentation" />
+              <ImageStyled src={src} srcSet={srcSet} role="presentation" />
             </Box>
           ))}
         </Box>
+
+        <Lightbox
+          showThumbnails
+          images={images}
+          isOpen={this.state.lightboxIsOpen}
+          currentImage={this.state.currentImage}
+          onClickNext={this.next}
+          onClickPrev={this.prev}
+          onClickThumbnail={i => this.setState({ currentImage: i })}
+          onClose={() => this.toggleLightbox(false)}
+        />
 
         {this.props.images.length > this.state.count ? (
           <Flex my={['3.6rem', '6.4rem']} justifyContent="center">

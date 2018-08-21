@@ -29,6 +29,7 @@ export let pageQuery = graphql`
             sizes {
               type
               url
+              width
             }
           }
         }
