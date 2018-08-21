@@ -84,7 +84,7 @@ collections:
         widget: "string"
         required: false
 
-    - label: "VK photo album"
+      - label: "VK photo album"
         name: "vkAlbum"
         widget: "string"
         required: false
