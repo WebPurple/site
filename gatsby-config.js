@@ -64,8 +64,12 @@ if (process.env.ALGOLIA_ADMIN_KEY) {
   })
 }
 
-plugins.push('gatsby-plugin-offline')
-plugins.push('gatsby-plugin-netlify') // make sure to keep it last in the array
+plugins = [
+  ...plugins,
+  'gatsby-plugin-offline',
+  'gatsby-plugin-webpack-size',
+  'gatsby-plugin-netlify', // make sure to keep it last in the array
+]
 
 module.exports = {
   siteMetadata: {
