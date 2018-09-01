@@ -29,31 +29,25 @@ let injectResponsiveOption = option => ({ responsiveOptions: config }) => {
   return `${responsiveString} display: initial;`
 }
 
-let PastEventsContainer = styled.section`
-  padding-bottom: 6rem;
-  ${media.tablet`padding-bottom: 7rem;`};
-  ${media.desktop`padding-bottom: 10rem`};
-`
-
 let PastEventsGrid = styled.div`
   width: 100%;
   display: grid;
   justify-content: center;
   margin-top: 3rem;
-  grid-template-columns: repeat(1, ${props => props.width / 10}rem);
+  grid-template-columns: repeat(1, 100%);
   grid-auto-rows: ${props => calculateHeight(props.width) / 30}rem;
   ${media.phone`
     margin-top: 4rem;
-    grid-template-columns: repeat(2, ${props => props.width / 20}rem);
+    grid-template-columns: repeat(2, 50%);
     grid-auto-rows: ${props => calculateHeight(props.width / 2) / 30}rem;
   `};
   ${media.tablet`
-    grid-template-columns: repeat(3, ${props => props.width / 30}rem);
+    grid-template-columns: repeat(3, calc(100% / 3));
     grid-auto-rows: ${props => calculateHeight(props.width / 3) / 30}rem;
   `};
   ${media.desktop`
     margin-top: 8rem;
-    grid-template-columns: repeat(4, ${props => props.width / 40}rem);
+    grid-template-columns: repeat(4, 25%);
     grid-auto-rows: ${props => calculateHeight(props.width / 4) / 30}rem;
   `};
 `
@@ -176,7 +170,7 @@ let PastEvents = ({ talks, theme }) => {
   )
 
   return (
-    <PastEventsContainer>
+    <Box pb={['6rem', '7rem', '10rem']}>
       <Box p={['6rem 2rem 0 2rem', '9rem 7rem 0 7rem', '10rem 10rem 0 10rem']}>
         <BlockHeader>Passed events</BlockHeader>
       </Box>
@@ -237,7 +231,7 @@ let PastEvents = ({ talks, theme }) => {
       <ArrowLinkWrapper>
         <ArrowLink to="/events?show=past">More Events</ArrowLink>
       </ArrowLinkWrapper>
-    </PastEventsContainer>
+    </Box>
   )
 }
 
