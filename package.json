@@ -33,7 +33,6 @@
     "moment": "^2.22.0",
     "netlify-cms": "^2.0.6",
     "prismjs": "^1.15.0",
-    "prop-types": "^15.6.0",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

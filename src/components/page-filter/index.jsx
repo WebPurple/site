@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import styled from 'styled-components'
 
 import { media } from '../../utils/css-utils'
@@ -21,7 +21,8 @@ const SearchWrapper = styled.label`
 
 const SearchInput = styled.input`
   padding: 1.6rem 0;
-  ${media.desktop`padding: 2.4rem 0;`} border: 0;
+  ${media.desktop`padding: 2.4rem 0`};
+  border: 0;
   font-size: 2.4rem;
   line-height: 2.8rem;
   outline: none;
@@ -44,16 +45,14 @@ const StyledSearchIcon = styled(SearchIcon)`
   fill: #ccc;
 `
 
-export const Search = props => (
+export const Search = (props: {|
+  placeholder: string,
+  onFocus: Function,
+  onBlur: Function,
+  onChange: Function,
+|}) => (
   <SearchWrapper>
     <SearchInput type="text" {...props} />
     <StyledSearchIcon />
   </SearchWrapper>
 )
-
-Search.propTypes = {
-  placeholder: PropTypes.string,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-}
