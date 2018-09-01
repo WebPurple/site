@@ -8,7 +8,8 @@ export default styled.button`
   color: ${props => props.color || props.theme.lipstick};
   cursor: pointer;
   display: flex;
-  font: bold ${props => props.fontSize || '1.8em'} Rubik;
+  font-weight: bold;
+  font-size: ${props => props.fontSize || '1.8em'};
   outline: none;
   padding: 0;
   text-transform: uppercase;

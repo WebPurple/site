@@ -36,7 +36,8 @@ const Code = styled.pre`
 
 const Link = ArrowButton.withComponent('a').extend`
   color: black;
-  font: bold 1.8em Rubik;
+  font-weight: bold;
+  font-size: 1.8em;
 `
 
 const codeBlock = (code: string): string => '```\n' + code + '\n```'
