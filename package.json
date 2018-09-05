@@ -10,7 +10,7 @@
     "downshift": "^2.0.3",
     "gatsby": "^2.0.0-rc.11",
     "gatsby-image": "^2.0.0-rc.1",
-    "gatsby-plugin-algolia": "0.0.4",
+    "gatsby-plugin-algolia": "0.1.0",
     "gatsby-plugin-flow": "^1.0.1-rc.1",
     "gatsby-plugin-google-analytics": "^2.0.0-rc.1",
     "gatsby-plugin-manifest": "^2.0.2-rc.1",
