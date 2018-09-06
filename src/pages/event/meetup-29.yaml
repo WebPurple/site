@@ -23,6 +23,9 @@ talks:
       Расскажу о том, как сделать такой клёвый сайт, как сайт нашего сообщества.
       О подходе JAMStack, о такой тулзе как Gatsby, и о том, как нужно делать
       сайты в 2к18.
+    links:
+      presentation: >-
+        https://docs.google.com/presentation/d/e/2PACX-1vSTeeTO7BJVbYu2scV55DtnLzB7LI9fWVY5Kyoao-yO7yBh_GtFaQOSA5QoM1q30SsPY2AZsznun-Ro/pub?start=false&loop=false&delayms=3000
     speaker: Никита Кирсанов
     tags:
       - jamstack
