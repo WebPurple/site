@@ -10,6 +10,8 @@ talks:
       поделится своим опытом и приоткроет дымную вейп-завесу в хипстерский мир
       работы в Берлинском стартапе и расскажет про инструмент для создания и
       управления инфраструктурой контента, над которым работает в Contentful. 
+    links:
+      video: 'https://www.youtube.com/embed/QLXWhxd85Lc'
     speaker: Таня Бессонова
     tags:
       - релокация
@@ -26,6 +28,7 @@ talks:
     links:
       presentation: >-
         https://docs.google.com/presentation/d/e/2PACX-1vSTeeTO7BJVbYu2scV55DtnLzB7LI9fWVY5Kyoao-yO7yBh_GtFaQOSA5QoM1q30SsPY2AZsznun-Ro/pub?start=false&loop=false&delayms=3000
+      video: 'https://www.youtube.com/embed/QLXWhxd85Lc?t=49m4s'
     speaker: Никита Кирсанов
     tags:
       - jamstack
