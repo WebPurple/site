@@ -11,6 +11,8 @@ talks:
       работы в Берлинском стартапе и расскажет про инструмент для создания и
       управления инфраструктурой контента, над которым работает в Contentful. 
     links:
+      presentation: >-
+        https://docs.google.com/presentation/d/1eYiByqS6f_sSC5EyQn3CWg_D-tY8FsiUpJPIW5YU5YI/edit#slide=id.p
       video: 'https://www.youtube.com/embed/QLXWhxd85Lc'
     speaker: Таня Бессонова
     tags:
