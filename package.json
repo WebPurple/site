@@ -16,7 +16,7 @@
     "gatsby-plugin-manifest": "^2.0.2-rc.1",
     "gatsby-plugin-netlify": "^2.0.0-rc.2",
     "gatsby-plugin-netlify-cms": "^3.0.0-rc.1",
-    "gatsby-plugin-offline": "^1.0.18",
+    "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0-rc.1",
     "gatsby-plugin-sharp": "^2.0.0-rc.3",
     "gatsby-plugin-sitemap": "^2.0.0-rc.1",
