@@ -154,7 +154,7 @@ const EventPage = ({ event }: { event: EventType }) => (
           <Flex flexDirection="column" flex={3}>
             <InfoText itemProp="location">
               <PlaceholderIconStyled />
-              {event.address || 'Уточняется'}
+              <span itemProp="address">{event.address || 'Уточняется'}</span>
             </InfoText>
             <InfoText itemProp="startDate">
               <ClockIconStyled />
