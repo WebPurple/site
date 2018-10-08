@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { width } from 'styled-system'
 
 export let Popup = styled.div`
@@ -13,7 +13,19 @@ export let Popup = styled.div`
 
 export let Arrow = styled.div`
   position: absolute;
-  top: 0;
+  ${props =>
+    props.placement === 'bottom'
+      ? css`
+          margin: -10px 0 0 0;
+          top: 0;
+          bottom: auto;
+        `
+      : css`
+          transform: rotate(180deg);
+          margin: 0 0 -10px 0;
+          top: auto;
+          bottom: 0;
+        `};
   width: 20px;
   height: 10px;
 

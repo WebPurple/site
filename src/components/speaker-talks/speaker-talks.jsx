@@ -60,7 +60,11 @@ const SpeakerTalks = ({ talks, visible, toggle }) => {
                   ))}
                 </Flex>
 
-                <Arrow innerRef={arrowProps.ref} style={arrowProps.style} />
+                <Arrow
+                  innerRef={arrowProps.ref}
+                  style={arrowProps.style}
+                  placement={placement}
+                />
               </Popup>
             )}
           </Popper>
