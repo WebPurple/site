@@ -7,8 +7,8 @@ import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
 import moment from 'moment'
-import VK, { Like } from 'react-vk'
-import FacebookProvider, { Like as FbLike } from 'react-facebook'
+import VK, { Like as VkLike } from 'react-vk'
+import { FacebookProvider, Like as FbLike } from 'react-facebook'
 
 import { TagList } from '../components/common/tag'
 import HTMLContent from '../components/blog/HTMLContent'
@@ -81,7 +81,7 @@ let BlogPost = ({ post }) => (
           <BrowserOnly>
             <Flex alignItems="center" justifyContent="flex-end" my="2rem">
               <VK apiId={5360165} options={{ version: 152 }}>
-                <Like
+                <VkLike
                   options={{ type: 'mini', height: 30 }}
                   pageId={post.slug}
                 />
