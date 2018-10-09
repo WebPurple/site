@@ -5,8 +5,8 @@ import moment from 'moment'
 import { fontSize, height } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
-import VK, { Like } from 'react-vk'
-import FacebookProvider, { Like as FbLike } from 'react-facebook'
+import VK, { Like as VkLike } from 'react-vk'
+import { FacebookProvider, Like as FbLike } from 'react-facebook'
 import canUseDom from 'can-use-dom'
 import { DiscussionEmbed } from 'disqus-react'
 
@@ -169,7 +169,7 @@ const EventPage = ({ event }: { event: EventType }) => (
           <BrowserOnly>
             <Flex alignItems="center">
               <VK apiId={5360165} options={{ version: 152 }}>
-                <Like
+                <VkLike
                   options={{ type: 'mini', height: 30 }}
                   pageId={event.fields.slug}
                 />
