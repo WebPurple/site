@@ -8,11 +8,11 @@ describe('tag.js', () => {
     it('should render title if one was passed', () => {
       expect(
         renderWithTheme(<TagList label="42" tags={[]} />)
-          .find('span')
+          .find('button')
           .text(),
-      ).toBe('42')
+      ).toBe('42');
 
-      expect(renderWithTheme(<TagList tags={[]} />).find('span').length).toBe(0)
+      expect(renderWithTheme(<TagList tags={[]} />).find('button').length).toBe(0)
     })
   })
-})
+});

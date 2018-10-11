@@ -16,27 +16,62 @@ export const Tag = styled.li`
   &.active {
     opacity: 1;
   }
-`
+`;
 
-const TagListLabel = styled.span`
+const TagListLabel = styled.button`
   font-size: 1.8rem;
   color: ${props => props.theme.greyishBrown};
   margin-right: 2.4rem;
-`
+  background: none;
+  border: none;
+  position: relative;
+  padding-right: 1.8rem;
+  cursor: pointer;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: .4rem solid #545454;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    top: .4rem;
+    right: .4rem;
+    transform: rotate(45deg);
+    transform-origin: 75% 75%;
+  }
+  &.toggled:after {
+    transform: rotate(225deg);
+  }
+`;
 
-const tagColors = ['lipstick', 'vividPurple', 'rouge', 'warmPurple']
+const tagColors = ['lipstick', 'vividPurple', 'rouge', 'warmPurple'];
 
 const Tags = styled.ul`
   list-style: none;
   display: inline-flex;
   flex-wrap: wrap;
   padding: 0;
-`
+	max-height: 9999px;
+  transition: max-height .8s cubic-bezier(0.5, 0, 1, 0);
+  overflow: hidden;
+  &.toggled {
+    max-height: 0px;
+    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    transition-delay: -.1s;
+  }
+`;
+
+const toggleTagList = e => {
+  e.target.classList.toggle('toggled');
+  e.target.nextElementSibling.classList.toggle('toggled')
+};
 
 export const TagList = withTheme(
   ({ tags, selectedTags, label, theme, onTagClick }) => (
     <div>
-      {label && <TagListLabel>{label}</TagListLabel>}
+      {label && <TagListLabel onClick={toggleTagList}>{label}</TagListLabel>}
 
       {tags &&
         tags.length > 0 && (
@@ -54,16 +89,16 @@ export const TagList = withTheme(
         )}
     </div>
   ),
-)
+);
 
 TagList.propTypes = {
   tags: PropTypes.arrayOf(String).isRequired,
   selectedTags: PropTypes.arrayOf(PropTypes.string),
   label: PropTypes.string,
   onTagClick: PropTypes.func,
-}
+};
 
 TagList.defaultProps = {
   selectedTags: [],
   onTagClick: () => null,
-}
+};
