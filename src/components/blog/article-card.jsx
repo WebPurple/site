@@ -7,6 +7,9 @@ import { Flex, Box } from 'grid-styled'
 
 import { TagList } from '../common/tag'
 import RoundImg from '../round-img'
+import { getNoun } from '../../utils/language-utils'
+
+const getCorrectTimeToReadNoun = getNoun('минута', 'минуты', 'минут')
 
 let Card = styled.div`
   box-shadow: 0 0 8px 1px #bbb;
@@ -68,7 +71,15 @@ let BackgroundImage = styled.div`
 let ArticleCard = ({ post }) => (
   <Box is={Card} p="2.5rem">
     <header>
-      <Date>{moment(post.date).format('ll')}</Date>
+      <Flex justifyContent="space-between">
+        <Date>{moment(post.date).format('ll')}</Date>
+        <Box fontSize="1.4rem">
+          &#8986;&nbsp;
+          <span>{`${post.timeToRead} ${getCorrectTimeToReadNoun(
+            post.timeToRead,
+          )}`}</span>
+        </Box>
+      </Flex>
       <Box is="h2" mt="3.6rem">
         <StyledLink to={post.link}>{post.title}</StyledLink>
       </Box>
@@ -106,6 +117,7 @@ ArticleCard.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    timeToRead: PropTypes.string,
     link: PropTypes.string.isRequired,
     excerpt: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string),

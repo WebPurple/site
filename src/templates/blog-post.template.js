@@ -15,6 +15,9 @@ import HTMLContent from '../components/blog/HTMLContent'
 import RoundImg from '../components/round-img'
 import { BrowserOnly } from '../utils/css-utils'
 import Layout from '../components/layout'
+import { getNoun } from '../utils/language-utils'
+
+const getCorrectTimeToReadNoun = getNoun('минута', 'минуты', 'минут')
 
 let Header = styled.header`
   background-blend-mode: overlay;
@@ -61,6 +64,12 @@ let BlogPost = ({ post }) => (
 
             <Box fontSize={['1.4rem', '1.6rem']} itemProp="dateCreated">
               {moment(post.date).format('LLL')}
+            </Box>
+            <Box fontSize="1.4rem">
+              &#8986;&nbsp;
+              <span>{`${post.timeToRead} ${getCorrectTimeToReadNoun(
+                post.timeToRead,
+              )}`}</span>
             </Box>
           </Flex>
         </Flex>
@@ -118,12 +127,14 @@ export default mapProps(({ data: { markdownRemark } }) => ({
     excerpt: markdownRemark.excerpt,
     slug: markdownRemark.fields.slug,
     author: markdownRemark.fields.author,
+    timeToRead: markdownRemark.timeToRead,
   },
 }))(BlogPost)
 
 export let pageQuery = graphql`
   query BlogPost($id: String!) {
     markdownRemark(id: { eq: $id }) {
+      timeToRead
       html
       excerpt(pruneLength: 400)
       fields {
