@@ -45,7 +45,7 @@ export default mapProps(({ data: { allMarkdownRemark: { edges } } }) => ({
 
 export let pageQuery = graphql`
   query AllPosts {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           id
