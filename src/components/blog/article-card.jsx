@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import format from 'date-fns/format'
+import parse from 'date-fns/parse'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
@@ -72,7 +73,7 @@ let ArticleCard = ({ post }) => (
   <Box is={Card} p="2.5rem">
     <header>
       <Flex justifyContent="space-between">
-        <Date>{moment(post.date).format('ll')}</Date>
+        <Date>{format(parse(post.date), 'MMM DD, YYYY')}</Date>
         <Box fontSize="1.4rem">
           &#8986;&nbsp;
           <span>{`${post.timeToRead} ${getCorrectTimeToReadNoun(

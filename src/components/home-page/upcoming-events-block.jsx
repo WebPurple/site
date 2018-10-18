@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
 import { Box } from 'grid-styled'
-import moment from 'moment'
+import parse from 'date-fns/parse'
+import format from 'date-fns/format'
 
 import { media, tColor } from '../../utils/css-utils'
 import ClockIcon from '../icons/clock-icon'
@@ -205,7 +206,9 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
         <ClockIcon color={theme.lipstick} opaque />
 
         <EventText>
-          {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+          {event.date
+            ? format(parse(event.date), 'MMMM D, YYYY h:mm A')
+            : 'Уточняется'}
         </EventText>
       </EventInfoRow>
     </EventInfo>
