@@ -6,7 +6,8 @@ import { Box, Flex } from 'grid-styled'
 import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
-import moment from 'moment'
+import parse from 'date-fns/parse'
+import format from 'date-fns/format'
 import VK, { Like as VkLike } from 'react-vk'
 import { FacebookProvider, Like as FbLike } from 'react-facebook'
 
@@ -63,7 +64,7 @@ let BlogPost = ({ post }) => (
             </Box>
 
             <Box fontSize={['1.4rem', '1.6rem']} itemProp="dateCreated">
-              {moment(post.date).format('LLL')}
+              {format(parse(post.date), 'MMMM D, YYYY h:mm A')}
             </Box>
             <Box fontSize="1.4rem">
               &#8986;&nbsp;

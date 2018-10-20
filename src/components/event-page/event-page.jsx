@@ -1,7 +1,8 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
+import format from 'date-fns/format'
+import parse from 'date-fns/parse'
 import { fontSize, height } from 'styled-system'
 import { Box, Flex } from 'grid-styled'
 import Helmet from 'react-helmet'
@@ -159,7 +160,7 @@ const EventPage = ({ event }: { event: EventType }) => (
             <InfoText itemProp="startDate">
               <ClockIconStyled />
               {event.date
-                ? moment(event.date).format('D MMMM YYYY [at] HH:mm')
+                ? format(parse(event.date), 'D MMMM YYYY [at] HH:mm')
                 : 'Уточняется'}
             </InfoText>
           </Flex>

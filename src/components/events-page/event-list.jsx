@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
 import { Box } from 'grid-styled'
-import moment from 'moment'
+import parse from 'date-fns/parse'
+import format from 'date-fns/format'
 
 import { TagList } from '../common/tag'
 import { ClockIcon, PlaceholderIcon } from '../icons'
@@ -81,7 +82,9 @@ const EventList = ({ events, theme, onTagClick, selectedTags }) => (
           <Info>
             <ClockIcon style={{ marginRight: '1.6rem' }} />
             <time>
-              {event.date ? moment(event.date).format('LLL') : 'Уточняется'}
+              {event.date
+                ? format(parse(event.date), 'MMMM D, YYYY h:mm A')
+                : 'Уточняется'}
             </time>
           </Info>
 

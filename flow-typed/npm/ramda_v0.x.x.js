@@ -1,5 +1,5 @@
-// flow-typed signature: 6fd4e29e6b460431005b1a6d591b9d6e
-// flow-typed version: 199a0f315c/ramda_v0.x.x/flow_>=v0.62.x
+// flow-typed signature: 7c5b25c64273041b5f87d9f26aff4249
+// flow-typed version: 806305bf5c/ramda_v0.x.x/flow_>=v0.62.x <=v0.81.x
 
 /* eslint-disable no-unused-vars, no-redeclare */
 
@@ -345,6 +345,82 @@ declare module ramda {
       bc: UnaryFn<B, C>,
     ) => UnaryFn<A, C>) &
     (<A, B>(ab: UnaryFn<A, B>) => UnaryFn<A, B>);
+  
+  declare type PipeK = (<A, B, C, D, E, F, G, H, I, J, K, L: Monad<K>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: UnaryMonadFn<H, I>,
+        ij: UnaryMonadFn<I, J>,
+        jk: J => L,
+    ) => A => L) &
+    (<A, B, C, D, E, F, G, H, I, J, K: Monad<J>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: UnaryMonadFn<H, I>,
+        ij: I => K,
+    ) => A => K) &
+    (<A, B, C, D, E, F, G, H, I, J: Monad<I>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: H => J,
+    ) => A => J) &
+    (<A, B, C, D, E, F, G, H, I: Monad<H>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: G => I,
+    ) => A => I) &
+    (<A, B, C, D, E, F, G, H: Monad<G>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: F => H,
+    ) => A => H) &
+    (<A, B, C, D, E, F, G: Monad<F>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: E => G,
+    ) => A => G) &
+    (<A, B, C, D, E, F: Monad<E>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: D => F,
+    ) => A => F) &
+    (<A, B, C, D, E: Monad<D>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: C => E,
+    ) => A => E) &
+    (<A, B, C, D: Monad<C>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: B => D,
+    ) => A => D) &
+    (<A, B, C: Monad<B>>(
+        ab: A => C
+    ) => A => C);
 
   declare type PipeP = (<A, B, C, D, E, F, G>(
     ab: UnaryPromiseFn<A, B>,
@@ -432,8 +508,8 @@ declare module ramda {
       fn: UnaryPredicateFn<V>,
     ) => (xs: T) => T)
 
-  declare class Monad<T> {
-    chain: Function;
+  declare interface Monad<A> {
+    chain<B>(f: A => Monad<B>): Monad<B>;
   }
 
   declare class Semigroup<T> {}
@@ -465,6 +541,7 @@ declare module ramda {
 
   declare var compose: Compose;
   declare var pipe: Pipe;
+  declare var pipeK: PipeK;
   declare var pipeP: PipeP;
   declare var curry: Curry;
   declare function curryN(
@@ -1368,7 +1445,7 @@ declare module ramda {
   declare function invert(o: Object): { [k: string]: Array<string> };
   declare function invertObj(o: Object): { [k: string]: string };
 
-  declare function keys(o: Object): Array<string>;
+  declare function keys(o: ?Object): Array<string>;
 
   declare type Lens = <T, V>(x: T) => V;
 
@@ -1752,7 +1829,8 @@ declare module ramda {
 
   declare var partial: Partial;
   // TODO partialRight
-  // TODO pipeK
+
+  declare type UnaryMonadFn<A, R> = UnaryFn<A, Monad<R>>;
 
   declare function tap<T>(fn: (x: T) => any): (x: T) => T;
   declare function tap<T>(fn: (x: T) => any, x: T): T;
