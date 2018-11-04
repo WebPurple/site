@@ -80,7 +80,7 @@ module.exports = {
   },
   plugins,
   mapping: {
-    // 'MarkdownRemark.frontmatter.author': 'SpeakerYaml',
+    'MarkdownRemark.frontmatter.author': 'SpeakerYaml',
     'EventYaml.vkAlbum': 'VkAlbum',
     // 'EventYaml.talks.speaker': 'SpeakerYaml',
   },

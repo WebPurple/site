@@ -20,12 +20,6 @@ let onCreateNode = ({
   switch (node.internal.type) {
     case 'MarkdownRemark': // blog post
       addSlugField()
-
-      createNodeField({
-        node,
-        name: 'author',
-        value: getUser(node.frontmatter.author),
-      })
       break
     case 'EventYaml':
       addSlugField()

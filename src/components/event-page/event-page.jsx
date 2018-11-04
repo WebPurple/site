@@ -201,9 +201,7 @@ const EventPage = ({ event }: { event: EventType }) => (
         ))}
       </Flex>
 
-      {event.vkAlbum && (
-        <ImageGallery images={event.vkAlbum.photos} />
-      )}
+      {event.vkAlbum && <ImageGallery images={event.vkAlbum.photos} />}
 
       {new Date(event.date) < new Date() ? null : (
         <React.Fragment>

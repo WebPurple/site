@@ -60,7 +60,7 @@ let BlogPost = ({ post }) => (
 
           <Flex flexDirection="column" color="white" ml="1.6rem">
             <Box fontSize={['1.8rem', '2.4rem']} mb=".8rem" itemProp="author">
-              {post.author.title}
+              {post.author.id}
             </Box>
 
             <Box fontSize={['1.4rem', '1.6rem']} itemProp="dateCreated">
@@ -127,7 +127,6 @@ export default mapProps(({ data: { markdownRemark } }) => ({
     content: markdownRemark.html,
     excerpt: markdownRemark.excerpt,
     slug: markdownRemark.fields.slug,
-    author: markdownRemark.fields.author,
     timeToRead: markdownRemark.timeToRead,
   },
 }))(BlogPost)
@@ -140,16 +139,16 @@ export let pageQuery = graphql`
       excerpt(pruneLength: 400)
       fields {
         slug
-        author {
-          title
-          avatar
-        }
       }
       frontmatter {
         title
         date
         tags
         background
+        author {
+          id
+          avatar
+        }
       }
     }
   }

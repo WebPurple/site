@@ -106,7 +106,7 @@ let ArticleCard = ({ post }) => (
         to={post.author.fields.slug.replace('speaker', 'speakers')}>
         <RoundImg size="3.6rem" bg={post.author.avatar} />
         <Box is={Author} ml="1.2rem">
-          {post.author.title}
+          {post.author.id}
         </Box>
       </Flex>
       <TagList tags={post.tags} />
@@ -126,7 +126,7 @@ ArticleCard.propTypes = {
       fields: PropTypes.shape({
         slug: PropTypes.string.isRequired,
       }).isRequired,
-      title: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
       avatar: PropTypes.string,
     }),
   }),

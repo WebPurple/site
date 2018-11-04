@@ -38,7 +38,6 @@ export default mapProps(({ data: { allMarkdownRemark: { edges } } }) => ({
       ...p.node,
       ...p.node.frontmatter,
       link: p.node.fields.slug,
-      author: p.node.fields.author,
     }))
     .filter(p => !p.draft),
 }))(BlogPage)
@@ -53,13 +52,6 @@ export let pageQuery = graphql`
           excerpt(pruneLength: 250)
           fields {
             slug
-            author {
-              fields {
-                slug
-              }
-              title
-              avatar
-            }
           }
           frontmatter {
             title
@@ -69,6 +61,14 @@ export let pageQuery = graphql`
             bgPosX
             bgPosY
             draft
+
+            author {
+              fields {
+                slug
+              }
+              id
+              avatar
+            }
           }
         }
       }
