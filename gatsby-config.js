@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 let algoliaQueries = require('./src/algolia-queries')
 
 let plugins = [

@@ -2,14 +2,7 @@ const crypto = require(`crypto`)
 const R = require('ramda')
 const { VK } = require('vk-io')
 
-const { VK_GROUP_ID, VK_TOKEN } =
-  process.env.NODE_ENV === 'production'
-    ? process.env
-    : {
-        VK_GROUP_ID: '-94098151',
-        VK_TOKEN:
-          'a5e87d46a5e87d46a5e87d4688a58efa77aa5e8a5e87d46fe28c43a9c89a48e02cce22e',
-      }
+const { VK_GROUP_ID, VK_TOKEN } = process.env
 
 let vk = new VK()
 
