@@ -77,7 +77,9 @@ module.exports = [
             
             frontmatter {
               title
-              author
+              author {
+                id
+              }
             }
             
             headings {
@@ -96,6 +98,7 @@ module.exports = [
           objectID: fields.slug,
           slug: fields.slug,
           ...frontmatter,
+          author: frontmatter.author.id,
           headings: headings.map(({ value }) => value),
           content: excerpt,
         }),
