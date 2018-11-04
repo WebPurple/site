@@ -27,7 +27,7 @@ let sourceNodes = async ({ actions: { createNode }, createNodeId }) => {
   albumsWithPhotos
     .map(album => ({
       ...album,
-      id: createNodeId(`${album.id}`),
+      id: `album${album.owner_id}_${album.id}`,
       parent: null,
       children: [],
       internal: {

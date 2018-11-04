@@ -27,20 +27,6 @@ let onCreateNode = ({
         value: getUser(node.frontmatter.author),
       })
       break
-    case 'VkAlbum':
-      let event = getNodes().find(
-        n => n.internal.type === 'EventYaml' && node.title === n.vkAlbum,
-      )
-
-      if (event) {
-        createNodeField({
-          node: event,
-          name: 'vkAlbum___NODE',
-          value: node.id,
-        })
-      }
-
-      break
     case 'EventYaml':
       addSlugField()
 

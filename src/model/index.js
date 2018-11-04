@@ -88,16 +88,16 @@ export type VkPhotoGroup = {
 export type EventType = {
   fields: {
     slug: string,
-    vkAlbum: ?{
-      title: string,
-      photos: VkPhotoGroup[],
-    },
   },
   title: string,
   description: string,
   address: string,
   date: string,
   socialNetworks: SocialNetworkType[],
+  vkAlbum: ?{
+    title: string,
+    photos: VkPhotoGroup[],
+  },
   talks: TalkType[],
 }
 
@@ -105,10 +105,6 @@ export type RawEventType = {
   fields: {
     slug: string,
     talks: TalkType[],
-    vkAlbum: ?{
-      title: string,
-      photos: VkPhotoGroup[],
-    },
   },
 
   title: string,
@@ -116,4 +112,8 @@ export type RawEventType = {
   address: string,
   date: string,
   socialNetworks: SocialNetworkType[],
+  vkAlbum: ?{
+    title: string,
+    photos: VkPhotoGroup[],
+  },
 }

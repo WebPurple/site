@@ -23,17 +23,6 @@ export let pageQuery = graphql`
       fields {
         slug
 
-        vkAlbum {
-          title
-          photos {
-            sizes {
-              type
-              url
-              width
-            }
-          }
-        }
-
         talks {
           title
           description
@@ -60,6 +49,15 @@ export let pageQuery = graphql`
       socialNetworks {
         type
         link
+      }
+      vkAlbum {
+        photos {
+          sizes {
+            type
+            url
+            width
+          }
+        }
       }
     }
   }

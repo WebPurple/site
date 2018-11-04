@@ -201,8 +201,8 @@ const EventPage = ({ event }: { event: EventType }) => (
         ))}
       </Flex>
 
-      {event.fields.vkAlbum && (
-        <ImageGallery images={event.fields.vkAlbum.photos} />
+      {event.vkAlbum && (
+        <ImageGallery images={event.vkAlbum.photos} />
       )}
 
       {new Date(event.date) < new Date() ? null : (

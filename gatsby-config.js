@@ -79,4 +79,9 @@ module.exports = {
     siteUrl: 'https://www.webpurple.net',
   },
   plugins,
+  mapping: {
+    // 'MarkdownRemark.frontmatter.author': 'SpeakerYaml',
+    'EventYaml.vkAlbum': 'VkAlbum',
+    // 'EventYaml.talks.speaker': 'SpeakerYaml',
+  },
 }
