@@ -1,5 +1,4 @@
 const crypto = require('crypto')
-const { pick } = require('ramda')
 const { transliterate } = require('transliteration')
 const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -10,14 +9,14 @@ let onCreateNode = ({
   getNodes,
   getNode,
 }) => {
-  let getUser = title =>
-    getNodes().find(n => n.internal.type === 'SpeakerYaml' && n.title === title)
   let addSlugField = () =>
     createNodeField({
       name: `slug`,
       node,
       value: transliterate(createFilePath({ node, getNode })),
     })
+
+  let createTalkId = talk => createNodeId(talk.title)
 
   switch (node.internal.type) {
     case 'MarkdownRemark': // blog post
@@ -30,7 +29,8 @@ let onCreateNode = ({
         createNode({
           ...talk,
           date: node.date,
-          id: createNodeId(talk.title),
+          event: node.id,
+          id: createTalkId(talk),
           parent: node.id,
           children: [],
           internal: {
@@ -47,7 +47,7 @@ let onCreateNode = ({
       createNodeField({
         node,
         name: 'talks',
-        value: node.talks.map(talk => createNodeId(talk.title)),
+        value: node.talks.map(createTalkId),
       })
       break
     case 'SpeakerYaml':
@@ -59,13 +59,9 @@ let onCreateNode = ({
         .reduce(
           (talks, event) => [
             ...talks,
-            ...event.talks.filter(t => t.speaker === node.title).map(talk => ({
-              ...pick(['title', 'tags', 'links'], talk),
-              event: {
-                ...pick(['title', 'date'], event),
-                slug: createFilePath({ node: event, getNode }),
-              },
-            })),
+            ...event.talks
+              .filter(t => t.speaker === node.title)
+              .map(createTalkId),
           ],
           [],
         )

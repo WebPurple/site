@@ -86,6 +86,8 @@ module.exports = {
     'EventYaml.fields.talks': 'EventTalk',
     'EventYaml.talks.speaker': 'SpeakerYaml',
     'EventTalk.speaker': 'SpeakerYaml',
+    'EventTalk.event': 'EventYaml',
+    'SpeakerYaml.fields.talks': 'EventTalk',
     // 'EventYaml.talks.speaker': 'SpeakerYaml',
   },
 }

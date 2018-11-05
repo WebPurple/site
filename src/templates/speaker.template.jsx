@@ -52,7 +52,9 @@ export let pageQuery = graphql`
             presentation
           }
           event {
-            slug
+            fields {
+              slug
+            }
             date
           }
         }

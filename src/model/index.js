@@ -42,7 +42,9 @@ export interface TalkType {
   } | null;
 
   event: {
-    slug: string,
+    fields: {
+      slug: string,
+    },
     date: string,
   };
 

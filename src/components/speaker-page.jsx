@@ -58,7 +58,7 @@ let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
       <Flex is={ListStyleNone} flexDirection="column" m={0} p={0} mt="72px">
         {speaker.talks.map(talk => (
           <Flex is="li" key={talk.title} flexDirection="column" mb="15px">
-            <Box is={TalkName} to={talk.event.slug} mb="18px">
+            <Box is={TalkName} to={talk.event.fields.slug} mb="18px">
               {talk.title}
             </Box>
 
