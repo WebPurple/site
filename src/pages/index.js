@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapProps } from 'recompose'
 import Helmet from 'react-helmet'
 
 import SubscriptionForm from '../components/subscription-form/subscription-form'
@@ -11,38 +10,36 @@ import { selectNearestEvent } from '../utils/selectors'
 import { HiddenText } from '../utils/accessibility'
 import Layout from '../components/layout'
 
-const IndexPage = ({ upcomingEvent, pastTalks }) => (
-  <Layout>
-    <Helmet title="Home" />
-    <HiddenText>
-      <h1>Home</h1>
-    </HiddenText>
-    {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
-    <PastEvents talks={pastTalks} />
-    <SubscriptionForm />
-    <SocialLinksBlock />
-  </Layout>
-)
-
-export default mapProps(
-  ({
-    data: {
-      upcommingEvents: { edges: allEventNodes },
-      pastTalks: { edges: pastTalks },
-    },
-  }) => {
-    let extendTalk = event => talk => ({ ...talk, event })
-
-    let upcomingEvent = selectNearestEvent(allEventNodes)
-    return {
-      upcomingEvent: upcomingEvent && {
-        ...upcomingEvent,
-        talks: upcomingEvent.fields.talks.map(extendTalk(upcomingEvent)),
-      },
-      pastTalks: pastTalks.map(t => t.node),
-    }
+const HomePage = ({
+  data: {
+    upcommingEvents: { edges: allEventNodes },
+    pastTalks: { edges: pastTalks },
   },
-)(IndexPage)
+}) => {
+  let upcomingEvent = selectNearestEvent(allEventNodes)
+  upcomingEvent = upcomingEvent && {
+    ...upcomingEvent,
+    talks: upcomingEvent.fields.talks.map(talk => ({
+      ...talk,
+      event: upcomingEvent,
+    })),
+  }
+
+  return (
+    <Layout>
+      <Helmet title="Home" />
+      <HiddenText>
+        <h1>Home</h1>
+      </HiddenText>
+      {upcomingEvent && <UpcomingEvents event={upcomingEvent} />}
+      <PastEvents talks={pastTalks.map(t => t.node)} />
+      <SubscriptionForm />
+      <SocialLinksBlock />
+    </Layout>
+  )
+}
+
+export default HomePage
 
 export const pageQuery = graphql`
   query IndexQuery {
