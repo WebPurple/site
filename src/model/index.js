@@ -14,6 +14,7 @@ export type SpeakerType = {
   jobTitle: ?string,
   organization: ?string,
   socialNetworks: Array<SocialNetworkType>,
+  // eslint-disable-next-line no-use-before-define
   talks: Array<TalkType>,
 }
 
@@ -26,6 +27,7 @@ export type RawSpeakerType = {
 
   fields: {
     slug: string,
+    // eslint-disable-next-line no-use-before-define
     talks: Array<TalkType>,
   },
 }

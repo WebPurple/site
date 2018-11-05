@@ -75,7 +75,9 @@ let ArticleCard = ({ post }) => (
       <Flex justifyContent="space-between">
         <Date>{format(parse(post.date), 'MMM DD, YYYY')}</Date>
         <Box fontSize="1.4rem">
-          &#8986;&nbsp;
+          <span role="img" aria-label="Time to read.">
+            &#8986;&nbsp;
+          </span>
           <span>{`${post.timeToRead} ${getCorrectTimeToReadNoun(
             post.timeToRead,
           )}`}</span>
