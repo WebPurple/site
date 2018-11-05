@@ -8,7 +8,7 @@ let vk = new VK()
 
 vk.setToken(VK_TOKEN)
 
-let sourceNodes = async ({ actions: { createNode }, createNodeId }) => {
+let sourceNodes = async ({ actions: { createNode } }) => {
   let { items: albums } = await vk.api.photos.getAlbums({
     owner_id: VK_GROUP_ID,
   })

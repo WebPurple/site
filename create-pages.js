@@ -4,20 +4,12 @@ let createEventPages = ({ actions: { createPage }, graphql }) =>
   graphql(
     `
       {
-        allEventYaml(sort: { fields: [date], order: DESC }) {
+        allEventYaml {
           edges {
             node {
               id
               fields {
                 slug
-              }
-              title
-              description
-              date
-              address
-              talks {
-                title
-                speaker
               }
             }
           }

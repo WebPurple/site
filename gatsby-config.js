@@ -82,6 +82,10 @@ module.exports = {
   mapping: {
     'MarkdownRemark.frontmatter.author': 'SpeakerYaml',
     'EventYaml.vkAlbum': 'VkAlbum',
+    // TODO: remove this mapping
+    'EventYaml.fields.talks': 'EventTalk',
+    'EventYaml.talks.speaker': 'SpeakerYaml',
+    'EventTalk.speaker': 'SpeakerYaml',
     // 'EventYaml.talks.speaker': 'SpeakerYaml',
   },
 }

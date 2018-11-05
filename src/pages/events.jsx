@@ -33,7 +33,6 @@ export let pageQuery = graphql`
           talks {
             title
             description
-            speaker
             tags
           }
         }
