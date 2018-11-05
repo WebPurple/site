@@ -60,16 +60,21 @@ let SpeakerName = styled.div`
   font-size: 1.8rem;
 `
 
-let EventDiamond = ({ talk: { title, event, speaker } }) => (
-  <Diamond>
-    <EventName to={event.fields.slug}>{event.title}</EventName>
-    <TalkTitle to={event.fields.slug}>{title}</TalkTitle>
-    <Speaker to={speaker.fields.slug.replace('speaker', 'speakers')}>
-      <SpeakerPhoto src={speaker.avatar} />
-      <SpeakerName>{speaker.title}</SpeakerName>
-    </Speaker>
-  </Diamond>
-)
+let EventDiamond = ({ talk: { title, event, speaker } }) => {
+  let eventUrl = event.fields.slug
+  let speakerUrl = speaker.fields.slug.replace('speaker', 'speakers')
+
+  return (
+    <Diamond>
+      <EventName to={eventUrl}>{event.title}</EventName>
+      <TalkTitle to={eventUrl}>{title}</TalkTitle>
+      <Speaker to={speakerUrl}>
+        <SpeakerPhoto src={speaker.avatar} />
+        <SpeakerName>{speaker.id}</SpeakerName>
+      </Speaker>
+    </Diamond>
+  )
+}
 
 EventDiamond.propTypes = {
   talk: PropTypes.shape({
@@ -84,7 +89,7 @@ EventDiamond.propTypes = {
       fields: PropTypes.shape({
         slug: PropTypes.string.isRequired,
       }).isRequired,
-      title: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
     }).isRequired,
   }),

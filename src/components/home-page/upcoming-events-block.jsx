@@ -66,11 +66,10 @@ const Header = styled.h4`
 `
 
 const EventTitle = styled.h1`
-  margin: 0;
   font-size: 2.5rem;
   font-weight: 700;
   grid-area: title;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   color: ${props => props.theme.lipstick};
   ${media.tablet`
       font-size: 4.8rem;
@@ -114,8 +113,7 @@ const TalkInfo = styled.li`
 
 const TalksBlock = styled.ul`
   grid-area: talks;
-  padding: 0;
-  padding-top: 2rem;
+  padding: 2rem 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

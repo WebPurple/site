@@ -7,7 +7,7 @@ import SubscriptionForm from '../components/subscription-form/subscription-form'
 import UpcomingEvents from '../components/home-page/upcoming-events-block'
 import PastEvents from '../components/home-page/past-events'
 import SocialLinksBlock from '../components/social-links-block'
-import { selectNearestEvent, selectPastEvents } from '../utils/selectors'
+import { selectNearestEvent } from '../utils/selectors'
 import { HiddenText } from '../utils/accessibility'
 import Layout from '../components/layout'
 
@@ -27,15 +27,11 @@ const IndexPage = ({ upcomingEvent, pastTalks }) => (
 export default mapProps(
   ({
     data: {
-      allEventYaml: { edges: allEventNodes },
+      upcommingEvents: { edges: allEventNodes },
+      pastTalks: { edges: pastTalks },
     },
   }) => {
     let extendTalk = event => talk => ({ ...talk, event })
-
-    let pastTalks = selectPastEvents(allEventNodes).reduce(
-      (arr, event) => [...arr, ...event.fields.talks.map(extendTalk(event))],
-      [],
-    )
 
     let upcomingEvent = selectNearestEvent(allEventNodes)
     return {
@@ -43,14 +39,17 @@ export default mapProps(
         ...upcomingEvent,
         talks: upcomingEvent.fields.talks.map(extendTalk(upcomingEvent)),
       },
-      pastTalks,
+      pastTalks: pastTalks.map(t => t.node),
     }
   },
 )(IndexPage)
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allEventYaml(sort: { fields: [date], order: DESC }) {
+    upcommingEvents: allEventYaml(
+      sort: { fields: [date], order: DESC }
+      limit: 1
+    ) {
       edges {
         node {
           fields {
@@ -63,19 +62,33 @@ export const pageQuery = graphql`
                 }
                 title
                 avatar
-                organization
-                jobTitle
-                socialNetworks {
-                  type
-                  link
-                }
               }
             }
           }
           title
-          description
           date
           address
+        }
+      }
+    }
+
+    pastTalks: allEventTalk(sort: { fields: date, order: DESC }, limit: 7) {
+      edges {
+        node {
+          title
+          speaker {
+            fields {
+              slug
+            }
+            id
+            avatar
+          }
+          event {
+            fields {
+              slug
+            }
+            title
+          }
         }
       }
     }
