@@ -67,7 +67,9 @@ let BlogPost = ({ post }) => (
               {format(parse(post.date), 'MMMM D, YYYY h:mm A')}
             </Box>
             <Box fontSize="1.4rem">
-              <span role="img" aria-label="Time to read.">&#8986;&nbsp;</span>
+              <span role="img" aria-label="Time to read.">
+                &#8986;&nbsp;
+              </span>
               <span>{`${post.timeToRead} ${getCorrectTimeToReadNoun(
                 post.timeToRead,
               )}`}</span>

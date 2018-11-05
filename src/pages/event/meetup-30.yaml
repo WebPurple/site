@@ -12,7 +12,7 @@ talks:
     description: >-
       Саша Милованов расскажет для чего нужны паттерны и почему часто
       недостаточно использовать только готовые фреймворки(библиотеки) при
-      разработке приложений. 
+      разработке приложений.
     speaker: Александр Милованов
   - title: Опыт использования паттернов для решения задач на проекте
     description: >-
@@ -25,4 +25,5 @@ socialNetworks:
   - link: 'https://www.facebook.com/events/389213931616957/'
     type: fb
 video: 'https://www.youtube.com/embed/ntEtXaMatAw'
-vkAlbum: album-94098151_257653341
+vkAlbum: meetup#30 11.10.2018
+
