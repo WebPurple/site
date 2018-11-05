@@ -17,7 +17,9 @@ module.exports = [
             talks {
               title
               description
-              speaker
+              speaker {
+                id
+              }
               tags
             }
           }
@@ -31,6 +33,7 @@ module.exports = [
           ...talks,
           ...event.talks.map((talk, i) => ({
             ...talk,
+            speaker: talk.speaker.id,
             objectID: `${event.fields.slug}_${i}`,
             slug: event.fields.slug,
             event: omit(['talks', 'fields'], event),
