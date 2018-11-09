@@ -27,10 +27,8 @@ let SpeakerLink = styled(Link)`
 `
 
 let EventTalk = ({ talk }: { talk: TalkType }) => {
-  // TODO: remove this workaround
-  let speaker = talk.speaker || {}
-  let speakerUrl =
-    speaker.fields && speaker.fields.slug.replace('speaker', 'speakers')
+  let { speaker } = talk
+  let speakerUrl = speaker.fields.slug.replace('speaker', 'speakers')
 
   return (
     <Flex
