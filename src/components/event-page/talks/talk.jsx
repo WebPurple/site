@@ -27,15 +27,17 @@ let SpeakerLink = styled(Link)`
 `
 
 let EventTalk = ({ talk }: { talk: TalkType }) => {
+  // TODO: remove this workaround
+  let speaker = talk.speaker || {}
   let speakerUrl =
-    talk.speaker && talk.speaker.fields.slug.replace('speaker', 'speakers')
+    speaker.fields && speaker.fields.slug.replace('speaker', 'speakers')
 
   return (
     <Flex
       flexDirection={['column', 'row']}
       alignItems={['center', 'flex-start']}>
       <Box is={AvatarWrapper} to={speakerUrl} mr={['27px', '36px', '24px']}>
-        <Avatar avatar={talk.speaker.avatar} stretch />
+        <Avatar avatar={speaker.avatar} stretch />
       </Box>
 
       <div>
@@ -55,9 +57,9 @@ let EventTalk = ({ talk }: { talk: TalkType }) => {
           color={tColor('grape')()}
           fontSize={['16px', '18px']}
           mb="24px">
-          {talk.speaker.jobTitle
-            ? `${talk.speaker.title}, ${talk.speaker.jobTitle}`
-            : talk.speaker.title}
+          {speaker.jobTitle
+            ? `${speaker.title}, ${speaker.jobTitle}`
+            : speaker.title}
         </Box>
 
         {talk.description && (
