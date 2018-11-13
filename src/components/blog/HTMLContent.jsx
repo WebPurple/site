@@ -25,6 +25,7 @@ let StyledMarkdown = styled.div`
     margin: 0 auto;
     max-height: 500px;
     width: 100%;
+    max-width: 100%;
     ${media.desktop`width: auto`};
 
     & + em {
