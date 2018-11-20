@@ -1,0 +1,28 @@
+title: 'Meetup #31'
+description: "Ждем всех на митапе 22 ноября! Темы - \U0001F525\U0001F525\U0001F525: web scraping и реактивное программирование.\n\nПроводим в конференц-зале Кванториума, не заблудитесь!\n"
+date: 2018-11-22T16:08:35.659Z
+address: 'Дзержинского ул., 6, Рязань'
+talks:
+  - title: "Как скачать интернет \U0001F310"
+    description: >
+      Расскажу про web scraping - получение данных с чужих сайтов с помощью
+      NodeJS и headless-браузеров
+    speaker: Николай Лапшин
+    tags:
+      - web_scrapping
+      - nodejs
+      - phantomjs
+      - nighmarejs
+      - puppeteer
+  - title: "От императивного к реактивному \U0001F680"
+    description: >
+      Расскажу о работе с асинхронным кодом на клиенте с помощью реактивного
+      подхода
+    speaker: Артур Шарипов
+    tags:
+      - reactive_programming
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup31'
+    type: vk
+  - link: 'https://www.facebook.com/events/288029668512325/'
+    type: fb
