@@ -48,8 +48,8 @@ collections:
             name: "speaker"
             widget: "relation"
             collection: "speaker"
-            searchFields: ["title"]
-            valueField: "title"
+            searchFields: ["id"]
+            valueField: "id"
 
           - label: "Tags"
             name: "tags"
@@ -94,10 +94,11 @@ collections:
     folder: "src/pages/speaker"
     extension: "yaml"
     create: true
+    identifier_field: id
     slug: "{{slug}}"
     fields:
       - label: "Fullname"
-        name: "title"
+        name: "id"
         widget: "string"
 
       - label: "Avatar"
@@ -145,8 +146,8 @@ collections:
         label: "Author"
         widget: "relation"
         collection: "speaker"
-        searchFields: ["title"]
-        valueField: "title"
+        searchFields: ["id"]
+        valueField: "id"
       - name: "tags"
         label: "Tags"
         widget: "list"
