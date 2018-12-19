@@ -70,7 +70,14 @@ plugins = [
   ...plugins,
   'gatsby-plugin-offline',
   'gatsby-plugin-webpack-size',
-  'gatsby-plugin-netlify', // make sure to keep it last in the array
+  {
+    resolve: `gatsby-plugin-netlify`,
+    options: {
+      headers: {
+        '/*': ['X-Frame-Options: allow-from https://kitos.github.io/'],
+      },
+    },
+  },
 ]
 
 module.exports = {
