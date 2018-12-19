@@ -73,9 +73,7 @@ plugins = [
   {
     resolve: `gatsby-plugin-netlify`,
     options: {
-      headers: {
-        '/*': ['X-Frame-Options: allow-from https://kitos.github.io/'],
-      },
+      allPageHeaders: ['X-Frame-Options: allow-from https://kitos.github.io/'],
     },
   },
 ]
