@@ -218,6 +218,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
             <Diamond
               color={i % 2 ? theme.rouge : theme.grape}
               backSrc={talk.speaker.avatar}
+              backPosition={'center center'}
             />
           </DiamondOuterWrapper>
 
