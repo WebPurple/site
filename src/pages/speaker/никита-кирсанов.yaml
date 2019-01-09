@@ -12,3 +12,5 @@ socialNetworks:
     type: twitter
   - link: kitos
     type: github
+  - link: http://nikitakirsanov.com
+    type: site
