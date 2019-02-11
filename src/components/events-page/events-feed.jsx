@@ -5,7 +5,7 @@ import { chain, difference, either, isEmpty, pipe, uniq } from 'ramda'
 
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'
-import { TagList } from '../common/tag'
+import { TagList, TagListCutter } from '../common/tag'
 import EventList from './event-list'
 import { eventTags } from '../../utils/selectors'
 
@@ -20,12 +20,23 @@ let EventsFeed = ({
     <BlockHeader size="h1">Events</BlockHeader>
 
     {(filteredEventsTags.length > 0 || !selectedTags.length) && (
-      <TagList
-        label="Events tags"
-        tags={filteredEventsTags.length > 0 ? filteredEventsTags : selectedTags}
-        selectedTags={selectedTags}
-        onTagClick={toggleTag}
-      />
+      <TagListCutter
+        tagNumberDesktop={20}
+        tagNumberMobile={10}
+        tags={
+          filteredEventsTags.length > 0 ? filteredEventsTags : selectedTags
+        }>
+        {(visibleTags, ToogleLable, MoreTag) => (
+          <TagList
+            label="Events tags"
+            tags={visibleTags}
+            selectedTags={selectedTags}
+            onTagClick={toggleTag}
+            LabelComponent={ToogleLable}
+            MoreTag={MoreTag}
+          />
+        )}
+      </TagListCutter>
     )}
 
     {filteredEvents && (
