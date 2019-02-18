@@ -36,7 +36,7 @@
     "ramda": "^0.26.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-facebook": "^6.0.4",
+    "react-facebook": "^7.0.2",
     "react-helmet": "^5.2.0",
     "react-images": "^0.5.19",
     "react-instantsearch-dom": "^5.2.2",
