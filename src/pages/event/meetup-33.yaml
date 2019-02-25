@@ -3,7 +3,7 @@ description: "Ну что ж, пора начинать новый сезон м
 date: 2019-02-28T16:30:09.614Z
 address: 'Почтовая ул., 60, Рязань'
 talks:
-  - title: 'Test you code '
+  - title: 'Test your code, not your patience'
     description: >-
       Как полюбить тесты и какие инструменты для тестирования веб-приложений
       упростят вам жизнь.
