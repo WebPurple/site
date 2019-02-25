@@ -1,0 +1,39 @@
+title: 'Meetup #33'
+description: "Ну что ж, пора начинать новый сезон митапов!\nПервую в этом году встречу проводим 28 февраля в баре Карась \U0001F37B"
+date: 2019-02-28T16:30:09.614Z
+address: 'Почтовая ул., 60, Рязань'
+talks:
+  - title: 'Test you code '
+    description: >-
+      Как полюбить тесты и какие инструменты для тестирования веб-приложений
+      упростят вам жизнь.
+    links:
+      presentation: '-'
+      video: '-'
+    speaker: Лада Ильина
+    tags:
+      - e2e
+      - testing
+      - integration_tests
+      - web-app_testing
+  - title: >-
+      Работа с иностранными заказчиками. Как читать деловую переписку между
+      строк.
+    description: >-
+      Опыт общения с иностранными заказчиками: как правильно читать деловые
+      письма, как получить нужный фидбек от заказчика, и почему «Да, отлично,
+      но…» скорее всего придется перевести как «Плохие новости, ребята. Придется
+      все переделать».
+    links:
+      presentation: '-'
+      video: '-'
+    speaker: Ирина Кирсанова
+    tags:
+      - communication
+      - business_correspondence
+      - cultural_differences
+socialNetworks:
+  - link: 'Test your code, not your patience'
+    type: vk
+  - link: 'https://www.facebook.com/events/369606280547643/'
+    type: fb
