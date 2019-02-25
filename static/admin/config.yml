@@ -61,9 +61,11 @@ collections:
             fields:
               - label: "Video"
                 name: "video"
+                required: false
 
               - label: "Presentation"
                 name: "presentation"
+                required: false
 
       - label: "Social networks"
         name: "socialNetworks"
