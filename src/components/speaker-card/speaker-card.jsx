@@ -49,7 +49,7 @@ let SpeakerCard = ({ speaker }) => (
         to={speaker.slug.replace('speaker', 'speakers')}
         href="#"
         fontSize={['24px', '32px']}>
-        {speaker.title}
+        {speaker.id}
       </Box>
 
       <Box is={Position} pt="10px" pb="25px" fontSize={['16px', '22px']}>

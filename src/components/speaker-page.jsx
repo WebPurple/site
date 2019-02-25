@@ -45,7 +45,7 @@ let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
     </Flex>
 
     <Box ml={[0, '60px']}>
-      <Name>{speaker.title}</Name>
+      <Name>{speaker.id}</Name>
 
       {(speaker.jobTitle || speaker.organization) && (
         <Position>

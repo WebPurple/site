@@ -34,7 +34,7 @@ export default mapProps(
 export let pageQuery = graphql`
   query SpeakerPage($id: String!) {
     speakerYaml(id: { eq: $id }) {
-      title
+      id
       avatar
       jobTitle
       organization

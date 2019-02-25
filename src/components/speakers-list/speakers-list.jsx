@@ -9,11 +9,7 @@ import { FilterBlock, Search } from '../page-filter'
 import SpeakerCard from '../../components/speaker-card/speaker-card'
 import { elasticSearch } from '../../utils/search'
 
-const speakerElasticSearch = elasticSearch([
-  'title',
-  'organization',
-  'jobTitle',
-])
+const speakerElasticSearch = elasticSearch(['id', 'organization', 'jobTitle'])
 
 export default withState('query', 'search', '')(
   ({ speakers, search, query }) => (
@@ -35,9 +31,7 @@ export default withState('query', 'search', '')(
         {speakers.length ? (
           speakers
             .filter(speakerElasticSearch(query))
-            .map(speaker => (
-              <SpeakerCard key={speaker.title} speaker={speaker} />
-            ))
+            .map(speaker => <SpeakerCard key={speaker.id} speaker={speaker} />)
         ) : (
           <p>There are no speakers satisfying your query...</p>
         )}

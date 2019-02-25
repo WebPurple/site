@@ -32,6 +32,7 @@ export let pageQuery = graphql`
             presentation
           }
           speaker {
+            id
             fields {
               slug
             }

@@ -229,7 +229,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
               is={TalkSpeaker}
               to={talk.speaker.fields.slug.replace('speaker', 'speakers')}
               fontSize={['14px', '14px', '20px']}>
-              {talk.speaker.title}
+              {talk.speaker.id}
             </Box>
           </TalkDataWrapper>
         </TalkInfo>

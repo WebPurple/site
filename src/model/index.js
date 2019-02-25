@@ -9,7 +9,7 @@ export type SpeakerType = {
   fields: {
     slug: string,
   },
-  title: string,
+  id: string,
   avatar: ?string,
   jobTitle: ?string,
   organization: ?string,
@@ -19,7 +19,7 @@ export type SpeakerType = {
 }
 
 export type RawSpeakerType = {
-  title: string,
+  id: string,
   avatar: ?string,
   jobTitle: ?string,
   organization: ?string,

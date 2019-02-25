@@ -55,9 +55,7 @@ let EventTalk = ({ talk }: { talk: TalkType }) => {
           color={tColor('grape')()}
           fontSize={['16px', '18px']}
           mb="24px">
-          {speaker.jobTitle
-            ? `${speaker.title}, ${speaker.jobTitle}`
-            : speaker.title}
+          {speaker.jobTitle ? `${speaker.id}, ${speaker.jobTitle}` : speaker.id}
         </Box>
 
         {talk.description && (

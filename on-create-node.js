@@ -55,12 +55,12 @@ let onCreateNode = ({
 
       let userTalks = getNodes()
         .filter(n => n.internal.type === 'EventYaml')
-        .filter(event => event.talks.some(t => t.speaker === node.title))
+        .filter(event => event.talks.some(t => t.speaker === node.id))
         .reduce(
           (talks, event) => [
             ...talks,
             ...event.talks
-              .filter(t => t.speaker === node.title)
+              .filter(t => t.speaker === node.id)
               .map(createTalkId),
           ],
           [],

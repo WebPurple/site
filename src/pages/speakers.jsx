@@ -48,7 +48,7 @@ export const pageQuery = graphql`
             }
           }
 
-          title
+          id
           avatar
           organization
           jobTitle

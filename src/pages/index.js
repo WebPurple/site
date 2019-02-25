@@ -57,7 +57,7 @@ export const pageQuery = graphql`
                 fields {
                   slug
                 }
-                title
+                id
                 avatar
               }
             }
