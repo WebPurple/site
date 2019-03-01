@@ -8,8 +8,8 @@ talks:
       Как полюбить тесты и какие инструменты для тестирования веб-приложений
       упростят вам жизнь.
     links:
-      presentation: ''
-      video: ''
+      presentation: 'https://slides.com/ilyinalada/testing/fullscreen'
+      video: 'https://www.youtube.com/embed/98bNSTBkrQ0'
     speaker: Лада Ильина
     tags:
       - e2e
@@ -25,8 +25,8 @@ talks:
       но…» скорее всего придется перевести как «Плохие новости, ребята. Придется
       все переделать».
     links:
-      presentation: ''
-      video: ''
+      presentation: 'https://www.webpurple.net/static/irina_disney_6.pptx'
+      video: 'https://www.youtube.com/embed/ORy4sBMW6Ic'
     speaker: Ирина Кирсанова
     tags:
       - communication
