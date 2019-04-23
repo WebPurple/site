@@ -28,7 +28,7 @@
     "gatsby-source-filesystem": "^2.0.31",
     "gatsby-transformer-remark": "^2.3.10",
     "gatsby-transformer-sharp": "^2.1.18",
-    "gatsby-transformer-yaml": "^2.1.5",
+    "gatsby-transformer-yaml": "^2.1.11",
     "grid-styled": "^5.0.2",
     "lodash.debounce": "^4.0.8",
     "netlify-cms": "^2.4.2",
