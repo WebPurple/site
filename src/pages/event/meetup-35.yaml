@@ -10,7 +10,9 @@ talks:
       Покопавшись в коде сервисов своего проекта, Никита нашёл неаккуратную
       работу с асинхронным кодом и интересную возможность оптимизации. В своём
       докладе он поделится тем, как делать не надо и покажет небольшую магию.
-    links: {}
+    links:
+      presentation: >-
+        https://docs.google.com/presentation/d/e/2PACX-1vS_NOLn8jfMW8J8zoB3Wd_ENuDjIzvwYM8f76lRJI8_RsHtJHotZW1SfxOgtefESBSlMdXZ4GUCDdqd/pub?start=false&loop=false&delayms=3000
     speaker: Никита Кирсанов
     tags:
       - javascript
