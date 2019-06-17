@@ -28,7 +28,7 @@ let TalkTitle = styled(Link)`
   text-decoration: none;
   color: #fff;
 
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -67,7 +67,7 @@ let EventDiamond = ({ talk: { title, event, speaker } }) => {
   return (
     <Diamond>
       <EventName to={eventUrl}>{event.title}</EventName>
-      <TalkTitle to={eventUrl}>{title}</TalkTitle>
+      <TalkTitle to={eventUrl} title={title}>{title}</TalkTitle>
       <Speaker to={speakerUrl}>
         <SpeakerPhoto src={speaker.avatar} />
         <SpeakerName>{speaker.id}</SpeakerName>
