@@ -67,7 +67,9 @@ let EventDiamond = ({ talk: { title, event, speaker } }) => {
   return (
     <Diamond>
       <EventName to={eventUrl}>{event.title}</EventName>
-      <TalkTitle to={eventUrl} title={title}>{title}</TalkTitle>
+      <TalkTitle to={eventUrl} title={title}>
+        {title}
+      </TalkTitle>
       <Speaker to={speakerUrl}>
         <SpeakerPhoto src={speaker.avatar} />
         <SpeakerName>{speaker.id}</SpeakerName>
