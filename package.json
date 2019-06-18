@@ -113,7 +113,6 @@
     "prettier": "^1.13.5"
   },
   "pre-commit": [
-    "flow",
     "format"
   ]
 }
