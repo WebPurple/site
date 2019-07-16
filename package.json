@@ -99,7 +99,7 @@
     }
   },
   "devDependencies": {
-    "all-contributors-cli": "^5.4.0",
+    "all-contributors-cli": "^6.8.0",
     "babel-jest": "^23.2.0",
     "dotenv": "^6.1.0",
     "enzyme": "^3.5.1",
