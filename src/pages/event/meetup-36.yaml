@@ -15,14 +15,14 @@ talks:
       video: 'https://youtu.be/ENQNy7nIklU'
     speaker: Руслан Абрамов
     tags:
-      - '#react #hooks #api'
+      - 'react #hooks #api'
   - title: 'Как работать эффективно, если ты творческий?'
     description: "- расскажу, как бороться со страхом белого листа и ступором перфекциониста \U0001F4C4 \n- научу соблюдать баланс между различными сферами жизни \U0001F64C\U0001F3FB \n- поделюсь полезными книгами и электронными ресурсами \U0001F4DA"
     links:
       video: 'https://www.youtube.com/watch?v=Ux4PRK1DeTY'
     speaker: Татьяна Игнатова
     tags:
-      - '#softskills #efficiency'
+      - 'softskills #efficiency'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup36'
     type: vk
