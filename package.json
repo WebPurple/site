@@ -50,7 +50,7 @@
     "react-yandex-metrika": "^2.3.0",
     "recompose": "^0.30.0",
     "styled-components": "^3.3.2",
-    "styled-system": "^3.0.2",
+    "styled-system": "^5.0.21",
     "translit": "^0.1.0",
     "translit-russian": "0.0.2",
     "transliteration": "^1.6.5",
