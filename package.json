@@ -41,7 +41,7 @@
     "react-images": "^0.5.19",
     "react-instantsearch-dom": "^5.4.0",
     "react-masonry-component": "^6.2.1",
-    "react-modal": "^3.4.5",
+    "react-modal": "3.9.1",
     "react-popper": "^1.0.0",
     "react-portal": "^4.1.4",
     "react-responsive": "^4.1.0",
