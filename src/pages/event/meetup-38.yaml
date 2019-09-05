@@ -1,0 +1,25 @@
+title: 'Meetup #38'
+description: "38 митап проведем 14 сентября, в субботу, в 15:00. Место: Технопарк Кванториум (указали на карте).\nК нам приедут спикеры из Москвы \U0001F917"
+date: 2019-09-14T12:00:00.000Z
+address: 'г. Рязань, ул. Дзержинского, д. 6'
+talks:
+  - title: Наш ванильный enterprise
+    description: |-
+      Павел расскажет о построении очень больших приложений на JavaScript:
+      - сменяемости технологий;
+      - организации распределённой команды;
+      - процесса принятия долгоиграющих технических решений.
+    speaker: Павел Востриков
+    tags:
+      - '#javascript #enterprise'
+  - title: О спецификации ECMAScript и ее разработке
+    description: '-'
+    speaker: Сергей Рубанов
+    tags:
+      - '#ecmascript'
+socialNetworks:
+  - link: 'https://vk.com/webpurple_meetup38'
+    type: vk
+  - link: 'https://www.facebook.com/events/2917417451618687/'
+    type: fb
+vkAlbum: 'meetup#38'
