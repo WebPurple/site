@@ -1,0 +1,7 @@
+id: Сергей Рубанов
+avatar: /img/sergey_rubanov.jpg
+socialNetworks:
+  - link: 'https://twitter.com/chicoxyzzy'
+    type: twitter
+  - link: 'https://github.com/chicoxyzzy'
+    type: github
