@@ -9,6 +9,8 @@ talks:
       - сменяемости технологий;
       - организации распределённой команды;
       - процесса принятия долгоиграющих технических решений.
+    links:
+      presentation: 'https://our-vanilla-enterprise.vostrik.com/'
     speaker: Павел Востриков
     tags:
       - '#javascript #enterprise'
