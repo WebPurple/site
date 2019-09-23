@@ -49,7 +49,7 @@
     "react-vk": "^3.2.0",
     "react-yandex-metrika": "^2.3.0",
     "recompose": "^0.30.0",
-    "styled-components": "^3.3.2",
+    "styled-components": "^4.4.0",
     "styled-system": "^3.0.2",
     "translit": "^0.1.0",
     "translit-russian": "0.0.2",
