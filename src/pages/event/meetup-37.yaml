@@ -12,12 +12,14 @@ talks:
       почему фреймворк Fastify один из самых производительных на 2019 год. 
     speaker: Николай Лапшин
     tags:
-      - 'nodejs #fastify'
+      - nodejs
+      - fastify
   - title: Как я не устроился на работу и почему это может быть хорошо
     description: '-'
     speaker: Саша Зайцев
     tags:
-      - 'efficiency #growth'
+      - efficiency
+      - growth
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup37'
     type: vk
