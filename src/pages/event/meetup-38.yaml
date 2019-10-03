@@ -13,12 +13,13 @@ talks:
       presentation: 'https://our-vanilla-enterprise.vostrik.com/'
     speaker: Павел Востриков
     tags:
-      - '#javascript #enterprise'
+      - javascript
+      - enterprise
   - title: О спецификации ECMAScript и ее разработке
     description: '-'
     speaker: Сергей Рубанов
     tags:
-      - '#ecmascript'
+      - ecmascript
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup38'
     type: vk
