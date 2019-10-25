@@ -17,6 +17,9 @@ talks:
 
 
       - А также посмотрим результаты и вместе подумаем, как их можно улучшить.
+    links:
+      presentation: >-
+        https://docs.google.com/presentation/d/1O3tD3DFO2iTgWXaqL4CvVIAt5vx0V43o-Qo79-qZTGk/mobilepresent?slide=id.p
     speaker: Кирилл Варпахович
     tags:
       - '#testing #production #strykerjs'
@@ -30,3 +33,4 @@ talks:
     speaker: Людмила Мжачих
     tags:
       - '#css'
+vkAlbum: 'meetup#39 19.10.2019'
