@@ -54,7 +54,7 @@
     "translit": "^0.1.0",
     "translit-russian": "0.0.2",
     "transliteration": "^1.6.5",
-    "vk-io": "4.0.0-rc.1"
+    "vk-io": "4.0.0-rc.24"
   },
   "keywords": [
     "gatsby",
