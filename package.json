@@ -33,7 +33,7 @@
     "lodash.debounce": "^4.0.8",
     "netlify-cms": "^2.9.2",
     "prismjs": "^1.15.0",
-    "ramda": "^0.26.0",
+    "ramda": "^0.27.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-facebook": "^6.0.4",
