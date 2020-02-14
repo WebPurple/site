@@ -31,7 +31,7 @@
     "gatsby-transformer-yaml": "^2.1.12",
     "grid-styled": "^5.0.2",
     "lodash.debounce": "^4.0.8",
-    "netlify-cms": "^2.9.2",
+    "netlify-cms": "^2.10.22",
     "prismjs": "^1.15.0",
     "ramda": "^0.26.0",
     "react": "^16.8.3",
