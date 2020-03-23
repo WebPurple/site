@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
-    "bulma": "^0.7.1",
+    "bulma": "^0.8.1",
     "can-use-dom": "^0.1.0",
     "date-fns": "^1.29.0",
     "disqus-react": "^1.0.5",
