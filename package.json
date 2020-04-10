@@ -38,7 +38,7 @@
     "react-dom": "^16.8.3",
     "react-facebook": "^6.0.4",
     "react-helmet": "^5.2.0",
-    "react-images": "^0.5.19",
+    "react-images": "^1.1.1",
     "react-instantsearch-dom": "^5.4.0",
     "react-masonry-component": "^6.2.1",
     "react-modal": "^3.4.5",
