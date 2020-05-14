@@ -1,7 +1,7 @@
 title: 'Meetup #43'
-description: "Привет!\nОнлайн митап - на следующей неделе 21 мая, в 19:30 встречаемся пока опять в Зуме: \U0001F5A5\n"
+description: "Привет!\nОнлайн митап - на следующей неделе 21 мая, в 19:30 встречаемся пока опять в Зуме: \U0001F5A5\nhttps://zoom.us/j/99655693829?pwd=WnRjdEltVVB1K0V6VjNTeXdlQlpzZz09"
 date: 2020-05-21T16:30:00.000Z
-address: 'https://zoom.us/j/99655693829?pwd=WnRjdEltVVB1K0V6VjNTeXdlQlpzZz09'
+address: ''
 talks:
   - title: «Redux без копипаста»
     description: >-
