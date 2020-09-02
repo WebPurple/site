@@ -9,6 +9,11 @@ talks:
   - title: Почему географические карты - это больно
     description: '-'
     speaker: Игорь Федюкин
+  - title: 'Angular Universal: как правильно готовить SSR'
+    description: '-'
+    speaker: Кирилл Скляров
+    tags:
+      - '#angular #SSR'
 socialNetworks:
   - link: 'https://vk.com/webpurple_meetup44'
     type: vk
