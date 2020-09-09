@@ -4,10 +4,24 @@ date: 2020-09-03T16:30:39.238Z
 address: ''
 talks:
   - title: Как хаскель в васм компилировать
-    description: '-'
+    description: >-
+      И вот мой проект:
+
+      https://kitos.github.io/habel/
+
+
+      Напомню, это парсер жаваскрипта на хаскеле. Понимает он пока небольшое
+      подмножество однако
+
+
+      Очень рекомендую https://atypeofprogramming.com/! Если хотите начать
+      знакомится с ФП и вообще подкрепить свои знания компьютер саенса.
     speaker: Никита Кирсанов
   - title: Почему географические карты - это больно
     description: '-'
+    links:
+      presentation: >-
+        https://docs.google.com/presentation/d/1B33FT1euwzhHl54NdwsVMg5bkxFd4VZ-j_-Shi3Lj-E/edit#slide=id.p
     speaker: Игорь Федюкин
   - title: 'Angular Universal: как правильно готовить SSR'
     description: '-'
