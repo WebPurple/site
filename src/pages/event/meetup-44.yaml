@@ -5,6 +5,8 @@ address: ''
 talks:
   - title: Как хаскель в васм компилировать
     description: '-'
+    links:
+      presentation: 'https://kitos.github.io/habel/'
     speaker: Никита Кирсанов
   - title: Почему географические карты - это больно
     description: '-'
