@@ -11,8 +11,7 @@ talks:
   - title: Почему географические карты - это больно
     description: '-'
     links:
-      presentation: >-
-        https://docs.google.com/presentation/d/1B33FT1euwzhHl54NdwsVMg5bkxFd4VZ-j_-Shi3Lj-E
+      presentation: ''
     speaker: Игорь Федюкин
   - title: 'Angular Universal: как правильно готовить SSR'
     description: '-'
@@ -23,3 +22,4 @@ socialNetworks:
   - link: 'https://vk.com/webpurple_meetup44'
     type: vk
 video: 'https://youtu.be/vne4L-8-w4o'
+vkAlbum: 'meetup#44 03.09.2020'
