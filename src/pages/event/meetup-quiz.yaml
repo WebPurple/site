@@ -1,4 +1,4 @@
-title: Meetup Quiz
+title: Webpurple Quiz
 description: >-
   Привет!
 
@@ -28,8 +28,6 @@ description: >-
 date: 2020-12-24T16:30:18.005Z
 talks: []
 socialNetworks:
-  - link: 'https://vk.com/webpurple_quiz'
-    type: vk
   - link: 'https://www.facebook.com/events/920825862123308/'
     type: fb
 video: 'https://youtu.be/seO037XwJos'
