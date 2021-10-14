@@ -78,7 +78,7 @@ let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
                 </React.Fragment>
               ) : (
                 <Box fontSize="16px" color={tColor('warmGrey')()}>
-                  There is no materials
+                  There are no materials
                 </Box>
               )}
             </Flex>
