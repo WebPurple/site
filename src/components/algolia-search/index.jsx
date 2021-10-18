@@ -42,34 +42,30 @@ let AutoComplete = ({ hits: sections, currentRefinement, debouncedRefine }) => (
             )}
           </Reference>
 
-          {isOpen &&
-            currentRefinement !== '' && (
-              <Portal>
-                <Popper placement="bottom">
-                  {({ ref, style, placement, arrowProps }) => (
-                    <Popup
-                      {...getMenuProps({
-                        innerRef: ref,
-                        refKey: 'innerRef',
-                        style,
-                        w: [1, '600px'],
-                      })}>
-                      <SuggestionList
-                        getItemProps={getItemProps}
-                        highlightedIndex={highlightedIndex}
-                        query={currentRefinement}
-                        sections={sections}
-                      />
+          {isOpen && currentRefinement !== '' && (
+            <Portal>
+              <Popper placement="bottom">
+                {({ ref, style, placement, arrowProps }) => (
+                  <Popup
+                    {...getMenuProps({
+                      innerRef: ref,
+                      refKey: 'innerRef',
+                      style,
+                      w: [1, '600px'],
+                    })}>
+                    <SuggestionList
+                      getItemProps={getItemProps}
+                      highlightedIndex={highlightedIndex}
+                      query={currentRefinement}
+                      sections={sections}
+                    />
 
-                      <Arrow
-                        innerRef={arrowProps.ref}
-                        style={arrowProps.style}
-                      />
-                    </Popup>
-                  )}
-                </Popper>
-              </Portal>
-            )}
+                    <Arrow innerRef={arrowProps.ref} style={arrowProps.style} />
+                  </Popup>
+                )}
+              </Popper>
+            </Portal>
+          )}
         </div>
       )}
     </Downshift>

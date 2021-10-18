@@ -148,8 +148,8 @@ let pickSnippet = (hit, isActive) => {
   let Snippet = hit.description
     ? EventSnippet
     : hit.headings
-      ? BlogSnippet
-      : SpeakerSnippet
+    ? BlogSnippet
+    : SpeakerSnippet
 
   return <Snippet hit={hit} isActive={isActive} />
 }
@@ -157,8 +157,8 @@ let renderSectionTitle = section =>
   /speakers/i.test(section.index)
     ? 'Speakers'
     : /talks/i.test(section.index)
-      ? 'Talks'
-      : 'Blog'
+    ? 'Talks'
+    : 'Blog'
 
 export let SuggestionList = React.forwardRef(
   ({ query, sections, highlightedIndex, getItemProps, ...rest }, ref) => {

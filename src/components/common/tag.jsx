@@ -38,20 +38,19 @@ export const TagList = withTheme(
     <div>
       {label && <TagListLabel>{label}</TagListLabel>}
 
-      {tags &&
-        tags.length > 0 && (
-          <Tags>
-            {tags.map((tag, i) => (
-              <Tag
-                key={tag}
-                color={theme[tagColors[i % tagColors.length]]}
-                className={selectedTags.includes(tag) ? 'active' : ''}
-                onClick={() => onTagClick(tag)}>
-                #{tag}
-              </Tag>
-            ))}
-          </Tags>
-        )}
+      {tags && tags.length > 0 && (
+        <Tags>
+          {tags.map((tag, i) => (
+            <Tag
+              key={tag}
+              color={theme[tagColors[i % tagColors.length]]}
+              className={selectedTags.includes(tag) ? 'active' : ''}
+              onClick={() => onTagClick(tag)}>
+              #{tag}
+            </Tag>
+          ))}
+        </Tags>
+      )}
     </div>
   ),
 )
