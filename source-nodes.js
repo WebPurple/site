@@ -1,6 +1,6 @@
 const crypto = require(`crypto`)
 const R = require('ramda')
-const { VK } = require('vk-io');
+const { VK } = require('vk-io')
 
 const { VK_GROUP_ID, VK_TOKEN } = process.env
 
