@@ -124,8 +124,8 @@ export class ErrorHandler extends React.Component<
   }
 
   componentDidCatch(error: any, info: any) {
-    this.setState(
-      state => (state.errors ? null : { errors: formatErrors(error, info) }),
+    this.setState(state =>
+      state.errors ? null : { errors: formatErrors(error, info) },
     )
   }
 

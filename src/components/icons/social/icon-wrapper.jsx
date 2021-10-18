@@ -25,9 +25,5 @@ export const prepareFillColors = colorMap => ({
       : firstPart.concat(`\n &:hover ${key} {fill: ${value}}`)
   }
 
-  return compose(
-    join('\n'),
-    map(setStyleRule),
-    toPairs,
-  )(colorMap)
+  return compose(join('\n'), map(setStyleRule), toPairs)(colorMap)
 }
