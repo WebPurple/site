@@ -1,12 +1,10 @@
 const crypto = require(`crypto`)
 const R = require('ramda')
-const { VK } = require('vk-io')
+const { VK } = require('vk-io');
 
 const { VK_GROUP_ID, VK_TOKEN } = process.env
 
-let vk = new VK()
-
-vk.setToken(VK_TOKEN)
+let vk = new VK({ token: VK_TOKEN })
 
 let sourceNodes = async ({ actions: { createNode } }) => {
   let { items: albums } = await vk.api.photos.getAlbums({
