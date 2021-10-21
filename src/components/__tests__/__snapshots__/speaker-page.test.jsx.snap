@@ -2,12 +2,44 @@
 
 exports[`<SpeakerPage> should match snapshot 1`] = `
 <Flex
+  blacklist={
+    Array [
+      "css",
+      "flexWrap",
+      "flexDirection",
+      "alignItems",
+      "justifyContent",
+      "css",
+      "width",
+      "m",
+      "mt",
+      "mr",
+      "mb",
+      "ml",
+      "mx",
+      "my",
+      "p",
+      "pt",
+      "pr",
+      "pb",
+      "pl",
+      "px",
+      "py",
+      "fontSize",
+      "color",
+      "bg",
+      "flex",
+      "order",
+      "alignSelf",
+    ]
+  }
   flexDirection={
     Array [
       "column",
       "row",
     ]
   }
+  is={[Function]}
   m={
     Array [
       "2rem 2rem",
@@ -19,107 +51,161 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
 >
   <Flex
     alignItems="center"
+    blacklist={
+      Array [
+        "css",
+        "flexWrap",
+        "flexDirection",
+        "alignItems",
+        "justifyContent",
+        "css",
+        "width",
+        "m",
+        "mt",
+        "mr",
+        "mb",
+        "ml",
+        "mx",
+        "my",
+        "p",
+        "pt",
+        "pr",
+        "pb",
+        "pl",
+        "px",
+        "py",
+        "fontSize",
+        "color",
+        "bg",
+        "flex",
+        "order",
+        "alignSelf",
+      ]
+    }
     flexDirection="column"
+    is={[Function]}
   >
     <Box
+      blacklist={
+        Array [
+          "css",
+          "width",
+          "m",
+          "mt",
+          "mr",
+          "mb",
+          "ml",
+          "mx",
+          "my",
+          "p",
+          "pt",
+          "pr",
+          "pb",
+          "pl",
+          "px",
+          "py",
+          "fontSize",
+          "color",
+          "bg",
+          "flex",
+          "order",
+          "alignSelf",
+        ]
+      }
       mb="16px"
       style={
         Object {
           "height": 200,
         }
       }
-      theme={
-        Object {
-          "breakpoints": Array [
-            "40em",
-            "52em",
-            "64em",
-          ],
-          "fontSizes": Array [
-            12,
-            14,
-            16,
-            20,
-            24,
-            32,
-            48,
-            64,
-            96,
-            128,
-          ],
-          "space": Array [
-            0,
-            4,
-            8,
-            16,
-            32,
-            64,
-            128,
-            256,
-            512,
-          ],
-        }
-      }
     >
       <Avatar
-        avatar=""
+        avatar={null}
       />
     </Box>
     <SpeakerContacts
       speaker={
         Object {
-          "avatar": "",
+          "avatar": null,
+          "fields": Object {
+            "slug": "",
+          },
+          "id": "",
           "jobTitle": "",
           "organization": "",
           "socialNetworks": Array [],
           "talks": Array [],
-          "title": "",
         }
       }
     />
   </Flex>
   <Box
+    blacklist={
+      Array [
+        "css",
+        "width",
+        "m",
+        "mt",
+        "mr",
+        "mb",
+        "ml",
+        "mx",
+        "my",
+        "p",
+        "pt",
+        "pr",
+        "pb",
+        "pl",
+        "px",
+        "py",
+        "fontSize",
+        "color",
+        "bg",
+        "flex",
+        "order",
+        "alignSelf",
+      ]
+    }
     ml={
       Array [
         0,
         "60px",
       ]
     }
-    theme={
-      Object {
-        "breakpoints": Array [
-          "40em",
-          "52em",
-          "64em",
-        ],
-        "fontSizes": Array [
-          12,
-          14,
-          16,
-          20,
-          24,
-          32,
-          48,
-          64,
-          96,
-          128,
-        ],
-        "space": Array [
-          0,
-          4,
-          8,
-          16,
-          32,
-          64,
-          128,
-          256,
-          512,
-        ],
-      }
-    }
   >
     <styled.h1 />
     <Flex
+      blacklist={
+        Array [
+          "css",
+          "flexWrap",
+          "flexDirection",
+          "alignItems",
+          "justifyContent",
+          "css",
+          "width",
+          "m",
+          "mt",
+          "mr",
+          "mb",
+          "ml",
+          "mx",
+          "my",
+          "p",
+          "pt",
+          "pr",
+          "pb",
+          "pl",
+          "px",
+          "py",
+          "fontSize",
+          "color",
+          "bg",
+          "flex",
+          "order",
+          "alignSelf",
+        ]
+      }
       flexDirection="column"
       as={[Function]}
       m={0}

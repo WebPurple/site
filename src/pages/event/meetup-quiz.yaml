@@ -30,4 +30,6 @@ talks: []
 socialNetworks:
   - link: 'https://www.facebook.com/events/920825862123308/'
     type: fb
+  - link: 'https://vk.com/webpurple_quiz'
+    type: vk
 video: 'https://youtu.be/seO037XwJos'
