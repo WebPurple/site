@@ -2,17 +2,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Spring } from 'react-spring'
-import { Flex } from 'grid-styled'
+import { Flex } from 'reflexbox/styled-components'
 import { Portal } from 'react-portal'
 
 import SwipeEventEmitter from '../swipe.event'
 import { MenuIcon } from '../icons'
 
-let MobileSidebar = styled.div.attrs({
-  style: ({ translation }) => ({
-    transform: `translateX(${translation || 0}px)`,
-  }),
-})`
+let MobileSidebar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,7 +19,7 @@ let MobileSidebar = styled.div.attrs({
   left: 100%;
   overflow: auto;
   background: #fff;
-
+  transform: ${props => `translateX(${props.translation || 0}px)`};
   transition: ${props =>
     props.transitioned ? 'all 50ms ease-in-out' : 'none'};
 `
@@ -75,7 +71,7 @@ class MobileMenu extends Component {
                   <Flex
                     justifyContent="space-between"
                     alignItems="center"
-                    m={'2rem'}
+                    m="2rem"
                     style={{
                       opacity,
                       position: 'absolute',

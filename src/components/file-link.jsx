@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { height } from 'styled-system'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 import { tColor } from '../utils/css-utils'
 
 let Link = styled.a`
@@ -31,7 +31,7 @@ let FileLink = ({
 }: IFileLinkProps) => {
   return (
     <Flex
-      is={Link}
+      as={Link}
       href={href}
       onClick={onClick}
       className={className}
@@ -39,7 +39,7 @@ let FileLink = ({
       target="__blank"
       rel="noreferrer noopener"
       alignItems="center">
-      <MyBox is={Icon} height={['12px', '18px']} mr="12px" />
+      <MyBox as={Icon} height={['12px', '18px']} mr="12px" />
       {children}
     </Flex>
   )

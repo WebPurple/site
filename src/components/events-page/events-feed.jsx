@@ -55,19 +55,12 @@ export default compose(
     let filteredEvents = events.filter(
       either(
         () => isEmpty(selectedTags),
-        pipe(
-          eventTags,
-          difference(selectedTags),
-          isEmpty,
-        ),
+        pipe(eventTags, difference(selectedTags), isEmpty),
       ),
     )
     return {
       filteredEvents,
-      filteredEventsTags: pipe(
-        chain(eventTags),
-        uniq,
-      )(filteredEvents),
+      filteredEventsTags: pipe(chain(eventTags), uniq)(filteredEvents),
     }
   }),
 )(EventsFeed)

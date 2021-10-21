@@ -6,7 +6,7 @@ import ym from 'react-yandex-metrika'
 import { media, Media, Z_INDEXES } from '../utils/css-utils'
 import WebpurpleLogo from './webpurple-logo/webpurple-logo'
 import { GithubIcon } from './icons'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 import { HiddenText } from '../utils/accessibility'
 import Search from './algolia-search'
 import MobileMenu from './mobile-menu/mobile-menu'
@@ -50,7 +50,7 @@ let NavbarItem = styled.li`
 let Navbar = () => (
   <nav>
     <Flex
-      is="ul"
+      as="ul"
       flexDirection={['column', 'row']}
       p={0}
       m={0}
@@ -75,7 +75,7 @@ let Navbar = () => (
 
 let GitHubLink = ({ children, className }) => (
   <Flex
-    is="a"
+    as="a"
     className={className}
     onClick={() => ym('reachGoal', 'gh-contribute')}
     href="https://github.com/kitos/web-purple"
@@ -87,7 +87,7 @@ let GitHubLink = ({ children, className }) => (
   </Flex>
 )
 
-let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
+let MobileGithubLink = styled(NavigationLink.withComponent(GitHubLink))`
   position: relative;
   margin-top: 0;
   & svg {
@@ -98,7 +98,7 @@ let MobileGithubLink = NavigationLink.withComponent(GitHubLink).extend`
 
 export default () => (
   <Flex
-    is="header"
+    as="header"
     flexDirection={['column', 'row']}
     alignItems={['normal', 'center']}
     m={['2rem 2rem', '4.0rem 8.6rem', '4.0rem 10.8rem', '4.0rem 12rem']}
@@ -107,8 +107,9 @@ export default () => (
     }}>
     <Media.MobileOnly>
       <MobileMenu stickyOffset={75} renderLogo={() => <WebpurpleLogo />}>
+        {/*<MobileMenu renderLogo={() => <WebpurpleLogo />}>*/}
         <Navbar />
-        <Box is={MobileGithubLink} m="7.5rem">
+        <Box as={MobileGithubLink} m="7.5rem">
           Contribute
         </Box>
       </MobileMenu>
@@ -118,7 +119,7 @@ export default () => (
       <Flex justifyContent="space-between" flex="1">
         <Navbar />
         <Flex alignItems="center">
-          <Box is={Search} mr="20px" />
+          <Box as={Search} mr="20px" />
           <GitHubLink>
             <HiddenText>Contribute</HiddenText>
           </GitHubLink>
@@ -129,7 +130,7 @@ export default () => (
       <WebpurpleLogo />
       <section style={{ left: '-9999px', position: 'absolute' }}>
         <Navbar />
-        <Box is={Search} mr="20px" />
+        <Box as={Search} mr="20px" />
       </section>
     </Media.SeoOnly>
   </Flex>

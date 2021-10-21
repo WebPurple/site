@@ -1,0 +1,20 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "__PATH_PREFIX__": false,
+    "___emitter": false
+  }
+}

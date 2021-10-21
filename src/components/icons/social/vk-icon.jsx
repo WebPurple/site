@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
@@ -6,7 +7,7 @@ const colorMap = {
   '#vk-icon': '#5b7aa8',
 }
 
-const VkSVG = SVG.extend`
+const VkSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

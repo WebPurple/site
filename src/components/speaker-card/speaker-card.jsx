@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 
 import hoverLink from '../../utils/hover-link'
 import SpeakerContacts from '../common/speaker-contacts'
@@ -36,7 +36,7 @@ let SpeakerCard = ({ speaker }) => (
     alignItems={['center', 'center', 'flex-start']}
     justifyContent={['flex-start']}
     my={['20px', '35px']}>
-    <Box is={FixAvatarHeight} pb={['20px', 0]}>
+    <Box as={FixAvatarHeight} pb={['20px', 0]}>
       <Avatar avatar={speaker.avatar} />
     </Box>
 
@@ -45,14 +45,14 @@ let SpeakerCard = ({ speaker }) => (
       alignItems={['center', 'flex-start']}
       pl={[0, '35px']}>
       <Box
-        is={Name}
+        as={Name}
         to={speaker.slug.replace('speaker', 'speakers')}
         href="#"
         fontSize={['24px', '32px']}>
         {speaker.id}
       </Box>
 
-      <Box is={Position} pt="10px" pb="25px" fontSize={['16px', '22px']}>
+      <Box as={Position} pt="10px" pb="25px" fontSize={['16px', '22px']}>
         {speaker.jobTitle}
         {speaker.jobTitle && speaker.organization && ' - '}
         {speaker.organization}

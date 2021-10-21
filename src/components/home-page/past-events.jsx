@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
 import zipWith from 'ramda/src/zipWith'
-import { Box } from 'grid-styled'
+import { Box } from 'reflexbox/styled-components'
 
 import { media } from '../../utils/css-utils'
 import ArrowButton from '../arrow-button/arrow-button'

@@ -1,11 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
   '#twitter-icon': '#1da1f2',
 }
 
-const TwitterSVG = SVG.extend`
+const TwitterSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

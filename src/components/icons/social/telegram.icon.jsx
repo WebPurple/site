@@ -1,11 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
   '#telegram-icon': 'url(#b)',
 }
 
-const TelegramSVG = SVG.extend`
+const TelegramSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

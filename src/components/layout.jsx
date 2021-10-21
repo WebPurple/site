@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { injectGlobal, ThemeProvider } from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { Flex, Box } from 'reflexbox/styled-components'
 import { YMInitializer } from 'react-yandex-metrika'
 
 import faviconICO from '../../static/favicon.ico'
@@ -15,7 +15,7 @@ import { colors, sizes } from '../utils/css-utils'
 import Header from './header'
 import Footer from './footer'
 
-import { ErrorHandler } from '../components/error-handler'
+import { ErrorHandler } from './error-handler'
 
 let theme = {
   ...colors, // deprecated
@@ -26,10 +26,11 @@ let theme = {
     .map(s => `${+s / 16}em`),
 }
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   html {
     font-size: .625em; /* 10px; */
   }
+  
   html, body {
     margin: 0;
     padding: 0;
@@ -40,6 +41,7 @@ injectGlobal`
 let Layout = ({ children }: { children: React.Node }) => (
   <ErrorHandler>
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Flex flexDirection="column" style={{ minHeight: '100vh' }}>
         <Helmet>
           <title>WebPurple</title>
@@ -78,7 +80,7 @@ let Layout = ({ children }: { children: React.Node }) => (
           />
         )}
         <Header />
-        <Box is="main" flex="1 0 auto">
+        <Box as="main" flex="1 0 auto">
           {children}
         </Box>
         <Footer />

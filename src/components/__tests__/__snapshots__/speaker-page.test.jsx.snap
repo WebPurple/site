@@ -121,7 +121,7 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
     <styled.h1 />
     <Flex
       flexDirection="column"
-      is={[Function]}
+      as={[Function]}
       m={0}
       mt="72px"
       p={0}

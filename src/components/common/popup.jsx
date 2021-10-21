@@ -1,12 +1,12 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
-import styled, { injectGlobal } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { Media } from '../../utils/css-utils'
 
 import CloseIcon from '../icons/close-icon'
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   body.ReactModal__Body--open {
     overflow: hidden;
     & > *:not(.ReactModalPortal) {
@@ -85,6 +85,7 @@ const Popup = ({ children, onRequestClose, ...rest }) => (
     onRequestClose={onRequestClose}
     parentSelector={() => document.body}
     style={customStyles}>
+    <GlobalStyle />
     <PopupWindow>
       <PopupWindowContainer>
         <Media.TabletPlus>

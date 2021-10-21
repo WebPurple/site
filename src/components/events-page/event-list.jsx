@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
-import { Box } from 'grid-styled'
+import { Box } from 'reflexbox/styled-components'
 import parse from 'date-fns/parse'
 import format from 'date-fns/format'
 
@@ -63,13 +63,13 @@ const TalkList = styled.ul`
 
 const EventList = ({ events, theme, onTagClick, selectedTags }) => (
   <Box
-    is={AdaptiveMasonryList}
+    as={AdaptiveMasonryList}
     width="100%"
     mx="auto"
     mt={['3.6rem', '3.6rem', '10rem']}>
     {events.map((event, eventIndex) => (
       <Box
-        is={EventSnippet}
+        as={EventSnippet}
         key={event.title}
         width={['100%', '30rem', '30rem', '35rem']}
         p="2.5rem"

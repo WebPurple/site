@@ -69,7 +69,10 @@ export const pageQuery = graphql`
       }
     }
 
-    pastTalks: allEventTalk(sort: { fields: date, order: DESC }, limit: 7) {
+    pastTalks: allEventTalk(
+      sort: { fields: event___fields___talks___date, order: DESC }
+      limit: 7
+    ) {
       edges {
         node {
           title

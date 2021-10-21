@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
-import { Box } from 'grid-styled'
+import { Box } from 'reflexbox/styled-components'
 import Helmet from 'react-helmet'
 
 import BlockHeader from '../components/common/block-header'
@@ -20,7 +20,7 @@ let BlogPage = ({ posts }) => (
       <AdaptiveMasonryList>
         {posts.map(post => (
           <Box
-            is="li"
+            as="li"
             key={post.id}
             width={['100%', '30rem', '35rem']}
             mb={['2rem', '2rem', '7rem']}>
