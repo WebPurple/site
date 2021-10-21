@@ -22,7 +22,7 @@ const getCorrectTimeToReadNoun = getNoun('минута', 'минуты', 'мин
 let Header = styled.header`
   background-blend-mode: overlay;
   background: #c788fe
-    url(${({ cover }) => cover || '/img/social-thumbnail-bg.png'}); // todo cover тут не прокинулся теперь
+    url(${({ cover }) => cover || '/img/social-thumbnail-bg.png'});
   background-size: cover;
 `
 

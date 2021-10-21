@@ -95,7 +95,7 @@
     "jsxBracketSameLine": true
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "setupFilesAfterEnv": ["./setupTests.js"],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/.cache/"
@@ -106,14 +106,14 @@
   },
   "devDependencies": {
     "all-contributors-cli": "^5.4.0",
-    "babel-jest": "^23.2.0",
+    "babel-jest": "^27.3.1",
     "dotenv": "^6.1.0",
-    "enzyme": "^3.5.1",
+    "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.4.0",
     "flow-bin": "^0.162.1",
     "flow-typed": "^3.3.1",
-    "jest": "^23.2.0",
-    "jest-enzyme": "^7.0.1",
+    "jest": "^27.3.1",
+    "jest-enzyme": "^7.1.2",
     "pre-commit": "^1.2.2",
     "prettier": "^1.13.5"
   },
