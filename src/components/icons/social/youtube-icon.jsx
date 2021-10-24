@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
@@ -6,7 +7,7 @@ const colorMap = {
   '.you-fill': '#040707',
 }
 
-const YoutubeSVG = SVG.extend`
+const YoutubeSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

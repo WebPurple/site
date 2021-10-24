@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { Box, Flex } from 'grid-styled'
+import { Box, Flex } from 'reflexbox/styled-components'
 
 import Avatar from './../../common/avatar'
 import { tColor } from './../../../utils/css-utils'
@@ -15,6 +15,7 @@ import type { TalkType } from '../../../model'
 let AvatarWrapper = styled(Link)`
   display: block;
   height: 200px;
+  min-width: auto;
 `
 
 let Header = styled.h3`
@@ -34,13 +35,13 @@ let EventTalk = ({ talk }: { talk: TalkType }) => {
     <Flex
       flexDirection={['column', 'row']}
       alignItems={['center', 'flex-start']}>
-      <Box is={AvatarWrapper} to={speakerUrl} mr={['27px', '36px', '24px']}>
+      <Box as={AvatarWrapper} to={speakerUrl} mr={['27px', '36px', '24px']}>
         <Avatar avatar={speaker.avatar} stretch />
       </Box>
 
       <div>
         <Box
-          is={Header}
+          as={Header}
           color={tColor('greyishBrown')()}
           fontSize={['28px', '32px']}
           m={0}
@@ -49,7 +50,7 @@ let EventTalk = ({ talk }: { talk: TalkType }) => {
         </Box>
 
         <Box
-          is={SpeakerLink}
+          as={SpeakerLink}
           to={speakerUrl}
           itemProp="actor"
           color={tColor('grape')()}
@@ -70,7 +71,7 @@ let EventTalk = ({ talk }: { talk: TalkType }) => {
         {talk.links && (
           <Flex justifyContent={['space-around', 'flex-start']}>
             {talk.links.video && (
-              <Box is={YoutubeLink} url={talk.links.video} mr={[0, '36px']} />
+              <Box as={YoutubeLink} url={talk.links.video} mr={[0, '36px']} />
             )}
             {talk.links.presentation && (
               <FileLink icon={DownloadIcon} href={talk.links.presentation}>

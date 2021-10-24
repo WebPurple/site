@@ -4,7 +4,7 @@ import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 
 import { TagList } from '../common/tag'
 import RoundImg from '../round-img'
@@ -70,7 +70,7 @@ let BackgroundImage = styled.div`
 `
 
 let ArticleCard = ({ post }) => (
-  <Box is={Card} p="2.5rem">
+  <Box as={Card} p="2.5rem">
     <header>
       <Flex justifyContent="space-between">
         <Date>{format(parse(post.date), 'MMM DD, YYYY')}</Date>
@@ -83,7 +83,7 @@ let ArticleCard = ({ post }) => (
           )}`}</span>
         </Box>
       </Flex>
-      <Box is="h2" mt="3.6rem">
+      <Box as="h2" mt="3.6rem">
         <StyledLink to={post.link}>{post.title}</StyledLink>
       </Box>
     </header>
@@ -96,18 +96,18 @@ let ArticleCard = ({ post }) => (
       />
     </BackgroundShape>
 
-    <Box is={Excerpt} mt="2.4rem">
+    <Box as={Excerpt} mt="2.4rem">
       {post.excerpt}
     </Box>
 
     <footer>
       <Flex
-        is={Link}
+        as={Link}
         my="2.4rem"
         alignItems="center"
         to={post.author.fields.slug.replace('speaker', 'speakers')}>
         <RoundImg size="3.6rem" bg={post.author.avatar} />
-        <Box is={Author} ml="1.2rem">
+        <Box as={Author} ml="1.2rem">
           {post.author.id}
         </Box>
       </Flex>

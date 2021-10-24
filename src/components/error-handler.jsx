@@ -34,7 +34,7 @@ const Code = styled.pre`
   overflow-x: auto;
 `
 
-const Link = ArrowButton.withComponent('a').extend`
+const Link = styled(ArrowButton.withComponent('a'))`
   color: black;
   font-weight: bold;
   font-size: 1.8em;

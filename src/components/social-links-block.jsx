@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 import ym from 'react-yandex-metrika'
 
 import { media } from '../utils/css-utils'

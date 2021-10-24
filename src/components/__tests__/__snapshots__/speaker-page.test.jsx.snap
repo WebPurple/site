@@ -1,45 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SpeakerPage> should match snapshot 1`] = `
-<Flex
-  blacklist={
-    Array [
-      "css",
-      "flexWrap",
-      "flexDirection",
-      "alignItems",
-      "justifyContent",
-      "css",
-      "width",
-      "m",
-      "mt",
-      "mr",
-      "mb",
-      "ml",
-      "mx",
-      "my",
-      "p",
-      "pt",
-      "pr",
-      "pb",
-      "pl",
-      "px",
-      "py",
-      "fontSize",
-      "color",
-      "bg",
-      "flex",
-      "order",
-      "alignSelf",
-    ]
-  }
+<Styled(styled.div)
   flexDirection={
     Array [
       "column",
       "row",
     ]
   }
-  is={[Function]}
   m={
     Array [
       "2rem 2rem",
@@ -49,69 +17,11 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
     ]
   }
 >
-  <Flex
+  <Styled(styled.div)
     alignItems="center"
-    blacklist={
-      Array [
-        "css",
-        "flexWrap",
-        "flexDirection",
-        "alignItems",
-        "justifyContent",
-        "css",
-        "width",
-        "m",
-        "mt",
-        "mr",
-        "mb",
-        "ml",
-        "mx",
-        "my",
-        "p",
-        "pt",
-        "pr",
-        "pb",
-        "pl",
-        "px",
-        "py",
-        "fontSize",
-        "color",
-        "bg",
-        "flex",
-        "order",
-        "alignSelf",
-      ]
-    }
     flexDirection="column"
-    is={[Function]}
   >
-    <Box
-      blacklist={
-        Array [
-          "css",
-          "width",
-          "m",
-          "mt",
-          "mr",
-          "mb",
-          "ml",
-          "mx",
-          "my",
-          "p",
-          "pt",
-          "pr",
-          "pb",
-          "pl",
-          "px",
-          "py",
-          "fontSize",
-          "color",
-          "bg",
-          "flex",
-          "order",
-          "alignSelf",
-        ]
-      }
+    <styled.div
       mb="16px"
       style={
         Object {
@@ -122,7 +32,7 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
       <Avatar
         avatar={null}
       />
-    </Box>
+    </styled.div>
     <SpeakerContacts
       speaker={
         Object {
@@ -138,34 +48,8 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
         }
       }
     />
-  </Flex>
-  <Box
-    blacklist={
-      Array [
-        "css",
-        "width",
-        "m",
-        "mt",
-        "mr",
-        "mb",
-        "ml",
-        "mx",
-        "my",
-        "p",
-        "pt",
-        "pr",
-        "pb",
-        "pl",
-        "px",
-        "py",
-        "fontSize",
-        "color",
-        "bg",
-        "flex",
-        "order",
-        "alignSelf",
-      ]
-    }
+  </Styled(styled.div)>
+  <styled.div
     ml={
       Array [
         0,
@@ -174,44 +58,39 @@ exports[`<SpeakerPage> should match snapshot 1`] = `
     }
   >
     <styled.h1 />
-    <Flex
-      blacklist={
-        Array [
-          "css",
-          "flexWrap",
-          "flexDirection",
-          "alignItems",
-          "justifyContent",
-          "css",
-          "width",
-          "m",
-          "mt",
-          "mr",
-          "mb",
-          "ml",
-          "mx",
-          "my",
-          "p",
-          "pt",
-          "pr",
-          "pb",
-          "pl",
-          "px",
-          "py",
-          "fontSize",
-          "color",
-          "bg",
-          "flex",
-          "order",
-          "alignSelf",
-        ]
+    <Styled(styled.div)
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": e {
+            "baseHash": -1550948005,
+            "baseStyle": undefined,
+            "componentId": "sc-iwjdpV",
+            "isStatic": false,
+            "rules": Array [
+              "
+  list-style: none;
+",
+            ],
+            "staticRulesId": "",
+          },
+          "displayName": "styled.ul",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "shouldForwardProp": undefined,
+          "styledComponentId": "sc-iwjdpV",
+          "target": "ul",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
       }
       flexDirection="column"
-      is={[Function]}
       m={0}
       mt="72px"
       p={0}
     />
-  </Box>
-</Flex>
+  </styled.div>
+</Styled(styled.div)>
 `;

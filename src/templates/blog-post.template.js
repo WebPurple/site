@@ -2,13 +2,12 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import { mapProps } from 'recompose'
 import styled from 'styled-components'
-import { Box, Flex } from 'grid-styled'
+import { Box, Flex } from 'reflexbox/styled-components'
 import { DiscussionEmbed } from 'disqus-react'
 import canUseDom from 'can-use-dom'
 import Helmet from 'react-helmet'
 import parse from 'date-fns/parse'
 import format from 'date-fns/format'
-import VK, { Like as VkLike } from 'react-vk'
 import { FacebookProvider, Like as FbLike } from 'react-facebook'
 
 import { TagList } from '../components/common/tag'
@@ -51,7 +50,7 @@ let BlogPost = ({ post }) => (
       </Helmet>
 
       <Box
-        is={Header}
+        as={Header}
         p={['3.2rem 2rem', '3.2rem 2rem', '9.6rem 12rem']}
         cover={post.background}>
         <TagList tags={post.tags} itemProp="keywords" />
@@ -78,7 +77,7 @@ let BlogPost = ({ post }) => (
         </Flex>
 
         <Box
-          is={Heading}
+          as={Heading}
           m={0}
           fontSize={['3.2rem', '6.4rem', '7.8rem']}
           itemProp="name">
@@ -92,13 +91,6 @@ let BlogPost = ({ post }) => (
 
           <BrowserOnly>
             <Flex alignItems="center" justifyContent="flex-end" my="2rem">
-              <VK apiId={5360165} options={{ version: 152 }}>
-                <VkLike
-                  options={{ type: 'mini', height: 30 }}
-                  pageId={post.slug}
-                />
-              </VK>
-
               <FacebookProvider appId="1094823327247465">
                 <FbLike layout="button_count" share />
               </FacebookProvider>

@@ -3,7 +3,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { withTheme } from 'styled-components'
-import { Box } from 'grid-styled'
+import { Box } from 'reflexbox/styled-components'
 import parse from 'date-fns/parse'
 import format from 'date-fns/format'
 
@@ -226,7 +226,7 @@ const UpcomingEvents = withTheme(({ theme, event }) => (
             <TalkTitle>{talk.title}</TalkTitle>
 
             <Box
-              is={TalkSpeaker}
+              as={TalkSpeaker}
               to={talk.speaker.fields.slug.replace('speaker', 'speakers')}
               fontSize={['14px', '14px', '20px']}>
               {talk.speaker.id}

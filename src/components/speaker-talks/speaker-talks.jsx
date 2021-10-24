@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withState } from 'recompose'
 import styled from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 import { Portal } from 'react-portal'
 import { Manager, Popper, Reference } from 'react-popper'
 
@@ -48,7 +48,7 @@ const SpeakerTalks = ({ talks, visible, toggle }) => {
             {({ ref, style, placement, arrowProps }) => (
               <Popup innerRef={ref} style={style} data-placement={placement}>
                 <Flex
-                  is={Talks}
+                  as={Talks}
                   m={0}
                   p="10px 18px"
                   mt="10px"

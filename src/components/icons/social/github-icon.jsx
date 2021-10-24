@@ -1,11 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
   '#gh-icon': '#000',
 }
 
-const GithubSVG = SVG.extend`
+const GithubSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

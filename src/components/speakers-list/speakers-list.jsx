@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { withState } from 'recompose'
-import { Flex } from 'grid-styled'
+import { Flex } from 'reflexbox/styled-components'
 
 import BlockHeader from '../common/block-header'
 import MainContainer from '../common/main-container'

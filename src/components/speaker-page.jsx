@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { Box, Flex } from 'grid-styled'
+import { Box, Flex } from 'reflexbox/styled-components'
 
 import type { SpeakerType } from '../model'
 import Avatar from './common/avatar'
@@ -55,10 +55,10 @@ let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
         </Position>
       )}
 
-      <Flex is={ListStyleNone} flexDirection="column" m={0} p={0} mt="72px">
+      <Flex as={ListStyleNone} flexDirection="column" m={0} p={0} mt="72px">
         {speaker.talks.map(talk => (
-          <Flex is="li" key={talk.title} flexDirection="column" mb="15px">
-            <Box is={TalkName} to={talk.event.fields.slug} mb="18px">
+          <Flex as="li" key={talk.title} flexDirection="column" mb="15px">
+            <Box as={TalkName} to={talk.event.fields.slug} mb="18px">
               {talk.title}
             </Box>
 
@@ -66,7 +66,7 @@ let SpeakerPage = ({ speaker }: { speaker: SpeakerType }) => (
               {talk.links && (talk.links.video || talk.links.presentation) ? (
                 <React.Fragment>
                   {talk.links.video && (
-                    <Box is={YoutubeLink} url={talk.links.video} mr="36px" />
+                    <Box as={YoutubeLink} url={talk.links.video} mr="36px" />
                   )}
                   {talk.links.presentation && (
                     <FileLink

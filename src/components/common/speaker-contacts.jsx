@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 
 import {
   TwitterIcon,
@@ -30,9 +30,9 @@ let buildSocialLink = ({ type, link }) => socialNetworkHosts[type] + link
 
 const SpeakerContacts = ({ speaker }) =>
   speaker.socialNetworks && (
-    <Flex is="ul" style={{ listStyle: 'none' }} p={0} m={0}>
+    <Flex as="ul" style={{ listStyle: 'none' }} p={0} m={0}>
       {speaker.socialNetworks.map(sn => (
-        <Box is="li" key={sn.type} mr="1rem">
+        <Box as="li" key={sn.type} mr="1rem">
           <a
             href={buildSocialLink(sn)}
             target="_blank"

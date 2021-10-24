@@ -4,9 +4,8 @@ import styled from 'styled-components'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import { fontSize, height } from 'styled-system'
-import { Box, Flex } from 'grid-styled'
+import { Box, Flex } from 'reflexbox/styled-components'
 import Helmet from 'react-helmet'
-import VK, { Like as VkLike } from 'react-vk'
 import { FacebookProvider, Like as FbLike } from 'react-facebook'
 import canUseDom from 'can-use-dom'
 import { DiscussionEmbed } from 'disqus-react'
@@ -90,7 +89,7 @@ let StyledFbIcon = styled(FacebookIcon)`
 `
 
 let EventSocialNetworks = ({ socialNetworks }) => (
-  <Flex is="ul" style={{ listStyle: 'none' }} m={0} p={0}>
+  <Flex as="ul" style={{ listStyle: 'none' }} m={0} p={0}>
     {socialNetworks.map(sn => (
       <li key={sn.link}>
         <a
@@ -144,7 +143,7 @@ const EventPage = ({ event }: { event: EventType }) => (
       <Flex mb={['3.2rem', '3.2rem', '6.4rem']} flexDirection="column">
         <Flex flexDirection={['column', 'column', 'row']}>
           <Box
-            is={Description}
+            as={Description}
             flex={4}
             order={[1, 1, 0]}
             fontSize={['1.6rem', '2.4rem']}
@@ -169,13 +168,6 @@ const EventPage = ({ event }: { event: EventType }) => (
         <Flex mt="3.6rem" justifyContent="space-between" alignItems="flex-end">
           <BrowserOnly>
             <Flex alignItems="center">
-              <VK apiId={5360165} options={{ version: 152 }}>
-                <VkLike
-                  options={{ type: 'mini', height: 30 }}
-                  pageId={event.fields.slug}
-                />
-              </VK>
-
               <FacebookProvider appId="1094823327247465">
                 <FbLike layout="button_count" share />
               </FacebookProvider>

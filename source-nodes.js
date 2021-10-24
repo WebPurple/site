@@ -38,4 +38,5 @@ let sourceNodes = async ({ actions: { createNode } }) => {
     }))
     .forEach(R.unary(createNode))
 }
+
 module.exports = sourceNodes

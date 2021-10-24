@@ -1,11 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
   '#fb-icon': '#3b5998',
 }
 
-const FacebookSVG = SVG.extend`
+const FacebookSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

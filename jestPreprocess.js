@@ -1,11 +1,11 @@
-module.exports = require('babel-jest').createTransformer({
+module.exports = require('babel-jest').default.createTransformer({
   presets: [
     '@babel/preset-flow',
     [
       '@babel/env',
       {
         targets: {
-          node: '8',
+          node: '14',
         },
       },
     ],

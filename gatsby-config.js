@@ -18,6 +18,7 @@ let plugins = [
     },
   },
   'gatsby-plugin-flow',
+  'gatsby-plugin-eslint',
   'gatsby-plugin-styled-components',
   {
     resolve: 'gatsby-source-filesystem',

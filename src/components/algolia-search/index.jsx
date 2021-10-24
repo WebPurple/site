@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { navigateTo } from 'gatsby'
+import { navigate } from 'gatsby'
 import Downshift from 'downshift'
 import debounce from 'lodash.debounce'
 import { compose, withProps } from 'recompose'
@@ -20,7 +20,7 @@ let AutoComplete = ({ hits: sections, currentRefinement, debouncedRefine }) => (
   <Manager>
     <Downshift
       itemToString={(/* do not fill in input */) => ''}
-      onSelect={hit => navigateTo(hit.slug)}>
+      onSelect={hit => navigate(hit.slug)}>
       {({
         getInputProps,
         getItemProps,

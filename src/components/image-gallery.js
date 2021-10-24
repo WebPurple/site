@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as R from 'ramda'
 import Masonry from 'react-masonry-component'
 import styled, { withTheme } from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'reflexbox/styled-components'
 import Lightbox from 'react-images'
 
 import { Media } from '../utils/css-utils'
@@ -101,10 +101,10 @@ class ImageGallery extends React.Component<ImageListProps, ImageListState> {
 
     return (
       <div>
-        <Box is={ImagesWrapper} mt={['3.6rem', '3.6rem', '10rem']}>
+        <Box as={ImagesWrapper} mt={['3.6rem', '3.6rem', '10rem']}>
           {images.slice(0, this.state.count).map(({ src, srcSet }, i) => (
             <Box
-              is={ImageWrapper}
+              as={ImageWrapper}
               onClick={() => this.toggleLightbox(true, i)}
               key={src}
               width={['100%', '16.4rem', '20rem', '23rem']}

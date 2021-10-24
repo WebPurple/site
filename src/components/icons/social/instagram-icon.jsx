@@ -1,11 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { SVG, prepareFillColors } from './icon-wrapper'
 
 const colorMap = {
   '.fill': 'url(#instagram-gradient)',
 }
 
-const InstagramSVG = SVG.extend`
+const InstagramSVG = styled(SVG)`
   ${prepareFillColors(colorMap)};
 `
 

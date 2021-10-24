@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Box, Flex } from 'grid-styled'
+import { Box, Flex } from 'reflexbox/styled-components'
 import { Highlight, Snippet, PoweredBy } from 'react-instantsearch-dom'
 
 import { firstHit, hasMatch } from './helpers'
@@ -25,11 +25,11 @@ let Details = styled.div`
 
 let SuggestionLayout = ({ children: [title, details], isActive }) => (
   <Flex>
-    <Box is={Title} flex="1" p="10px">
+    <Box as={Title} flex="1" p="10px">
       {title}
     </Box>
 
-    <Box is={Details} flex="4" p="10px" isActive={isActive}>
+    <Box as={Details} flex="4" p="10px" isActive={isActive}>
       {details}
     </Box>
   </Flex>
@@ -54,7 +54,7 @@ export let EventSnippet = ({ hit, isActive }) => (
     <Flex flexDirection="column">
       <div>
         <Highlight attribute="title" hit={hit} />,
-        <Box is={User} ml="10px">
+        <Box as={User} ml="10px">
           <Highlight attribute="speaker" hit={hit} />
         </Box>
       </div>
