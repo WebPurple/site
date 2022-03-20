@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 export let hasMatch = field => hit => {
-  let match = hit => hit.matchLevel !== 'none'
+  let match = hit => hit && hit.matchLevel !== 'none'
   let fieldHit = hit._highlightResult[field]
 
   return Array.isArray(fieldHit) ? fieldHit.some(match) : match(fieldHit)
