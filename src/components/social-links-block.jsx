@@ -29,12 +29,12 @@ let socialNetworks = [
     icon: responsiveHeight(VkIcon, 22, 42, 50),
     ymGoal: 'vkontakte',
   },
-  {
-    link: 'https://www.facebook.com/WebPurple',
-    description: 'We are in Facebook',
-    icon: responsiveHeight(FacebookSquareIcon, 30, 65, 80),
-    ymGoal: 'facebook',
-  },
+  // {
+  //   link: 'https://www.facebook.com/WebPurple',
+  //   description: 'We are in Facebook',
+  //   icon: responsiveHeight(FacebookSquareIcon, 30, 65, 80),
+  //   ymGoal: 'facebook',
+  // },
   {
     link: 'https://www.youtube.com/channel/UCFOQWgbqJbU8sVuWHGln2aA',
     description: 'Our youtube channel',
@@ -47,12 +47,12 @@ let socialNetworks = [
     icon: responsiveHeight(TelegramIcon, 30, 55, 65),
     ymGoal: 'telegram',
   },
-  {
-    link: 'https://www.instagram.com/webpurple',
-    description: 'We are in instagram',
-    icon: responsiveHeight(InstagramIcon, 30, 65, 80),
-    ymGoal: 'instagram',
-  },
+  // {
+  //   link: 'https://www.instagram.com/webpurple',
+  //   description: 'We are in instagram',
+  //   icon: responsiveHeight(InstagramIcon, 30, 65, 80),
+  //   ymGoal: 'instagram',
+  // },
 ]
 
 export default () => (
